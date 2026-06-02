@@ -1,0 +1,9 @@
+---
+import Base from "../layouts/Base.astro";
+import SiteRenderer from "../components/lib/SiteRenderer";
+import { ridge } from "../config/ridge.config";
+---
+
+<Base skin={ridge.skin} title={`${ridge.brand.name} — Pastures · Ridge`}>
+  <SiteRenderer config={ridge} client:load />
+</Base>

@@ -1,0 +1,38 @@
+/* Theme engine. Every skin is a flat map of CSS vars on [data-skin].
+   Components reference --vars only — never hardcode color/radius/font.
+   Two blended concepts, each drawing from BOTH the Apple and Google toolkits. */
+
+:root {
+  --maxw: 1180px;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* RIDGE — Apple cinematic dark depth × Google kinetic text & bold accent blocks */
+[data-skin="ridge"] {
+  --bg: #0a0a0c;
+  --fg: #f4f4f7;
+  --muted: #8b8b95;
+  --accent: #ff5a1f;
+  --accent-2: #7c5cff;
+  --card: #15151b;
+  --line: #26262f;
+  --radius: 14px;
+  --font-display: "Manrope", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  color-scheme: dark;
+}
+
+/* MEADOW — Google bright Material warmth × Apple seamless scroll & breathing room */
+[data-skin="meadow"] {
+  --bg: #faf8f3;
+  --fg: #1b1a17;
+  --muted: #6c6b63;
+  --accent: #4a7c59;
+  --accent-2: #d98e5a;
+  --card: #ffffff;
+  --line: #e7e3da;
+  --radius: 24px;
+  --font-display: "Manrope", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  color-scheme: light;
+}
