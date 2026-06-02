@@ -65,6 +65,14 @@ export type Section =
       after: { label: string; img: string };
     }
   | {
+      type: "VideoScene";
+      src: string;
+      poster?: string;
+      heading?: string;
+      sub?: string;
+      overlayDir?: "bottom" | "top" | "none";
+    }
+  | {
       type: "MegaFooter";
       columns: { title: string; links: NavLink[] }[];
       legal?: string;

@@ -63,6 +63,15 @@ export const meadow: SiteConfig = {
       after: { label: "Week six", img: "https://picsum.photos/seed/verda-after/1600/900" },
     },
     {
+      // Full-bleed video scene (Apple). Free sample: Google's public MP4 sample.
+      // Production: swap for a Coverr/Mixkit CDN URL with lush nature footage.
+      type: "VideoScene",
+      src: "https://storage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+      heading: "Watch them grow.",
+      sub: "Every plant ships ready to thrive — and keeps growing long after.",
+      overlayDir: "bottom",
+    },
+    {
       type: "CardGrid",
       heading: "Made to keep things alive.",
       cards: [

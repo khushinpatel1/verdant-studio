@@ -63,6 +63,15 @@ export const ridge: SiteConfig = {
       after: { label: "Evening", img: "https://picsum.photos/seed/lumen-dusk/1600/900" },
     },
     {
+      // Full-bleed cinematic video (Apple). Free sample: Google's public MP4 sample.
+      // Production: swap for a Coverr/Mixkit CDN URL themed to the brand.
+      type: "VideoScene",
+      src: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+      heading: "A light that moves you.",
+      sub: "Lumen adapts to every scene, every hour, every mood.",
+      overlayDir: "bottom",
+    },
+    {
       type: "CardGrid",
       heading: "Everything you'd expect. Nothing you wouldn't.",
       cards: [

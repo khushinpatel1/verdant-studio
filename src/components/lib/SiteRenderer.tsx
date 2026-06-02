@@ -10,6 +10,7 @@ import ParallaxLayers from "../sections/ParallaxLayers";
 import CompareSlider from "../sections/CompareSlider";
 import Accordion from "../sections/Accordion";
 import MegaFooter from "../sections/MegaFooter";
+import VideoScene from "../sections/VideoScene";
 
 // Maps a config's ordered sections to components. Add a component → add a case.
 export default function SiteRenderer({ config }: { config: SiteConfig }) {
@@ -35,6 +36,8 @@ export default function SiteRenderer({ config }: { config: SiteConfig }) {
             return <CompareSlider key={i} {...s} />;
           case "Accordion":
             return <Accordion key={i} {...s} />;
+          case "VideoScene":
+            return <VideoScene key={i} {...s} />;
           case "MegaFooter":
             return <MegaFooter key={i} {...s} />;
           default:
