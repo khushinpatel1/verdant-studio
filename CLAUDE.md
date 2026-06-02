@@ -41,9 +41,12 @@ licensed fonts. Two skins are **original blended concepts**, not clones:
   `MegaFooter`, `PinnedShowcase`, `ParallaxLayers`, `CompareSlider`, `VideoScene`.
 - **`git init` done** — local commits only; remote not yet created (needs user's auth).
 - **Imagery upgraded** — picsum replaced with curated Unsplash CDN URLs (both skins).
-- **Multi-page** — 6 pages total:
-  - Ridge: `/` (overview), `/ridge-design`, `/ridge-sustainability`
-  - Meadow: `/meadow`, `/meadow-care`, `/meadow-about`
+- **Multi-page** — 8 pages total:
+  - Ridge: `/` (overview), `/ridge-design`, `/ridge-sustainability` (still the old demo)
+  - Meadow: now **Verdant Studio** (ported from `verdant-site`, branch `feat/verdant-to-meadow`):
+    `/meadow` (studio), `/meadow-garden`, `/meadow-ethos`, `/meadow-team`, `/meadow-emerald`.
+    Meadow tokens retuned to Verdant's moonlight/moss/earthy palette + Newsreader/Hanken/DM Mono.
+    See `docs/verdant-to-meadow-summary.md` + `-mapping.md`. (Old `meadow-care`/`meadow-about` removed.)
   - All pages config-driven via `SiteRenderer`; nav links wired to real pages.
 - **Cloudflare Pages ready** — `public/_headers`, `public/_redirects`, `docs/cloudflare-deploy.md`.
 - `VideoScene` uses Google sample `.mp4` URLs for now (free/no-key). Swap for Coverr/Mixkit in production.
