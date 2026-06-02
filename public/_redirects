@@ -1,0 +1,6 @@
+# Cloudflare Pages redirects file.
+# Add permanent redirects here as the site grows.
+# Example: /old-path  /new-path  301
+
+# SPA-style 404 fallback — remove if you prefer Cloudflare's default 404 page.
+# /*  /index.html  404
