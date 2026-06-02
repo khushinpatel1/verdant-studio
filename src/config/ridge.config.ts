@@ -1,7 +1,8 @@
 import type { SiteConfig } from "./types";
 
 // DEMO brand on the RIDGE skin (cinematic dark × kinetic accent).
-// Fictional product. Placeholder imagery via picsum — swap for curated free assets later.
+// Imagery: curated Unsplash CDN URLs (free, no key needed for direct photo URLs).
+// Production note: localize assets to your CDN and add attribution per Unsplash license.
 export const ridge: SiteConfig = {
   skin: "ridge",
   brand: { name: "Lumen", tagline: "Light, reimagined." },
@@ -20,27 +21,31 @@ export const ridge: SiteConfig = {
       prefix: "Light that feels",
       words: ["alive", "yours", "effortless", "human"],
       sub: "The first lamp that understands the room it's in.",
-      media: "https://picsum.photos/seed/lumen-hero/1920/1080",
+      // Unsplash: dramatic dark interior with warm light pool — cinematic, on-brand
+      media: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1920&q=80&auto=format&fit=crop",
       cta: { label: "Discover Lumen", href: "#design" },
     },
     {
       type: "RevealBlock",
       heading: "Carved from a single curve of light.",
       body: "A seamless anodized body with no visible seams, no buttons, no clutter — just a quiet object that happens to glow.",
-      media: "https://picsum.photos/seed/lumen-design/1200/1000",
+      // Unsplash: minimalist dark product / aluminum form study
+      media: "https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?w=1200&q=80&auto=format&fit=crop",
       align: "left",
     },
     {
       type: "RevealBlock",
       heading: "It knows when to glow.",
       body: "Adaptive sensing reads daylight, presence, and your rhythm — warming at dusk, dimming as you drift off, never asking.",
-      media: "https://picsum.photos/seed/lumen-sense/1200/1000",
+      // Unsplash: moody room at dusk, warm lamp glow
+      media: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=1200&q=80&auto=format&fit=crop",
       align: "right",
     },
     {
       type: "PinnedShowcase",
       heading: "Look closer.",
-      media: "https://picsum.photos/seed/lumen-pin/1200/1400",
+      // Unsplash: close macro of brushed metal / product detail
+      media: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80&auto=format&fit=crop",
       steps: [
         { title: "One continuous body.", body: "Machined from a single billet, then anodized — no seams to catch light or dust." },
         { title: "A core that breathes.", body: "Heat dissipates through the form itself, so the surface stays cool to the touch." },
@@ -52,15 +57,18 @@ export const ridge: SiteConfig = {
       heading: "Made for the dark.",
       sub: "Lumen was designed to disappear until the moment you need it.",
       layers: [
-        { src: "https://picsum.photos/seed/lumen-px-back/1920/1200", speed: -1 },
-        { src: "https://picsum.photos/seed/lumen-px-mid/1920/1200", speed: 1.5 },
+        // Unsplash: night cityscape / dark architectural backdrop
+        { src: "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=1920&q=80&auto=format&fit=crop", speed: -1 },
+        // Unsplash: dark architectural foreground element
+        { src: "https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1920&q=80&auto=format&fit=crop", speed: 1.5 },
       ],
     },
     {
       type: "CompareSlider",
       heading: "Day to dusk, automatically.",
-      before: { label: "Daylight", img: "https://picsum.photos/seed/lumen-day/1600/900" },
-      after: { label: "Evening", img: "https://picsum.photos/seed/lumen-dusk/1600/900" },
+      // Unsplash: same-style interior in daylight vs warm evening tones
+      before: { label: "Daylight", img: "https://images.unsplash.com/photo-1513694203232-719a280e022f?w=1600&q=80&auto=format&fit=crop" },
+      after: { label: "Evening", img: "https://images.unsplash.com/photo-1560448204-603b3fc33ddc?w=1600&q=80&auto=format&fit=crop" },
     },
     {
       // Full-bleed cinematic video (Apple). Free sample: Google's public MP4 sample.

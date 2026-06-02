@@ -2,6 +2,8 @@ import type { SiteConfig } from "./types";
 
 // DEMO brand on the MEADOW skin (bright Material warmth × seamless scroll).
 // Same components, different skin + content — the whole point of the framework.
+// Imagery: curated Unsplash CDN URLs (plants / greenery / bright). Free to use.
+// Production note: localize assets to your CDN and add attribution per Unsplash license.
 export const meadow: SiteConfig = {
   skin: "meadow",
   brand: { name: "Verda", tagline: "Grow something good." },
@@ -20,27 +22,31 @@ export const meadow: SiteConfig = {
       prefix: "Plant care made",
       words: ["simple", "joyful", "foolproof", "yours"],
       sub: "Living plants, matched to your light and your life — delivered ready to thrive.",
-      media: "https://picsum.photos/seed/verda-hero/1920/1080",
+      // Unsplash: lush green tropical leaves — bright, airy, Meadow-tone
+      media: "https://images.unsplash.com/photo-1501004318641-b39e6451bec6?w=1920&q=80&auto=format&fit=crop",
       cta: { label: "Find your plant", href: "#design" },
     },
     {
       type: "RevealBlock",
       heading: "Matched to your space, not a guess.",
       body: "Tell us your light, your room, and your patience. We pick a plant that will actually love living with you.",
-      media: "https://picsum.photos/seed/verda-match/1200/1000",
+      // Unsplash: bright living room with plants on windowsill
+      media: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=1200&q=80&auto=format&fit=crop",
       align: "right",
     },
     {
       type: "RevealBlock",
       heading: "It tells you exactly when to water.",
       body: "A tiny soil sensor and a gentle nudge on your phone. No more guessing, no more droopy regret.",
-      media: "https://picsum.photos/seed/verda-water/1200/1000",
+      // Unsplash: hands watering a potted plant, warm light
+      media: "https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?w=1200&q=80&auto=format&fit=crop",
       align: "left",
     },
     {
       type: "PinnedShowcase",
       heading: "From box to bloom.",
-      media: "https://picsum.photos/seed/verda-pin/1200/1400",
+      // Unsplash: beautiful potted houseplant, bright background
+      media: "https://images.unsplash.com/photo-1485955900006-10f4d324d411?w=1200&q=80&auto=format&fit=crop",
       steps: [
         { title: "Arrives ready.", body: "Potted, hydrated, and acclimated — no repotting, no shock, no guesswork." },
         { title: "Settles in.", body: "A two-week check-in tunes watering to your home's actual light and humidity." },
@@ -52,15 +58,18 @@ export const meadow: SiteConfig = {
       heading: "Greener, by design.",
       sub: "Every Verda plant is grown in renewable nurseries and shipped carbon-neutral.",
       layers: [
-        { src: "https://picsum.photos/seed/verda-px-back/1920/1200", speed: -1 },
-        { src: "https://picsum.photos/seed/verda-px-mid/1920/1200", speed: 1.5 },
+        // Unsplash: dense tropical foliage background
+        { src: "https://images.unsplash.com/photo-1448375240586-882707db888b?w=1920&q=80&auto=format&fit=crop", speed: -1 },
+        // Unsplash: bright botanical close-up foreground
+        { src: "https://images.unsplash.com/photo-1530968033775-2c92736b131e?w=1920&q=80&auto=format&fit=crop", speed: 1.5 },
       ],
     },
     {
       type: "CompareSlider",
       heading: "Watch it come back to life.",
-      before: { label: "Week one", img: "https://picsum.photos/seed/verda-before/1600/900" },
-      after: { label: "Week six", img: "https://picsum.photos/seed/verda-after/1600/900" },
+      // Unsplash: before = sparse/neglected plant, after = lush recovered plant
+      before: { label: "Week one", img: "https://images.unsplash.com/photo-1632764649697-3efedff54503?w=1600&q=80&auto=format&fit=crop" },
+      after: { label: "Week six", img: "https://images.unsplash.com/photo-1545239351-ef35f43d514b?w=1600&q=80&auto=format&fit=crop" },
     },
     {
       // Full-bleed video scene (Apple). Free sample: Google's public MP4 sample.
