@@ -1,0 +1,9 @@
+---
+import Base from "../layouts/Base.astro";
+import SiteRenderer from "../components/lib/SiteRenderer";
+import { meadowAbout } from "../config/meadow-about.config";
+---
+
+<Base skin={meadowAbout.skin} title={`About — ${meadowAbout.brand.name} · Pastures Meadow`}>
+  <SiteRenderer config={meadowAbout} client:load />
+</Base>

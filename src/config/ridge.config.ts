@@ -8,9 +8,9 @@ export const ridge: SiteConfig = {
   brand: { name: "Lumen", tagline: "Light, reimagined." },
   nav: {
     links: [
-      { label: "Overview", href: "#top" },
-      { label: "Design", href: "#design" },
-      { label: "Features", href: "#features" },
+      { label: "Overview", href: "/" },
+      { label: "Design", href: "/ridge-design" },
+      { label: "Sustainability", href: "/ridge-sustainability" },
       { label: "FAQ", href: "#faq" },
     ],
     cta: { label: "Buy", href: "#buy" },

@@ -9,9 +9,9 @@ export const meadow: SiteConfig = {
   brand: { name: "Verda", tagline: "Grow something good." },
   nav: {
     links: [
-      { label: "Plants", href: "#top" },
-      { label: "Care", href: "#design" },
-      { label: "Why Verda", href: "#features" },
+      { label: "Plants", href: "/meadow" },
+      { label: "Care Guide", href: "/meadow-care" },
+      { label: "About", href: "/meadow-about" },
       { label: "FAQ", href: "#faq" },
     ],
     cta: { label: "Start growing", href: "#buy" },
