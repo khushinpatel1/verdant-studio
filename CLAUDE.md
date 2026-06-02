@@ -35,23 +35,25 @@ licensed fonts. Two skins are **original blended concepts**, not clones:
 - `src/layouts/Base.astro` — sets `data-skin`, loads fonts + Lenis.
 - `src/pages/index.astro` (Ridge) · `meadow.astro` (Meadow).
 
-## Status (as of 2026-06-02)
-**Working & verified in browser** — both skins render end-to-end; config swap re-skins+re-fills.
-- Built (9 of 19): `StickyNav`, `KineticHero`, `RevealBlock`, `CardGrid`, `Accordion`,
-  `MegaFooter`, + cinematic `PinnedShowcase`, `ParallaxLayers`, `CompareSlider`.
-- Verified: pipeline, theme tokens, Lenis, GSAP reveals wired, dup-key bug fixed, `npm run build`
-  clean. New sections added to both `ridge` + `meadow` configs (between RevealBlocks and CardGrid).
-- Cinematic verification notes: PinnedShowcase = CSS-sticky media column + ScrollTrigger to light
-  the active step + subtle scale. ParallaxLayers = GSAP scrub `yPercent` per layer `speed`.
-  CompareSlider = pointer-capture wipe, clip tracks 0–100% (drag-tested 20%→85%).
+## Status (as of 2026-06-02, overnight session)
+**Working & verified** — `npm run build` clean, 6 pages across 2 skins, git initialized.
+- Built (10 of 19): `StickyNav`, `KineticHero`, `RevealBlock`, `CardGrid`, `Accordion`,
+  `MegaFooter`, `PinnedShowcase`, `ParallaxLayers`, `CompareSlider`, `VideoScene`.
+- **`git init` done** — local commits only; remote not yet created (needs user's auth).
+- **Imagery upgraded** — picsum replaced with curated Unsplash CDN URLs (both skins).
+- **Multi-page** — 6 pages total:
+  - Ridge: `/` (overview), `/ridge-design`, `/ridge-sustainability`
+  - Meadow: `/meadow`, `/meadow-care`, `/meadow-about`
+  - All pages config-driven via `SiteRenderer`; nav links wired to real pages.
+- **Cloudflare Pages ready** — `public/_headers`, `public/_redirects`, `docs/cloudflare-deploy.md`.
+- `VideoScene` uses Google sample `.mp4` URLs for now (free/no-key). Swap for Coverr/Mixkit in production.
 
 ## Next steps (recommended order)
-1. **More cinematic components:** `VideoScene`/image-sequence next. Full inventory of all 19:
-   `../partnership/docs/atelier-pattern-inventory.md`.
-2. Swap picsum → curated free assets.
-3. Expand each skin to a full 5–6 page site.
-4. `git init` + first commit (remote not yet created).
-5. Cloudflare Pages deploy.
+1. **Push a git remote** — `git remote add origin ...` + `git push -u origin main`. See `docs/cloudflare-deploy.md`.
+2. **Cloudflare Pages deploy** — connect the repo in the dashboard (user must authenticate). Runbook: `docs/cloudflare-deploy.md`.
+3. **More cinematic components** — 9 of 19 done; next: `TabSwitcher`, `ColorBlock`, `HighlightGrid`, `SpecCompare`. Full inventory: `../partnership/docs/atelier-pattern-inventory.md`.
+4. **Swap sample videos** — ridge + meadow VideoScene sections use Google sample MP4s. Replace with Coverr/Mixkit CDN URLs themed per brand.
+5. **Localize Unsplash images** — download + host on own CDN in production; add attribution per Unsplash license.
 
 ## Known issues / notes
 - **Meadow hero image washes out** — dark→`--bg` gradient over a light skin erases the photo;
