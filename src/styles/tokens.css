@@ -22,17 +22,22 @@
   color-scheme: dark;
 }
 
-/* MEADOW — Google bright Material warmth × Apple seamless scroll & breathing room */
+/* MEADOW — Japanese garden edition: moonlight cream × moss green × earthy brown.
+   Verdant muse palette mapped to pastures token names. Zero fat radii — austere. */
 [data-skin="meadow"] {
-  --bg: #faf8f3;
-  --fg: #1b1a17;
-  --muted: #6c6b63;
-  --accent: #4a7c59;
-  --accent-2: #d98e5a;
-  --card: #ffffff;
-  --line: #e7e3da;
-  --radius: 24px;
-  --font-display: "Manrope", system-ui, sans-serif;
-  --font-body: "Inter", system-ui, sans-serif;
+  /* Verdant palette references:
+     cream #FBF8F2 · parchment #F4EEE2 · forest-dark #15300A · forest #2D5016
+     moss #7A9E7E  · sage #C8D5B9    · gold #C8973F         · terra #6B3F2A */
+  --bg:          #FBF8F2;   /* cream — moonlit paper                   */
+  --fg:          #15300A;   /* forest-dark — deep ink                  */
+  --muted:       #7A9E7E;   /* moss — secondary text                   */
+  --accent:      #2D5016;   /* forest — primary accent                 */
+  --accent-2:    #C8973F;   /* gold — warm highlight                   */
+  --card:        #F4EEE2;   /* parchment — card/panel surface          */
+  --line:        #C8D5B9;   /* sage — hairline rules                   */
+  --radius:      4px;       /* austere — Japanese garden, not Material */
+  --font-display: "Newsreader", Georgia, serif;
+  --font-body:   "Hanken Grotesque", system-ui, sans-serif;
+  --font-mono:   "DM Mono", "Courier New", monospace;
   color-scheme: light;
 }
