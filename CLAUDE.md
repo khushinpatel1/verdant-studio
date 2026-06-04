@@ -35,6 +35,15 @@ licensed fonts. Two skins are **original blended concepts**, not clones:
 - `src/layouts/Base.astro` — sets `data-skin`, loads fonts + Lenis.
 - `src/pages/index.astro` (Ridge) · `meadow.astro` (Meadow).
 
+## Status (as of 2026-06-03)
+**NEW — FERAL demo site** (`/feral` + 4 more pages). The real thesis: a vocabulary
+of low-level *techniques* (L0 hooks → L1 components) art-directed into one language,
+not a reshuffled section kit. WebGL displacement, variable-font scroll, velocity
+marquee, sticky-stack scrollytelling, persistent custom cursor, view-transition
+pages sharing `src/data/projects.ts`. Build clean (14 pages). See
+`docs/feral-handoff.md`. Autonomous "factory" design that would scale this:
+`.claude/plans/002-autonomous-technique-factory.md`.
+
 ## Status (as of 2026-06-02, overnight session)
 **Working & verified** — `npm run build` clean, 6 pages across 2 skins, git initialized.
 - Built (10 of 19): `StickyNav`, `KineticHero`, `RevealBlock`, `CardGrid`, `Accordion`,

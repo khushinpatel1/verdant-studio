@@ -1,0 +1,63 @@
+---
+import Feral from "../../layouts/Feral.astro";
+import TextReveal from "../../components/feral/TextReveal";
+import VelocityMarquee from "../../components/feral/VelocityMarquee";
+import Footer from "../../components/feral/Footer";
+import DisplaceImage from "../../components/feral/DisplaceImage";
+
+const u = (id: string) => `https://images.unsplash.com/${id}?w=1400&q=80&auto=format&fit=crop`;
+
+// Deliberately uneven: not three tidy services. One big, two small, one aside.
+const services = [
+  { k: "Most of what we do", v: "Brand identity, then the website that proves it. Usually three to five months, start to ship." },
+  { k: "Sometimes", v: "Motion and WebGL for people who already have a brand and want the site to earn it." },
+  { k: "Rarely, and only if it's interesting", v: "Type, tools, the odd installation." },
+];
+---
+
+<Feral title="Studio — FERAL">
+  <section style="padding-top: clamp(140px,22vh,300px);">
+    <div class="f-wrap">
+      <p class="f-label" style="margin-bottom:40px;"><b>◍</b> Four people in a room above a bakery</p>
+      <TextReveal
+        client:load
+        as="h2"
+        className="f-display"
+        style={{ fontSize: "clamp(34px,6.5vw,104px)", fontWeight: 340, letterSpacing: "-0.02em", maxWidth: "15ch" }}
+        lines={["We started", "because the", "good work kept", "going to the", "wrong studios."]}
+      />
+    </div>
+  </section>
+
+  <section style="padding: clamp(70px,12vh,150px) 0;">
+    <div class="f-wrap" style="display:grid; grid-template-columns: 1.1fr 0.9fr; gap: clamp(32px,6vw,90px); align-items:end;">
+      <DisplaceImage client:visible src={u('photo-1521737604893-d14cc237f11d')} alt="The studio at work" style={{ aspectRatio: "5/6", borderRadius: "var(--radius)", border: "1px solid var(--line)" }} />
+      <div>
+        <p style="font-size: clamp(19px,2.2vw,26px); line-height:1.5;">
+          We're a designer, two developers and someone who keeps us honest about
+          deadlines. We don't subcontract the part that matters. If you hire FERAL,
+          the people in the pitch are the people in the files.
+        </p>
+        <p style="margin-top:28px; color:var(--muted); font-size:17px; line-height:1.6;">
+          Based in Leeds. We work with maybe six clients a year, mostly by word of
+          mouth, mostly people building something they actually care about.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <VelocityMarquee client:visible text="How we work" base={0.4} />
+
+  <section style="padding: clamp(80px,14vh,170px) 0;">
+    <div class="f-wrap">
+      {services.map((s, idx) => (
+        <div style={`display:grid; grid-template-columns: 0.4fr 1fr; gap:clamp(20px,5vw,80px); padding: 34px 0; border-top:1px solid var(--line); ${idx === services.length - 1 ? "border-bottom:1px solid var(--line);" : ""}`}>
+          <p class="f-label" style="align-self:start;">{s.k}</p>
+          <p class="f-display" style="font-size: clamp(22px,3.4vw,48px); font-weight:360; letter-spacing:-0.01em;">{s.v}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <Footer client:visible />
+</Feral>

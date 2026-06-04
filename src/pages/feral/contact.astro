@@ -1,0 +1,45 @@
+---
+import Feral from "../../layouts/Feral.astro";
+import Magnetic from "../../components/feral/Magnetic";
+import TextReveal from "../../components/feral/TextReveal";
+
+const channels = [
+  { label: "Email", v: "studio@feral.example", href: "mailto:studio@feral.example" },
+  { label: "Instagram", v: "@feral.studio", href: "#" },
+  { label: "Phone", v: "+44 113 000 0000", href: "#" },
+];
+---
+
+<Feral title="Contact — FERAL">
+  <section style="min-height: 100svh; display:flex; flex-direction:column; justify-content:center; padding: 140px 0 80px;">
+    <div class="f-wrap">
+      <p class="f-label" style="margin-bottom:40px;"><b>◍</b> We read everything ourselves</p>
+      <TextReveal
+        client:load
+        as="h2"
+        className="f-display"
+        style={{ fontSize: "clamp(44px,11vw,180px)", fontWeight: 340, letterSpacing: "-0.03em" }}
+        lines={["Tell us what", "you're building."]}
+      />
+
+      <div style="display:flex; flex-wrap:wrap; gap: clamp(28px,6vw,90px); margin-top: clamp(60px,10vw,130px);">
+        {channels.map((c) => (
+          <div>
+            <p class="f-label" style="margin-bottom:14px;">{c.label}</p>
+            <Magnetic client:load strength={0.4} radius={120}>
+              <a href={c.href} data-cursor={c.label} class="f-display f-link" style="font-size: clamp(22px,3.4vw,46px); font-weight:380; display:inline-block;">
+                {c.v}
+              </a>
+            </Magnetic>
+          </div>
+        ))}
+      </div>
+
+      <p style="margin-top: clamp(70px,12vw,150px); max-width: 48ch; color:var(--muted); font-size:18px; line-height:1.6;">
+        No brief is too rough. A paragraph and a deadline is plenty to start. We
+        reply within a couple of days, and we'll tell you honestly if we're not the
+        right studio for it.
+      </p>
+    </div>
+  </section>
+</Feral>

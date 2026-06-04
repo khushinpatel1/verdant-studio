@@ -1,0 +1,44 @@
+---
+import Feral from "../../../layouts/Feral.astro";
+import StickyStack from "../../../components/feral/StickyStack";
+import Footer from "../../../components/feral/Footer";
+import VelocityMarquee from "../../../components/feral/VelocityMarquee";
+import { projects, bySlug } from "../../../data/projects";
+
+export function getStaticPaths() {
+  return projects.map((p) => ({ params: { slug: p.slug } }));
+}
+
+const { slug } = Astro.params;
+const project = bySlug(slug!)!;
+const i = projects.findIndex((p) => p.slug === slug);
+const next = projects[(i + 1) % projects.length];
+---
+
+<Feral title={`${project.client} — FERAL`}>
+  <section style="padding-top: clamp(140px,24vh,320px); padding-bottom: clamp(40px,8vh,90px);">
+    <div class="f-wrap">
+      <p class="f-label" style="margin-bottom:36px;"><b>{project.idx}</b> {project.client} · {project.year}</p>
+      <h1 class="f-display" style="font-size: clamp(40px,8.5vw,150px); font-weight:340; max-width: 14ch;">{project.title}</h1>
+      <div style="display:flex; flex-wrap:wrap; justify-content:space-between; gap:32px; margin-top: clamp(40px,7vw,90px); border-top:1px solid var(--line); padding-top:28px;">
+        <p style="max-width: 52ch; font-size:20px; line-height:1.55;">{project.summary}</p>
+        <p class="f-label" style="white-space:nowrap;">{project.discipline}</p>
+      </div>
+    </div>
+  </section>
+
+  <StickyStack client:visible items={project.chapters} />
+
+  <VelocityMarquee client:visible text={`Next — ${next.client}`} />
+
+  <section style="padding: clamp(80px,14vh,180px) 0;">
+    <div class="f-wrap">
+      <p class="f-label" style="margin-bottom:24px;"><b>◍</b> Up next</p>
+      <a href={`/feral/work/${next.slug}`} data-cursor="View" class="f-display f-link" style="font-size: clamp(32px,6vw,96px); font-weight:360; display:inline-block; max-width:16ch;">
+        {next.title}
+      </a>
+    </div>
+  </section>
+
+  <Footer client:visible />
+</Feral>

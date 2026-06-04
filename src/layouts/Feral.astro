@@ -1,0 +1,48 @@
+---
+import "../styles/tokens.css";
+import "../styles/global.css";
+import "../styles/feral.css";
+import { ClientRouter } from "astro:transitions";
+import Cursor from "../components/feral/Cursor";
+import Nav from "../components/feral/Nav";
+
+interface Props { title: string; }
+const { title } = Astro.props;
+const path = Astro.url.pathname.replace(/\/$/, "") || "/feral";
+---
+
+<!doctype html>
+<html lang="en" data-skin="feral">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content="FERAL — an independent design & motion studio. A Pastures technique demo." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:SOFT,WONK,opsz,wght@0..100,0..1,9..144,100..900&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <ClientRouter />
+  </head>
+  <body>
+    <Cursor client:load transition:persist transition:persist-props />
+    <Nav client:load path={path} />
+    <main>
+      <slot />
+    </main>
+
+    <script>
+      import Lenis from "lenis";
+      let lenis: any;
+      function boot() {
+        lenis?.destroy?.();
+        lenis = new Lenis({ lerp: 0.09 });
+        function raf(t: number) { lenis.raf(t); requestAnimationFrame(raf); }
+        requestAnimationFrame(raf);
+      }
+      document.addEventListener("astro:page-load", boot);
+    </script>
+  </body>
+</html>

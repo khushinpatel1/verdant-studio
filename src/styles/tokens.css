@@ -22,6 +22,29 @@
   color-scheme: dark;
 }
 
+/* FERAL — editorial brutalist × cinematic depth. One cobalt accent, used like
+   punctuation. Warm ink + bone paper. Fraunces (variable serif) carries the
+   voice; Space Mono labels give it a technical, hand-set grit. This is the skin
+   the technique library is art-directed against. */
+[data-skin="feral"] {
+  --bg: #100f0d;
+  --bg-2: #18160f;
+  --fg: #ece7dd;
+  --muted: #87827a;
+  --line: #2a2722;
+  --paper: #ece7dd;
+  --ink: #100f0d;
+  --accent: #2438ff;      /* cobalt — punctuation only */
+  --accent-warm: #e0623a; /* clay — one page's mood */
+  --card: #16140f;
+  --radius: 2px;          /* near-square: editorial, not soft-SaaS */
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  --font-mono: "Space Mono", ui-monospace, monospace;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  color-scheme: dark;
+}
+
 /* MEADOW — Google bright Material warmth × Apple seamless scroll & breathing room */
 [data-skin="meadow"] {
   --bg: #faf8f3;
