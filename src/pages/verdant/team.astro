@@ -1,0 +1,73 @@
+---
+import Verdant from "../../layouts/Verdant.astro";
+import TextReveal from "../../components/verdant/TextReveal";
+import Footer from "../../components/verdant/Footer";
+import { team } from "../../data/verdant";
+---
+
+<Verdant title="People — Verdant">
+  <!-- ── HERO ── -->
+  <section class="vt-hero">
+    <div class="v-wrap">
+      <p class="v-label">The gardeners</p>
+      <TextReveal
+        client:load
+        as="h1"
+        className="v-display vt-hero-head"
+        lines={["A handful of people.", "No %account managers%."]}
+      />
+      <p class="vt-hero-sub v-display">
+        Nine at most, and we mean it. Everyone here makes the thing — there is no
+        layer between you and the people doing the work.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── ROSTER ── -->
+  <section class="vt-roster">
+    <div class="v-wrap">
+      {team.map((person, i) => (
+        <a href={`/verdant/team/${person.slug}`} class="vt-row" data-cursor="Meet" data-v-reveal style={`--d:${i * 0.05}s`}>
+          <span class="v-organic vt-row-n">0{i + 1}</span>
+          <div class="vt-row-text">
+            <span class="v-label v-label--bare">{person.role} · since {person.since}</span>
+            <h2 class="v-display vt-row-name">{person.name}</h2>
+            <p class="vt-row-short">{person.short}</p>
+          </div>
+          <span class="vt-row-meet v-cta">Meet {person.name.split(" ")[0]}</span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- ── closing ── -->
+  <section class="vt-end">
+    <div class="v-wrap vt-end-inner">
+      <p class="v-display vt-end-line" data-v-reveal>Think you'd grow well here?</p>
+      <a href="/verdant/ethos#talk" class="v-cta" data-cursor="Write">Say hello</a>
+    </div>
+  </section>
+
+  <Footer client:visible />
+</Verdant>
+
+<style is:global>
+  .vt-hero { padding-top: 11rem; }
+  .vt-hero-head { font-size: clamp(2.8rem, 7vw, 6rem); color: var(--forest-900); }
+  .vt-hero-sub { font-size: clamp(1.3rem, 2vw, 1.7rem); color: var(--terra); max-width: 40ch; margin-top: 2rem; }
+
+  .vt-roster { display: flex; flex-direction: column; }
+  .vt-row { display: grid; grid-template-columns: auto 1fr auto; gap: clamp(1.5rem, 4vw, 4rem); align-items: baseline;
+    padding: clamp(2.5rem, 6vh, 4.5rem) 0; border-top: 1px solid var(--line); color: inherit;
+    transition: padding-left .4s var(--ease); }
+  .vt-row:hover { padding-left: 1.2rem; }
+  .vt-row-n { font-size: clamp(1.6rem, 3vw, 2.6rem); color: var(--moss); line-height: 1; }
+  .vt-row-name { font-size: clamp(2.4rem, 5.5vw, 4.6rem); color: var(--green); margin: 0.6rem 0 0.8rem; transition: color .3s; }
+  .vt-row:hover .vt-row-name { color: var(--gold); }
+  .vt-row-short { font-family: var(--font-display); font-size: clamp(1.2rem, 1.8vw, 1.5rem); color: var(--terra); max-width: 46ch; }
+  .vt-row-meet { align-self: center; white-space: nowrap; }
+  @media (max-width: 720px) { .vt-row { grid-template-columns: auto 1fr; } .vt-row-meet { display: none; } }
+
+  .vt-end-inner { display: flex; flex-direction: column; align-items: flex-start; gap: 1.4rem; }
+  .vt-end-line { font-size: clamp(2rem, 4vw, 3.2rem); color: var(--green); }
+</style>

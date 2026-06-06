@@ -1,0 +1,72 @@
+---
+import "../styles/global.css";
+import "../styles/verdant.css";
+import { ClientRouter } from "astro:transitions";
+import Cursor from "../components/verdant/Cursor";
+import Nav from "../components/verdant/Nav";
+
+interface Props { title: string; description?: string }
+const { title, description = "Verdant — a small, privacy-first software studio. Software grown for people, not advertisers." } = Astro.props;
+const path = Astro.url.pathname.replace(/\/$/, "") || "/verdant";
+
+const fonts = [
+  "InstrumentSerif-Regular.woff2",
+  "InstrumentSerif-Italic.woff2",
+  "YoungSerif-Regular.woff2",
+  "SchibstedGrotesk-Regular.woff2",
+  "SchibstedGrotesk-Medium.woff2",
+  "FragmentMono-Regular.woff2",
+];
+---
+
+<!doctype html>
+<html lang="en" data-skin="verdant">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {fonts.map((f) => (
+      <link rel="preload" href={`/fonts/verdant/${f}`} as="font" type="font/woff2" crossorigin />
+    ))}
+    <ClientRouter />
+  </head>
+  <body>
+    <Cursor client:load transition:persist transition:persist-props />
+    <Nav client:load path={path} />
+    <main>
+      <slot />
+    </main>
+
+    <script>
+      import Lenis from "lenis";
+      let lenis: any;
+      function boot() {
+        lenis?.destroy?.();
+        lenis = new Lenis({ lerp: 0.085 });
+        function raf(t: number) { lenis.raf(t); requestAnimationFrame(raf); }
+        requestAnimationFrame(raf);
+      }
+
+      // scroll-reveal driver — re-armed on every view transition
+      let io: IntersectionObserver | null = null;
+      function arm() {
+        io?.disconnect();
+        const els = Array.from(document.querySelectorAll<HTMLElement>("[data-v-reveal]"));
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+          els.forEach((el) => el.classList.add("in"));
+          return;
+        }
+        io = new IntersectionObserver(
+          (entries) => entries.forEach((e) => {
+            if (e.isIntersecting) { e.target.classList.add("in"); io!.unobserve(e.target); }
+          }),
+          { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
+        );
+        els.forEach((el) => io!.observe(el));
+      }
+
+      document.addEventListener("astro:page-load", () => { boot(); arm(); });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,128 @@
+---
+import Verdant from "../../layouts/Verdant.astro";
+import TextReveal from "../../components/verdant/TextReveal";
+import InkGrowth from "../../components/verdant/InkGrowth";
+import Footer from "../../components/verdant/Footer";
+import { brand, ethos } from "../../data/verdant";
+---
+
+<Verdant title="Ethos — Verdant">
+  <!-- ── HERO ── -->
+  <section class="ve-hero">
+    <div class="v-wrap">
+      <p class="v-label">What we believe</p>
+      <TextReveal
+        client:load
+        as="h1"
+        className="v-display ve-hero-head"
+        lines={["A quiet kind", "of %conviction%."]}
+      />
+      <p class="ve-hero-sub v-display">
+        We left an industry built on watching people. This is the studio we wanted
+        to work at instead.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── CREED ── -->
+  <section class="ve-creed">
+    <div class="v-wrap">
+      {ethos.creed.map((line, i) => (
+        <div class="ve-creed-row" data-v-reveal style={`--d:${i * 0.05}s`}>
+          <span class="v-organic ve-creed-n">0{i + 1}</span>
+          <p class="v-display ve-creed-text">{line}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- ── FACTS ── -->
+  <section class="ve-facts">
+    <div class="v-wrap ve-facts-row">
+      {ethos.facts.map((f, i) => (
+        <div class="ve-fact" data-v-reveal style={`--d:${i * 0.06}s`}>
+          <span class="v-organic ve-fact-value">{f.value}</span>
+          <span class="v-label v-label--bare ve-fact-label">{f.label}</span>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- ── STORY ── -->
+  <section class="ve-story">
+    <div class="v-wrap ve-story-grid">
+      <div class="ve-story-media">
+        <img src="/verdant/art/ethos-sand.jpg" alt="Raked sand" />
+        <InkGrowth client:visible side="right" className="ve-story-vine" />
+      </div>
+      <div class="ve-story-text">
+        <p class="v-label" data-v-reveal>How we got here</p>
+        <p data-v-reveal>
+          Verdant began in {brand.est.replace("Est. ", "")} with two people and one
+          stubborn opinion: that software could earn a living without selling the
+          person using it. Most of us came from companies whose entire business
+          was knowing too much about you.
+        </p>
+        <p data-v-reveal>
+          So we work small. The studio sits between {brand.location}, nine people
+          at most, and we'd rather stay that size than grow into something we'd
+          have to apologise for. We take on a few projects a year and finish them.
+        </p>
+        <p data-v-reveal>
+          The Japanese garden is our standing reference. Composed, unhurried,
+          alive underneath — nothing extra, everything placed on purpose. When a
+          decision is hard, we ask whether it would belong in one.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── TALK ── -->
+  <section id="talk" class="ve-band">
+    <div class="ve-band-edge" aria-hidden></div>
+    <div class="v-wrap ve-talk">
+      <TextReveal client:visible as="h2" className="v-display ve-talk-head" lines={["Tell us what", "you're %growing%."]} />
+      <a href={`mailto:${brand.email}`} class="ve-talk-mail" data-cursor="Write">{brand.email}</a>
+      <p class="v-label v-label--light ve-talk-meta">{brand.location} — {brand.est}</p>
+    </div>
+  </section>
+
+  <Footer client:visible />
+</Verdant>
+
+<style is:global>
+  .ve-hero { padding-top: 11rem; }
+  .ve-hero-head { font-size: clamp(3rem, 8vw, 7rem); color: var(--forest-900); }
+  .ve-hero-sub { font-size: clamp(1.3rem, 2vw, 1.7rem); color: var(--terra); max-width: 36ch; margin-top: 2rem; }
+
+  /* CREED */
+  .ve-creed-row { display: grid; grid-template-columns: auto 1fr; gap: clamp(1.5rem, 4vw, 3.5rem); align-items: baseline;
+    padding: clamp(2rem, 5vh, 3.5rem) 0; border-top: 1px solid var(--line); }
+  .ve-creed-n { font-size: clamp(2rem, 4vw, 3.2rem); color: var(--moss); line-height: 1; }
+  .ve-creed-text { font-size: clamp(1.5rem, 3.4vw, 3rem); line-height: 1.18; color: var(--green); max-width: 24ch; }
+  .ve-creed-row:nth-child(even) { padding-left: clamp(0px, 6vw, 110px); }
+
+  /* FACTS */
+  .ve-facts-row { display: flex; flex-wrap: wrap; gap: 2.5rem 4rem; padding-top: 2rem; border-top: 1px solid var(--line); }
+  .ve-fact { display: flex; flex-direction: column; gap: 0.5rem; }
+  .ve-fact-value { font-size: clamp(2.4rem, 5vw, 3.6rem); color: var(--green); line-height: 1; }
+  .ve-fact-label { color: var(--clay); }
+
+  /* STORY */
+  .ve-story-grid { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: clamp(2rem, 6vw, 5rem); align-items: start; }
+  .ve-story-media { position: relative; }
+  .ve-story-media img { width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: var(--radius); filter: saturate(0.85); }
+  .ve-story-vine { position: absolute; right: -40px; top: 10%; width: 110px; height: 340px; }
+  .ve-story-text { display: flex; flex-direction: column; gap: 1.6rem; padding-top: 1rem; }
+  .ve-story-text p:not(.v-label) { font-family: var(--font-display); font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.55; color: #3a4a28; max-width: 50ch; }
+  @media (max-width: 820px) { .ve-story-grid { grid-template-columns: 1fr; } .ve-story-vine { display: none; } }
+
+  /* TALK */
+  .ve-band { position: relative; background: linear-gradient(155deg, var(--forest-900), var(--forest) 55%, var(--green-600)); overflow: hidden; text-align: center; }
+  .ve-band-edge { position: absolute; top: -1px; left: 0; right: 0; height: 110px; background: var(--cream); clip-path: ellipse(60% 100% at 42% 0%); }
+  .ve-talk { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 1.6rem; }
+  .ve-talk-head { font-size: clamp(2.4rem, 5.5vw, 4.4rem); color: var(--moon); }
+  .ve-talk-mail { font-family: var(--font-display); font-size: clamp(1.6rem, 3.5vw, 2.8rem); color: var(--gold); border-bottom: 1px solid var(--gold); padding-bottom: 4px; transition: opacity .3s; }
+  .ve-talk-mail:hover { opacity: 0.75; }
+  .ve-talk-meta { justify-content: center; }
+</style>
