@@ -15,6 +15,9 @@ original components. We never ship their logos, products, photos, copy, or
 licensed fonts. Two skins are **original blended concepts**, not clones:
 - **Ridge** — Apple cinematic dark depth × Google kinetic text & bold accent.
 - **Meadow** — Google bright Material warmth × Apple seamless scroll & breathing room.
+- **Verdant** — serene Japanese-garden studio site; the strongest skin. Built as a
+  *technique vocabulary* (like FERAL), self-contained under its own namespace.
+  See `docs/verdant-handoff.md`.
 
 ## Stack
 - **Astro 5 + React 19 islands.** Scripts: `npm run dev` (port 4321) · `npm run build` · `npm run check`.
@@ -35,34 +38,37 @@ licensed fonts. Two skins are **original blended concepts**, not clones:
 - `src/layouts/Base.astro` — sets `data-skin`, loads fonts + Lenis.
 - `src/pages/index.astro` (Ridge) · `meadow.astro` (Meadow).
 
-## Status (as of 2026-06-03)
-**NEW — FERAL demo site** (`/feral` + 4 more pages). The real thesis: a vocabulary
-of low-level *techniques* (L0 hooks → L1 components) art-directed into one language,
-not a reshuffled section kit. WebGL displacement, variable-font scroll, velocity
-marquee, sticky-stack scrollytelling, persistent custom cursor, view-transition
-pages sharing `src/data/projects.ts`. Build clean (14 pages). See
-`docs/feral-handoff.md`. Autonomous "factory" design that would scale this:
-`.claude/plans/002-autonomous-technique-factory.md`.
+## Status (as of 2026-06-06) — DEPLOYED
+**Three skins live on Cloudflare Pages**, each with its own link (see
+`docs/cloudflare-deploy.md` for the full table):
+- **Verdant** (newest, strongest) — https://verdant-1wg.pages.dev · `docs/verdant-handoff.md`
+- **Feral** — https://feral-6ze.pages.dev · `docs/feral-handoff.md`
+- **Ridge** — https://ridge-98n.pages.dev · **Meadow/Verda** — https://verda-5xz.pages.dev
+- Combined showcase (all skins, one site): https://pastures.pages.dev
+- `npm run build` clean — **22 pages**. Git: built on `verdant-skin`, merged to `main`,
+  pushed to `origin` (git@github.com:khushinpatel1/pastures.git).
 
-## Status (as of 2026-06-02, overnight session)
-**Working & verified** — `npm run build` clean, 6 pages across 2 skins, git initialized.
-- Built (10 of 19): `StickyNav`, `KineticHero`, `RevealBlock`, `CardGrid`, `Accordion`,
-  `MegaFooter`, `PinnedShowcase`, `ParallaxLayers`, `CompareSlider`, `VideoScene`.
-- **`git init` done** — local commits only; remote not yet created (needs user's auth).
-- **Imagery upgraded** — picsum replaced with curated Unsplash CDN URLs (both skins).
-- **Multi-page** — 6 pages total:
-  - Ridge: `/` (overview), `/ridge-design`, `/ridge-sustainability`
-  - Meadow: `/meadow`, `/meadow-care`, `/meadow-about`
-  - All pages config-driven via `SiteRenderer`; nav links wired to real pages.
-- **Cloudflare Pages ready** — `public/_headers`, `public/_redirects`, `docs/cloudflare-deploy.md`.
-- `VideoScene` uses Google sample `.mp4` URLs for now (free/no-key). Swap for Coverr/Mixkit in production.
+**History (condensed):**
+- 2026-06-03 — FERAL demo: the technique-vocabulary thesis (L0 hooks → L1 components),
+  not a reshuffled section kit. WebGL displacement, variable-font scroll, etc.
+- 2026-06-02 — ridge/meadow overnight build (10 section components, config-driven).
+  Detail archived in `docs/archive/overnight-handoff.md`.
+
+## Two architectures live in this repo (don't confuse them)
+1. **Config-driven section kit** (ridge/meadow): `src/config/*`, `SiteRenderer.tsx`,
+   `src/components/sections/*`, `Base.astro`. One config file drives a site.
+2. **Technique-vocabulary skins** (feral, verdant): self-contained per-skin layout +
+   components + data + styles, art-directed into one language. This is the stronger
+   thesis going forward.
 
 ## Next steps (recommended order)
-1. **Push a git remote** — `git remote add origin ...` + `git push -u origin main`. See `docs/cloudflare-deploy.md`.
-2. **Cloudflare Pages deploy** — connect the repo in the dashboard (user must authenticate). Runbook: `docs/cloudflare-deploy.md`.
-3. **More cinematic components** — 9 of 19 done; next: `TabSwitcher`, `ColorBlock`, `HighlightGrid`, `SpecCompare`. Full inventory: `../partnership/docs/atelier-pattern-inventory.md`.
-4. **Swap sample videos** — ridge + meadow VideoScene sections use Google sample MP4s. Replace with Coverr/Mixkit CDN URLs themed per brand.
-5. **Localize Unsplash images** — download + host on own CDN in production; add attribution per Unsplash license.
+1. **Custom domains** — the `.pages.dev` names carry Cloudflare's anti-squatting hash
+   suffix; wire branded domains if wanted. Runbook: `docs/cloudflare-deploy.md`.
+2. **Decide the product direction** — lean into technique-vocabulary skins (feral/verdant)
+   vs. the config section-kit. The autonomous "factory" plan would scale the former:
+   `.claude/plans/002-autonomous-technique-factory.md`.
+3. **Retire sample assets** — any remaining Google sample MP4s / picsum / hot-linked
+   Unsplash → self-host + attribute.
 
 ## Known issues / notes
 - **Meadow hero image washes out** — dark→`--bg` gradient over a light skin erases the photo;
@@ -77,5 +83,6 @@ pages sharing `src/data/projects.ts`. Build clean (14 pages). See
   (`preview_snapshot`, `elementFromPoint`, computed styles, image `naturalWidth`).
 
 ## Origin
-Plan: `../partnership/.claude/plans/001-atelier-template-framework.md` (status PENDING → now IN PROGRESS).
-Pattern inventory: `../partnership/docs/atelier-pattern-inventory.md`.
+Plan: `.claude/plans/001-atelier-template-framework.md` (the framework thesis).
+Pattern inventory: `docs/atelier-pattern-inventory.md`.
+(Both moved here from `partnership/` in the 2026-06-06 file audit — this is their home.)
