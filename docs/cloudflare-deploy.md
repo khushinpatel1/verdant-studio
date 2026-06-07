@@ -5,6 +5,39 @@ Pastures is a fully static Astro build. No SSR adapter is needed.
 
 ---
 
+## Live deployments (as of 2026-06-06)
+
+Account: `khushinpatel1@gmail.com` (`2c60b50d5999c6a3f8f8290cf813e6ac`).
+Deployed via `wrangler pages deploy` (direct upload, **not** git-connected).
+
+| What | Link | Notes |
+|---|---|---|
+| Combined showcase (all skins) | https://pastures.pages.dev | `/`, `/feral`, `/meadow`, `/verdant` |
+| **Verdant** (own link) | https://verdant-1wg.pages.dev | newest/strongest skin |
+| **Feral** | https://feral-6ze.pages.dev | |
+| **Ridge** | https://ridge-98n.pages.dev | |
+| **Verda** (Meadow) | https://verda-5xz.pages.dev | |
+| Old standalone Verdant (separate repo) | https://verdant.khushinpatel1.workers.dev | SUPERSEDED; kept online |
+
+**Per-skin "own link" technique:** each skin has its own Pages project deploying the
+same `dist`, with the root `index.html` swapped to that skin's homepage so the bare
+domain lands on it. wrangler dedupes assets by hash, so only `index.html` re-uploads:
+
+```bash
+npm run build
+cp dist/index.html /tmp/_root.html                 # ridge IS the root already
+npx wrangler pages deploy dist --project-name=ridge   --branch main
+cp dist/feral/index.html   dist/index.html && npx wrangler pages deploy dist --project-name=feral   --branch main
+cp dist/meadow/index.html  dist/index.html && npx wrangler pages deploy dist --project-name=verda   --branch main
+cp dist/verdant/index.html dist/index.html && npx wrangler pages deploy dist --project-name=verdant --branch main
+cp /tmp/_root.html dist/index.html                 # restore
+```
+
+> Cloudflare appends an anti-squatting hash suffix to new `.pages.dev` names
+> (`ridge-98n`, `feral-6ze`, …). These are the permanent URLs; use custom domains for clean names.
+
+---
+
 ## One-time setup (Cloudflare dashboard)
 
 1. Log into [dash.cloudflare.com](https://dash.cloudflare.com) and go to **Workers & Pages → Create → Pages → Connect to Git** (or "Upload" for manual).

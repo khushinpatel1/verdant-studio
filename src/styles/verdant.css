@@ -1,0 +1,197 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   VERDANT — a Japanese-garden skin for the Pastures technique library.
+   Self-contained: defines its own @font-face, its own [data-skin] var map,
+   and its own utility grammar (.v-*). Touches no other skin's files.
+
+   Muse: the Japanese garden. Serene, quiet, peaceful — but full of growth,
+   life moving slowly underneath (moonlight, water, raked sand). Subtle but
+   efficient: nothing extra, everything intentional.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ── Self-hosted type (no Google-default tells) ──────────────────────────
+   Instrument Serif  → display voice (tall, high-contrast, serene + majestic)
+   Young Serif       → organic accent (chunky, botanical) for big growth moments
+   Schibsted Grotesk → body / UI (calm, warm — the stillness)
+   Fragment Mono     → labels / data (the quiet technical layer underneath)   */
+
+@font-face {
+  font-family: "Instrument Serif";
+  src: url("/fonts/verdant/InstrumentSerif-Regular.woff2") format("woff2");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Instrument Serif";
+  src: url("/fonts/verdant/InstrumentSerif-Italic.woff2") format("woff2");
+  font-weight: 400; font-style: italic; font-display: swap;
+}
+@font-face {
+  font-family: "Young Serif";
+  src: url("/fonts/verdant/YoungSerif-Regular.woff2") format("woff2");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Schibsted Grotesk";
+  src: url("/fonts/verdant/SchibstedGrotesk-Regular.woff2") format("woff2");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Schibsted Grotesk";
+  src: url("/fonts/verdant/SchibstedGrotesk-Medium.woff2") format("woff2");
+  font-weight: 500; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Schibsted Grotesk";
+  src: url("/fonts/verdant/SchibstedGrotesk-Bold.woff2") format("woff2");
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Fragment Mono";
+  src: url("/fonts/verdant/FragmentMono-Regular.woff2") format("woff2");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+
+/* ── The skin: a flat var map. Components reference --vars, never raw hex. ── */
+[data-skin="verdant"] {
+  /* greens — moss to deep forest, for layered depth */
+  --forest-900: #0d1f07;
+  --forest:     #15300a;
+  --green:      #2d5016;
+  --green-600:  #3c6b1e;
+  --moss:       #7a9e7e;
+  --moss-300:   #9dbfa0;
+  --sage:       #c8d5b9;
+  --sage-soft:  #dce6cf;
+
+  /* paper + moonlight */
+  --parchment:  #f1ead9;
+  --cream:      #faf6ec;
+  --moon:       #f6f2e6;
+
+  /* earth + the single gold "delicate hand" accent (used like calligraphy) */
+  --amber:      #8b6914;
+  --gold:       #c2913c;
+  --terra:      #6b3f2a;
+  --clay:       #a6694a;
+
+  /* generic contract used by global.css + components */
+  --bg:      var(--cream);
+  --fg:      var(--green);
+  --ink:     #10180c;
+  --muted:   #5d6f4c;
+  --line:    rgba(45, 80, 22, 0.16);
+  --card:    var(--moon);
+  --accent:  var(--gold);
+  --radius:  3px;            /* near-square; the organic comes from layout, not fat radii */
+
+  --font-display: "Instrument Serif", Georgia, serif;
+  --font-organic: "Young Serif", Georgia, serif;
+  --font-body:    "Schibsted Grotesk", system-ui, sans-serif;
+  --font-mono:    "Fragment Mono", ui-monospace, monospace;
+
+  --maxw: 1240px;
+  --ease:  cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-soft: cubic-bezier(0.4, 0, 0.1, 1);
+
+  --sh-md: 0 18px 50px -24px rgba(13, 31, 7, 0.4);
+  --sh-lg: 0 36px 90px -36px rgba(13, 31, 7, 0.5);
+
+  color-scheme: light;
+}
+
+/* ── Body voice ─────────────────────────────────────────────────────────── */
+[data-skin="verdant"] body {
+  font-family: var(--font-body);
+  font-weight: 400;
+  line-height: 1.6;
+  letter-spacing: 0.005em;
+  background: var(--cream);
+}
+
+/* headings ride the serif at its real weight (400), not the global 800 */
+[data-skin="verdant"] h1,
+[data-skin="verdant"] h2,
+[data-skin="verdant"] h3,
+[data-skin="verdant"] h4 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  line-height: 1.02;
+}
+
+/* Emphasis = the delicate hand: a calligraphic italic warmed to gold. */
+[data-skin="verdant"] em {
+  font-style: italic;
+  font-family: var(--font-display);
+  color: var(--gold);
+}
+
+[data-skin="verdant"] ::selection { background: var(--moss); color: var(--moon); }
+
+/* Tactile paper grain over the whole world — barely there. */
+[data-skin="verdant"] body::after {
+  content: "";
+  position: fixed; inset: 0; z-index: 9000;
+  pointer-events: none; opacity: 0.05; mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ── Utility grammar (v-) ───────────────────────────────────────────────── */
+.v-wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 clamp(20px, 5vw, 56px); }
+
+/* scoped to the skin so they beat the element-qualified [data-skin] h1..h4 rule */
+[data-skin="verdant"] .v-display { font-family: var(--font-display); font-weight: 400; letter-spacing: -0.02em; line-height: 1.0; }
+[data-skin="verdant"] .v-display em { color: var(--gold); }
+[data-skin="verdant"] .v-organic { font-family: var(--font-organic); font-weight: 400; letter-spacing: -0.01em; }
+
+/* mono kicker with a hairline lead-in rule and a leaf tick */
+.v-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--clay);
+  display: inline-flex; align-items: center; gap: 0.7rem;
+}
+.v-label::before { content: ""; width: 24px; height: 1px; background: currentColor; opacity: 0.55; }
+.v-label--bare::before { display: none; }
+.v-label--light { color: var(--moss-300); }
+
+/* editorial CTA — a hairline that wipes to gold, never a slab button */
+.v-cta {
+  position: relative; display: inline-flex; align-items: center; gap: 0.55rem;
+  font-family: var(--font-mono); font-size: 0.74rem; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--forest); cursor: pointer;
+  padding: 0.5rem 0 0.55rem; background: none; border: none;
+  transition: gap 0.35s var(--ease), color 0.35s var(--ease);
+}
+.v-cta::after {
+  content: ""; position: absolute; left: 0; bottom: 0; width: 100%; height: 1px;
+  background: currentColor; opacity: 0.3; transition: opacity 0.35s var(--ease);
+}
+.v-cta::before {
+  content: ""; position: absolute; left: 0; bottom: 0; width: 100%; height: 1.5px;
+  background: var(--gold); transform: scaleX(0); transform-origin: left;
+  transition: transform 0.4s var(--ease);
+}
+.v-cta:hover { gap: 0.85rem; color: var(--gold); }
+.v-cta:hover::before { transform: scaleX(1); }
+.v-cta:hover::after { opacity: 0; }
+.v-cta--light { color: var(--moon); }
+.v-cta--light::after { background: var(--moon); }
+
+/* link hover-grow arrow */
+.v-link { transition: color 0.3s var(--ease); }
+.v-link:hover { color: var(--gold); }
+
+/* scroll reveal (driven by useReveal-style observer; hidden via JS so no-JS = visible) */
+[data-v-reveal] { opacity: 0; transform: translateY(28px); }
+[data-v-reveal].in {
+  opacity: 1; transform: none;
+  transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
+  transition-delay: var(--d, 0s);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-v-reveal] { opacity: 1 !important; transform: none !important; }
+}
+
+/* section rhythm override for the skin — generous, breathing */
+[data-skin="verdant"] section { padding: clamp(80px, 14vh, 200px) 0; }

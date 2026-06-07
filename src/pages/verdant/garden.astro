@@ -1,0 +1,150 @@
+---
+import Verdant from "../../layouts/Verdant.astro";
+import TextReveal from "../../components/verdant/TextReveal";
+import InkGrowth from "../../components/verdant/InkGrowth";
+import Footer from "../../components/verdant/Footer";
+import { garden } from "../../data/verdant";
+---
+
+<Verdant title="Garden — personal finance, kept private — Verdant">
+  <!-- ── HERO ── -->
+  <section class="vg-hero">
+    <InkGrowth client:visible side="right" className="vg-hero-vine" />
+    <div class="v-wrap vg-hero-inner">
+      <p class="v-label">{garden.kind} · {garden.year} · {garden.status}</p>
+      <h1 class="v-organic vg-hero-name">Garden</h1>
+      <p class="vg-hero-line v-display">{garden.oneLine}</p>
+      <p class="vg-hero-blurb">{garden.blurb}</p>
+      <a href="#tour" class="v-cta" data-cursor="Down">Walk through it</a>
+    </div>
+    <div class="vg-hero-media">
+      <div class="vg-phone vg-phone--hero">
+        <div class="vg-phone-screen"><img src={garden.cover} alt="Garden — overview" /></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FIVE-SCREEN TOUR ── -->
+  <section id="tour" class="vg-tour">
+    <div class="v-wrap">
+      <div class="vg-tour-head" data-v-reveal>
+        <p class="v-label">Five beds, one garden</p>
+        <p class="vg-tour-intro v-display">Everything your money is doing — and nothing it shouldn't.</p>
+      </div>
+    </div>
+    <div class="vg-screens">
+      {garden.screens.map((s, i) => (
+        <div class={`v-wrap vg-screen${i % 2 ? " vg-screen--alt" : ""}`} data-v-reveal>
+          <div class="vg-screen-media">
+            <div class="vg-phone"><div class="vg-phone-screen"><img src={s.img} alt={`Garden — ${s.tab}`} loading="lazy" /></div></div>
+          </div>
+          <div class="vg-screen-text">
+            <span class="v-label v-label--bare">0{i + 1} — {s.tab}</span>
+            <h2 class="v-display vg-screen-line">{s.line}</h2>
+            <p class="vg-screen-body">{s.body}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- ── WHAT STAYS YOURS ── -->
+  <section class="vg-features">
+    <div class="v-wrap">
+      <p class="v-label" data-v-reveal>What stays yours</p>
+      <ul class="vg-feat-list">
+        {garden.notes.map((note, i) => (
+          <li class="vg-feat" data-v-reveal style={`--d:${i * 0.06}s`}>
+            <span class="v-organic vg-feat-n">0{i + 1}</span>
+            <p class="v-display vg-feat-text">{note}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- ── PRIVACY band ── -->
+  <section class="vg-band">
+    <div class="vg-band-edge" aria-hidden></div>
+    <div class="v-wrap vg-privacy">
+      <p class="v-label v-label--light" data-v-reveal>Plainly</p>
+      <TextReveal
+        client:visible
+        as="h2"
+        className="v-display vg-privacy-head"
+        lines={["Your numbers are locked", "before they leave your hands.", "We hold the %ciphertext%.", "We can't read a cent of it."]}
+      />
+    </div>
+  </section>
+
+  <!-- ── CLOSING ── -->
+  <section class="vg-end">
+    <div class="v-wrap vg-end-inner">
+      <p class="v-display vg-end-line" data-v-reveal>The first thing we've grown. Not the last.</p>
+      <div class="vg-end-actions">
+        <a href="/verdant" class="v-cta" data-cursor="Back">Back to the studio</a>
+        <a href="/verdant/ethos#talk" class="v-cta" data-cursor="Write">Talk to us</a>
+      </div>
+    </div>
+  </section>
+
+  <Footer client:visible />
+</Verdant>
+
+<style is:global>
+  /* PHONE FRAME */
+  .vg-phone { --rad: 42px; --pad: 10px; position: relative; width: clamp(230px, 26vw, 300px);
+    aspect-ratio: 400 / 812; border-radius: var(--rad); padding: var(--pad);
+    background: linear-gradient(160deg, #2a3b27 0%, #16271a 46%, #0a1610 100%);
+    box-shadow: 0 40px 90px -34px rgba(13,26,16,0.6), 0 0 0 1.5px rgba(255,255,255,0.05),
+                0 2px 0 rgba(255,255,255,0.08) inset, 0 -2px 8px rgba(0,0,0,0.4) inset; }
+  .vg-phone--hero { width: clamp(250px, 30vw, 330px); }
+  .vg-phone-screen { position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: calc(var(--rad) - var(--pad)); background: var(--cream); }
+  .vg-phone-screen img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 0; }
+  .vg-phone::after { content: ""; position: absolute; top: 14px; left: 50%; transform: translateX(-50%);
+    width: 38%; height: 7px; border-radius: 5px; background: rgba(0,0,0,0.5); z-index: 2; }
+
+  /* HERO */
+  .vg-hero { position: relative; min-height: 94svh; display: grid; grid-template-columns: 1.05fr 0.95fr;
+    align-items: center; gap: 2rem; overflow: hidden; background: var(--cream); padding-top: 6rem; }
+  .vg-hero-inner { position: relative; z-index: 2; }
+  .vg-hero-name { font-size: clamp(4rem, 12vw, 10rem); line-height: 0.9; color: var(--green); margin: 1.5rem 0 1rem; }
+  .vg-hero-line { font-size: clamp(1.4rem, 2.4vw, 2.1rem); color: var(--terra); max-width: 24ch; }
+  .vg-hero-blurb { color: var(--muted); line-height: 1.7; max-width: 46ch; margin: 1.6rem 0 2rem; }
+  .vg-hero-media { position: relative; z-index: 1; display: flex; justify-content: center; }
+  .vg-hero-vine { position: absolute; right: 4%; top: 0; bottom: 0; width: 130px; z-index: 1; opacity: 0.8; }
+  @media (max-width: 860px) { .vg-hero { grid-template-columns: 1fr; } .vg-hero-media { margin-top: 2rem; } .vg-hero-vine { display: none; } }
+
+  /* TOUR */
+  .vg-tour-head { max-width: 38rem; margin-bottom: clamp(3rem, 8vh, 6rem); }
+  .vg-tour-intro { font-size: clamp(1.8rem, 3.2vw, 2.8rem); color: var(--green); margin-top: 1rem; line-height: 1.1; }
+  .vg-screens { display: flex; flex-direction: column; gap: clamp(4rem, 10vh, 9rem); }
+  .vg-screen { display: grid; grid-template-columns: auto 1fr; gap: clamp(2.5rem, 6vw, 6rem); align-items: center; }
+  .vg-screen--alt { grid-template-columns: 1fr auto; }
+  .vg-screen--alt .vg-screen-media { order: 2; }
+  .vg-screen-media { display: flex; justify-content: center; }
+  .vg-screen-text { max-width: 38ch; }
+  .vg-screen-line { font-size: clamp(2rem, 4vw, 3.4rem); color: var(--green); margin: 0.7rem 0 1rem; line-height: 1.05; }
+  .vg-screen-body { color: var(--terra); line-height: 1.75; font-size: 1.05rem; }
+  @media (max-width: 760px) { .vg-screen, .vg-screen--alt { grid-template-columns: 1fr; } .vg-screen--alt .vg-screen-media { order: 0; } }
+
+  /* FEATURES */
+  .vg-feat-list { list-style: none; padding: 0; margin: 2.5rem 0 0; }
+  .vg-feat { display: grid; grid-template-columns: auto 1fr; gap: 1.6rem; align-items: baseline;
+    padding: 2rem 0; border-top: 1px solid var(--line); transition: padding-left .35s var(--ease); }
+  .vg-feat:hover { padding-left: 1rem; }
+  .vg-feat-n { font-size: 1.4rem; color: var(--clay); }
+  .vg-feat-text { font-size: clamp(1.3rem, 2.4vw, 2rem); color: var(--green); line-height: 1.25; }
+  .vg-feat:nth-child(even) { padding-left: clamp(0px, 4vw, 70px); }
+
+  /* PRIVACY BAND */
+  .vg-band { position: relative; background: linear-gradient(155deg, var(--forest-900), var(--green) 90%); overflow: hidden; }
+  .vg-band-edge { position: absolute; top: -1px; left: 0; right: 0; height: 110px; background: var(--cream); clip-path: ellipse(60% 100% at 50% 0%); }
+  .vg-privacy { position: relative; z-index: 1; }
+  .vg-privacy-head { font-size: clamp(1.8rem, 4vw, 3.4rem); color: var(--moon); line-height: 1.2; margin-top: 1.5rem; }
+
+  /* CLOSING */
+  .vg-end-inner { display: flex; flex-direction: column; align-items: flex-start; gap: 1.6rem; }
+  .vg-end-line { font-size: clamp(1.8rem, 3.6vw, 3rem); color: var(--green); max-width: 20ch; }
+  .vg-end-actions { display: flex; gap: 1.8rem; flex-wrap: wrap; }
+</style>
