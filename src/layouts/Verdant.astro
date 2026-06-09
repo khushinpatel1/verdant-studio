@@ -43,8 +43,12 @@ const fonts = [
       let lenis: any;
       function boot() {
         lenis?.destroy?.();
-        lenis = new Lenis({ lerp: 0.085 });
-        function raf(t: number) { lenis.raf(t); requestAnimationFrame(raf); }
+        // prefers-reduced-motion → native scroll, no smoothing layer at all
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) { lenis = null; return; }
+        // lerp 0.085 read as floaty/laggy (the follow trailed the input). 0.11 tightens
+        // the response without losing smoothing; touch synced so trackpad/phone match.
+        lenis = new Lenis({ lerp: 0.11, wheelMultiplier: 1, syncTouch: true });
+        function raf(t: number) { lenis?.raf(t); requestAnimationFrame(raf); }
         requestAnimationFrame(raf);
       }
 
