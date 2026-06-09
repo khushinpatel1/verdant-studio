@@ -45,9 +45,9 @@ const fonts = [
         lenis?.destroy?.();
         // prefers-reduced-motion → native scroll, no smoothing layer at all
         if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) { lenis = null; return; }
-        // lerp 0.085 read as floaty/laggy (the follow trailed the input). 0.11 tightens
-        // the response without losing smoothing; touch synced so trackpad/phone match.
-        lenis = new Lenis({ lerp: 0.11, wheelMultiplier: 1, syncTouch: true });
+        // coarse pointer (touch) → native scroll; Lenis on desktop/trackpad only
+        if (window.matchMedia("(pointer: coarse)").matches) { lenis = null; return; }
+        lenis = new Lenis({ lerp: 0.11, wheelMultiplier: 1 });
         function raf(t: number) { lenis?.raf(t); requestAnimationFrame(raf); }
         requestAnimationFrame(raf);
       }
