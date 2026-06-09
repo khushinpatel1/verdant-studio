@@ -10,8 +10,7 @@ export const brand = {
   name: "Verdant",
   wordmark: "Verdant",
   tagline: "A studio for software grown for people, not advertisers.",
-  // NOTE: confirm this address is real / you own verdant.studio before sharing widely.
-  email: "hello@verdant.studio",
+  email: "verdantmail@proton.me",
   // location + founding year intentionally omitted — placeless, timeless, nothing invented.
 };
 
