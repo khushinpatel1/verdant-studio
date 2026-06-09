@@ -1,9 +1,0 @@
----
-import Base from "../layouts/Base.astro";
-import SiteRenderer from "../components/lib/SiteRenderer";
-import { ridgeSustainability } from "../config/ridge-sustainability.config";
----
-
-<Base skin={ridgeSustainability.skin} title={`Sustainability — ${ridgeSustainability.brand.name} · Pastures Ridge`}>
-  <SiteRenderer config={ridgeSustainability} client:load />
-</Base>
