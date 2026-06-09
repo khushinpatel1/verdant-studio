@@ -3,12 +3,14 @@ import { useReactiveField } from "./useReactiveField";
 /**
  * HOME / studio hero — living ink (sumi-e). The studio as a place where things
  * are drawn into being: the cursor lays down ink that grows branching tendrils,
- * which mature and slowly fade. A few faint resting strokes keep the field alive
- * when still. Built on useReactiveField. Reduced-motion → the resting strokes
- * only, no growth.
+ * which mature and slowly fade. Strokes render as smooth bezier chains (through
+ * point midpoints) with a wet-ink bleed blooming at each growing tip. A few faint
+ * resting strokes keep the field alive when still. Built on useReactiveField.
+ * Reduced-motion → the resting strokes only, no growth.
  */
 
-type Stroke = { pts: { x: number; y: number }[]; ang: number; len: number; maxLen: number; w: number; life: number; growing: boolean };
+type Pt = { x: number; y: number };
+type Stroke = { pts: Pt[]; ang: number; len: number; maxLen: number; w: number; life: number; growing: boolean };
 type State = { rest: Stroke[]; live: Stroke[]; cool: number; cols: { ink: string; soft: string; gold: string } };
 
 function grownStroke(x: number, y: number, ang: number, steps: number, w: number): Stroke {
@@ -20,6 +22,20 @@ function grownStroke(x: number, y: number, ang: number, steps: number, w: number
     pts.push({ x: p.x + Math.cos(a) * 6, y: p.y + Math.sin(a) * 6 });
   }
   return { pts, ang: a, len: steps, maxLen: steps, w, life: 1, growing: false };
+}
+
+// smooth path through points via quadratic curves anchored at segment midpoints —
+// reads as one continuous brushstroke instead of a chain of straight segments.
+function tracePath(ctx: CanvasRenderingContext2D, pts: Pt[]) {
+  ctx.beginPath();
+  ctx.moveTo(pts[0].x, pts[0].y);
+  if (pts.length === 2) { ctx.lineTo(pts[1].x, pts[1].y); return; }
+  for (let i = 1; i < pts.length - 1; i++) {
+    const mx = (pts[i].x + pts[i + 1].x) / 2, my = (pts[i].y + pts[i + 1].y) / 2;
+    ctx.quadraticCurveTo(pts[i].x, pts[i].y, mx, my);
+  }
+  const last = pts[pts.length - 1];
+  ctx.lineTo(last.x, last.y);
 }
 
 export default function StudioInk({ className, style }: { className?: string; style?: React.CSSProperties }) {
@@ -36,23 +52,31 @@ export default function StudioInk({ className, style }: { className?: string; st
     draw: ({ ctx, t, trail, pointer, reduce }, S) => {
       const renderStroke = (s: Stroke, baseAlpha: number) => {
         if (s.pts.length < 2) return;
-        for (let i = 1; i < s.pts.length; i++) {
-          const taper = 1 - i / s.pts.length;
-          ctx.beginPath();
-          ctx.moveTo(s.pts[i - 1].x, s.pts[i - 1].y);
-          ctx.lineTo(s.pts[i].x, s.pts[i].y);
-          ctx.strokeStyle = S.cols.ink;
-          ctx.globalAlpha = baseAlpha * s.life * (0.4 + taper * 0.6);
-          ctx.lineWidth = s.w * (0.4 + taper);
-          ctx.lineCap = "round";
-          ctx.stroke();
-        }
-        // a small wet-ink bud at the growing tip
+        ctx.lineCap = "round";
+        ctx.lineJoin = "round";
+        ctx.strokeStyle = S.cols.ink;
+        // two passes: a soft wide base + a darker narrow core → brushy depth without per-segment width
+        tracePath(ctx, s.pts);
+        ctx.globalAlpha = baseAlpha * s.life * 0.4;
+        ctx.lineWidth = s.w * 2.1;
+        ctx.stroke();
+        tracePath(ctx, s.pts);
+        ctx.globalAlpha = baseAlpha * s.life;
+        ctx.lineWidth = s.w * 0.9;
+        ctx.stroke();
+
+        // wet-ink bleed blooming at the growing tip
         const tip = s.pts[s.pts.length - 1];
-        ctx.globalAlpha = baseAlpha * s.life * 0.7;
-        ctx.fillStyle = s.growing ? S.cols.gold : S.cols.soft;
+        const bleedR = s.w * (s.growing ? 5.5 : 3);
+        const g = ctx.createRadialGradient(tip.x, tip.y, 0, tip.x, tip.y, bleedR);
+        const core = s.growing ? S.cols.gold : S.cols.ink;
+        g.addColorStop(0, core);
+        g.addColorStop(0.5, S.cols.soft);
+        g.addColorStop(1, "rgba(0,0,0,0)");
+        ctx.fillStyle = g;
+        ctx.globalAlpha = baseAlpha * s.life * (s.growing ? 0.5 : 0.28);
         ctx.beginPath();
-        ctx.arc(tip.x, tip.y, s.w * 0.9, 0, Math.PI * 2);
+        ctx.arc(tip.x, tip.y, bleedR, 0, Math.PI * 2);
         ctx.fill();
       };
 
@@ -74,9 +98,10 @@ export default function StudioInk({ className, style }: { className?: string; st
             const p = s.pts[s.pts.length - 1];
             s.pts.push({ x: p.x + Math.cos(s.ang) * 6, y: p.y + Math.sin(s.ang) * 6 });
             s.len++;
-            // occasional branch
+            // occasional branch — fork angle varies 0.4–1.0 rad
             if (s.len > 4 && Math.random() < 0.06 && S.live.length < 46) {
-              S.live.push({ pts: [{ x: p.x, y: p.y }], ang: s.ang + (Math.random() < 0.5 ? 0.7 : -0.7), len: 0, maxLen: (s.maxLen * 0.6) | 0, w: s.w * 0.8, life: 1, growing: true });
+              const fork = (0.4 + Math.random() * 0.6) * (Math.random() < 0.5 ? 1 : -1);
+              S.live.push({ pts: [{ x: p.x, y: p.y }], ang: s.ang + fork, len: 0, maxLen: (s.maxLen * 0.6) | 0, w: s.w * 0.8, life: 1, growing: true });
             }
           } else {
             s.growing = false;
@@ -86,6 +111,7 @@ export default function StudioInk({ className, style }: { className?: string; st
         }
         S.live = S.live.filter((s) => s.life > 0.05);
       }
+      ctx.globalAlpha = 1;
     },
   });
 
