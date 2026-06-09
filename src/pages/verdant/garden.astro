@@ -19,7 +19,16 @@ import { garden } from "../../data/verdant";
       <h1 class="v-organic vg-hero-name">Garden</h1>
       <p class="vg-hero-line v-display">{garden.oneLine}</p>
       <p class="vg-hero-blurb">{garden.blurb}</p>
-      <a href="#tour" class="v-cta" data-cursor="Down">Walk through it</a>
+      <div class="vg-hero-actions">
+        <a
+          href="https://garden.khushinpatel1.workers.dev"
+          target="_blank"
+          rel="noopener"
+          class="v-cta v-cta--primary"
+          data-cursor="Open"
+        >Try Garden ↗</a>
+        <a href="#tour" class="v-cta" data-cursor="Down">Walk through it</a>
+      </div>
     </div>
     <div class="vg-hero-media">
       <GardenLive />
@@ -88,7 +97,7 @@ import { garden } from "../../data/verdant";
         client:visible
         as="h2"
         className="v-display vg-privacy-head"
-        lines={["Your numbers are locked", "before they leave your hands.", "We hold the %ciphertext%.", "We can't read a cent of it."]}
+        lines={["Your numbers are locked", "before they leave your hands.", "The server holds the %ciphertext%.", "And can't read a cent of it."]}
       />
     </div>
   </section>
@@ -96,7 +105,7 @@ import { garden } from "../../data/verdant";
   <!-- ── CLOSING ── -->
   <section class="vg-end">
     <div class="v-wrap vg-end-inner">
-      <p class="v-display vg-end-line" data-v-reveal>The first thing we've grown. Not the last.</p>
+      <p class="v-display vg-end-line" data-v-reveal>The first thing grown here. Not the last.</p>
       <div class="vg-end-actions">
         <a href="/verdant" class="v-cta" data-cursor="Back">Back to the studio</a>
         <a href="/verdant/ethos#talk" class="v-cta" data-cursor="Write">Talk to us</a>
@@ -127,6 +136,7 @@ import { garden } from "../../data/verdant";
   .vg-hero-name { font-size: clamp(4rem, 12vw, 10rem); line-height: 0.9; color: var(--green); margin: 1.5rem 0 1rem; }
   .vg-hero-line { font-size: clamp(1.4rem, 2.4vw, 2.1rem); color: var(--terra); max-width: 24ch; }
   .vg-hero-blurb { color: var(--muted); line-height: 1.7; max-width: 46ch; margin: 1.6rem 0 2rem; }
+  .vg-hero-actions { display: flex; align-items: center; gap: 1.8rem; flex-wrap: wrap; }
   .vg-hero-media { position: relative; z-index: 1; display: flex; justify-content: center; }
   .vg-hero-vine { position: absolute; right: 4%; top: 0; bottom: 0; width: 130px; z-index: 1; opacity: 0.8; }
   @media (max-width: 860px) { .vg-hero { grid-template-columns: 1fr; } .vg-hero-media { margin-top: 2rem; } .vg-hero-vine { display: none; } }

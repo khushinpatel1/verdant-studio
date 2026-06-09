@@ -69,7 +69,7 @@ export const garden = {
     body: "Ask anything. Grove answers from your real numbers — but it reads them on your device, in private. Nothing about your money leaves to make it work.",
   },
   notes: [
-    "Encrypted on your device before it ever syncs. We hold ciphertext and nothing else.",
+    "Encrypted on your device before it ever syncs. The server holds ciphertext and nothing else.",
     "No ads, no data sold, no third parties watching the ledger. You pay for it; that's the whole model.",
     "Works offline first — your garden is yours whether or not there's a signal.",
   ],
@@ -79,10 +79,10 @@ export const garden = {
 export const emerald = {
   name: "Emerald",
   kind: "Unreleased — project two",
-  oneLine: "Something we're still growing in the dark.",
+  oneLine: "Something still growing in the dark.",
   cover: "/verdant/art/emerald-dusk.jpg",
   blurb:
-    "Not ready. We'll show it when it's ready and not a day sooner. If you found this, you went looking — and that's exactly the kind of person it's being built for.",
+    "Not ready. It ships when it's ready, not a day sooner. If you found this, you went looking — and that's exactly the kind of person it's being built for.",
 };
 
 export type Person = {
@@ -113,10 +113,10 @@ export const studio = {
 
 export const ethos = {
   creed: [
-    "We don't sell attention. We never have, and the studio is built so we can't start.",
-    "If we can read your data, we consider that a bug.",
+    "No attention sold. The studio is built so it can't start.",
+    "If your data can be read here, that counts as a bug.",
     "Software should feel like a quiet room, not a crowded street.",
-    "Slow is fine. We'd rather ship a thing once, well, than ten times, anxiously.",
+    "Slow is fine. Ship a thing once, well, rather than ten times, anxiously.",
   ],
   facts: [
     { value: "0", label: "Trackers shipped" },
