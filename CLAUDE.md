@@ -1,88 +1,40 @@
 # Pastures
 
-> Cross-project rules live in `~/.claude/CLAUDE.md`. This file is the live state
-> of *this* project. Read it first when resuming.
+> Cross-project rules live in `~/.claude/CLAUDE.md`.
 
 ## What this is
-**Pastures** — a product: sellable, cinematic website templates that look/feel as
-polished as Apple's and Google's marketing pages, built so a client's entire site
-is driven by **one config file**. Foundation + walls = a reusable section-component
-library. Decorating = the config (logo, palette, copy, images, section order).
-Occupant = the client's content. **Copy the file to reproduce; swap it to sell.**
+**Pastures** is the `verdant` skin: a serene Japanese-garden studio site for a
+privacy-first software studio. It's the only live skin — ridge/meadow/feral were
+retired (`04bee0a`). Root (`/`) redirects to `/verdant`.
 
-We study how Apple/Google *architect* the feel and replicate the techniques in
-original components. We never ship their logos, products, photos, copy, or
-licensed fonts. Two skins are **original blended concepts**, not clones:
-- **Ridge** — Apple cinematic dark depth × Google kinetic text & bold accent.
-- **Meadow** — Google bright Material warmth × Apple seamless scroll & breathing room.
-- **Verdant** — serene Japanese-garden studio site; the strongest skin. Built as a
-  *technique vocabulary* (like FERAL), self-contained under its own namespace.
-  See `docs/verdant-handoff.md`.
+For the technique vocabulary (SandGarden, EthosWater, BlueprintReveal, InkGrowth,
+etc.) and full file map, see `docs/verdant-handoff.md`.
 
 ## Stack
-- **Astro 5 + React 19 islands.** Scripts: `npm run dev` (port 4321) · `npm run build` · `npm run check`.
-- **GSAP + ScrollTrigger** (reveals/pin/parallax, free) · **Lenis** (smooth scroll).
-- **Theme engine:** flat CSS-var maps on `[data-skin]` in `src/styles/tokens.css`
-  (same philosophy as the `garden` project). **Reference `--vars`, never hardcode hex.**
-- **Free assets:** Unsplash/Pexels (img), Coverr/Mixkit (video), Lucide/Heroicons,
-  unDraw, Google Fonts (Inter + Manrope). Currently using picsum placeholders.
-- **Deploy target:** Cloudflare Pages.
+Astro 5 + React 19 islands. `npm run dev` (port 4321) · `npm run build` ·
+`npm run check`. GSAP/ScrollTrigger + Lenis for scroll. Self-hosted fonts under
+`public/fonts/verdant/` — no Google Fonts.
 
-## Architecture
-- `src/config/types.ts` — **the contract.** `SiteConfig` = `{ skin, brand, nav, sections[] }`;
-  `Section` is a discriminated union (one member per component). Add a component → add a member.
-- `src/config/ridge.config.ts`, `meadow.config.ts` — demo brands (Lumen, Verda).
-- `src/components/lib/SiteRenderer.tsx` — maps `config.sections` → components (switch on `type`).
-- `src/components/lib/useReveal.ts` — GSAP reveal for any `[data-reveal]` (hides via JS so no-JS = visible).
-- `src/components/sections/*` — the section library.
-- `src/layouts/Base.astro` — sets `data-skin`, loads fonts + Lenis.
-- `src/pages/index.astro` (Ridge) · `meadow.astro` (Meadow).
+## Deploy
+`.github/workflows/deploy.yml` builds and deploys to the Cloudflare Pages project
+`verdant` (https://verdant-1wg.pages.dev) on every push to `main`. Once the repo
+secrets (`CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID`) are set in GitHub,
+**`git push` to main is the deploy** — do not run `wrangler pages deploy` manually.
 
-## Status (as of 2026-06-06) — DEPLOYED
-**Three skins live on Cloudflare Pages**, each with its own link (see
-`docs/cloudflare-deploy.md` for the full table):
-- **Verdant** (newest, strongest) — https://verdant-1wg.pages.dev · `docs/verdant-handoff.md`
-- **Feral** — https://feral-6ze.pages.dev · `docs/feral-handoff.md`
-- **Ridge** — https://ridge-98n.pages.dev · **Meadow/Verda** — https://verda-5xz.pages.dev
-- Combined showcase (all skins, one site): https://pastures.pages.dev
-- `npm run build` clean — **22 pages**. Git: built on `verdant-skin`, merged to `main`,
-  pushed to `origin` (git@github.com:khushinpatel1/pastures.git).
+## Screenshots / visual checks in this sandbox
+Headless Chromium here is network-blocked — **do not start a dev server**. Instead:
+- Render the built `dist/` via Playwright, intercepting requests with
+  `page.route()` and serving files from `dist/` over `file://`.
+- Inject any seed state into `localStorage` before navigating.
+- The headless tab reports `document.hidden = true`, which freezes any canvas
+  paused on `visibilitychange`. Override `document.hidden` and dispatch a fake
+  `visibilitychange` event before capturing animated heroes.
 
-**History (condensed):**
-- 2026-06-03 — FERAL demo: the technique-vocabulary thesis (L0 hooks → L1 components),
-  not a reshuffled section kit. WebGL displacement, variable-font scroll, etc.
-- 2026-06-02 — ridge/meadow overnight build (10 section components, config-driven).
-  Detail archived in `docs/archive/overnight-handoff.md`.
-
-## Two architectures live in this repo (don't confuse them)
-1. **Config-driven section kit** (ridge/meadow): `src/config/*`, `SiteRenderer.tsx`,
-   `src/components/sections/*`, `Base.astro`. One config file drives a site.
-2. **Technique-vocabulary skins** (feral, verdant): self-contained per-skin layout +
-   components + data + styles, art-directed into one language. This is the stronger
-   thesis going forward.
-
-## Next steps (recommended order)
-1. **Custom domains** — the `.pages.dev` names carry Cloudflare's anti-squatting hash
-   suffix; wire branded domains if wanted. Runbook: `docs/cloudflare-deploy.md`.
-2. **Decide the product direction** — lean into technique-vocabulary skins (feral/verdant)
-   vs. the config section-kit. The autonomous "factory" plan would scale the former:
-   `.claude/plans/002-autonomous-technique-factory.md`.
-3. **Retire sample assets** — any remaining Google sample MP4s / picsum / hot-linked
-   Unsplash → self-host + attribute.
-
-## Known issues / notes
-- **Meadow hero image washes out** — dark→`--bg` gradient over a light skin erases the photo;
-  tune overlay per-skin if image presence is wanted.
-- **Preview quirk:** the Claude preview tool reads `launch.json` from whatever folder the
-  session is rooted in. Launched from `~/Dev/pastures`, create `pastures/.claude/launch.json`
-  with `{name:"pastures", runtimeExecutable:"npm", runtimeArgs:["run","dev"], port:4321}`.
-  (A temporary `pastures` entry was added to `garden/.claude/launch.json` during the build
-  session — safe to remove from garden once this project owns its own.)
-- **Preview screenshots are black at any non-zero scroll offset** (sandbox/CDP capture quirk —
-  hero at offset 0 captures fine). Not a real rendering bug: verify deep sections via DOM instead
-  (`preview_snapshot`, `elementFromPoint`, computed styles, image `naturalWidth`).
-
-## Origin
-Plan: `.claude/plans/001-atelier-template-framework.md` (the framework thesis).
-Pattern inventory: `docs/atelier-pattern-inventory.md`.
-(Both moved here from `partnership/` in the 2026-06-06 file audit — this is their home.)
+## Working style
+- Commit in logical chunks.
+- Model tiering: Sonnet/Haiku for mechanical work; reserve Opus for hard
+  graphics/reasoning (canvas/WebGL shaders, animation timing).
+- Keep the existing canvas perf work intact — 30fps idle-throttle and
+  `visibilitychange` pause on all canvases (SandGarden, EthosWater,
+  GrowingGarden, etc.).
+- All hero interactions must support touch (no hover-only affordances).
