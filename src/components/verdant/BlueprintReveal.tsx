@@ -143,7 +143,7 @@ export default function BlueprintReveal({ className, style }: { className?: stri
     let W = 0, H = 0, dpr = Math.min(2, window.devicePixelRatio || 1);
     let blooms: Bloom[] = [];
     let raf = 0;
-    let t0 = 0;
+    let t0 = 0, lastTs = 0, lastP = -1;
 
     const resize = () => {
       const rect = canvas.getBoundingClientRect();
@@ -161,9 +161,12 @@ export default function BlueprintReveal({ className, style }: { className?: stri
     };
 
     const frame = (ts: number) => {
-      if (!t0) t0 = ts;
-      const t = (ts - t0) / 1000;
+      if (!t0) { t0 = ts; lastTs = ts; }
       const p = progress();
+      // throttle to ~30fps when scroll is settled — bloom easing is done, only sweep ticks
+      if (Math.abs(p - lastP) < 0.001 && ts - lastTs < 32) { raf = requestAnimationFrame(frame); return; }
+      lastTs = ts; lastP = p;
+      const t = (ts - t0) / 1000;
 
       ctx.clearRect(0, 0, W, H);
       ctx.fillStyle = PAPER;
@@ -182,10 +185,19 @@ export default function BlueprintReveal({ className, style }: { className?: stri
       if (!reduce) raf = requestAnimationFrame(frame);
     };
 
+    const onHide = () => {
+      if (document.hidden) { cancelAnimationFrame(raf); raf = 0; lastTs = 0; }
+      else if (!reduce && !raf) raf = requestAnimationFrame(frame);
+    };
     resize();
     window.addEventListener("resize", resize);
+    document.addEventListener("visibilitychange", onHide);
     raf = requestAnimationFrame(frame);
-    return () => { cancelAnimationFrame(raf); window.removeEventListener("resize", resize); };
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("resize", resize);
+      document.removeEventListener("visibilitychange", onHide);
+    };
   }, []);
 
   return <canvas ref={ref} aria-hidden className={className} style={{ display: "block", width: "100%", height: "100%", ...style }} />;

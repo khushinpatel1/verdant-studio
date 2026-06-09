@@ -84,9 +84,16 @@ export function useReactiveField<S>(opts: {
     };
     const onTouchEnd = () => { pointer.active = false; };
 
-    let t = 0, raf = 0;
-    const frame = () => {
-      t += 0.006;
+    let t = 0, raf = 0, lastTs = 0;
+    // default arg lets frame() be called directly (reduce=true static render) without a timestamp
+    const frame = (ts: number = performance.now()) => {
+      if (!lastTs) lastTs = ts;
+      const elapsed = ts - lastTs;
+      // throttle to ~30fps when nothing is happening — halves background GPU cost
+      if (!trail.length && !pointer.active && elapsed < 32) { raf = requestAnimationFrame(frame); return; }
+      // time-accurate advance: 0.006/frame × 60fps = 0.36/s = 0.00036/ms
+      t += elapsed * 0.00036;
+      lastTs = ts;
       for (const m of trail) m.life *= trailDecay;
       while (trail.length && trail[0].life < 0.04) trail.shift();
       ctx.clearRect(0, 0, W, H);
@@ -99,7 +106,12 @@ export function useReactiveField<S>(opts: {
     frame();
 
     const onResize = () => { resize(); if (reduce) frame(); };
+    const onHide = () => {
+      if (document.hidden) { cancelAnimationFrame(raf); raf = 0; lastTs = 0; }
+      else if (!reduce && !raf) raf = requestAnimationFrame(frame);
+    };
     window.addEventListener("resize", onResize);
+    document.addEventListener("visibilitychange", onHide);
     if (!reduce) {
       window.addEventListener("mousemove", onMove);
       cv.addEventListener("mouseleave", onLeave);
@@ -110,6 +122,7 @@ export function useReactiveField<S>(opts: {
     return () => {
       cancelAnimationFrame(raf);
       window.removeEventListener("resize", onResize);
+      document.removeEventListener("visibilitychange", onHide);
       window.removeEventListener("mousemove", onMove);
       cv.removeEventListener("mouseleave", onLeave);
       cv.removeEventListener("touchstart", onTouch);
