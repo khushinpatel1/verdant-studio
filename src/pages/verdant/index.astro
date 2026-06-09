@@ -1,14 +1,15 @@
 ---
 import Verdant from "../../layouts/Verdant.astro";
-import StudioInk from "../../components/verdant/StudioInk";
+// StudioInk (living-ink hero) parked 2026-06-09 — kept for reuse in components/verdant/StudioInk.tsx
+import BlueprintReveal from "../../components/verdant/BlueprintReveal";
 import TextReveal from "../../components/verdant/TextReveal";
 import Footer from "../../components/verdant/Footer";
 import { brand, garden, team, ethos } from "../../data/verdant";
 ---
 
 <Verdant title="Verdant — software grown for people">
-  <!-- ── Living ink — fixed lower layer, the page scrolls above it ── -->
-  <StudioInk client:load className="v-field-bg" />
+  <!-- ── Watercolor → blueprint reveal — fixed lower layer, scroll blooms the wash ── -->
+  <BlueprintReveal client:load className="v-field-bg" />
 
   <!-- ── HERO: the studio drawing things into being ── -->
   <section class="vh-hero">
@@ -31,7 +32,7 @@ import { brand, garden, team, ethos } from "../../data/verdant";
       </div>
       <p class="vh-hero-note">
         <strong>A studio, drawing.</strong>
-        Move your cursor across the field — ink follows it and grows.
+        Scroll — a watercolor wash blooms and reveals the blueprint of this very page.
       </p>
     </div>
   </section>
