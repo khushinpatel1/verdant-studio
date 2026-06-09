@@ -67,9 +67,9 @@ export function useReactiveField<S>(opts: {
     };
 
     let px = -1, py = -1;
-    const onMove = (e: MouseEvent) => {
+    const addMark = (clientX: number, clientY: number) => {
       const r = cv.getBoundingClientRect();
-      const x = e.clientX - r.left, y = e.clientY - r.top;
+      const x = clientX - r.left, y = clientY - r.top;
       if (x < 0 || y < 0 || x > W || y > H) { pointer.active = false; return; }
       if (!pointer.active || Math.hypot(x - px, y - py) > trailMinDist) {
         trail.push({ x, y, life: 1 });
@@ -77,7 +77,12 @@ export function useReactiveField<S>(opts: {
       }
       px = x; py = y; pointer.x = x; pointer.y = y; pointer.active = true;
     };
+    const onMove = (e: MouseEvent) => addMark(e.clientX, e.clientY);
     const onLeave = () => { pointer.active = false; };
+    const onTouch = (e: TouchEvent) => {
+      for (const t of Array.from(e.changedTouches)) addMark(t.clientX, t.clientY);
+    };
+    const onTouchEnd = () => { pointer.active = false; };
 
     let t = 0, raf = 0;
     const frame = () => {
@@ -98,12 +103,18 @@ export function useReactiveField<S>(opts: {
     if (!reduce) {
       window.addEventListener("mousemove", onMove);
       cv.addEventListener("mouseleave", onLeave);
+      cv.addEventListener("touchstart", onTouch, { passive: true });
+      cv.addEventListener("touchmove", onTouch, { passive: true });
+      cv.addEventListener("touchend", onTouchEnd);
     }
     return () => {
       cancelAnimationFrame(raf);
       window.removeEventListener("resize", onResize);
       window.removeEventListener("mousemove", onMove);
       cv.removeEventListener("mouseleave", onLeave);
+      cv.removeEventListener("touchstart", onTouch);
+      cv.removeEventListener("touchmove", onTouch);
+      cv.removeEventListener("touchend", onTouchEnd);
     };
   }, []);
 
