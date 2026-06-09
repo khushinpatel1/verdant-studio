@@ -6,6 +6,12 @@
       "runtimeExecutable": "sh",
       "runtimeArgs": ["-c", "cd /Users/khushinpatel/Dev/pastures && npm run dev"],
       "port": 4321
+    },
+    {
+      "name": "emerald",
+      "runtimeExecutable": "sh",
+      "runtimeArgs": ["-c", "cd /Users/khushinpatel/Dev/emerald && npm run dev"],
+      "port": 5180
     }
   ]
 }

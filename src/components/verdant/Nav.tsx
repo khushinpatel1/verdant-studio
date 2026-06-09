@@ -64,7 +64,7 @@ export default function Nav({ path }: { path: string }) {
           </ul>
           <div className="v-nav-overlay-foot">
             <a href={`mailto:${brand.email}`}>{brand.email}</a>
-            <span>{brand.location}</span>
+            <span>Independent · privacy-first</span>
           </div>
         </div>
       </div>

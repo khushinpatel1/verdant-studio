@@ -3,11 +3,15 @@ import Verdant from "../../layouts/Verdant.astro";
 import TextReveal from "../../components/verdant/TextReveal";
 import InkGrowth from "../../components/verdant/InkGrowth";
 import Footer from "../../components/verdant/Footer";
+import GardenLive from "../../components/verdant/GardenLive.astro";
+import GrowingGarden from "../../components/verdant/GrowingGarden";
 import { garden } from "../../data/verdant";
 ---
 
 <Verdant title="Garden — personal finance, kept private — Verdant">
   <!-- ── HERO ── -->
+  <GrowingGarden client:load className="v-field-bg" />
+
   <section class="vg-hero">
     <InkGrowth client:visible side="right" className="vg-hero-vine" />
     <div class="v-wrap vg-hero-inner">
@@ -18,17 +22,15 @@ import { garden } from "../../data/verdant";
       <a href="#tour" class="v-cta" data-cursor="Down">Walk through it</a>
     </div>
     <div class="vg-hero-media">
-      <div class="vg-phone vg-phone--hero">
-        <div class="vg-phone-screen"><img src={garden.cover} alt="Garden — overview" /></div>
-      </div>
+      <GardenLive />
     </div>
   </section>
 
-  <!-- ── FIVE-SCREEN TOUR ── -->
+  <!-- ── THREE-BED TOUR ── -->
   <section id="tour" class="vg-tour">
     <div class="v-wrap">
       <div class="vg-tour-head" data-v-reveal>
-        <p class="v-label">Five beds, one garden</p>
+        <p class="v-label">Three beds, one garden</p>
         <p class="vg-tour-intro v-display">Everything your money is doing — and nothing it shouldn't.</p>
       </div>
     </div>
@@ -45,6 +47,20 @@ import { garden } from "../../data/verdant";
           </div>
         </div>
       ))}
+    </div>
+  </section>
+
+  <!-- ── GROVE — the presence, not a tab ── -->
+  <section class="vg-grove">
+    <div class="v-wrap vg-grove-inner" data-v-reveal>
+      <div class="vg-grove-text">
+        <span class="v-label v-label--bare">{garden.grove.tab} — reachable from anywhere</span>
+        <h2 class="v-display vg-grove-line">{garden.grove.line}</h2>
+        <p class="vg-grove-body">{garden.grove.body}</p>
+      </div>
+      <div class="vg-grove-media">
+        <div class="vg-phone"><div class="vg-phone-screen"><img src={garden.grove.img} alt="Garden — Grove" loading="lazy" /></div></div>
+      </div>
     </div>
   </section>
 
@@ -106,7 +122,7 @@ import { garden } from "../../data/verdant";
 
   /* HERO */
   .vg-hero { position: relative; min-height: 94svh; display: grid; grid-template-columns: 1.05fr 0.95fr;
-    align-items: center; gap: 2rem; overflow: hidden; background: var(--cream); padding-top: 6rem; }
+    align-items: center; gap: 2rem; padding-top: 6rem; }
   .vg-hero-inner { position: relative; z-index: 2; }
   .vg-hero-name { font-size: clamp(4rem, 12vw, 10rem); line-height: 0.9; color: var(--green); margin: 1.5rem 0 1rem; }
   .vg-hero-line { font-size: clamp(1.4rem, 2.4vw, 2.1rem); color: var(--terra); max-width: 24ch; }
@@ -127,6 +143,16 @@ import { garden } from "../../data/verdant";
   .vg-screen-line { font-size: clamp(2rem, 4vw, 3.4rem); color: var(--green); margin: 0.7rem 0 1rem; line-height: 1.05; }
   .vg-screen-body { color: var(--terra); line-height: 1.75; font-size: 1.05rem; }
   @media (max-width: 760px) { .vg-screen, .vg-screen--alt { grid-template-columns: 1fr; } .vg-screen--alt .vg-screen-media { order: 0; } }
+
+  /* GROVE — set apart from the tour: a calm, inset band, phone to the side */
+  .vg-grove { padding: clamp(3rem, 8vh, 6rem) 0; }
+  .vg-grove-inner { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: clamp(2rem, 5vw, 4rem);
+    align-items: center; padding: clamp(2rem, 5vw, 3.5rem); border-radius: 32px;
+    background: color-mix(in srgb, var(--green) 7%, var(--cream)); }
+  .vg-grove-line { font-size: clamp(1.6rem, 3vw, 2.6rem); color: var(--green); margin: 0.8rem 0 1rem; line-height: 1.12; max-width: 18ch; }
+  .vg-grove-body { color: var(--terra); line-height: 1.75; font-size: 1.05rem; max-width: 44ch; }
+  .vg-grove-media { display: flex; justify-content: center; }
+  @media (max-width: 760px) { .vg-grove-inner { grid-template-columns: 1fr; } .vg-grove-media { margin-top: 1.5rem; } }
 
   /* FEATURES */
   .vg-feat-list { list-style: none; padding: 0; margin: 2.5rem 0 0; }

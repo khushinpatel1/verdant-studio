@@ -29,8 +29,8 @@ export default function Footer({ tone = "forest" }: { tone?: "forest" | "cream" 
           <div className="v-footer-col">
             <p className="v-label v-label--light v-label--bare">Studio</p>
             <a href={`mailto:${brand.email}`} className="v-footer-link" data-cursor="Write">{brand.email}</a>
-            <span className="v-footer-meta">{brand.location}</span>
-            <span className="v-footer-meta">{brand.est}</span>
+            <span className="v-footer-meta">Independent</span>
+            <span className="v-footer-meta">Privacy-first by design</span>
           </div>
         </nav>
       </div>

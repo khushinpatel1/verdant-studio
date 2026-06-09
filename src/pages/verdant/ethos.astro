@@ -2,11 +2,15 @@
 import Verdant from "../../layouts/Verdant.astro";
 import TextReveal from "../../components/verdant/TextReveal";
 import InkGrowth from "../../components/verdant/InkGrowth";
+import EthosWater from "../../components/verdant/EthosWater";
 import Footer from "../../components/verdant/Footer";
 import { brand, ethos } from "../../data/verdant";
 ---
 
 <Verdant title="Ethos — Verdant">
+  <!-- ── Still water — fixed lower layer ── -->
+  <EthosWater client:load className="v-field-bg" />
+
   <!-- ── HERO ── -->
   <section class="ve-hero">
     <div class="v-wrap">
@@ -56,17 +60,17 @@ import { brand, ethos } from "../../data/verdant";
         <InkGrowth client:visible side="right" className="ve-story-vine" />
       </div>
       <div class="ve-story-text">
-        <p class="v-label" data-v-reveal>How we got here</p>
+        <p class="v-label" data-v-reveal>Why this exists</p>
         <p data-v-reveal>
-          Verdant began in {brand.est.replace("Est. ", "")} with two people and one
-          stubborn opinion: that software could earn a living without selling the
-          person using it. Most of us came from companies whose entire business
-          was knowing too much about you.
+          Verdant started from one stubborn opinion: that software can earn a
+          living without selling the person using it. The whole industry seems to
+          run the other way — free, because you're the product. This is the refusal
+          of that.
         </p>
         <p data-v-reveal>
-          So we work small. The studio sits between {brand.location}, nine people
-          at most, and we'd rather stay that size than grow into something we'd
-          have to apologise for. We take on a few projects a year and finish them.
+          So it stays small on purpose. One person, modern tools, no investors to
+          answer to and no growth target pulling it toward something it would have
+          to apologise for. A few things, made well, finished.
         </p>
         <p data-v-reveal>
           The Japanese garden is our standing reference. Composed, unhurried,
@@ -83,7 +87,7 @@ import { brand, ethos } from "../../data/verdant";
     <div class="v-wrap ve-talk">
       <TextReveal client:visible as="h2" className="v-display ve-talk-head" lines={["Tell us what", "you're %growing%."]} />
       <a href={`mailto:${brand.email}`} class="ve-talk-mail" data-cursor="Write">{brand.email}</a>
-      <p class="v-label v-label--light ve-talk-meta">{brand.location} — {brand.est}</p>
+      <p class="v-label v-label--light ve-talk-meta">Verdant — independent, privacy-first</p>
     </div>
   </section>
 
@@ -91,7 +95,9 @@ import { brand, ethos } from "../../data/verdant";
 </Verdant>
 
 <style is:global>
-  .ve-hero { padding-top: 11rem; }
+  .ve-hero { padding-top: 11rem; position: relative; overflow: hidden; }
+  .ve-hero-field { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+  .ve-hero > .v-wrap { position: relative; z-index: 1; }
   .ve-hero-head { font-size: clamp(3rem, 8vw, 7rem); color: var(--forest-900); }
   .ve-hero-sub { font-size: clamp(1.3rem, 2vw, 1.7rem); color: var(--terra); max-width: 36ch; margin-top: 2rem; }
 

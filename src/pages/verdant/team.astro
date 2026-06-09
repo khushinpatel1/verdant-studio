@@ -1,11 +1,15 @@
 ---
 import Verdant from "../../layouts/Verdant.astro";
 import TextReveal from "../../components/verdant/TextReveal";
+import TeamFireflies from "../../components/verdant/TeamFireflies";
 import Footer from "../../components/verdant/Footer";
-import { team } from "../../data/verdant";
+import { studio } from "../../data/verdant";
 ---
 
 <Verdant title="People — Verdant">
+  <!-- ── Fireflies gathering — fixed lower layer ── -->
+  <TeamFireflies client:load className="v-field-bg" />
+
   <!-- ── HERO ── -->
   <section class="vt-hero">
     <div class="v-wrap">
@@ -17,25 +21,19 @@ import { team } from "../../data/verdant";
         lines={["A handful of people.", "No %account managers%."]}
       />
       <p class="vt-hero-sub v-display">
-        Nine at most, and we mean it. Everyone here makes the thing — there is no
-        layer between you and the people doing the work.
+        Right now, one. No layer between you and the person doing the work — and
+        no invented roster pretending otherwise.
       </p>
     </div>
   </section>
 
-  <!-- ── ROSTER ── -->
+  <!-- ── WHO ── an honest statement, not a fake roster ── -->
   <section class="vt-roster">
-    <div class="v-wrap">
-      {team.map((person, i) => (
-        <a href={`/verdant/team/${person.slug}`} class="vt-row" data-cursor="Meet" data-v-reveal style={`--d:${i * 0.05}s`}>
-          <span class="v-organic vt-row-n">0{i + 1}</span>
-          <div class="vt-row-text">
-            <span class="v-label v-label--bare">{person.role} · since {person.since}</span>
-            <h2 class="v-display vt-row-name">{person.name}</h2>
-            <p class="vt-row-short">{person.short}</p>
-          </div>
-          <span class="vt-row-meet v-cta">Meet {person.name.split(" ")[0]}</span>
-        </a>
+    <div class="v-wrap vt-who">
+      <h2 class="v-display vt-who-name" data-v-reveal>{studio.who}</h2>
+      <p class="vt-who-lead v-display" data-v-reveal>{studio.lead}</p>
+      {studio.lines.map((line, i) => (
+        <p class="vt-who-line" data-v-reveal style={`--d:${i * 0.06}s`}>{line}</p>
       ))}
     </div>
   </section>
@@ -52,9 +50,17 @@ import { team } from "../../data/verdant";
 </Verdant>
 
 <style is:global>
-  .vt-hero { padding-top: 11rem; }
+  .vt-hero { padding-top: 11rem; position: relative; overflow: hidden; }
+  .vt-hero-field { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+  .vt-hero > .v-wrap { position: relative; z-index: 1; }
   .vt-hero-head { font-size: clamp(2.8rem, 7vw, 6rem); color: var(--forest-900); }
   .vt-hero-sub { font-size: clamp(1.3rem, 2vw, 1.7rem); color: var(--terra); max-width: 40ch; margin-top: 2rem; }
+
+  .vt-who { max-width: 54rem; }
+  .vt-who-name { font-size: clamp(2.4rem, 6vw, 4.4rem); color: var(--green); line-height: 1.02; }
+  .vt-who-lead { font-size: clamp(1.4rem, 2.4vw, 2rem); color: var(--gold); margin: 1.2rem 0 2.4rem; }
+  .vt-who-line { font-family: var(--font-display); font-size: clamp(1.15rem, 1.8vw, 1.45rem); color: var(--terra);
+    line-height: 1.7; max-width: 52ch; margin-bottom: 1.4rem; }
 
   .vt-roster { display: flex; flex-direction: column; }
   .vt-row { display: grid; grid-template-columns: auto 1fr auto; gap: clamp(1.5rem, 4vw, 4rem); align-items: baseline;

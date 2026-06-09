@@ -1,18 +1,20 @@
 ---
 import Verdant from "../../layouts/Verdant.astro";
-import SandGarden from "../../components/verdant/SandGarden";
+import StudioInk from "../../components/verdant/StudioInk";
 import TextReveal from "../../components/verdant/TextReveal";
 import Footer from "../../components/verdant/Footer";
 import { brand, garden, team, ethos } from "../../data/verdant";
 ---
 
 <Verdant title="Verdant — software grown for people">
-  <!-- ── HERO: the raked sand garden ── -->
+  <!-- ── Living ink — fixed lower layer, the page scrolls above it ── -->
+  <StudioInk client:load className="v-field-bg" />
+
+  <!-- ── HERO: the studio drawing things into being ── -->
   <section class="vh-hero">
-    <SandGarden client:load className="vh-hero-sand" />
     <div class="vh-hero-scrim" aria-hidden></div>
     <div class="v-wrap vh-hero-inner">
-      <p class="v-label">Verdant Studio — {brand.est} · {brand.location}</p>
+      <p class="v-label">Verdant Studio — independent software</p>
       <TextReveal
         client:load
         as="h1"
@@ -28,8 +30,8 @@ import { brand, garden, team, ethos } from "../../data/verdant";
         <a href="/verdant/ethos" class="v-cta" data-cursor="Read">Our ethos</a>
       </div>
       <p class="vh-hero-note">
-        <strong>A dry-landscape garden.</strong>
-        Drag your cursor across the sand — it keeps the rake marks for a while.
+        <strong>A studio, drawing.</strong>
+        Move your cursor across the field — ink follows it and grows.
       </p>
     </div>
   </section>
@@ -141,8 +143,7 @@ import { brand, garden, team, ethos } from "../../data/verdant";
 
 <style is:global>
   /* HERO */
-  .vh-hero { position: relative; min-height: 100svh; display: flex; flex-direction: column; justify-content: center; overflow: hidden; background: var(--cream); }
-  .vh-hero-sand { position: absolute; inset: 0; z-index: 0; }
+  .vh-hero { position: relative; min-height: 100svh; display: flex; flex-direction: column; justify-content: center; }
   .vh-hero-scrim { position: absolute; inset: 0; z-index: 1; pointer-events: none;
     background: radial-gradient(ellipse 70% 64% at 30% 44%, color-mix(in srgb, var(--cream) 86%, transparent), transparent 72%),
                 linear-gradient(180deg, color-mix(in srgb, var(--cream) 55%, transparent) 0%, transparent 40%, transparent 64%, color-mix(in srgb, var(--cream) 50%, transparent) 100%); }

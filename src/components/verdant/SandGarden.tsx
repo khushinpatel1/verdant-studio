@@ -1,6 +1,12 @@
 import { useEffect, useRef } from "react";
 
 /**
+ * ⏸ PARKED — KEPT FOR FUTURE USE (not deleted on purpose).
+ * Superseded on the Verdant homepage by GrowingGarden (the green-field motif).
+ * KP loved this "space-time bent by gravity" aesthetic but it read too cosmic for
+ * a finance studio — kept here intact to redeploy elsewhere later. The pointer-wake
+ * mechanic was carried forward into GrowingGarden; only the motif changed.
+ *
  * VERDANT signature interaction — the raked sand garden (karesansui).
  *
  * A full-bleed canvas of parallel "rake" lines that bow into concentric rings
