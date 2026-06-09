@@ -38,23 +38,25 @@ export const garden = {
   oneLine: "Your whole financial life in one calm place — and nobody else's business.",
   blurb:
     "Most money apps make a living by knowing too much about you. Garden makes a living the old way: people pay for it. Your accounts, your numbers, your plans — encrypted, on your device, sold to no one.",
-  cover: "/verdant/garden/garden-moss-cream.jpg",
+  cover: "/verdant/garden/garden-home.jpg",
+  // vault-lock.jpg — used as back-phone teaser on homepage (intriguing encrypted-garden hint)
+  vaultScreen: "/verdant/garden/vault-lock.jpg",
   screens: [
     {
       tab: "Home",
-      img: "/verdant/garden/garden-moss-cream.jpg",
+      img: "/verdant/garden/garden-home.jpg",
       line: "See the whole garden.",
       body: "Net worth, every account, and one honest health score — the first thing you see when you open the app, and the last thing you have to worry about.",
     },
     {
       tab: "Money",
-      img: "/verdant/garden/grow-pale-sage.jpg",
+      img: "/verdant/garden/garden-money.jpg",
       line: "Pull the weeds.",
       body: "Where it goes, what it adds up to, and the quiet subscriptions draining you every month — gathered in one place, so you can actually cancel them. Budgets that track themselves.",
     },
     {
       tab: "Plan",
-      img: "/verdant/garden/roots-forest-loam.jpg",
+      img: "/verdant/garden/garden-plan.jpg",
       line: "Plant it, and untangle it.",
       body: "Goals with a real date attached — an emergency fund, a trip to Kyoto — beside the debt that's pulling at you, put in order. One number to pay, a year you'll be free, and the interest you'll save getting there.",
     },
@@ -62,7 +64,7 @@ export const garden = {
   // Grove — not a tab. A presence reachable from anywhere in the app.
   grove: {
     tab: "Grove",
-    img: "/verdant/garden/grove-eucalyptus.jpg",
+    img: "/verdant/garden/garden-grove.jpg",
     line: "A presence that already sees your garden.",
     body: "Ask anything. Grove answers from your real numbers — but it reads them on your device, in private. Nothing about your money leaves to make it work.",
   },
