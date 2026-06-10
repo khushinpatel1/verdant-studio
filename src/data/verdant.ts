@@ -18,6 +18,7 @@ export const nav = {
   links: [
     { label: "Studio", href: "/verdant" },
     { label: "Garden", href: "/verdant/garden" },
+    { label: "Security", href: "/verdant/security" },
     { label: "Ethos", href: "/verdant/ethos" },
     { label: "People", href: "/verdant/team" },
   ],
@@ -118,10 +119,12 @@ export const ethos = {
     "Software should feel like a quiet room, not a crowded street.",
     "Slow is fine. Ship a thing once, well, rather than ten times, anxiously.",
   ],
+  // Real architecture facts only — each backed by garden.notes / the _headers posture.
+  // (Replaced the two decorative "1 / Project" + "1 / Studio" counters — poetry, not facts.)
   facts: [
     { value: "0", label: "Trackers shipped" },
     { value: "100%", label: "Encrypted at rest" },
-    { value: "1", label: "Project, tended" },
-    { value: "1", label: "Studio, independent" },
+    { value: "0", label: "Data sold, ever" },
+    { value: "Local", label: "First, by design" },
   ],
 };

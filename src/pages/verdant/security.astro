@@ -1,0 +1,164 @@
+---
+import Verdant from "../../layouts/Verdant.astro";
+import TextReveal from "../../components/verdant/TextReveal";
+import EthosWater from "../../components/verdant/EthosWater";
+import Footer from "../../components/verdant/Footer";
+import { brand } from "../../data/verdant";
+
+// SECURITY — the proof page. Every claim here restates a standing Garden/studio
+// commitment (see garden.notes + ethos.creed) or a literally-true fact about
+// this site's response headers (public/_headers). NOTHING is invented.
+//
+// GATE (per KP): harder specifics — exact cipher suite, key handling, any
+// third-party audit — are deliberately NOT asserted here yet. Add them only once
+// KP confirms each is literally true of Garden. Placeholders left as comments below.
+
+const principles = [
+  {
+    n: "01",
+    head: "Encrypted before it leaves your hands.",
+    body:
+      "Your numbers are encrypted on your device before they ever sync. The server holds ciphertext and nothing else — there is nothing on it for anyone to read, including us.",
+  },
+  {
+    n: "02",
+    head: "Local-first, not cloud-first.",
+    body:
+      "Your data lives on your device and works offline. The network is a convenience for syncing, never a requirement for using what's yours.",
+  },
+  {
+    n: "03",
+    head: "Nothing watching the ledger.",
+    body:
+      "No ads, no analytics SDKs, no third parties in the data path. The business model is the old one: you pay for the software. That's the whole arrangement.",
+  },
+  {
+    n: "04",
+    head: "If it can be read here, that's a bug.",
+    body:
+      "Privacy isn't a setting to switch on — it's the default the software is built around. Anything that exposes your data counts as a defect, not a feature.",
+  },
+];
+
+// Literally true of THIS site's responses — straight from public/_headers.
+const headers = [
+  { k: "X-Frame-Options", v: "SAMEORIGIN", note: "Can't be silently embedded in another site." },
+  { k: "X-Content-Type-Options", v: "nosniff", note: "Browsers honour declared types — no guessing." },
+  { k: "Referrer-Policy", v: "strict-origin-when-cross-origin", note: "Leaks no path data to other origins." },
+  { k: "Permissions-Policy", v: "camera=(), microphone=(), geolocation=()", note: "The site asks for none of these. Denied outright." },
+];
+---
+
+<Verdant title="Security — Verdant">
+  <!-- ── Still water — fixed lower layer (reused from Ethos) ── -->
+  <EthosWater client:load className="v-field-bg" />
+
+  <!-- ── HERO ── -->
+  <section class="vs-hero">
+    <div class="v-wrap">
+      <p class="v-label">How it's built.</p>
+      <TextReveal
+        client:load
+        as="h1"
+        className="v-display vs-hero-head"
+        lines={["Privacy you", "can %check%."]}
+      />
+      <p class="vs-hero-sub v-display">
+        Claims are easy. This is the architecture underneath them — how Verdant
+        software is built so your data stays yours, and how you can tell.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── PRINCIPLES ── -->
+  <section class="vs-principles">
+    <div class="v-wrap">
+      {principles.map((p, i) => (
+        <div class="vs-row" data-v-reveal style={`--d:${i * 0.05}s`}>
+          <span class="v-organic vs-n">{p.n}</span>
+          <div class="vs-row-text">
+            <p class="v-display vs-row-head">{p.head}</p>
+            <p class="vs-row-body">{p.body}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- ── POSTURE: real response headers ── -->
+  <section class="vs-posture">
+    <div class="v-wrap">
+      <div class="vs-posture-head" data-v-reveal>
+        <p class="v-label">Checkable, right now</p>
+        <p class="vs-posture-intro v-display">What this very page sends back.</p>
+        <p class="vs-posture-note">
+          Open your browser's network inspector on this page. These are the
+          security headers every response carries — not a promise, a fact you can
+          read off the wire.
+        </p>
+      </div>
+      <ul class="vs-headers">
+        {headers.map((h, i) => (
+          <li class="vs-header" data-v-reveal style={`--d:${i * 0.05}s`}>
+            <code class="vs-header-k">{h.k}</code>
+            <code class="vs-header-v">{h.v}</code>
+            <span class="vs-header-note">{h.note}</span>
+          </li>
+        ))}
+      </ul>
+      <p class="vs-posture-foot">
+        This is a static site — no server-side database, no account, no tracker to
+        opt out of. The only way to reach the studio is an email you choose to send.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── TALK ── -->
+  <section id="talk" class="vs-band">
+    <div class="vs-band-edge" aria-hidden></div>
+    <div class="v-wrap vs-talk">
+      <TextReveal client:visible as="h2" className="v-display vs-talk-head" lines={["Found a gap?", "%Tell us%."]} />
+      <a href={`mailto:${brand.email}`} class="vs-talk-mail" data-cursor="Write">{brand.email}</a>
+      <p class="v-label v-label--light vs-talk-meta">Responsible disclosure — quietly, and we'll answer</p>
+    </div>
+  </section>
+
+  <Footer client:visible />
+</Verdant>
+
+<style is:global>
+  .vs-hero { padding-top: 11rem; position: relative; overflow: hidden; }
+  .vs-hero > .v-wrap { position: relative; z-index: 1; }
+  .vs-hero-head { font-size: clamp(3rem, 8vw, 7rem); color: var(--forest-900); }
+  .vs-hero-sub { font-size: clamp(1.3rem, 2vw, 1.7rem); color: var(--terra); max-width: 40ch; margin-top: 2rem; }
+
+  /* PRINCIPLES */
+  .vs-row { display: grid; grid-template-columns: auto 1fr; gap: clamp(1.5rem, 4vw, 3.5rem); align-items: baseline;
+    padding: clamp(2rem, 5vh, 3.2rem) 0; border-top: 1px solid var(--line); }
+  .vs-n { font-size: clamp(1.8rem, 3.4vw, 2.8rem); color: var(--moss); line-height: 1; }
+  .vs-row-head { font-size: clamp(1.4rem, 3vw, 2.4rem); line-height: 1.2; color: var(--green); max-width: 22ch; }
+  .vs-row-body { color: var(--muted); line-height: 1.7; max-width: 56ch; margin-top: 0.9rem; }
+
+  /* POSTURE */
+  .vs-posture-head { margin-bottom: 2.5rem; }
+  .vs-posture-intro { font-size: clamp(1.7rem, 3vw, 2.6rem); color: var(--green); margin-top: 1rem; }
+  .vs-posture-note { color: var(--muted); line-height: 1.7; max-width: 54ch; margin-top: 1rem; }
+  .vs-headers { list-style: none; padding: 0; margin: 0; }
+  .vs-header { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1.1fr) minmax(0,1.4fr); gap: 1rem 1.6rem; align-items: baseline;
+    padding: 1.3rem 0; border-top: 1px solid var(--line); }
+  .vs-header-k { font-family: var(--font-mono); font-size: 0.82rem; color: var(--green); }
+  .vs-header-v { font-family: var(--font-mono); font-size: 0.78rem; color: var(--terra); word-break: break-word; }
+  .vs-header-note { font-family: var(--font-display); font-size: 1rem; color: #3a4a28; }
+  .vs-posture-foot { font-family: var(--font-display); font-size: clamp(1.1rem, 1.7vw, 1.4rem); line-height: 1.55; color: #3a4a28;
+    max-width: 52ch; margin-top: 2.5rem; padding-top: 1.6rem; border-top: 1px solid var(--line); }
+  @media (max-width: 700px) { .vs-header { grid-template-columns: 1fr; gap: 0.3rem; } }
+
+  /* TALK */
+  .vs-band { position: relative; background: linear-gradient(155deg, var(--forest-900), var(--forest) 55%, var(--green-600)); overflow: hidden; text-align: center; }
+  .vs-band-edge { position: absolute; top: -1px; left: 0; right: 0; height: 110px; background: var(--cream); clip-path: ellipse(60% 100% at 42% 0%); }
+  .vs-talk { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 1.6rem; }
+  .vs-talk-head { font-size: clamp(2.4rem, 5.5vw, 4.4rem); color: var(--moon); }
+  .vs-talk-mail { font-family: var(--font-display); font-size: clamp(1.6rem, 3.5vw, 2.8rem); color: var(--gold); border-bottom: 1px solid var(--gold); padding-bottom: 4px; transition: opacity .3s; }
+  .vs-talk-mail:hover { opacity: 0.75; }
+  .vs-talk-meta { justify-content: center; }
+</style>

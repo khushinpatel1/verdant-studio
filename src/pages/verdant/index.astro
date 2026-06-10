@@ -60,6 +60,7 @@ import { brand, garden, team, ethos } from "../../data/verdant";
               <span class="vh-stat-label">{f.label}</span>
             </div>
           ))}
+          <a href="/verdant/security" class="vh-stats-link" data-cursor="Read">How it's built — the privacy, checked →</a>
         </div>
       </div>
     </div>
@@ -91,7 +92,7 @@ import { brand, garden, team, ethos } from "../../data/verdant";
       </a>
 
       <p class="vh-more-note" data-v-reveal>
-        A second project is in the soil. It ships when it's ready, and not before.
+        A second project is in the soil — it ships when it's ready, not before.
       </p>
     </div>
   </section>
@@ -170,6 +171,9 @@ import { brand, garden, team, ethos } from "../../data/verdant";
   .vh-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 2.4rem; }
   .vh-stat-value { display: block; font-size: 3.2rem; color: var(--moss-300); line-height: 1; }
   .vh-stat-label { display: block; font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(200,213,185,0.55); margin-top: 0.5rem; }
+  .vh-stats-link { grid-column: 1 / -1; font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.08em; color: var(--moss-300);
+    padding-top: 1.2rem; margin-top: 0.4rem; border-top: 1px solid rgba(200,213,185,0.16); transition: color .3s; }
+  .vh-stats-link:hover { color: var(--gold); }
   @media (max-width: 800px) { .vh-manifesto-body { grid-template-columns: 1fr; gap: 2.5rem; } }
 
   /* WORK — the first project */
