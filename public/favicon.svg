@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Verdant — a single ink-drawn leaf. Adapts to the browser's color scheme. -->
+  <style>
+    .leaf { fill: #2d5016; }
+    .vein { stroke: #faf6ec; }
+    @media (prefers-color-scheme: dark) {
+      .leaf { fill: #c8d5b9; }
+      .vein { stroke: #10180c; }
+    }
+  </style>
+  <path class="leaf" d="M13 51 C13 28 29 11 53 9 C51 33 34 49 13 51 Z"/>
+  <path class="vein" d="M17 47 C25 36 37 23 48 14" fill="none" stroke-width="3" stroke-linecap="round"/>
+  <path class="leaf" d="M13 51 C11 54 9.5 56.5 8 59 L11 60 C12.5 57 13.5 54.5 14.5 52 Z"/>
+</svg>

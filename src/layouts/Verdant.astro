@@ -9,7 +9,7 @@ interface Props { title: string; description?: string; image?: string }
 const {
   title,
   description = "Verdant — a small, privacy-first software studio. Software grown for people, not advertisers.",
-  image = "/og-image.jpg"
+  image = "/og/og-default.png"
 } = Astro.props;
 const path = Astro.url.pathname.replace(/\/$/, "") || "/verdant";
 const url = `https://verdant.studio${Astro.url.pathname}`;
@@ -46,7 +46,8 @@ const fonts = [
     <meta name="twitter:image" content={`https://verdant.studio${image}`} />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
     {fonts.map((f) => (
