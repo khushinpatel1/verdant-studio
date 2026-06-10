@@ -1,0 +1,65 @@
+---
+import "../styles/global.css";
+
+const title = "Not found";
+const description = "This page doesn't exist.";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <style>
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        background: #0f1411;
+        color: #e8e8e8;
+        font-family: "SchibstedGrotesk", system-ui, sans-serif;
+        margin: 0;
+        padding: 20px;
+      }
+      .container {
+        max-width: 560px;
+        text-align: center;
+      }
+      h1 {
+        font-size: 64px;
+        margin: 0 0 16px;
+        font-weight: 600;
+        line-height: 1.1;
+      }
+      p {
+        font-size: 16px;
+        color: #999;
+        margin: 0 0 28px;
+        line-height: 1.6;
+      }
+      a {
+        display: inline-block;
+        padding: 12px 24px;
+        background: #5fa777;
+        color: #0f1411;
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: 500;
+        transition: background 0.2s;
+      }
+      a:hover {
+        background: #4a8560;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>404</h1>
+      <p>This page doesn't exist. The garden grows, but not everywhere yet.</p>
+      <a href="/verdant">Back to Verdant</a>
+    </div>
+  </body>
+</html>

@@ -5,9 +5,14 @@ import { ClientRouter } from "astro:transitions";
 import Cursor from "../components/verdant/Cursor";
 import Nav from "../components/verdant/Nav";
 
-interface Props { title: string; description?: string }
-const { title, description = "Verdant — a small, privacy-first software studio. Software grown for people, not advertisers." } = Astro.props;
+interface Props { title: string; description?: string; image?: string }
+const {
+  title,
+  description = "Verdant — a small, privacy-first software studio. Software grown for people, not advertisers.",
+  image = "/og-image.jpg"
+} = Astro.props;
 const path = Astro.url.pathname.replace(/\/$/, "") || "/verdant";
+const url = `https://verdant.studio${Astro.url.pathname}`;
 
 const fonts = [
   "InstrumentSerif-Regular.woff2",
@@ -26,6 +31,24 @@ const fonts = [
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={`https://verdant.studio${image}`} />
+    <meta property="og:url" content={url} />
+    <meta property="og:type" content="website" />
+
+    <!-- Twitter/X Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={`https://verdant.studio${image}`} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
     {fonts.map((f) => (
       <link rel="preload" href={`/fonts/verdant/${f}`} as="font" type="font/woff2" crossorigin />
     ))}
