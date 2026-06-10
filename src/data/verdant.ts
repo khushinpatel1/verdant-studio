@@ -22,7 +22,7 @@ export const nav = {
     { label: "Ethos", href: "/verdant/ethos" },
     { label: "People", href: "/verdant/team" },
   ],
-  cta: { label: "Start a project", href: "/verdant/ethos#talk" },
+  cta: { label: "Try Garden", href: "https://garden.khushinpatel1.workers.dev" },
 };
 
 export type Screen = { tab: string; img: string; line: string; body: string };
@@ -34,14 +34,15 @@ export const garden = {
   name: "Garden",
   idx: "01",
   kind: "Personal finance, kept private",
-  year: "2023",
-  status: "Live",
+  year: "2026",
+  status: "Early Access",
   oneLine: "Your whole financial life in one calm place — and nobody else's business.",
   blurb:
     "Most money apps make a living by knowing too much about you. Garden makes a living the old way: people pay for it. Your accounts, your numbers, your plans — encrypted, on your device, sold to no one.",
   cover: "/verdant/garden/garden-home.webp",
   // vault-lock.jpg — used as back-phone teaser on homepage (intriguing encrypted-garden hint)
   vaultScreen: "/verdant/garden/vault-lock.jpg",
+  url: "https://garden.khushinpatel1.workers.dev",
   screens: [
     {
       tab: "Home",
@@ -70,7 +71,7 @@ export const garden = {
     body: "Ask anything. Grove answers from your real numbers — but it reads them on your device, in private. Nothing about your money leaves to make it work.",
   },
   notes: [
-    "Encrypted on your device before it ever syncs. The server holds ciphertext and nothing else.",
+    "Built so the server holds only ciphertext — your device encrypts before anything leaves.",
     "No ads, no data sold, no third parties watching the ledger. You pay for it; that's the whole model.",
     "Works offline first — your garden is yours whether or not there's a signal.",
   ],
