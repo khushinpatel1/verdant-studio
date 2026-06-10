@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <style>
+    .mark { fill: #2e3c2e; stroke: #2e3c2e; }
+    @media (prefers-color-scheme: dark) {
+      .mark { fill: #a9bfa5; stroke: #a9bfa5; }
+    }
+  </style>
+  <!-- the leaf, simplified for 16px -->
+  <path class="mark" d="M 13 55 C 10 35 20 15 42 7 C 45 6 47 8 46.5 11 C 42.5 32 31 48 16.5 56 C 14.5 57 13 56.5 13 55 Z" stroke="none"/>
+  <path class="mark" d="M 13 55 C 11 58.5 8 60.5 4.5 61.5" fill="none" stroke-width="2.5" stroke-linecap="round"/>
+</svg>
