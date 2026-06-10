@@ -1,11 +1,13 @@
-# Pastures
+# Verdant Studio
 
 > Cross-project rules live in `~/.claude/CLAUDE.md`.
 
 ## What this is
-**Pastures** is the `verdant` skin: a serene Japanese-garden studio site for a
-privacy-first software studio. It's the only live skin — ridge/meadow/feral were
-retired (`04bee0a`). Root (`/`) redirects to `/verdant`.
+**Verdant Studio**'s site: a serene Japanese-garden studio site for Verdant, a
+privacy-first software studio. Formerly the `verdant` skin inside the multi-skin
+`pastures` repo (ridge/meadow/feral were retired, `04bee0a`); renamed to its own
+project in the 2026-06-09 studio reset since it's the only live skin. Root (`/`)
+redirects to `/verdant`.
 
 For the technique vocabulary (SandGarden, EthosWater, BlueprintReveal, InkGrowth,
 etc.) and full file map, see `docs/verdant-handoff.md`.
@@ -17,8 +19,10 @@ Astro 5 + React 19 islands. `npm run dev` (port 4321) · `npm run build` ·
 
 ## Deploy
 `.github/workflows/deploy.yml` builds and deploys to the Cloudflare Pages project
-`verdant` (https://verdant-1wg.pages.dev) on every push to `main`. Once the repo
-secrets (`CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID`) are set in GitHub,
+`verdant-studio` (renamed from `verdant` / https://verdant-1wg.pages.dev in the
+2026-06-09 studio reset — see `_archive/MANIFEST.md` in partnership for the CF
+rename status) on every push to `main`. Once the repo secrets
+(`CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID`) are set in GitHub,
 **`git push` to main is the deploy** — do not run `wrangler pages deploy` manually.
 
 ## Screenshots / visual checks in this sandbox

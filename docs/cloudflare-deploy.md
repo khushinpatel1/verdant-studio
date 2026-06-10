@@ -1,7 +1,9 @@
 # Cloudflare Pages — Deploy Runbook
 
-Pastures is a fully static Astro build. No SSR adapter is needed.
-`npm run build` produces a complete `dist/` folder ready to upload.
+This repo (formerly `pastures`, renamed to `verdant-studio` in the 2026-06-09 studio
+reset — see `_archive/MANIFEST.md` in partnership for CF rename status) is a fully
+static Astro build. No SSR adapter is needed. `npm run build` produces a complete
+`dist/` folder ready to upload.
 
 ---
 
@@ -59,8 +61,8 @@ cp /tmp/_root.html dist/index.html                 # restore
 ## Push a remote (do this first)
 
 ```bash
-# From inside ~/Dev/pastures — uppercase Dev, not lowercase
-git remote add origin git@github.com:YOUR_USERNAME/pastures.git
+# From inside ~/Dev/verdant-studio — uppercase Dev, not lowercase
+git remote add origin git@github.com:khushinpatel1/verdant-studio.git
 git push -u origin main
 ```
 
@@ -81,10 +83,10 @@ wrangler login
 
 # Build + deploy
 npm run build
-npx wrangler pages deploy dist --project-name=pastures
+npx wrangler pages deploy dist --project-name=verdant-studio
 ```
 
-Wrangler will print the deployed URL (e.g. `https://pastures.pages.dev`).
+Wrangler will print the deployed URL (e.g. `https://verdant-studio.pages.dev`).
 
 **Note: YOU must run this command with your own Cloudflare credentials. The project is
 deploy-ready but only the account owner can trigger the actual publish.**
