@@ -1,12 +1,13 @@
 ---
 import "../styles/global.css";
+import "../styles/verdant.css";
 
 const title = "Not found";
 const description = "This page doesn't exist.";
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" data-skin="verdant">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -18,9 +19,8 @@ const description = "This page doesn't exist.";
         align-items: center;
         justify-content: center;
         min-height: 100vh;
-        background: #0f1411;
-        color: #e8e8e8;
-        font-family: "SchibstedGrotesk", system-ui, sans-serif;
+        background: var(--cream);
+        color: var(--forest-900);
         margin: 0;
         padding: 20px;
       }
@@ -29,29 +29,17 @@ const description = "This page doesn't exist.";
         text-align: center;
       }
       h1 {
-        font-size: 64px;
+        font-family: var(--font-display);
+        font-size: clamp(4.5rem, 12vw, 8rem);
         margin: 0 0 16px;
-        font-weight: 600;
-        line-height: 1.1;
+        color: var(--forest-900);
       }
       p {
-        font-size: 16px;
-        color: #999;
+        font-family: var(--font-body);
+        font-size: 1.05rem;
+        color: var(--muted);
         margin: 0 0 28px;
         line-height: 1.6;
-      }
-      a {
-        display: inline-block;
-        padding: 12px 24px;
-        background: #5fa777;
-        color: #0f1411;
-        text-decoration: none;
-        border-radius: 8px;
-        font-weight: 500;
-        transition: background 0.2s;
-      }
-      a:hover {
-        background: #4a8560;
       }
     </style>
   </head>
@@ -59,7 +47,7 @@ const description = "This page doesn't exist.";
     <div class="container">
       <h1>404</h1>
       <p>This page doesn't exist. The garden grows, but not everywhere yet.</p>
-      <a href="/verdant">Back to Verdant</a>
+      <a href="/verdant" class="v-cta v-cta--primary">Back to Verdant</a>
     </div>
   </body>
 </html>
