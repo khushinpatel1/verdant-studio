@@ -106,11 +106,25 @@ export function useReactiveField<S>(opts: {
     frame();
 
     const onResize = () => { resize(); if (reduce) frame(); };
+    // iOS Safari: the address bar collapsing/expanding changes the layout
+    // viewport without firing window `resize`, leaving the canvas sized for a
+    // stale height. visualViewport does fire — but continuously during the
+    // collapse — so debounce and only re-seed if the canvas box truly changed.
+    let vvTimer = 0;
+    const onViewportShift = () => {
+      clearTimeout(vvTimer);
+      vvTimer = window.setTimeout(() => {
+        const r = cv.getBoundingClientRect();
+        if (Math.abs(r.width - W) > 1 || Math.abs(r.height - H) > 1) onResize();
+      }, 150);
+    };
     const onHide = () => {
       if (document.hidden) { cancelAnimationFrame(raf); raf = 0; lastTs = 0; }
       else if (!reduce && !raf) raf = requestAnimationFrame(frame);
     };
     window.addEventListener("resize", onResize);
+    window.visualViewport?.addEventListener("resize", onViewportShift);
+    window.addEventListener("orientationchange", onViewportShift);
     document.addEventListener("visibilitychange", onHide);
     if (!reduce) {
       window.addEventListener("mousemove", onMove);
@@ -121,7 +135,10 @@ export function useReactiveField<S>(opts: {
     }
     return () => {
       cancelAnimationFrame(raf);
+      clearTimeout(vvTimer);
       window.removeEventListener("resize", onResize);
+      window.visualViewport?.removeEventListener("resize", onViewportShift);
+      window.removeEventListener("orientationchange", onViewportShift);
       document.removeEventListener("visibilitychange", onHide);
       window.removeEventListener("mousemove", onMove);
       cv.removeEventListener("mouseleave", onLeave);

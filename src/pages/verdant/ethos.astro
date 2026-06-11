@@ -7,7 +7,7 @@ import Footer from "../../components/verdant/Footer";
 import { brand, ethos } from "../../data/verdant";
 ---
 
-<Verdant title="Ethos — Verdant">
+<Verdant title="Ethos — Verdant" image="/og/og-ethos.jpg">
   <!-- ── Still water — fixed lower layer ── -->
   <EthosWater client:load className="v-field-bg" />
 
@@ -35,18 +35,6 @@ import { brand, ethos } from "../../data/verdant";
         <div class="ve-creed-row" data-v-reveal style={`--d:${i * 0.05}s`}>
           <span class="v-organic ve-creed-n">0{i + 1}</span>
           <p class="v-display ve-creed-text">{line}</p>
-        </div>
-      ))}
-    </div>
-  </section>
-
-  <!-- ── FACTS ── -->
-  <section class="ve-facts">
-    <div class="v-wrap ve-facts-row">
-      {ethos.facts.map((f, i) => (
-        <div class="ve-fact" data-v-reveal style={`--d:${i * 0.06}s`}>
-          <span class="v-organic ve-fact-value">{f.value}</span>
-          <span class="v-label v-label--bare ve-fact-label">{f.label}</span>
         </div>
       ))}
     </div>
@@ -107,12 +95,6 @@ import { brand, ethos } from "../../data/verdant";
   .ve-creed-n { font-size: clamp(2rem, 4vw, 3.2rem); color: var(--moss); line-height: 1; }
   .ve-creed-text { font-size: clamp(1.5rem, 3.4vw, 3rem); line-height: 1.18; color: var(--green); max-width: 24ch; }
   .ve-creed-row:nth-child(even) { padding-left: clamp(0px, 6vw, 110px); }
-
-  /* FACTS */
-  .ve-facts-row { display: flex; flex-wrap: wrap; gap: 2.5rem 4rem; padding-top: 2rem; border-top: 1px solid var(--line); }
-  .ve-fact { display: flex; flex-direction: column; gap: 0.5rem; }
-  .ve-fact-value { font-size: clamp(2.4rem, 5vw, 3.6rem); color: var(--green); line-height: 1; }
-  .ve-fact-label { color: var(--clay); }
 
   /* STORY */
   .ve-story-grid { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: clamp(2rem, 6vw, 5rem); align-items: start; }

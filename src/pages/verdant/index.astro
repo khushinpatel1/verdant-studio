@@ -53,15 +53,7 @@ import { brand, garden, team, ethos } from "../../data/verdant";
             <li class="vh-creed-item" data-v-reveal style={`--d:${i * 0.06}s`}>{line}</li>
           ))}
         </ul>
-        <div class="vh-stats">
-          {ethos.facts.map((f) => (
-            <div class="vh-stat">
-              <span class="v-organic vh-stat-value">{f.value}</span>
-              <span class="vh-stat-label">{f.label}</span>
-            </div>
-          ))}
-          <a href="/verdant/security" class="vh-stats-link" data-cursor="Read">How it's built — the privacy, checked →</a>
-        </div>
+        <a href="/verdant/security" class="vh-stats-link" data-cursor="Read">How it's built — the privacy, checked →</a>
       </div>
     </div>
   </section>
@@ -163,18 +155,14 @@ import { brand, garden, team, ethos } from "../../data/verdant";
   .vh-band-edge { position: absolute; top: -1px; left: 0; right: 0; height: 110px; background: var(--cream); clip-path: ellipse(62% 100% at 38% 0%); }
   .vh-manifesto { position: relative; z-index: 1; }
   .vh-manifesto-head { font-size: clamp(2.6rem, 5vw, 4.6rem); color: var(--moon); max-width: 18ch; margin-bottom: 3.5rem; }
-  .vh-manifesto-body { display: grid; grid-template-columns: 1.4fr 1fr; gap: 4rem; align-items: start; }
+  .vh-manifesto-body { max-width: 62ch; }
   .vh-creed { list-style: none; padding: 0; margin: 0; }
   .vh-creed-item { font-family: var(--font-display); font-size: clamp(1.1rem, 1.7vw, 1.4rem); line-height: 1.45; color: rgba(220,230,207,0.78);
     padding: 1.4rem 0; border-top: 1px solid rgba(200,213,185,0.16); transition: padding-left .35s var(--ease), color .35s; }
   .vh-creed-item:hover { padding-left: 0.8rem; color: var(--moon); }
-  .vh-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 2.4rem; }
-  .vh-stat-value { display: block; font-size: 3.2rem; color: var(--moss-300); line-height: 1; }
-  .vh-stat-label { display: block; font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(200,213,185,0.55); margin-top: 0.5rem; }
-  .vh-stats-link { grid-column: 1 / -1; font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.08em; color: var(--moss-300);
-    padding-top: 1.2rem; margin-top: 0.4rem; border-top: 1px solid rgba(200,213,185,0.16); transition: color .3s; }
+  .vh-stats-link { display: inline-block; font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.08em; color: var(--moss-300);
+    padding-top: 1.4rem; margin-top: 0.2rem; transition: color .3s; }
   .vh-stats-link:hover { color: var(--gold); }
-  @media (max-width: 800px) { .vh-manifesto-body { grid-template-columns: 1fr; gap: 2.5rem; } }
 
   /* WORK — the first project */
   .vh-work-head { margin-bottom: 4rem; }
