@@ -218,24 +218,6 @@
   position: fixed; inset: 0; z-index: -1; pointer-events: none;
 }
 
-/* ── Painted hero — a print, hung on the paper ──
-   The art-led replacement for the per-page canvas fields: a woodblock print
-   (or studio painting) presented as the physical object it is — plate edge
-   kept, soft hanging shadow, no masks or fades. */
-[data-skin="verdant"] .v-hero-grid {
-  display: grid; grid-template-columns: 1.15fr auto;
-  gap: clamp(2.5rem, 6vw, 6rem); align-items: center;
-}
-[data-skin="verdant"] .v-hero-print {
-  width: clamp(240px, 26vw, 400px); display: block;
-  border-radius: var(--radius); box-shadow: var(--sh-lg);
-}
-[data-skin="verdant"] .v-hero-print--wide { width: clamp(280px, 34vw, 520px); }
-@media (max-width: 800px) {
-  [data-skin="verdant"] .v-hero-grid { grid-template-columns: 1fr; }
-  [data-skin="verdant"] .v-hero-print { width: min(70vw, 340px); }
-}
-
 /* ── Green bands → wet pigment on paper ───────────────────────────────────
    Every full-bleed forest block (manifesto / privacy / talk / CTA / footer)
    shares one treatment so the green reads as washed pigment, not a flat slab:
@@ -310,11 +292,11 @@
   mix-blend-mode: var(--pf-blend, multiply);
   opacity: var(--pf-opacity, 1);
   filter: var(--pf-filter, none);
-  -webkit-mask-image: radial-gradient(
+  -webkit-mask-image: var(--pf-mask, radial-gradient(
     ellipse var(--pf-mask-x, 54%) var(--pf-mask-y, 52%) at 50% 50%,
-    #000 var(--pf-core, 36%), transparent var(--pf-fade, 74%));
-  mask-image: radial-gradient(
+    #000 var(--pf-core, 36%), transparent var(--pf-fade, 74%)));
+  mask-image: var(--pf-mask, radial-gradient(
     ellipse var(--pf-mask-x, 54%) var(--pf-mask-y, 52%) at 50% 50%,
-    #000 var(--pf-core, 36%), transparent var(--pf-fade, 74%));
+    #000 var(--pf-core, 36%), transparent var(--pf-fade, 74%)));
   will-change: transform;
 }

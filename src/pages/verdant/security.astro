@@ -49,28 +49,23 @@ const headers = [
 ---
 
 <Verdant title="Security — Verdant" image="/og/og-ethos.jpg">
-  <!-- ── HERO ── -->
+  <!-- ── HERO — Koson's eagle keeps watch from the paper ── -->
   <section class="vs-hero">
-    <div class="v-wrap v-hero-grid">
-      <div>
-        <p class="v-label">How it's built.</p>
-        <TextReveal
-          client:load
-          as="h1"
-          className="v-display vs-hero-head"
-          lines={["Privacy you", "can %check%."]}
-        />
-        <p class="vs-hero-sub v-display">
-          Claims are easy. This is the architecture underneath them — how Verdant
-          software is built so your data stays yours, and how you can tell.
-        </p>
-      </div>
-      <img
-        class="v-hero-print"
-        src="/verdant/art/koson-eagle-pine.jpg"
-        alt="Ohara Koson — Eagle on snowy pine, woodblock print"
-        fetchpriority="high"
+    <div class="v-print-field vs-hero-art" data-v-parallax="0.08" aria-hidden="true">
+      <img src="/verdant/art/koson-eagle-pine.jpg" alt="" fetchpriority="high" />
+    </div>
+    <div class="v-wrap">
+      <p class="v-label">How it's built.</p>
+      <TextReveal
+        client:load
+        as="h1"
+        className="v-display vs-hero-head"
+        lines={["Privacy you", "can %check%."]}
       />
+      <p class="vs-hero-sub v-display">
+        Claims are easy. This is the architecture underneath them — how Verdant
+        software is built so your data stays yours, and how you can tell.
+      </p>
     </div>
   </section>
 
@@ -131,10 +126,23 @@ const headers = [
 </Verdant>
 
 <style is:global>
-  .vs-hero { padding-top: 11rem; position: relative; overflow: hidden; }
+  .vs-hero { padding-top: 11rem; position: relative; overflow: hidden;
+    min-height: 92svh; display: flex; flex-direction: column; justify-content: center; }
   .vs-hero > .v-wrap { position: relative; z-index: 1; }
+  .vs-hero-art {
+    --pf-w: clamp(420px, 42vw, 640px);
+    --pf-right: -5vw;
+    --pf-y: 50%;
+    --pf-core: 26%;
+    --pf-fade: 70%;
+    /* warm the snowy greys toward the paper so the print sits IN the cream */
+    --pf-filter: sepia(0.2) saturate(0.82) brightness(1.05);
+  }
   .vs-hero-head { font-size: clamp(3rem, 8vw, 7rem); color: var(--forest-900); }
   .vs-hero-sub { font-size: clamp(1.3rem, 2vw, 1.7rem); color: var(--terra); max-width: 40ch; margin-top: 2rem; }
+  @media (max-width: 800px) {
+    .vs-hero-art { --pf-w: clamp(340px, 98vw, 430px); --pf-right: -22vw; --pf-y: 82%; --pf-opacity: 0.85; }
+  }
 
   /* PRINCIPLES */
   .vs-row { display: grid; grid-template-columns: auto 1fr; gap: clamp(1.5rem, 4vw, 3.5rem); align-items: baseline;

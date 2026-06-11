@@ -8,7 +8,7 @@ import { studio } from "../../data/verdant";
 <Verdant title="People — Verdant" image="/og/og-team.jpg">
   <!-- ── HERO ── -->
   <section class="vt-hero">
-    <div class="v-wrap v-hero-grid">
+    <div class="v-wrap">
       <div>
         <p class="v-label">The gardeners</p>
         <TextReveal
@@ -22,12 +22,9 @@ import { studio } from "../../data/verdant";
           no invented roster pretending otherwise.
         </p>
       </div>
-      <img
-        class="v-hero-print v-hero-print--wide"
-        src="/verdant/art/team-flower.jpg"
-        alt="Moon camellia — studio painting"
-        fetchpriority="high"
-      />
+    </div>
+    <div class="v-print-field vt-hero-art" data-v-parallax="0.07" aria-hidden="true">
+      <img src="/verdant/art/team-flower.jpg" alt="" fetchpriority="high" />
     </div>
   </section>
 
@@ -54,8 +51,31 @@ import { studio } from "../../data/verdant";
 </Verdant>
 
 <style is:global>
-  .vt-hero { padding-top: 11rem; position: relative; overflow: hidden; }
+  .vt-hero { padding-top: 11rem; position: relative; overflow: hidden;
+    min-height: 92svh; display: flex; flex-direction: column; justify-content: center; }
   .vt-hero > .v-wrap { position: relative; z-index: 1; }
+  /* dark studio painting — no blend (multiply would erase the white camellia).
+     Pinned off the right viewport edge with a directional fade, so the night
+     wash rolls in from outside the page instead of floating as an island. */
+  .vt-hero-art {
+    --pf-blend: normal;
+    --pf-opacity: 0.92;
+    --pf-w: clamp(720px, 66vw, 980px);
+    --pf-right: -14vw;
+    --pf-y: 50%;
+    /* ellipse pinned past the img's right edge: solid where it meets the
+       viewport edge, feathered into cream on left / top / bottom */
+    --pf-mask: radial-gradient(ellipse 78% 60% at 82% 50%, #000 36%, transparent 76%);
+  }
+  @media (max-width: 800px) {
+    .vt-hero-art {
+      --pf-w: clamp(440px, 130vw, 560px);
+      --pf-right: -34vw;
+      --pf-y: 86%;
+      --pf-opacity: 0.8;
+      --pf-mask: radial-gradient(ellipse 70% 56% at 76% 54%, #000 30%, transparent 72%);
+    }
+  }
   .vt-hero-head { font-size: clamp(2.8rem, 7vw, 6rem); color: var(--forest-900); }
   .vt-hero-sub { font-size: clamp(1.3rem, 2vw, 1.7rem); color: var(--terra); max-width: 40ch; margin-top: 2rem; }
 

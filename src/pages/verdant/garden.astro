@@ -73,27 +73,21 @@ import { garden } from "../../data/verdant";
     </div>
   </section>
 
-  <!-- ── WHAT STAYS YOURS ── -->
+  <!-- ── WHAT STAYS YOURS — the list floats on Koson's lily pond ── -->
   <section class="vg-features">
-    <div class="v-wrap vg-feat-grid">
-      <div>
-        <p class="v-label" data-v-reveal>What stays yours</p>
-        <ul class="vg-feat-list">
-          {garden.notes.map((note, i) => (
-            <li class="vg-feat" data-v-reveal style={`--d:${i * 0.06}s`}>
-              <span class="v-organic vg-feat-n">0{i + 1}</span>
-              <p class="v-display vg-feat-text">{note}</p>
-            </li>
-          ))}
-        </ul>
-      </div>
-      <img
-        class="v-hero-print vg-feat-print"
-        src="/verdant/art/koson-waterlilies.jpg"
-        alt="Ohara Koson — Water lilies, woodblock print"
-        loading="lazy"
-        data-v-reveal
-      />
+    <div class="v-print-field vg-feat-art" data-v-parallax="0.07" aria-hidden="true">
+      <img src="/verdant/art/koson-waterlilies.jpg" alt="" loading="lazy" decoding="async" />
+    </div>
+    <div class="v-wrap">
+      <p class="v-label" data-v-reveal>What stays yours</p>
+      <ul class="vg-feat-list">
+        {garden.notes.map((note, i) => (
+          <li class="vg-feat" data-v-reveal style={`--d:${i * 0.06}s`}>
+            <span class="v-organic vg-feat-n">0{i + 1}</span>
+            <p class="v-display vg-feat-text">{note}</p>
+          </li>
+        ))}
+      </ul>
     </div>
   </section>
 
@@ -173,11 +167,20 @@ import { garden } from "../../data/verdant";
   .vg-grove-media { display: flex; justify-content: center; }
   @media (max-width: 760px) { .vg-grove-inner { grid-template-columns: 1fr; } .vg-grove-media { margin-top: 1.5rem; } }
 
-  /* FEATURES */
-  .vg-feat-grid { display: grid; grid-template-columns: 1.3fr auto; gap: clamp(2.5rem, 6vw, 6rem); align-items: center; }
-  .vg-feat-print { width: clamp(220px, 22vw, 340px); }
-  @media (max-width: 800px) { .vg-feat-grid { grid-template-columns: 1fr; } }
-  .vg-feat-list { list-style: none; padding: 0; margin: 2.5rem 0 0; }
+  /* FEATURES — list floats on the lily pond bleeding in from the right */
+  .vg-features { position: relative; overflow: hidden; }
+  .vg-features > .v-wrap { position: relative; z-index: 1; }
+  .vg-feat-art {
+    --pf-w: clamp(460px, 46vw, 700px);
+    --pf-right: -10vw;
+    --pf-y: 50%;
+    --pf-core: 26%;
+    --pf-fade: 72%;
+  }
+  .vg-feat-list { list-style: none; padding: 0; margin: 2.5rem 0 0; max-width: 56rem; }
+  @media (max-width: 800px) {
+    .vg-feat-art { --pf-w: clamp(360px, 110vw, 480px); --pf-right: -36vw; --pf-y: 76%; --pf-opacity: 0.6; }
+  }
   .vg-feat { display: grid; grid-template-columns: auto 1fr; gap: 1.6rem; align-items: baseline;
     padding: 2rem 0; border-top: 1px solid var(--line); transition: padding-left .35s var(--ease); }
   .vg-feat:hover { padding-left: 1rem; }

@@ -27,7 +27,14 @@ distinctive self-hosted type) **without touching any FERAL files**.
   (The 2026-06 art-led pass retired the other canvases — SandGarden, StudioInk,
   BlueprintReveal, EthosWater, TeamFireflies, EmeraldNight; heroes are now
   Ohara Koson woodblock prints + the studio painting suite, see
-  `docs/art-credits.md`.)
+  `docs/art-credits.md`. The 2026-06-11 flow pass made the prints borderless
+  page fields: `.v-print-field` in `verdant.css` — multiply blend dissolves
+  each print's paper ground into the site cream, radial/linear masks feather
+  every edge, and a scrollY parallax driver in `Verdant.astro` writes `--vp`
+  onto `[data-v-parallax]` fields. All five Koson prints placed: songbird
+  (home hero), grasses-moon (home CTA band, screen blend), dragonfly-lotus
+  (ethos), eagle-pine (security, sepia-warmed), waterlilies (garden features).
+  Screenshot harness: `scripts/shots.mjs` / `shot-el.mjs` / `measure.mjs`.)
 - **Secondary technique** — `InkGrowth.tsx`: sumi-e vines that draw themselves on
   scroll (stroke-dashoffset tied to scroll progress).
 
