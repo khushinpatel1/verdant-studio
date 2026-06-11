@@ -2,7 +2,7 @@
 import Verdant from "../../layouts/Verdant.astro";
 import TextReveal from "../../components/verdant/TextReveal";
 import Footer from "../../components/verdant/Footer";
-import { brand, garden, team, ethos } from "../../data/verdant";
+import { brand, garden, ethos } from "../../data/verdant";
 ---
 
 <Verdant title="Verdant — software grown for people">
@@ -99,28 +99,6 @@ import { brand, garden, team, ethos } from "../../data/verdant";
     </div>
   </section>
 
-  <!-- ── PEOPLE ── -->
-  <section class="vh-people">
-    <div class="v-wrap">
-      <div class="vh-people-head" data-v-reveal>
-        <p class="v-label">The gardeners</p>
-        <p class="vh-people-intro v-display">Small on purpose.</p>
-      </div>
-      <ul class="vh-people-list">
-        {team.map((person, i) => (
-          <li data-v-reveal style={`--d:${i * 0.06}s`}>
-            <a href={`/verdant/team/${person.slug}`} class="vh-person-row" data-cursor="Meet">
-              <span class="v-display vh-person-name">{person.name}</span>
-              <span class="v-label v-label--bare vh-person-role">{person.role}</span>
-              <span class="vh-person-since">since {person.since}</span>
-            </a>
-          </li>
-        ))}
-      </ul>
-      <a href="/verdant/team" class="v-cta" data-cursor="Go" style="margin-top:2.5rem;">All the people</a>
-    </div>
-  </section>
-
   <!-- ── CTA BAND ── -->
   <section class="vh-band vh-cta-band">
     <div class="vh-band-edge" aria-hidden></div>
@@ -190,18 +168,6 @@ import { brand, garden, team, ethos } from "../../data/verdant";
   .vh-quote-mark { font-size: 5rem; line-height: 0.4; color: var(--sage); }
   .vh-quote-text { font-size: clamp(1.7rem, 3.6vw, 3rem); line-height: 1.22; color: var(--green); margin: 0 auto 1.6rem; }
   .vh-quote-by { justify-content: center; }
-
-  /* PEOPLE — text-only roster */
-  .vh-people-head { margin-bottom: 2rem; }
-  .vh-people-intro { font-size: clamp(1.8rem, 3vw, 2.6rem); color: var(--green); margin-top: 1rem; }
-  .vh-people-list { list-style: none; padding: 0; margin: 0; }
-  .vh-person-row { display: grid; grid-template-columns: 1fr auto auto; align-items: baseline; gap: 1rem 2rem;
-    padding: clamp(1.3rem, 3vh, 2rem) 0; border-top: 1px solid var(--line); transition: padding-left .35s var(--ease); }
-  .vh-person-row:hover { padding-left: 1rem; }
-  .vh-person-name { font-size: clamp(1.6rem, 3vw, 2.6rem); color: var(--green); transition: color .3s; }
-  .vh-person-row:hover .vh-person-name { color: var(--gold); }
-  .vh-person-since { font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--clay); }
-  @media (max-width: 600px) { .vh-person-row { grid-template-columns: 1fr; gap: 0.3rem; } }
 
   /* CTA BAND */
   .vh-cta-band { text-align: center; }
