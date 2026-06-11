@@ -6,32 +6,27 @@ import { brand, garden, ethos } from "../../data/verdant";
 ---
 
 <Verdant title="Verdant — software grown for people">
-  <!-- ── HERO: type on paper, a Koson print hung beside it ── -->
+  <!-- ── HERO: type on paper, Koson's songbird printed into it ── -->
   <section class="vh-hero">
-    <div class="v-wrap vh-hero-inner v-hero-grid">
-      <div>
-        <p class="v-label">Verdant Studio — independent software</p>
-        <TextReveal
-          client:load
-          as="h1"
-          className="v-display vh-hero-head"
-          lines={["Software grown for", "%people%, not advertisers."]}
-        />
-        <p class="vh-hero-sub">
-          Quiet software — tools that do their work and get out of the way.
-          Nothing here watches you back.
-        </p>
-        <div class="vh-hero-actions">
-          <a href="#work" class="v-cta" data-cursor="Down">See the work</a>
-          <a href="/verdant/ethos" class="v-cta" data-cursor="Read">The ethos</a>
-        </div>
-      </div>
-      <img
-        class="v-hero-print"
-        src="/verdant/art/koson-songbird-plum.jpg"
-        alt="Ohara Koson — Songbird and plum blossom, woodblock print"
-        fetchpriority="high"
+    <div class="v-print-field vh-hero-art" data-v-parallax="0.08" aria-hidden="true">
+      <img src="/verdant/art/koson-songbird-plum.jpg" alt="" fetchpriority="high" />
+    </div>
+    <div class="v-wrap vh-hero-inner">
+      <p class="v-label">Verdant Studio — independent software</p>
+      <TextReveal
+        client:load
+        as="h1"
+        className="v-display vh-hero-head"
+        lines={["Software grown for", "%people%, not advertisers."]}
       />
+      <p class="vh-hero-sub">
+        Quiet software — tools that do their work and get out of the way.
+        Nothing here watches you back.
+      </p>
+      <div class="vh-hero-actions">
+        <a href="#work" class="v-cta" data-cursor="Down">See the work</a>
+        <a href="/verdant/ethos" class="v-cta" data-cursor="Read">The ethos</a>
+      </div>
     </div>
   </section>
 
@@ -99,9 +94,12 @@ import { brand, garden, ethos } from "../../data/verdant";
     </div>
   </section>
 
-  <!-- ── CTA BAND ── -->
+  <!-- ── CTA BAND — Koson's full moon rises in the forest ── -->
   <section class="vh-band vh-cta-band">
     <div class="vh-band-edge" aria-hidden></div>
+    <div class="v-print-field vh-cta-moon" data-v-parallax="0.06" aria-hidden="true">
+      <img src="/verdant/art/koson-grasses-moon.jpg" alt="" loading="lazy" decoding="async" />
+    </div>
     <div class="v-wrap vh-cta-inner">
       <TextReveal client:visible as="h2" className="v-display vh-cta-title" lines={["Grow something", "%quiet%."]} />
       <a href="/verdant/ethos#talk" class="v-cta v-cta--light" data-cursor="Write">Start a conversation</a>
@@ -112,12 +110,27 @@ import { brand, garden, ethos } from "../../data/verdant";
 </Verdant>
 
 <style is:global>
-  /* HERO */
-  .vh-hero { position: relative; min-height: 100svh; display: flex; flex-direction: column; justify-content: center; }
-  .vh-hero-inner { position: relative; padding-top: 8rem; padding-bottom: 4rem; }
+  /* HERO — songbird and plum bleeds in from the right, printed on the paper */
+  .vh-hero { position: relative; min-height: 100svh; display: flex; flex-direction: column; justify-content: center; overflow: hidden; }
+  .vh-hero-art {
+    --pf-w: clamp(440px, 46vw, 700px);
+    --pf-right: -7vw;
+    --pf-y: 48%;
+    --pf-core: 28%;
+    --pf-fade: 73%;
+  }
+  .vh-hero-inner { position: relative; z-index: 1; padding-top: 8rem; padding-bottom: 4rem; }
   .vh-hero-head { font-size: clamp(3rem, 7vw, 6.4rem); color: var(--forest-900); max-width: 15ch; margin-top: 2.4rem; }
   .vh-hero-sub { font-family: var(--font-display); font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.5; color: #3a4a28; max-width: 44ch; margin-top: 2rem; }
   .vh-hero-actions { display: flex; gap: 1.6rem; flex-wrap: wrap; margin-top: 2.4rem; }
+  @media (max-width: 800px) {
+    .vh-hero-art {
+      --pf-w: clamp(330px, 96vw, 430px);
+      --pf-right: -16vw;
+      --pf-y: 72%;
+      --pf-opacity: 0.9;
+    }
+  }
 
   /* BANDS */
   .vh-band { position: relative; background: linear-gradient(155deg, var(--forest-900), var(--forest) 55%, var(--green-600)); overflow: hidden; }
@@ -169,8 +182,25 @@ import { brand, garden, ethos } from "../../data/verdant";
   .vh-quote-text { font-size: clamp(1.7rem, 3.6vw, 3rem); line-height: 1.22; color: var(--green); margin: 0 auto 1.6rem; }
   .vh-quote-by { justify-content: center; }
 
-  /* CTA BAND */
-  .vh-cta-band { text-align: center; }
+  /* CTA BAND — the moon print surfaces out of the forest via screen blend.
+     Band runs tall so the full moon can hang above the headline. */
+  [data-skin="verdant"] section.vh-cta-band { text-align: center; padding: clamp(160px, 28vh, 320px) 0; }
+  .vh-cta-moon {
+    z-index: 0;
+    --pf-blend: screen;
+    --pf-opacity: 0.8;
+    --pf-w: clamp(460px, 46vw, 680px);
+    --pf-right: 4vw;
+    --pf-y: 84%;
+    --pf-mask-x: 58%;
+    --pf-mask-y: 55%;
+    --pf-core: 34%;
+    --pf-fade: 80%;
+    --pf-filter: saturate(0.72) contrast(1.08);
+  }
   .vh-cta-inner { display: flex; flex-direction: column; align-items: center; gap: 2rem; position: relative; z-index: 1; }
   .vh-cta-title { font-size: clamp(2.4rem, 5.5vw, 4.4rem); color: var(--moon); }
+  @media (max-width: 800px) {
+    .vh-cta-moon { --pf-w: min(130vw, 520px); --pf-right: -12vw; --pf-y: 80%; --pf-opacity: 0.7; }
+  }
 </style>

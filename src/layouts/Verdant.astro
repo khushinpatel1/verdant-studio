@@ -94,7 +94,36 @@ const fonts = [
         els.forEach((el) => io!.observe(el));
       }
 
-      document.addEventListener("astro:page-load", () => { boot(); arm(); });
+      // print-field parallax — writes --vp (px) onto [data-v-parallax] fields.
+      // Pure scrollY math via untransformed wrappers, so iOS address-bar
+      // viewport shifts self-correct on the next scroll/resize tick.
+      let pEls: HTMLElement[] = [];
+      let pQueued = false;
+      function pUpdate() {
+        pQueued = false;
+        const vh = window.innerHeight;
+        for (const el of pEls) {
+          const r = el.getBoundingClientRect();
+          const mid = r.top + r.height / 2 - vh / 2;
+          const speed = parseFloat(el.dataset.vParallax || "0.1");
+          el.style.setProperty("--vp", (mid * speed).toFixed(1) + "px");
+        }
+      }
+      function pTick() {
+        if (!pEls.length || pQueued) return;
+        pQueued = true;
+        requestAnimationFrame(pUpdate);
+      }
+      function armParallax() {
+        pEls = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+          ? []
+          : Array.from(document.querySelectorAll<HTMLElement>("[data-v-parallax]"));
+        if (pEls.length) pUpdate();
+      }
+      window.addEventListener("scroll", pTick, { passive: true });
+      window.addEventListener("resize", pTick);
+
+      document.addEventListener("astro:page-load", () => { boot(); arm(); armParallax(); });
     </script>
   </body>
 </html>

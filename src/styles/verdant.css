@@ -277,3 +277,44 @@
 @media (prefers-reduced-motion: reduce) {
   [data-skin="verdant"] :is(.vh-band, .ve-band, .vg-band, .v-footer)::before { animation: none; }
 }
+
+/* ── Prints in the paper ──────────────────────────────────────────────────
+   The Koson prints are not framed objects hung beside the type — they are
+   printed INTO the page. `.v-print-field` is an absolutely-positioned bleed
+   layer inside a section: the img rides mix-blend-mode:multiply so its paper
+   ground dissolves into the site's cream, and a radial mask feathers every
+   edge to nothing. No borders, no shadows, no box.
+
+   Placement per instance via custom props on the field:
+     --pf-w        print width                       (default 46vw)
+     --pf-x / --pf-right   horizontal pin (negative = bleed off-screen)
+     --pf-y        vertical center of the print      (default 50%)
+     --pf-mask-x / --pf-mask-y   ellipse radii       (default 54% / 52%)
+     --pf-core     solid core of the mask            (default 36%)
+     --pf-fade     where the feather reaches zero    (default 74%)
+     --pf-blend / --pf-opacity / --pf-filter   grading
+   The layout's parallax driver writes --vp (px) onto fields carrying
+   [data-v-parallax]; reduced-motion leaves it at 0. */
+[data-skin="verdant"] .v-print-field {
+  position: absolute; inset: 0; z-index: 0;
+  pointer-events: none; overflow: hidden;
+}
+[data-skin="verdant"] .v-print-field img {
+  position: absolute;
+  top: var(--pf-y, 50%);
+  left: var(--pf-x, auto);
+  right: var(--pf-right, auto);
+  width: var(--pf-w, 46vw);
+  max-width: none;
+  transform: translate(var(--pf-tx, 0%), calc(-50% + var(--vp, 0px)));
+  mix-blend-mode: var(--pf-blend, multiply);
+  opacity: var(--pf-opacity, 1);
+  filter: var(--pf-filter, none);
+  -webkit-mask-image: radial-gradient(
+    ellipse var(--pf-mask-x, 54%) var(--pf-mask-y, 52%) at 50% 50%,
+    #000 var(--pf-core, 36%), transparent var(--pf-fade, 74%));
+  mask-image: radial-gradient(
+    ellipse var(--pf-mask-x, 54%) var(--pf-mask-y, 52%) at 50% 50%,
+    #000 var(--pf-core, 36%), transparent var(--pf-fade, 74%));
+  will-change: transform;
+}
