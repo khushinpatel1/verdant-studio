@@ -20,10 +20,14 @@ distinctive self-hosted type) **without touching any FERAL files**.
 - **Fonts, all self-hosted, zero Google-defaults** (`public/fonts/verdant/`):
   Instrument Serif (display), Young Serif (organic accent), Schibsted Grotesk
   (body), Fragment Mono (labels). Defined via `@font-face` in `src/styles/verdant.css`.
-- **Signature interaction** — `src/components/verdant/SandGarden.tsx`: a raked
-  *karesansui* canvas. Rake lines bow into concentric rings around fixed mossy
-  stones; the cursor drags a rake that carves a wake which slowly settles. Reads
-  CSS tokens, honours reduced-motion, degrades to nothing if 2D canvas is missing.
+- **Signature interaction** — `src/components/verdant/GrowingGarden.tsx` (the
+  only canvas hero, on `/verdant/garden`): a flow-field of stems that bloom
+  toward the pointer, with fireflies. Built on `useReactiveField`; reads CSS
+  tokens, honours reduced-motion, handles iOS address-bar viewport shifts.
+  (The 2026-06 art-led pass retired the other canvases — SandGarden, StudioInk,
+  BlueprintReveal, EthosWater, TeamFireflies, EmeraldNight; heroes are now
+  Ohara Koson woodblock prints + the studio painting suite, see
+  `docs/art-credits.md`.)
 - **Secondary technique** — `InkGrowth.tsx`: sumi-e vines that draw themselves on
   scroll (stroke-dashoffset tied to scroll progress).
 
@@ -32,7 +36,7 @@ distinctive self-hosted type) **without touching any FERAL files**.
   + `.v-*` utility grammar. Self-contained (defines `--maxw`/`--ease` too).
 - `src/layouts/Verdant.astro` — font preload, ClientRouter, persistent Cursor, Nav,
   Lenis re-boot + scroll-reveal observer re-armed on `astro:page-load`.
-- `src/components/verdant/` — `SandGarden`, `InkGrowth`, `Cursor` (ink brush),
+- `src/components/verdant/` — `GrowingGarden`, `InkGrowth`, `Cursor` (ink brush),
   `Nav`, `Footer` (holds the emerald easter-egg stone), `TextReveal` (line-mask,
   `%word%` → gold em), `Magnetic`, `useReveal`.
 - `src/data/verdant.ts` — one source of truth: `brand`, `nav`, `garden` (+ its

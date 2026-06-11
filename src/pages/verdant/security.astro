@@ -1,7 +1,6 @@
 ---
 import Verdant from "../../layouts/Verdant.astro";
 import TextReveal from "../../components/verdant/TextReveal";
-import EthosWater from "../../components/verdant/EthosWater";
 import Footer from "../../components/verdant/Footer";
 import { brand } from "../../data/verdant";
 
@@ -50,23 +49,28 @@ const headers = [
 ---
 
 <Verdant title="Security — Verdant" image="/og/og-ethos.jpg">
-  <!-- ── Still water — fixed lower layer (reused from Ethos) ── -->
-  <EthosWater client:load className="v-field-bg" />
-
   <!-- ── HERO ── -->
   <section class="vs-hero">
-    <div class="v-wrap">
-      <p class="v-label">How it's built.</p>
-      <TextReveal
-        client:load
-        as="h1"
-        className="v-display vs-hero-head"
-        lines={["Privacy you", "can %check%."]}
+    <div class="v-wrap v-hero-grid">
+      <div>
+        <p class="v-label">How it's built.</p>
+        <TextReveal
+          client:load
+          as="h1"
+          className="v-display vs-hero-head"
+          lines={["Privacy you", "can %check%."]}
+        />
+        <p class="vs-hero-sub v-display">
+          Claims are easy. This is the architecture underneath them — how Verdant
+          software is built so your data stays yours, and how you can tell.
+        </p>
+      </div>
+      <img
+        class="v-hero-print"
+        src="/verdant/art/koson-eagle-pine.jpg"
+        alt="Ohara Koson — Eagle on snowy pine, woodblock print"
+        fetchpriority="high"
       />
-      <p class="vs-hero-sub v-display">
-        Claims are easy. This is the architecture underneath them — how Verdant
-        software is built so your data stays yours, and how you can tell.
-      </p>
     </div>
   </section>
 

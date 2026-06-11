@@ -2,29 +2,33 @@
 import Verdant from "../../layouts/Verdant.astro";
 import TextReveal from "../../components/verdant/TextReveal";
 import InkGrowth from "../../components/verdant/InkGrowth";
-import EthosWater from "../../components/verdant/EthosWater";
 import Footer from "../../components/verdant/Footer";
 import { brand, ethos } from "../../data/verdant";
 ---
 
 <Verdant title="Ethos — Verdant" image="/og/og-ethos.jpg">
-  <!-- ── Still water — fixed lower layer ── -->
-  <EthosWater client:load className="v-field-bg" />
-
   <!-- ── HERO ── -->
   <section class="ve-hero">
-    <div class="v-wrap">
-      <p class="v-label">What holds.</p>
-      <TextReveal
-        client:load
-        as="h1"
-        className="v-display ve-hero-head"
-        lines={["A quiet kind", "of %conviction%."]}
+    <div class="v-wrap v-hero-grid">
+      <div>
+        <p class="v-label">What holds.</p>
+        <TextReveal
+          client:load
+          as="h1"
+          className="v-display ve-hero-head"
+          lines={["A quiet kind", "of %conviction%."]}
+        />
+        <p class="ve-hero-sub v-display">
+          Built as a refusal of the industry it came from — software that earns a
+          living without watching the person using it.
+        </p>
+      </div>
+      <img
+        class="v-hero-print"
+        src="/verdant/art/koson-dragonfly-lotus.jpg"
+        alt="Ohara Koson — Dragonfly and lotus, woodblock print"
+        fetchpriority="high"
       />
-      <p class="ve-hero-sub v-display">
-        Built as a refusal of the industry it came from — software that earns a
-        living without watching the person using it.
-      </p>
     </div>
   </section>
 

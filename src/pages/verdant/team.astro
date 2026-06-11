@@ -1,29 +1,33 @@
 ---
 import Verdant from "../../layouts/Verdant.astro";
 import TextReveal from "../../components/verdant/TextReveal";
-import TeamFireflies from "../../components/verdant/TeamFireflies";
 import Footer from "../../components/verdant/Footer";
 import { studio } from "../../data/verdant";
 ---
 
 <Verdant title="People — Verdant" image="/og/og-team.jpg">
-  <!-- ── Fireflies gathering — fixed lower layer ── -->
-  <TeamFireflies client:load className="v-field-bg" />
-
   <!-- ── HERO ── -->
   <section class="vt-hero">
-    <div class="v-wrap">
-      <p class="v-label">The gardeners</p>
-      <TextReveal
-        client:load
-        as="h1"
-        className="v-display vt-hero-head"
-        lines={["Small, on purpose.", "No %account managers%."]}
+    <div class="v-wrap v-hero-grid">
+      <div>
+        <p class="v-label">The gardeners</p>
+        <TextReveal
+          client:load
+          as="h1"
+          className="v-display vt-hero-head"
+          lines={["Small, on purpose.", "No %account managers%."]}
+        />
+        <p class="vt-hero-sub v-display">
+          Right now, one. No layer between you and the person doing the work — and
+          no invented roster pretending otherwise.
+        </p>
+      </div>
+      <img
+        class="v-hero-print v-hero-print--wide"
+        src="/verdant/art/team-flower.jpg"
+        alt="Moon camellia — studio painting"
+        fetchpriority="high"
       />
-      <p class="vt-hero-sub v-display">
-        Right now, one. No layer between you and the person doing the work — and
-        no invented roster pretending otherwise.
-      </p>
     </div>
   </section>
 

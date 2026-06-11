@@ -1,39 +1,37 @@
 ---
 import Verdant from "../../layouts/Verdant.astro";
-// StudioInk (living-ink hero) parked 2026-06-09 — kept for reuse in components/verdant/StudioInk.tsx
-import BlueprintReveal from "../../components/verdant/BlueprintReveal";
 import TextReveal from "../../components/verdant/TextReveal";
 import Footer from "../../components/verdant/Footer";
 import { brand, garden, team, ethos } from "../../data/verdant";
 ---
 
 <Verdant title="Verdant — software grown for people">
-  <!-- ── Watercolor → blueprint reveal — fixed lower layer, scroll blooms the wash ── -->
-  <BlueprintReveal client:load className="v-field-bg" />
-
-  <!-- ── HERO: the studio drawing things into being ── -->
+  <!-- ── HERO: type on paper, a Koson print hung beside it ── -->
   <section class="vh-hero">
-    <div class="vh-hero-scrim" aria-hidden></div>
-    <div class="v-wrap vh-hero-inner">
-      <p class="v-label">Verdant Studio — independent software</p>
-      <TextReveal
-        client:load
-        as="h1"
-        className="v-display vh-hero-head"
-        lines={["Software grown for", "%people%, not advertisers."]}
-      />
-      <p class="vh-hero-sub">
-        Quiet software — tools that do their work and get out of the way.
-        Nothing here watches you back.
-      </p>
-      <div class="vh-hero-actions">
-        <a href="#work" class="v-cta" data-cursor="Down">See the work</a>
-        <a href="/verdant/ethos" class="v-cta" data-cursor="Read">The ethos</a>
+    <div class="v-wrap vh-hero-inner v-hero-grid">
+      <div>
+        <p class="v-label">Verdant Studio — independent software</p>
+        <TextReveal
+          client:load
+          as="h1"
+          className="v-display vh-hero-head"
+          lines={["Software grown for", "%people%, not advertisers."]}
+        />
+        <p class="vh-hero-sub">
+          Quiet software — tools that do their work and get out of the way.
+          Nothing here watches you back.
+        </p>
+        <div class="vh-hero-actions">
+          <a href="#work" class="v-cta" data-cursor="Down">See the work</a>
+          <a href="/verdant/ethos" class="v-cta" data-cursor="Read">The ethos</a>
+        </div>
       </div>
-      <p class="vh-hero-note">
-        <strong>A studio, drawing.</strong>
-        Scroll — a watercolor wash blooms and reveals the blueprint of this very page.
-      </p>
+      <img
+        class="v-hero-print"
+        src="/verdant/art/koson-songbird-plum.jpg"
+        alt="Ohara Koson — Songbird and plum blossom, woodblock print"
+        fetchpriority="high"
+      />
     </div>
   </section>
 
@@ -138,17 +136,10 @@ import { brand, garden, team, ethos } from "../../data/verdant";
 <style is:global>
   /* HERO */
   .vh-hero { position: relative; min-height: 100svh; display: flex; flex-direction: column; justify-content: center; }
-  .vh-hero-scrim { position: absolute; inset: 0; z-index: 1; pointer-events: none;
-    background: radial-gradient(ellipse 70% 64% at 30% 44%, color-mix(in srgb, var(--cream) 86%, transparent), transparent 72%),
-                linear-gradient(180deg, color-mix(in srgb, var(--cream) 55%, transparent) 0%, transparent 40%, transparent 64%, color-mix(in srgb, var(--cream) 50%, transparent) 100%); }
-  .vh-hero-inner { position: relative; z-index: 2; padding-top: 8rem; padding-bottom: 4rem; }
-  .vh-hero-head { font-size: clamp(3rem, 8.5vw, 7.4rem); color: var(--forest-900); max-width: 15ch; margin-top: 2.4rem; }
+  .vh-hero-inner { position: relative; padding-top: 8rem; padding-bottom: 4rem; }
+  .vh-hero-head { font-size: clamp(3rem, 7vw, 6.4rem); color: var(--forest-900); max-width: 15ch; margin-top: 2.4rem; }
   .vh-hero-sub { font-family: var(--font-display); font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.5; color: #3a4a28; max-width: 44ch; margin-top: 2rem; }
   .vh-hero-actions { display: flex; gap: 1.6rem; flex-wrap: wrap; margin-top: 2.4rem; }
-  .vh-hero-note { position: absolute; right: clamp(20px,5vw,56px); bottom: 2.5rem; max-width: 26ch; text-align: right;
-    font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.08em; line-height: 1.8; color: var(--clay); }
-  .vh-hero-note strong { display: block; color: var(--green); font-weight: 400; }
-  @media (max-width: 720px) { .vh-hero-note { position: static; text-align: left; margin-top: 3rem; } }
 
   /* BANDS */
   .vh-band { position: relative; background: linear-gradient(155deg, var(--forest-900), var(--forest) 55%, var(--green-600)); overflow: hidden; }
