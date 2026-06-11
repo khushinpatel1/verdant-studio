@@ -1,6 +1,17 @@
 # 003 — Tranquil-state polish pass
 
-Status: PENDING
+Status: DONE
+
+## Execution notes (2026-06-11)
+- A, C, D: done as specified. `npm run build` clean (8 pages).
+- B: verified via Playwright against `dist/` (390×844 and 390×664, all 6
+  verdant routes + 404, `reducedMotion: 'reduce'` so scroll-reveal sections
+  render in fullPage capture). No horizontal overflow on any route. Garden's
+  `onViewportShift` re-seed confirmed: after a 664→844 resize, scrollHeight
+  matches a fresh 844 load exactly (7438px both). No dead gaps after the
+  gardeners-section removal. **Verified, no change needed** — added
+  `@playwright/test` as a devDependency for this and future dist-based checks.
+- E: left as noted (no action), per instructions.
 
 ## Context
 
