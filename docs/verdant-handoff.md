@@ -55,9 +55,10 @@ distinctive self-hosted type) **without touching any FERAL files**.
   restart the preview server if styles look wrong but the build is clean.
 
 ## Verified
-`npm run build` clean — 22 pages total (8 verdant). Live checks: sand-garden
-signature renders + rakes, all 4 typefaces load, all 5 Garden app screens load in
-frames, text roster + profiles render, all routes 200 in production.
+`npm run build` clean. Live checks: 4 Koson-print heroes (home, ethos, security,
+garden features) render, GrowingGarden canvas (garden only) and InkGrowth render,
+all 4 typefaces load, all 5 Garden app screens load in frames, all routes 200 in
+production. `team/[slug]` intentionally generates zero pages (`team` is `[]`).
 
 ## Live
 See `cloudflare-deploy.md` for all deploy links. Verdant's own link:
