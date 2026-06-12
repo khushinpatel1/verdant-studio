@@ -1,0 +1,17 @@
+{
+  "model": "haiku",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write|NotebookEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ~/.claude/hooks/model-tier-guard.sh",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
+}

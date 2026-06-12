@@ -81,7 +81,7 @@ export const garden = {
 export const emerald = {
   name: "Emerald",
   kind: "Unreleased — project two",
-  oneLine: "Something still growing in the dark.",
+  oneLine: "The next project — in progress.",
   cover: "/verdant/art/emerald-dusk.jpg",
   blurb:
     "Not ready. It ships when it's ready, not a day sooner. If you found this, you went looking — and that's exactly the kind of person it's being built for.",

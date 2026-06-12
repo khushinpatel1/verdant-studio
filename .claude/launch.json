@@ -2,10 +2,16 @@
   "version": "0.0.1",
   "configurations": [
     {
+      "name": "verdant-studio",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev"],
+      "port": 4321
+    },
+    {
       "name": "pastures",
       "runtimeExecutable": "sh",
       "runtimeArgs": ["-c", "cd /Users/khushinpatel/Dev/pastures && npm run dev"],
-      "port": 4321
+      "port": 4322
     },
     {
       "name": "emerald",
