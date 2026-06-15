@@ -6,11 +6,8 @@ import { brand, garden, ethos } from "../../data/verdant";
 ---
 
 <Verdant title="Verdant — software grown for people">
-  <!-- ── HERO: type on paper, Koson's songbird printed into it ── -->
+  <!-- ── HERO: type on paper. The page's one print lives at the closing CTA. ── -->
   <section class="vh-hero">
-    <div class="v-print-field vh-hero-art" data-v-parallax="0.08" aria-hidden="true">
-      <img src="/verdant/art/koson-songbird-plum.jpg" alt="" fetchpriority="high" />
-    </div>
     <div class="v-wrap vh-hero-inner">
       <p class="v-label">Verdant Studio — independent software</p>
       <TextReveal
@@ -30,10 +27,11 @@ import { brand, garden, ethos } from "../../data/verdant";
     </div>
   </section>
 
-  <!-- ── MANIFESTO ── -->
-  <section class="vh-band">
-    <div class="vh-band-edge" aria-hidden></div>
+  <!-- ── MANIFESTO — paper treatment (the dark band is reserved for the CTA) ── -->
+  <section class="vh-band v-band--paper">
     <div class="v-wrap vh-manifesto">
+      <div class="v-band-hr" aria-hidden></div>
+      <p class="v-label">The manifesto</p>
       <TextReveal
         client:visible
         as="h2"
@@ -110,55 +108,40 @@ import { brand, garden, ethos } from "../../data/verdant";
 </Verdant>
 
 <style is:global>
-  /* HERO — songbird and plum bleeds in from the right, printed on the paper */
+  /* HERO — type on paper, no print (the page's one print is at the CTA close) */
   .vh-hero { position: relative; min-height: 100svh; display: flex; flex-direction: column; justify-content: center; overflow: hidden; }
-  .vh-hero-art {
-    --pf-w: clamp(440px, 46vw, 700px);
-    --pf-right: -7vw;
-    --pf-y: 48%;
-    --pf-core: 28%;
-    --pf-fade: 73%;
-  }
   .vh-hero-inner { position: relative; z-index: 1; padding-top: 8rem; padding-bottom: 4rem; }
-  .vh-hero-head { font-size: clamp(3rem, 7vw, 6.4rem); color: var(--forest-900); max-width: 15ch; margin-top: 2.4rem; }
-  .vh-hero-sub { font-family: var(--font-display); font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.5; color: #3a4a28; max-width: 44ch; margin-top: 2rem; }
+  .vh-hero-head { font-size: var(--display-1); color: var(--forest-900); max-width: 15ch; margin-top: 2.4rem; }
+  .vh-hero-sub { font-family: var(--font-display); font-size: var(--text-xl); line-height: 1.5; color: #3a4a28; max-width: 44ch; margin-top: 2rem; }
   .vh-hero-actions { display: flex; gap: 1.6rem; flex-wrap: wrap; margin-top: 2.4rem; }
-  @media (max-width: 800px) {
-    .vh-hero-art {
-      --pf-w: clamp(330px, 96vw, 430px);
-      --pf-right: -16vw;
-      --pf-y: 72%;
-      --pf-opacity: 0.9;
-    }
-  }
 
   /* BANDS */
   .vh-band { position: relative; background: linear-gradient(155deg, var(--forest-900), var(--forest) 55%, var(--green-600)); overflow: hidden; }
   .vh-band-edge { position: absolute; top: -1px; left: 0; right: 0; height: 110px; background: var(--cream); clip-path: ellipse(62% 100% at 38% 0%); }
   .vh-manifesto { position: relative; z-index: 1; }
-  .vh-manifesto-head { font-size: clamp(2.6rem, 5vw, 4.6rem); color: var(--moon); max-width: 18ch; margin-bottom: 3.5rem; }
+  .vh-manifesto-head { font-size: var(--display-2); color: var(--ink); max-width: 18ch; margin-bottom: 3.5rem; }
   .vh-manifesto-body { max-width: 62ch; }
   .vh-creed { list-style: none; padding: 0; margin: 0; }
-  .vh-creed-item { font-family: var(--font-display); font-size: clamp(1.1rem, 1.7vw, 1.4rem); line-height: 1.45; color: rgba(220,230,207,0.78);
-    padding: 1.4rem 0; border-top: 1px solid rgba(200,213,185,0.16); transition: padding-left .35s var(--ease), color .35s; }
-  .vh-creed-item:hover { padding-left: 0.8rem; color: var(--moon); }
-  .vh-stats-link { display: inline-block; font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.08em; color: var(--moss-300);
+  .vh-creed-item { font-family: var(--font-display); font-size: var(--text-lg); line-height: 1.45; color: var(--muted);
+    padding: 1.4rem 0; border-top: 1px solid var(--line); transition: padding-left .35s var(--ease), color .35s; }
+  .vh-creed-item:hover { padding-left: 0.8rem; color: var(--ink); }
+  .vh-stats-link { display: inline-block; font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: 0.08em; color: var(--clay);
     padding-top: 1.4rem; margin-top: 0.2rem; transition: color .3s; }
   .vh-stats-link:hover { color: var(--gold); }
 
   /* WORK — the first project */
   .vh-work-head { margin-bottom: 4rem; }
-  .vh-work-intro { font-size: clamp(1.8rem, 3vw, 2.6rem); color: var(--green); margin-top: 1rem; }
+  .vh-work-intro { font-size: var(--display-2); color: var(--green); margin-top: 1rem; }
   .vh-garden { display: grid; grid-template-columns: auto 1fr; gap: clamp(2.5rem, 6vw, 6rem); align-items: center; color: inherit; }
   .vh-garden-media { position: relative; display: flex; justify-content: center; min-width: 0; }
   .vh-garden-text { max-width: 46ch; position: relative; z-index: 1; }
   .vh-product-meta { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 0.6rem 1rem; }
-  .vh-product-year { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.14em; color: var(--clay); }
-  .vh-garden-name { font-size: clamp(2.8rem, 6vw, 4.6rem); color: var(--green); margin: 0.5rem 0 0.8rem; transition: color .3s; }
+  .vh-product-year { font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: 0.14em; color: var(--clay); }
+  .vh-garden-name { font-size: var(--display-2); color: var(--green); margin: 0.5rem 0 0.8rem; transition: color .3s; }
   .vh-garden:hover .vh-garden-name { color: var(--gold); }
-  .vh-product-line { font-family: var(--font-display); font-size: clamp(1.2rem, 1.8vw, 1.5rem); color: var(--terra); margin-bottom: 1rem; }
+  .vh-product-line { font-family: var(--font-display); font-size: var(--text-xl); color: var(--terra); margin-bottom: 1rem; }
   .vh-product-blurb { color: var(--muted); line-height: 1.7; max-width: 46ch; margin-bottom: 1.4rem; }
-  .vh-more-note { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.06em; color: var(--clay);
+  .vh-more-note { font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: 0.06em; color: var(--clay);
     margin-top: clamp(3rem, 7vh, 5rem); padding-top: 1.6rem; border-top: 1px solid var(--line); max-width: 40ch; }
 
   /* phone frame (home) */
@@ -178,8 +161,8 @@ import { brand, garden, ethos } from "../../data/verdant";
   /* QUOTE */
   .vh-quote { text-align: center; }
   .vh-quote .v-wrap { max-width: 56rem; }
-  .vh-quote-mark { font-size: 3.5rem; line-height: 0.4; color: var(--sage); }
-  .vh-quote-text { font-size: clamp(1.7rem, 3.6vw, 3rem); line-height: 1.35; color: var(--green); margin: 0 auto 1.6rem; }
+  .vh-quote-mark { font-size: var(--text-4xl); line-height: 0.4; color: var(--sage); }
+  .vh-quote-text { font-size: var(--display-2); line-height: 1.35; color: var(--green); margin: 0 auto 1.6rem; }
   .vh-quote-by { justify-content: center; }
 
   /* CTA BAND — the moon print surfaces out of the forest via screen blend.
@@ -199,7 +182,7 @@ import { brand, garden, ethos } from "../../data/verdant";
     --pf-filter: saturate(0.72) contrast(1.08);
   }
   .vh-cta-inner { display: flex; flex-direction: column; align-items: center; gap: 2rem; position: relative; z-index: 1; }
-  .vh-cta-title { font-size: clamp(2.4rem, 5.5vw, 4.4rem); color: var(--moon); }
+  .vh-cta-title { font-size: var(--display-1); color: var(--moon); }
   @media (max-width: 800px) {
     .vh-cta-moon { --pf-w: min(130vw, 520px); --pf-right: -12vw; --pf-y: 80%; --pf-opacity: 0.7; }
   }

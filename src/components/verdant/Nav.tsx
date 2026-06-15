@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { brand, nav } from "../../data/verdant";
+import Logo from "./Logo";
 
 /**
  * VERDANT nav — fixed, quiet until you scroll. Mono links with a gold underline
@@ -31,7 +32,7 @@ export default function Nav({ path }: { path: string }) {
   return (
     <>
       <header ref={headerRef} className={`v-nav${scrolled ? " v-nav--scrolled" : ""}`}>
-        <a href="/verdant" className="v-nav-mark" data-cursor="Home">{brand.wordmark}</a>
+        <a href="/verdant" className="v-nav-mark" data-cursor="Home"><Logo size={20} /></a>
 
         <nav className="v-nav-links">
           {nav.links.map((l) => (
@@ -85,13 +86,13 @@ export default function Nav({ path }: { path: string }) {
           padding-top: 1rem; padding-bottom: 1rem;
         }
         .v-nav-mark {
-          font-family: var(--font-display); font-size: 1.45rem; color: var(--green);
-          letter-spacing: -0.01em; transition: transform .3s var(--ease), color .3s;
+          display: inline-flex; color: var(--green);
+          transition: transform .3s var(--ease), color .3s;
         }
         .v-nav-mark:hover { transform: rotate(-2deg); color: var(--gold); }
         .v-nav-links { display: flex; gap: 2.1rem; }
         .v-nav-link {
-          position: relative; font-family: var(--font-mono); font-size: 0.7rem;
+          position: relative; font-family: var(--font-mono); font-size: var(--text-2xs);
           letter-spacing: 0.16em; text-transform: uppercase; color: var(--green);
           padding-bottom: 4px; transition: color .25s;
         }
@@ -124,11 +125,11 @@ export default function Nav({ path }: { path: string }) {
           color: var(--moon); transition: padding-left .4s var(--ease), color .3s;
         }
         .v-nav-overlay-links a:hover { padding-left: 1rem; color: var(--gold); }
-        .v-nav-overlay-num { font-family: var(--font-mono); font-size: 0.72rem; color: var(--clay); transform: translateY(-0.4em); }
-        .v-nav-overlay-label { font-family: var(--font-display); font-size: clamp(2.4rem, 9vw, 4.4rem); line-height: 0.98; letter-spacing: -0.02em; }
+        .v-nav-overlay-num { font-family: var(--font-mono); font-size: var(--text-2xs); color: var(--clay); transform: translateY(-0.4em); }
+        .v-nav-overlay-label { font-family: var(--font-display); font-size: var(--display-2); line-height: 0.98; letter-spacing: -0.02em; }
         .v-nav-overlay-foot {
           display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; margin-top: clamp(1.8rem,4vw,3rem);
-          font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--sage);
+          font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: 0.12em; text-transform: uppercase; color: var(--sage);
         }
         .v-nav-overlay-foot a { color: var(--moon); border-bottom: 1px solid var(--gold); padding-bottom: 2px; }
         .v-nav-overlay-foot a:hover { color: var(--gold); }

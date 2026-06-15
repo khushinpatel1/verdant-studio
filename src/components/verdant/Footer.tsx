@@ -1,4 +1,5 @@
 import { brand, nav } from "../../data/verdant";
+import Logo from "./Logo";
 
 /**
  * VERDANT footer — a forest band that rises out of the cream page on a soft
@@ -12,7 +13,7 @@ export default function Footer({ tone = "forest" }: { tone?: "forest" | "cream" 
       <div className="v-wrap v-footer-inner">
         <div className="v-footer-brand">
           <span className="v-footer-mark">
-            {brand.wordmark}
+            <Logo size={26} />
             {/* the stray stone → /verdant/emerald */}
             <a href="/verdant/emerald" className="v-footer-egg" aria-label="·" data-cursor=" "><span /></a>
           </span>
@@ -49,17 +50,17 @@ export default function Footer({ tone = "forest" }: { tone?: "forest" | "cream" 
         .v-footer--cream .v-footer-edge { background: var(--cream); }
         .v-footer-inner { position: relative; z-index: 1; display: flex; flex-wrap: wrap;
           gap: 2.5rem 4rem; justify-content: space-between; align-items: flex-start; }
-        .v-footer-mark { position: relative; font-family: var(--font-display); font-size: 2rem; color: var(--moon); }
-        .v-footer-tag { font-family: var(--font-display); font-size: 1.05rem; color: var(--moss-300); margin-top: 0.4rem; }
+        .v-footer-mark { position: relative; display: inline-flex; align-items: center; font-size: var(--text-xl); color: var(--moon); }
+        .v-footer-tag { font-family: var(--font-display); font-size: var(--text-lg); color: var(--moss-300); margin-top: 0.4rem; }
         .v-footer-cols { display: flex; gap: clamp(2.5rem,6vw,5rem); }
         .v-footer-col { display: flex; flex-direction: column; gap: 0.7rem; }
         .v-footer-col .v-label { margin-bottom: 0.4rem; }
-        .v-footer-link { font-family: var(--font-body); font-size: 0.92rem; color: var(--sage); transition: color .25s; }
+        .v-footer-link { font-family: var(--font-body); font-size: var(--text-sm); color: var(--sage); transition: color .25s; }
         .v-footer-link:hover { color: var(--gold); }
-        .v-footer-meta { font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(200,213,185,0.55); }
+        .v-footer-meta { font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: 0.1em; text-transform: uppercase; color: rgba(200,213,185,0.55); }
         .v-footer-legal { position: relative; z-index: 1; display: flex; flex-wrap: wrap; gap: 0.6rem 2rem; justify-content: space-between;
           margin-top: clamp(3rem,7vh,5rem); padding-top: 1.6rem; border-top: 1px solid rgba(200,213,185,0.14);
-          font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(200,213,185,0.5); }
+          font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: 0.12em; text-transform: uppercase; color: rgba(200,213,185,0.5); }
 
         /* the stray stone */
         .v-footer-egg { display: inline-block; width: 11px; height: 11px; margin-left: 8px; vertical-align: 3px;

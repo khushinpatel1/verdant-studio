@@ -138,8 +138,8 @@ const headers = [
     /* warm the snowy greys toward the paper so the print sits IN the cream */
     --pf-filter: sepia(0.2) saturate(0.82) brightness(1.05);
   }
-  .vs-hero-head { font-size: clamp(3rem, 8vw, 7rem); color: var(--forest-900); }
-  .vs-hero-sub { font-size: clamp(1.3rem, 2vw, 1.7rem); color: var(--terra); max-width: 40ch; margin-top: 2rem; }
+  .vs-hero-head { font-size: var(--display-1); color: var(--forest-900); }
+  .vs-hero-sub { font-size: var(--display-2); color: var(--terra); max-width: 40ch; margin-top: 2rem; }
   @media (max-width: 800px) {
     .vs-hero-art { --pf-w: clamp(340px, 98vw, 430px); --pf-right: -22vw; --pf-y: 82%; --pf-opacity: 0.85; }
   }
@@ -147,21 +147,21 @@ const headers = [
   /* PRINCIPLES */
   .vs-row { display: grid; grid-template-columns: auto 1fr; gap: clamp(1.5rem, 4vw, 3.5rem); align-items: baseline;
     padding: clamp(2rem, 5vh, 3.2rem) 0; border-top: 1px solid var(--line); }
-  .vs-n { font-size: clamp(1.8rem, 3.4vw, 2.8rem); color: var(--moss); line-height: 1; }
-  .vs-row-head { font-size: clamp(1.4rem, 3vw, 2.4rem); line-height: 1.3; color: var(--green); max-width: 22ch; }
+  .vs-n { font-size: var(--display-2); color: var(--moss); line-height: 1; }
+  .vs-row-head { font-size: var(--display-2); line-height: 1.3; color: var(--green); max-width: 22ch; }
   .vs-row-body { color: var(--muted); line-height: 1.7; max-width: 56ch; margin-top: 0.9rem; }
 
   /* POSTURE */
   .vs-posture-head { margin-bottom: 2.5rem; }
-  .vs-posture-intro { font-size: clamp(1.7rem, 3vw, 2.6rem); color: var(--green); margin-top: 1rem; }
+  .vs-posture-intro { font-size: var(--display-2); color: var(--green); margin-top: 1rem; }
   .vs-posture-note { color: var(--muted); line-height: 1.7; max-width: 54ch; margin-top: 1rem; }
   .vs-headers { list-style: none; padding: 0; margin: 0; }
   .vs-header { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1.1fr) minmax(0,1.4fr); gap: 1rem 1.6rem; align-items: baseline;
     padding: 1.3rem 0; border-top: 1px solid var(--line); }
-  .vs-header-k { font-family: var(--font-mono); font-size: 0.82rem; color: var(--green); }
-  .vs-header-v { font-family: var(--font-mono); font-size: 0.78rem; color: var(--terra); word-break: break-word; }
-  .vs-header-note { font-family: var(--font-display); font-size: 1rem; color: #3a4a28; }
-  .vs-posture-foot { font-family: var(--font-display); font-size: clamp(1.1rem, 1.7vw, 1.4rem); line-height: 1.55; color: #3a4a28;
+  .vs-header-k { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--green); }
+  .vs-header-v { font-family: var(--font-mono); font-size: var(--text-2xs); color: var(--terra); word-break: break-word; }
+  .vs-header-note { font-family: var(--font-display); font-size: var(--text-base); color: #3a4a28; }
+  .vs-posture-foot { font-family: var(--font-display); font-size: var(--text-lg); line-height: 1.55; color: #3a4a28;
     max-width: 52ch; margin-top: 2.5rem; padding-top: 1.6rem; border-top: 1px solid var(--line); }
   @media (max-width: 700px) { .vs-header { grid-template-columns: 1fr; gap: 0.3rem; } }
 
@@ -169,8 +169,8 @@ const headers = [
   .vs-band { position: relative; background: linear-gradient(155deg, var(--forest-900), var(--forest) 55%, var(--green-600)); overflow: hidden; text-align: center; }
   .vs-band-edge { position: absolute; top: -1px; left: 0; right: 0; height: 110px; background: var(--cream); clip-path: ellipse(60% 100% at 42% 0%); }
   .vs-talk { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 1.6rem; }
-  .vs-talk-head { font-size: clamp(2.4rem, 5.5vw, 4.4rem); color: var(--moon); }
-  .vs-talk-mail { font-family: var(--font-display); font-size: clamp(1.6rem, 3.5vw, 2.8rem); color: var(--gold); border-bottom: 1px solid var(--gold); padding-bottom: 4px; transition: opacity .3s; }
+  .vs-talk-head { font-size: var(--display-1); color: var(--moon); }
+  .vs-talk-mail { font-family: var(--font-display); font-size: var(--display-2); color: var(--gold); border-bottom: 1px solid var(--gold); padding-bottom: 4px; transition: opacity .3s; }
   .vs-talk-mail:hover { opacity: 0.75; }
   .vs-talk-meta { justify-content: center; }
 </style>

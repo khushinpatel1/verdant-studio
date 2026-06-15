@@ -95,6 +95,15 @@
   --sh-md: 0 18px 50px -24px rgba(13, 31, 7, 0.4);
   --sh-lg: 0 36px 90px -36px rgba(13, 31, 7, 0.5);
 
+  /* ── Type scale — modular ramp (1.20 ratio, 1rem base) ──────────────────
+     At most ~3 sizes visible per viewport. Map: labels/mono → 2xs/xs;
+     body → base; sub-heads → lg/xl; section heads → 2xl/3xl/4xl;
+     page-hero heads → display-1; hero subs → display-2. */
+  --text-2xs: 0.694rem;  --text-xs: 0.833rem;  --text-sm: 0.926rem;
+  --text-base: 1rem;     --text-lg: 1.2rem;    --text-xl: 1.44rem;
+  --text-2xl: 1.728rem;  --text-3xl: 2.074rem; --text-4xl: 2.488rem;
+  --display-1: clamp(2.8rem, 6vw, 5.6rem);  --display-2: clamp(2rem, 4.5vw, 3.6rem);
+
   color-scheme: light;
 }
 
@@ -258,6 +267,28 @@
 
 @media (prefers-reduced-motion: reduce) {
   [data-skin="verdant"] :is(.vh-band, .ve-band, .vg-band, .v-footer)::before { animation: none; }
+}
+
+/* ── Paper band — the RESTRAINED secondary treatment ─────────────────────
+   For bands that aren't the page's one dark emotional anchor: drop the
+   forest wash entirely, sit on parchment, and mark the section with a thin
+   gold hairline + a v-label instead of a full slab. Keeps the rhythm of a
+   "band" (a paused, framed moment) without repeating the dark wash. */
+[data-skin="verdant"] :is(.vh-band, .ve-band, .vg-band).v-band--paper {
+  background: var(--parchment);
+  color: var(--ink);
+}
+[data-skin="verdant"] :is(.vh-band, .ve-band, .vg-band).v-band--paper::before,
+[data-skin="verdant"] :is(.vh-band, .ve-band, .vg-band).v-band--paper::after {
+  display: none;
+}
+[data-skin="verdant"] :is(.vh-band, .ve-band, .vg-band).v-band--paper :is(.vh-band-edge, .ve-band-edge, .vg-band-edge) {
+  display: none;
+}
+[data-skin="verdant"] .v-band--paper .v-band-hr {
+  width: 100%; height: 1px; margin-bottom: clamp(2.5rem, 6vh, 4rem);
+  background: linear-gradient(90deg, var(--gold), transparent 70%);
+  opacity: 0.5;
 }
 
 /* ── Prints in the paper ──────────────────────────────────────────────────
