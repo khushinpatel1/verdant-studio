@@ -278,6 +278,11 @@
   background: var(--parchment);
   color: var(--ink);
 }
+[data-skin="verdant"] :is(.vh-band, .ve-band, .vg-band).v-band--paper p {
+  font-size: var(--text-base);
+  line-height: 1.6;
+  color: var(--ink);
+}
 [data-skin="verdant"] :is(.vh-band, .ve-band, .vg-band).v-band--paper::before,
 [data-skin="verdant"] :is(.vh-band, .ve-band, .vg-band).v-band--paper::after {
   display: none;
