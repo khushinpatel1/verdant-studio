@@ -2,7 +2,7 @@ name: Deploy
 
 on:
   push:
-    branches: [main]
+    branches: [main, v1]
   workflow_dispatch:
 
 jobs:
@@ -34,4 +34,4 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy dist --project-name=verdant --branch=main
+          command: pages deploy dist --project-name=${{ github.ref == 'refs/heads/v1' && 'verdant' || 'verdant-studio-v2' }} --branch=${{ github.ref_name }}

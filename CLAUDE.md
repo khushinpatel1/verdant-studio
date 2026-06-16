@@ -17,13 +17,25 @@ Astro 5 + React 19 islands. `npm run dev` (port 4321) · `npm run build` ·
 `npm run check`. GSAP/ScrollTrigger + Lenis for scroll. Self-hosted fonts under
 `public/fonts/verdant/` — no Google Fonts.
 
-## Deploy
-`.github/workflows/deploy.yml` builds and deploys to the Cloudflare Pages project
-`verdant-studio` (renamed from `verdant` / https://verdant-1wg.pages.dev in the
-2026-06-09 studio reset — see `_archive/MANIFEST.md` in partnership for the CF
-rename status) on every push to `main`. Once the repo secrets
-(`CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID`) are set in GitHub,
-**`git push` to main is the deploy** — do not run `wrangler pages deploy` manually.
+## Deploy — two live versions, two branches
+
+**v1 (dark / koson, frozen on 2026-06-15):** Lives at https://verdant-1wg.pages.dev/.
+Deploys from the `v1` branch → Cloudflare Pages project `verdant`. Read-only by default,
+but can be edited deliberately (see "Working style" below).
+
+**v2 (luminous botanical-minimal, in progress):** Will deploy from `main` branch →
+Cloudflare Pages project `verdant-studio-v2` (you must create this in your Cloudflare
+dashboard — it will auto-watch the `main` branch once set up). Lives at `verdant-studio-v2.pages.dev`.
+
+**Workflow:** `.github/workflows/deploy.yml` conditionally deploys based on branch.
+When you push:
+- `git push origin main` → builds, deploys v2 to verdant-studio-v2
+- `git push origin v1` → builds, deploys v1 to verdant
+
+**Session declaration:** Each session explicitly targets one branch. Commit messages
+tag the version: `feat: 006-v2 — ...` or `fix: 007-v1 — ...`. Session name in title
+shows the version: "verdant-studio · feat · hero-v2" or "verdant-studio · fix · nav-v1".
+Git log answers "what went where": `git log --oneline | grep v1` vs `git log --oneline | grep v2`.
 
 ## Screenshots / visual checks in this sandbox
 Headless Chromium here is network-blocked — **do not start a dev server**. Instead:
