@@ -18,9 +18,10 @@
     "react-dom": "^19.1.0"
   },
   "devDependencies": {
+    "@astrojs/check": "^0.9.9",
     "@playwright/test": "^1.60.0",
     "@types/react": "^19.1.0",
     "@types/react-dom": "^19.1.0",
-    "typescript": "^5.8.0"
+    "typescript": "^5.9.3"
   }
 }

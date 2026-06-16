@@ -52,36 +52,31 @@
 
 /* ── The skin: a flat var map. Components reference --vars, never raw hex. ── */
 [data-skin="verdant"] {
-  /* greens — moss to deep forest, for layered depth */
-  --forest-900: #0d1f07;
-  --forest:     #15300a;
-  --green:      #2d5016;
-  --green-600:  #3c6b1e;
-  --moss:       #7a9e7e;
-  --moss-300:   #9dbfa0;
-  --sage:       #c8d5b9;
-  --sage-soft:  #dce6cf;
+  /* luminous paper base — warm near-white, lots of it */
+  --paper:      #fcfdf9;   /* page bg, the dominant surface */
+  --paper-soft: #f4f6ec;   /* alternating section wash */
+  --mist:       #e9f0e2;   /* soft sage light field */
+  --dawn:       #f6f1e2;   /* warm light field */
 
-  /* paper + moonlight */
-  --parchment:  #f1ead9;
-  --cream:      #faf6ec;
-  --moon:       #f6f2e6;
+  /* living greens — brighter, alive (not the old deep-forest mass) */
+  --leaf:       #2f7d4f;   /* primary living-green accent */
+  --leaf-deep:  #1f5a39;   /* hover / emphasis */
+  --moss:       #6f9a78;   /* secondary, muted */
+  --sage:       #b9cfa9;   /* tint / borders */
 
-  /* earth + the single gold "delicate hand" accent (used like calligraphy) */
-  --amber:      #8b6914;
-  --gold:       #c2913c;
-  --terra:      #6b3f2a;
-  --clay:       #a6694a;
+  /* ink + single calligraphic gold */
+  --ink:        #16241b;   /* body text — deep green-black, not pure black */
+  --ink-soft:   #45584a;   /* secondary text */
+  --gold:       #b88a2e;   /* the one delicate-hand accent */
 
-  /* generic contract used by global.css + components */
-  --bg:      var(--cream);
-  --fg:      var(--green);
-  --ink:     #10180c;
-  --muted:   #5d6f4c;
-  --line:    rgba(45, 80, 22, 0.16);
-  --card:    var(--moon);
-  --accent:  var(--gold);
-  --radius:  3px;            /* near-square; the organic comes from layout, not fat radii */
+  /* contract used by global.css + components */
+  --bg:     var(--paper);
+  --fg:     var(--ink);
+  --muted:  var(--ink-soft);
+  --line:   rgba(22, 36, 27, 0.12);
+  --card:   #ffffff;
+  --accent: var(--leaf);
+  --radius: 4px;           /* organic comes from layout asymmetry, not fat radii */
 
   --font-display: "Instrument Serif", Georgia, serif;
   --font-organic: "Young Serif", Georgia, serif;

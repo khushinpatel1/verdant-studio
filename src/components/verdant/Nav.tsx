@@ -32,17 +32,17 @@ export default function Nav({ path }: { path: string }) {
   return (
     <>
       <header ref={headerRef} className={`v-nav${scrolled ? " v-nav--scrolled" : ""}`}>
-        <a href="/verdant" className="v-nav-mark" data-cursor="Home"><Logo size={20} /></a>
+        <a href="/verdant" className="v-nav-mark"><Logo size={20} /></a>
 
         <nav className="v-nav-links">
           {nav.links.map((l) => (
-            <a key={l.href} href={l.href} data-cursor="Go"
+            <a key={l.href} href={l.href}
                className={`v-nav-link${isActive(l.href) ? " is-active" : ""}`}>{l.label}</a>
           ))}
         </nav>
 
         <div className="v-nav-end">
-          <a href={nav.cta.href} className="v-cta v-nav-cta" data-cursor="Let's talk">{nav.cta.label}</a>
+          <a href={nav.cta.href} className="v-cta v-nav-cta">{nav.cta.label}</a>
           <button className="v-nav-burger" aria-label="Menu" onClick={() => setOpen(true)}>
             <span /><span />
           </button>
@@ -79,67 +79,67 @@ export default function Nav({ path }: { path: string }) {
                       box-shadow .4s var(--ease), padding .4s var(--ease);
         }
         .v-nav--scrolled {
-          background: color-mix(in srgb, var(--cream) 78%, transparent);
+          background: color-mix(in srgb, var(--paper) 78%, transparent);
           backdrop-filter: blur(14px) saturate(1.3);
           -webkit-backdrop-filter: blur(14px) saturate(1.3);
           box-shadow: 0 1px 0 var(--line);
           padding-top: 1rem; padding-bottom: 1rem;
         }
         .v-nav-mark {
-          display: inline-flex; color: var(--green);
+          display: inline-flex; color: var(--leaf);
           transition: transform .3s var(--ease), color .3s;
         }
-        .v-nav-mark:hover { transform: rotate(-2deg); color: var(--gold); }
+        .v-nav-mark:hover { transform: rotate(-2deg); color: var(--leaf-deep); }
         .v-nav-links { display: flex; gap: 2.1rem; }
         .v-nav-link {
           position: relative; font-family: var(--font-mono); font-size: var(--text-2xs);
-          letter-spacing: 0.16em; text-transform: uppercase; color: var(--green);
+          letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink);
           padding-bottom: 4px; transition: color .25s;
         }
         .v-nav-link::after {
           content: ""; position: absolute; left: 0; bottom: 0; height: 1.5px; width: 0;
-          background: var(--gold); transition: width .3s var(--ease);
+          background: var(--leaf); transition: width .3s var(--ease);
         }
-        .v-nav-link:hover { color: var(--gold); }
+        .v-nav-link:hover { color: var(--leaf); }
         .v-nav-link:hover::after, .v-nav-link.is-active::after { width: 100%; }
         .v-nav-end { display: flex; align-items: center; gap: 1.4rem; }
         .v-nav-cta { padding-top: 0; padding-bottom: 0; }
         .v-nav-burger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 6px; }
-        .v-nav-burger span { display: block; width: 24px; height: 1.5px; background: var(--green); }
+        .v-nav-burger span { display: block; width: 24px; height: 1.5px; background: var(--leaf); }
 
         .v-nav-overlay {
           position: fixed; inset: 0; z-index: 300; display: none;
           flex-direction: column; justify-content: center;
           padding: clamp(2rem, 7vw, 6rem);
-          background: linear-gradient(155deg, var(--forest-900), var(--green) 90%);
+          background: linear-gradient(135deg, var(--mist), var(--dawn));
         }
         .v-nav-overlay.open { display: flex; }
         .v-nav-overlay-inner { width: 100%; max-width: 60rem; margin: 0 auto; }
         .v-nav-overlay-links { list-style: none; padding: 0; margin: 0; }
-        .v-nav-overlay-links li { border-top: 1px solid rgba(200,213,185,0.18); }
-        .v-nav-overlay-links li:last-child { border-bottom: 1px solid rgba(200,213,185,0.18); }
+        .v-nav-overlay-links li { border-top: 1px solid rgba(22, 36, 27, 0.08); }
+        .v-nav-overlay-links li:last-child { border-bottom: 1px solid rgba(22, 36, 27, 0.08); }
         .open .v-nav-overlay-links li { animation: v-row-in .55s var(--ease) both; animation-delay: calc(0.08s + var(--i) * 0.07s); }
         @keyframes v-row-in { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
         .v-nav-overlay-links a {
           display: flex; align-items: baseline; gap: 1.4rem; padding: clamp(0.9rem,2.4vw,1.6rem) 0.3rem;
-          color: var(--moon); transition: padding-left .4s var(--ease), color .3s;
+          color: var(--ink); transition: padding-left .4s var(--ease), color .3s;
         }
-        .v-nav-overlay-links a:hover { padding-left: 1rem; color: var(--gold); }
-        .v-nav-overlay-num { font-family: var(--font-mono); font-size: var(--text-2xs); color: var(--clay); transform: translateY(-0.4em); }
+        .v-nav-overlay-links a:hover { padding-left: 1rem; color: var(--leaf); }
+        .v-nav-overlay-num { font-family: var(--font-mono); font-size: var(--text-2xs); color: var(--ink-soft); transform: translateY(-0.4em); }
         .v-nav-overlay-label { font-family: var(--font-display); font-size: var(--display-2); line-height: 0.98; letter-spacing: -0.02em; }
         .v-nav-overlay-foot {
           display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; margin-top: clamp(1.8rem,4vw,3rem);
-          font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: 0.12em; text-transform: uppercase; color: var(--sage);
+          font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft);
         }
-        .v-nav-overlay-foot a { color: var(--moon); border-bottom: 1px solid var(--gold); padding-bottom: 2px; }
-        .v-nav-overlay-foot a:hover { color: var(--gold); }
+        .v-nav-overlay-foot a { color: var(--ink); border-bottom: 1px solid var(--leaf); padding-bottom: 2px; }
+        .v-nav-overlay-foot a:hover { color: var(--leaf); }
         .v-nav-overlay-close {
           position: absolute; top: 1.6rem; right: clamp(1.6rem,5vw,3rem);
-          width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(200,213,185,0.3);
-          background: none; color: var(--moon); cursor: pointer; font-size: 1.1rem;
+          width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(22, 36, 27, 0.1);
+          background: none; color: var(--ink); cursor: pointer; font-size: 1.1rem;
           display: grid; place-items: center; transition: transform .3s var(--ease), border-color .3s, color .3s;
         }
-        .v-nav-overlay-close:hover { transform: rotate(90deg); color: var(--gold); border-color: var(--gold); }
+        .v-nav-overlay-close:hover { transform: rotate(90deg); color: var(--leaf); border-color: var(--leaf); }
 
         @media (max-width: 820px) {
           .v-nav-links, .v-nav-cta { display: none; }

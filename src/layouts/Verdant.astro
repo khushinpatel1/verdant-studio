@@ -2,7 +2,6 @@
 import "../styles/global.css";
 import "../styles/verdant.css";
 import { ClientRouter } from "astro:transitions";
-import Cursor from "../components/verdant/Cursor";
 import Nav from "../components/verdant/Nav";
 
 interface Props { title: string; description?: string; image?: string }
@@ -56,7 +55,6 @@ const fonts = [
     <ClientRouter />
   </head>
   <body>
-    <Cursor client:load transition:persist transition:persist-props />
     <Nav client:load path={path} />
     <main>
       <slot />

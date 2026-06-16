@@ -2,34 +2,32 @@ import { brand, nav } from "../../data/verdant";
 import Logo from "./Logo";
 
 /**
- * VERDANT footer — a forest band that rises out of the cream page on a soft
- * inverted-ellipse edge. Hidden in it: one stray jade stone (the only path to
- * /verdant/emerald), never labelled.
+ * VERDANT footer — a light band on luminous gradient. Hidden in it: one stray
+ * jade stone (the only path to /verdant/emerald), never labelled.
  */
-export default function Footer({ tone = "forest" }: { tone?: "forest" | "cream" }) {
+export default function Footer({ tone = "light" }: { tone?: "light" | "cream" }) {
   return (
     <footer className={`v-footer v-footer--${tone}`} data-v-reveal>
-      <div className="v-footer-edge" aria-hidden />
       <div className="v-wrap v-footer-inner">
         <div className="v-footer-brand">
           <span className="v-footer-mark">
             <Logo size={26} />
             {/* the stray stone → /verdant/emerald */}
-            <a href="/verdant/emerald" className="v-footer-egg" aria-label="·" data-cursor=" "><span /></a>
+            <a href="/verdant/emerald" className="v-footer-egg" aria-label="·"><span /></a>
           </span>
           <p className="v-footer-tag">{brand.tagline}</p>
         </div>
 
         <nav className="v-footer-cols">
           <div className="v-footer-col">
-            <p className="v-label v-label--light v-label--bare">Pages</p>
+            <p className="v-label v-label--bare">Pages</p>
             {nav.links.map((l) => (
-              <a key={l.href} href={l.href} className="v-footer-link" data-cursor="Go">{l.label}</a>
+              <a key={l.href} href={l.href} className="v-footer-link">{l.label}</a>
             ))}
           </div>
           <div className="v-footer-col">
-            <p className="v-label v-label--light v-label--bare">Studio</p>
-            <a href={`mailto:${brand.email}`} className="v-footer-link" data-cursor="Write">{brand.email}</a>
+            <p className="v-label v-label--bare">Studio</p>
+            <a href={`mailto:${brand.email}`} className="v-footer-link">{brand.email}</a>
             <span className="v-footer-meta">Independent</span>
             <span className="v-footer-meta">Privacy-first by design</span>
           </div>
@@ -44,23 +42,20 @@ export default function Footer({ tone = "forest" }: { tone?: "forest" | "cream" 
       <style>{`
         .v-footer { position: relative; margin-top: clamp(4rem,10vh,9rem);
           padding: clamp(6rem,12vh,9rem) 0 3rem; overflow: hidden;
-          background: linear-gradient(155deg, var(--forest-900) 0%, var(--forest) 48%, var(--green-600) 100%); }
-        .v-footer-edge { position: absolute; top: -1px; left: 0; right: 0; height: 110px;
-          background: var(--cream); clip-path: ellipse(72% 100% at 30% 0%); }
-        .v-footer--cream .v-footer-edge { background: var(--cream); }
+          background: linear-gradient(135deg, var(--mist), var(--dawn)); }
         .v-footer-inner { position: relative; z-index: 1; display: flex; flex-wrap: wrap;
           gap: 2.5rem 4rem; justify-content: space-between; align-items: flex-start; }
-        .v-footer-mark { position: relative; display: inline-flex; align-items: center; font-size: var(--text-xl); color: var(--moon); }
-        .v-footer-tag { font-family: var(--font-display); font-size: var(--text-lg); color: var(--moss-300); margin-top: 0.4rem; }
+        .v-footer-mark { position: relative; display: inline-flex; align-items: center; font-size: var(--text-xl); color: var(--leaf); }
+        .v-footer-tag { font-family: var(--font-display); font-size: var(--text-lg); color: var(--ink-soft); margin-top: 0.4rem; }
         .v-footer-cols { display: flex; gap: clamp(2.5rem,6vw,5rem); }
         .v-footer-col { display: flex; flex-direction: column; gap: 0.7rem; }
-        .v-footer-col .v-label { margin-bottom: 0.4rem; }
-        .v-footer-link { font-family: var(--font-body); font-size: var(--text-sm); color: var(--sage); transition: color .25s; }
-        .v-footer-link:hover { color: var(--gold); }
-        .v-footer-meta { font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: 0.1em; text-transform: uppercase; color: rgba(200,213,185,0.55); }
+        .v-footer-col .v-label { margin-bottom: 0.4rem; color: var(--ink); }
+        .v-footer-link { font-family: var(--font-body); font-size: var(--text-sm); color: var(--ink); transition: color .25s; }
+        .v-footer-link:hover { color: var(--leaf); }
+        .v-footer-meta { font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-soft); }
         .v-footer-legal { position: relative; z-index: 1; display: flex; flex-wrap: wrap; gap: 0.6rem 2rem; justify-content: space-between;
-          margin-top: clamp(3rem,7vh,5rem); padding-top: 1.6rem; border-top: 1px solid rgba(200,213,185,0.14);
-          font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: 0.12em; text-transform: uppercase; color: rgba(200,213,185,0.5); }
+          margin-top: clamp(3rem,7vh,5rem); padding-top: 1.6rem; border-top: 1px solid rgba(22, 36, 27, 0.1);
+          font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); }
 
         /* the stray stone */
         .v-footer-egg { display: inline-block; width: 11px; height: 11px; margin-left: 8px; vertical-align: 3px;
