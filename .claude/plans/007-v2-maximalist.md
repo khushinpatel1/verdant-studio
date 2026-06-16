@@ -1,6 +1,6 @@
 # 007 — v2 maximalist: the studio storefront
 
-**Status: PENDING**
+**Status: IN PROGRESS (Phase 1 done)**
 **Tier: Haiku-executable.** Plan by Opus (006-line). If a step fails twice or the repo
 diverges from this plan, STOP and report — KP escalates that step to Sonnet. Do not improvise.
 
