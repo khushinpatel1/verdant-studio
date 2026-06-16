@@ -62,6 +62,7 @@ const fonts = [
 
     <script>
       import Lenis from "lenis";
+      import { armChoreography } from "../utils/choreographedReveal";
       let lenis: any;
       function boot() {
         lenis?.destroy?.();
@@ -121,7 +122,7 @@ const fonts = [
       window.addEventListener("scroll", pTick, { passive: true });
       window.addEventListener("resize", pTick);
 
-      document.addEventListener("astro:page-load", () => { boot(); arm(); armParallax(); });
+      document.addEventListener("astro:page-load", () => { boot(); arm(); armParallax(); armChoreography(); });
     </script>
   </body>
 </html>

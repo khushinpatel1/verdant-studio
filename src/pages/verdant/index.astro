@@ -28,18 +28,18 @@ import { garden, ethos } from "../../data/verdant";
   </section>
 
   <!-- MANIFESTO: axis flips right. Tight, dense, on mist wash. -->
-  <section class="vh-manifesto vh-sec">
+  <section class="vh-manifesto vh-sec" data-v-choreograph>
     <VineBorder position="top" />
     <span class="vh-num" aria-hidden="true">01</span>
-    <div class="vh-manifesto-lede">
+    <div class="vh-manifesto-lede" data-v-choreo-scale>
       <p class="v-label">The manifesto</p>
-      <h2 class="v-display vh-manifesto-head" data-v-reveal>
+      <h2 class="v-display vh-manifesto-head">
         Care spent on what <span style="color: var(--leaf);">stays quiet</span>.
       </h2>
     </div>
     <ul class="vh-creed">
       {ethos.creed.map((line, i) => (
-        <li class="vh-creed-item" data-v-reveal style={`--d:${i * 0.04}s`}>{line}</li>
+        <li class="vh-creed-item" data-v-choreo-slide style={`--d:${i * 0.04}s`}>{line}</li>
       ))}
     </ul>
   </section>
@@ -80,12 +80,12 @@ import { garden, ethos } from "../../data/verdant";
   </section>
 
   <!-- CTA: left-pinned, on a soft dawn wash. Not a centered stack. -->
-  <section class="vh-cta-band vh-sec">
+  <section class="vh-cta-band vh-sec" data-v-choreograph>
     <span class="vh-num" aria-hidden="true">04</span>
-    <h2 class="v-display vh-cta-title" data-v-reveal>
+    <h2 class="v-display vh-cta-title" data-v-choreo-slide>
       Grow something <span style="color: var(--leaf);">quiet</span>.
     </h2>
-    <a href="/verdant/ethos#talk" class="v-cta vh-cta-link">Start a conversation</a>
+    <a href="/verdant/ethos#talk" class="v-cta vh-cta-link" data-v-choreo-slide data-v-choreodelay="0.16">Start a conversation</a>
   </section>
 
   <Footer client:visible />
