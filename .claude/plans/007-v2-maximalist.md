@@ -67,7 +67,28 @@ Pull all copy from `verdant.ts`. Each section must pass the skill review test.
 4. Push `main`; confirm the v2 deploy workflow goes green. Tell KP the SHA + that v2 is live. Stop.
 
 ## Inventory
-_(Step 0 fills this in.)_
+**Components under `src/components/verdant/`:**
+- Cursor.tsx — pointer trail/effect
+- Footer.tsx — footer layout
+- GardenLive.astro — garden showcase template
+- GrowingGarden.tsx — hero field background (noise/particle field)
+- InkGrowth.tsx — ink/pigment growth animation
+- Logo.tsx — logo mark
+- Nav.tsx — navigation bar
+- TextReveal.tsx — text reveal animation
+- useReactiveField.ts — reactive pointer field hook
+- useReveal.ts — scroll reveal hook
+- noise.ts — Perlin noise utility
+
+**Current homepage uses:** GrowingGarden (hero bg) · [data-v-reveal] fade on sections · Footer
 
 ## Var fixes
-_(Step 0 fills this in — KP confirms mappings before applying.)_
+**Undefined variables in `src/styles/verdant.css` (require mapping):**
+- `--cream` (used in 1 place) → `--paper` (luminous near-white)
+- `--clay` (used in 1 place) → `--ink-soft` or `--moss` (context-dependent)
+- `--forest` (used in 3+ places) → `--leaf-deep` or `--ink` (context-dependent)
+- `--moon` (used in 2 places) → `--sage` (light tint) or `--paper` (context-dependent)
+- `--green-600` (used in 1 place) → `--moss` or `--leaf` (context-dependent)
+- `--forest-900` (used in 1 place) → `--ink` (deep green-black)
+
+**Status:** Not mapped. KP to confirm before mass-edit.

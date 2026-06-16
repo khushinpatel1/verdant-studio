@@ -331,3 +331,21 @@
     #000 var(--pf-core, 36%), transparent var(--pf-fade, 74%)));
   will-change: transform;
 }
+
+/* ── Vine-border motif: asymmetric growing border for sections ──────────────
+   Drawn SVG applied to section edges. Animates on scroll-reveal via the
+   existing observer. Reusable across pages (sections, Garden charts, etc). */
+.v-vine-border {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+}
+.v-vine-border svg {
+  width: 100%;
+  height: 100%;
+}

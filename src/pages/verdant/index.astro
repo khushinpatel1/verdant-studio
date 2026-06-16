@@ -1,14 +1,15 @@
 ---
 import Verdant from "../../layouts/Verdant.astro";
-import GrowingGarden from "../../components/verdant/GrowingGarden";
+import HeroGarden from "../../components/verdant/HeroGarden";
+import VineBorder from "../../components/verdant/VineBorder";
 import Footer from "../../components/verdant/Footer";
 import { garden, ethos } from "../../data/verdant";
 ---
 
 <Verdant title="Verdant - software grown for people">
-  <!-- HERO: luminous, type-on-light. Headline is REAL HTML (robustness fix). -->
+  <!-- HERO: luminous, type-on-light. Botanical garden field as signature moment. -->
   <section class="vh-hero">
-    <GrowingGarden client:visible className="vh-hero-garden" style={{ opacity: 0.08 }} />
+    <HeroGarden client:load className="vh-hero-garden" style={{ opacity: 0.12 }} />
     <div class="v-wrap vh-hero-inner">
       <p class="v-label">Verdant Studio - independent software</p>
       <h1 class="v-display vh-hero-head" data-v-reveal>
@@ -25,31 +26,31 @@ import { garden, ethos } from "../../data/verdant";
     </div>
   </section>
 
-  <!-- MANIFESTO: on paper-soft wash (light, not a dark band) -->
+  <!-- MANIFESTO: tight, dense, on mist wash — asymmetric column -->
   <section class="vh-manifesto-section">
+    <VineBorder position="top" />
     <div class="v-wrap vh-manifesto">
-      <div class="vh-manifesto-label-block">
+      <div style="max-width: 32ch;">
         <p class="v-label">The manifesto</p>
+        <h2 class="v-display vh-manifesto-head" data-v-reveal>
+          Care spent on what <span style="color: var(--leaf);">stays quiet</span>.
+        </h2>
       </div>
-      <h2 class="v-display vh-manifesto-head" data-v-reveal>
-        Care spent on what <span style="color: var(--leaf);">stays quiet</span>.
-      </h2>
       <div class="vh-manifesto-body">
         <ul class="vh-creed">
           {ethos.creed.map((line, i) => (
-            <li class="vh-creed-item" data-v-reveal style={`--d:${i * 0.06}s`}>{line}</li>
+            <li class="vh-creed-item" data-v-reveal style={`--d:${i * 0.04}s`}>{line}</li>
           ))}
         </ul>
       </div>
     </div>
   </section>
 
-  <!-- WORK / THE FIRST PROJECT: on light -->
+  <!-- WORK / THE FIRST PROJECT: asymmetric, visual weight on Garden -->
   <section id="work" class="vh-work">
-    <div class="v-wrap">
+    <div class="v-wrap vh-work-wrapper">
       <div class="vh-work-head" data-v-reveal>
         <p class="v-label">The first project</p>
-        <p class="vh-work-intro v-display">One thing, finished - then the next.</p>
       </div>
 
       <a href="/verdant/garden" class="vh-garden" data-v-reveal>
@@ -62,13 +63,15 @@ import { garden, ethos } from "../../data/verdant";
             <span class="v-label v-label--bare">{garden.idx} - {garden.kind}</span>
             <span class="vh-product-year">{garden.year} - {garden.status}</span>
           </div>
-          <h3 class="v-display vh-garden-name">Garden</h3>
+          <h2 class="v-display vh-garden-name" style="font-size: var(--display-1);">Garden</h2>
           <p class="vh-product-line">{garden.oneLine}</p>
           <p class="vh-product-blurb">{garden.blurb}</p>
           <span class="v-cta">Walk through Garden</span>
         </div>
       </a>
+    </div>
 
+    <div class="v-wrap vh-work-note">
       <p class="vh-more-note" data-v-reveal>
         A second project is in the soil - it ships when it's ready, not before.
       </p>
@@ -120,21 +123,22 @@ import { garden, ethos } from "../../data/verdant";
     padding: 1.4rem 0; border-top: 1px solid var(--line); transition: padding-left .35s var(--ease), color .35s; }
   .vh-creed-item:hover { padding-left: 0.8rem; color: var(--ink); }
 
-  /* WORK - the first project on light */
-  .vh-work { background: var(--paper); padding: clamp(80px, 14vh, 200px) 0; }
-  .vh-work-head { margin-bottom: 4rem; }
-  .vh-work-intro { font-size: var(--display-2); color: var(--leaf); margin-top: 1rem; }
-  .vh-garden { display: grid; grid-template-columns: auto 1fr; gap: clamp(2.5rem, 6vw, 6rem); align-items: center; color: inherit; text-decoration: none; }
-  .vh-garden-media { position: relative; display: flex; justify-content: center; min-width: 0; }
-  .vh-garden-text { max-width: 46ch; position: relative; z-index: 1; }
+  /* WORK - the first project on light, asymmetric layout */
+  .vh-work { background: var(--paper); padding: clamp(100px, 16vh, 240px) 0; }
+  .vh-work-head { margin-bottom: 3rem; }
+  .vh-work-wrapper { position: relative; }
+  .vh-garden { display: grid; grid-template-columns: 1fr auto; gap: clamp(3rem, 8vw, 8rem); align-items: center; color: inherit; text-decoration: none; }
+  .vh-garden-media { position: relative; display: flex; justify-content: center; min-width: 0; order: 2; }
+  .vh-garden-text { max-width: 48ch; position: relative; z-index: 1; order: 1; }
   .vh-product-meta { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 0.6rem 1rem; }
   .vh-product-year { font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: 0.14em; color: var(--ink-soft); }
-  .vh-garden-name { font-size: var(--display-2); color: var(--leaf); margin: 0.5rem 0 0.8rem; transition: color .3s; }
+  .vh-garden-name { color: var(--leaf); margin: 1rem 0 1rem; transition: color .3s; line-height: 1.1; }
   .vh-garden:hover .vh-garden-name { color: var(--leaf-deep); }
-  .vh-product-line { font-family: var(--font-display); font-size: var(--text-xl); color: var(--ink); margin-bottom: 1rem; }
-  .vh-product-blurb { color: var(--ink-soft); line-height: 1.7; max-width: 46ch; margin-bottom: 1.4rem; }
+  .vh-product-line { font-family: var(--font-display); font-size: var(--text-xl); color: var(--ink); margin-bottom: 1.2rem; line-height: 1.4; }
+  .vh-product-blurb { color: var(--ink-soft); line-height: 1.75; max-width: 48ch; margin-bottom: 1.8rem; font-size: var(--text-lg); }
+  .vh-work-note { padding-top: clamp(3rem, 6vh, 5rem); }
   .vh-more-note { font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: 0.06em; color: var(--ink-soft);
-    margin-top: clamp(3rem, 7vh, 5rem); padding-top: 1.6rem; border-top: 1px solid var(--line); max-width: 40ch; }
+    padding-top: 1.6rem; border-top: 1px solid var(--line); max-width: 48ch; }
 
   /* phone frame (home) */
   .vh-phone { --rad: 40px; --pad: 9px; position: relative; width: clamp(190px, 21vw, 250px); aspect-ratio: 400 / 812;
