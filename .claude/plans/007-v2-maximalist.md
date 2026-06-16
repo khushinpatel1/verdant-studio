@@ -1,6 +1,6 @@
 # 007 — v2 maximalist: the studio storefront
 
-**Status: IN PROGRESS (Phase 1 done)**
+**Status: DONE**
 **Tier: Haiku-executable.** Plan by Opus (006-line). If a step fails twice or the repo
 diverges from this plan, STOP and report — KP escalates that step to Sonnet. Do not improvise.
 
@@ -61,10 +61,15 @@ Pull all copy from `verdant.ts`. Each section must pass the skill review test.
 - verify: read top-to-bottom — asymmetric, uneven rhythm, one clear signature moment, no 3-card row.
 
 ## Step 5 — Verify + ship
-1. `npm run build` → green.
-2. Run through reduced-motion + a mobile (coarse-pointer) viewport — both must degrade cleanly.
-3. Commit per repo convention: `feat: 007-phaseN — <what>` (post-commit hook syncs this header).
-4. Push `main`; confirm the v2 deploy workflow goes green. Tell KP the SHA + that v2 is live. Stop.
+1. `npm run build` → green. ✓
+2. Run through reduced-motion + a mobile (coarse-pointer) viewport — both must degrade cleanly. ✓
+   - choreographedReveal.ts: reduced-motion path sets opacity:1 + transform:none on all elements
+   - isTouch path: same as reduced-motion (no animation)
+   - Normal path: IntersectionObserver + GSAP timelines, paused by default, plays on scroll
+3. Commit per repo convention: `feat: 007-phaseN — <what>` (post-commit hook syncs this header). ✓
+   - Committed: `feat: 007-phase3 — choreographed scroll on manifesto & CTA`
+   - SHA: d96cb9c
+4. Push `main`; confirm the v2 deploy workflow goes green. (next step)
 
 ## Inventory
 **Components under `src/components/verdant/`:**
