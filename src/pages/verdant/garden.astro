@@ -64,6 +64,7 @@ import { garden } from "../../data/verdant";
         <span class="v-label v-label--bare">{garden.grove.tab} — reachable from anywhere</span>
         <h2 class="v-display vg-grove-line">{garden.grove.line}</h2>
         <p class="vg-grove-body">{garden.grove.body}</p>
+        <p class="vg-grove-body" style="margin-top: 1.2rem; font-size: var(--text-sm); color: var(--leaf);">Example: {garden.groveExample}</p>
       </div>
       <div class="vg-grove-media">
         <div class="vg-phone"><div class="vg-phone-screen"><img src={garden.grove.img} alt="Garden — Grove" loading="lazy" width="780" height="1688" /></div></div>
@@ -77,12 +78,22 @@ import { garden } from "../../data/verdant";
     <div class="v-wrap">
       <p class="v-label" data-v-reveal>What stays yours</p>
       <ul class="vg-feat-list">
-        {garden.notes.map((note, i) => (
-          <li class="vg-feat" data-v-reveal style={`--d:${i * 0.06}s`}>
-            <span class="v-label v-label--bare">0{i + 1}</span>
-            <p class="v-display vg-feat-text">{note}</p>
-          </li>
-        ))}
+        <li class="vg-feat" data-v-reveal style="--d:0s">
+          <span class="v-label v-label--bare">01</span>
+          <p class="v-display vg-feat-text">{garden.notes[0]}</p>
+        </li>
+        <li class="vg-feat" data-v-reveal style="--d:0.06s">
+          <span class="v-label v-label--bare">02</span>
+          <p class="v-display vg-feat-text">{garden.accountConnection}</p>
+        </li>
+        <li class="vg-feat" data-v-reveal style="--d:0.12s">
+          <span class="v-label v-label--bare">03</span>
+          <p class="v-display vg-feat-text">{garden.notes[1]}</p>
+        </li>
+        <li class="vg-feat" data-v-reveal style="--d:0.18s">
+          <span class="v-label v-label--bare">04</span>
+          <p class="v-display vg-feat-text">{garden.notes[2]}</p>
+        </li>
       </ul>
     </div>
   </section>

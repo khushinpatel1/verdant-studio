@@ -1,4 +1,4 @@
-import { brand, nav } from "../../data/verdant";
+import { brand, nav, ethos } from "../../data/verdant";
 import Logo from "./Logo";
 
 /**
@@ -35,7 +35,10 @@ export default function Footer({ tone = "light" }: { tone?: "light" | "cream" })
       </div>
 
       <div className="v-wrap v-footer-legal">
-        <span>© 2026 Verdant Studio</span>
+        <div>
+          <span>© 2026 Verdant Studio</span>
+          <span style={{ marginLeft: "1.6rem", fontFamily: "var(--font-mono)", fontSize: "var(--text-2xs)" }}>v{ethos.version} · {ethos.launched}</span>
+        </div>
         <span>An independent software studio. We sell software — not you.</span>
       </div>
 

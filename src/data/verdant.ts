@@ -45,6 +45,9 @@ export const garden = {
   url: "#waitlist",
   // Pricing signal — copy only, no payment system yet. People pay for it; that's the model.
   pricing: "$48 a year at launch. No free tier mining your data to subsidize it — join the waitlist.",
+  onboarding: "Start fresh or import a CSV — your data, your device.",
+  accountConnection: "Manual CSV import for now. Bank sync coming.",
+  groveExample: "Ask 'How long until I pay off my Amex?' — Grove answers with the month and year, from your actual balances, sent nowhere.",
   screens: [
     {
       tab: "Home",
@@ -82,11 +85,11 @@ export const garden = {
 // the unlisted one — reached only through the stray stone, never in nav
 export const emerald = {
   name: "Emerald",
-  kind: "Unreleased — project two",
-  oneLine: "Project two. Still in the dark.",
+  kind: "Project two — focused ambition",
+  oneLine: "Growing in the soil. Ships when it's ready.",
   cover: "/verdant/art/emerald-dusk.jpg",
   blurb:
-    "Not ready, and it ships when it is — not a day sooner. You only found this because you went looking. That's exactly who it's being built for.",
+    "Not a distraction, not a roadmap item. A real project, built with the same quiet conviction as Garden — finished when it's finished, not a day sooner. You only found this because you went looking. That's who it's for.",
 };
 
 export type Person = {
@@ -122,4 +125,13 @@ export const ethos = {
     "Software should feel like a quiet room. Most of it feels like a crowded street.",
     "Build one thing well, not ten things anxiously. Slow is allowed here.",
   ],
+  shipping: [
+    { feature: "Garden — Early Access launch", date: "2026-06-17" },
+    { feature: "Export as JSON — any time, no account needed", date: "2026-06" },
+    { feature: "Grove — on-device financial assistant", date: "2026-06" },
+    { feature: "Bank sync via Plaid", date: "In progress" },
+  ],
+  dataPortability: "Export all your data as JSON at any time. No account lock-in. No permissions needed.",
+  version: "001",
+  launched: "2026-06-17",
 };

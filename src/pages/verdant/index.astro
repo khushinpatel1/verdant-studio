@@ -16,6 +16,9 @@ import { garden, ethos } from "../../data/verdant";
         Software that answers<br />to <span style="color: var(--leaf);">you</span>,<br />and no one else.
       </h1>
       <p class="vh-hero-sub">
+        Most money apps sell your spending to stay free. We sell the app instead — you own the software, the numbers stay yours.
+      </p>
+      <p class="vh-hero-sub">
         We make a living the old-fashioned way: you pay us. No ads, no data sold, no third party reading over your shoulder. That one fact decides everything we build.
       </p>
       <div class="vh-hero-actions">
@@ -55,6 +58,7 @@ import { garden, ethos } from "../../data/verdant";
         <h2 class="v-display vh-garden-name">Garden</h2>
         <p class="vh-product-line">{garden.oneLine}</p>
         <p class="vh-product-blurb">{garden.blurb}</p>
+        <p class="vh-product-blurb" style="font-size: var(--text-sm); color: var(--leaf); margin-top: 1.2rem;">{garden.onboarding}</p>
         <span class="v-cta">Walk through Garden</span>
       </div>
       <div class="vh-garden-media">
@@ -85,6 +89,7 @@ import { garden, ethos } from "../../data/verdant";
       Software that's on <span style="color: var(--leaf);">your</span> side, for once.
     </h2>
     <a href="#waitlist" class="v-cta vh-cta-link" data-v-choreo-slide data-v-choreodelay="0.16">Try Garden</a>
+    <p class="v-label" style="margin-top: 1.6rem; color: var(--leaf);" data-v-choreo-slide data-v-choreodelay="0.24">{garden.pricing}</p>
   </section>
 
   <Footer client:visible />

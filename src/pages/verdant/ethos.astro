@@ -57,6 +57,18 @@ import { brand, ethos } from "../../data/verdant";
         alive underneath — nothing extra, everything placed on purpose. When a
         decision is hard, the test is whether it would belong in one.
       </p>
+      <p class="v-label" data-v-reveal style="margin-top: 2rem;">Shipped + in progress</p>
+      <ul style="list-style: none; padding: 0; margin: 1rem 0;">
+        {ethos.shipping.map((item) => (
+          <li data-v-reveal style="font-size: var(--text-sm); color: var(--ink-soft); line-height: 1.8;">
+            <span style="color: var(--leaf);">{item.feature}</span> — {item.date}
+          </li>
+        ))}
+      </ul>
+      <p class="v-label" data-v-reveal style="margin-top: 2rem;">Data portability</p>
+      <p data-v-reveal style="font-size: var(--text-base); color: var(--ink-soft); line-height: 1.7;">
+        {ethos.dataPortability}
+      </p>
     </div>
   </section>
 
