@@ -6,25 +6,18 @@ import { studio } from "../../data/verdant";
 ---
 
 <Verdant title="People — Verdant" image="/og/og-team.jpg">
-  <!-- ── HERO ── -->
+  <!-- ── HERO — luminous, asymmetric ── -->
   <section class="vt-hero">
-    <div class="v-wrap">
-      <div>
-        <p class="v-label">The gardeners</p>
-        <TextReveal
-          client:load
-          as="h1"
-          className="v-display vt-hero-head"
-          lines={["Small, on purpose.", "No %account managers%."]}
-        />
-        <p class="vt-hero-sub v-display">
-          Right now, one. No layer between you and the person doing the work — and
-          no invented roster pretending otherwise.
-        </p>
-      </div>
-    </div>
-    <div class="v-print-field vt-hero-art" data-v-parallax="0.07" aria-hidden="true">
-      <img src="/verdant/art/team-flower.jpg" alt="" fetchpriority="high" />
+    <div class="vt-hero-bg" aria-hidden="true"></div>
+    <div class="v-wrap vt-hero-inner">
+      <p class="v-label">The gardeners</p>
+      <h1 class="v-display vt-hero-head">
+        Small, on purpose.<br />No <span style="color: var(--leaf);">account managers</span>.
+      </h1>
+      <p class="vt-hero-sub">
+        Right now, one. No layer between you and the person doing the work — and
+        no invented roster pretending otherwise.
+      </p>
     </div>
   </section>
 
@@ -39,11 +32,11 @@ import { studio } from "../../data/verdant";
     </div>
   </section>
 
-  <!-- ── closing ── -->
+  <!-- ── CLOSING ── -->
   <section class="vt-end">
     <div class="v-wrap vt-end-inner">
-      <p class="v-display vt-end-line" data-v-reveal>The door is open.</p>
-      <a href="/verdant/ethos#talk" class="v-cta" data-cursor="Write">Say hello</a>
+      <p class="v-display vt-end-line" data-v-reveal>The door is <span style="color: var(--leaf);">open</span>.</p>
+      <a href="/verdant/ethos#talk" class="v-cta">Say hello</a>
     </div>
   </section>
 
@@ -51,52 +44,30 @@ import { studio } from "../../data/verdant";
 </Verdant>
 
 <style is:global>
-  .vt-hero { padding-top: 11rem; position: relative; overflow: hidden;
-    min-height: 92svh; display: flex; flex-direction: column; justify-content: center; }
-  .vt-hero > .v-wrap { position: relative; z-index: 1; }
-  /* dark studio painting — no blend (multiply would erase the white camellia).
-     Pinned off the right viewport edge with a directional fade, so the night
-     wash rolls in from outside the page instead of floating as an island. */
-  .vt-hero-art {
-    --pf-blend: normal;
-    --pf-opacity: 0.92;
-    --pf-w: clamp(720px, 66vw, 980px);
-    --pf-right: -14vw;
-    --pf-y: 50%;
-    /* ellipse pinned past the img's right edge: solid where it meets the
-       viewport edge, feathered into cream on left / top / bottom */
-    --pf-mask: radial-gradient(ellipse 78% 60% at 82% 50%, #000 36%, transparent 76%);
-  }
-  @media (max-width: 800px) {
-    .vt-hero-art {
-      --pf-w: clamp(440px, 130vw, 560px);
-      --pf-right: -34vw;
-      --pf-y: 86%;
-      --pf-opacity: 0.8;
-      --pf-mask: radial-gradient(ellipse 70% 56% at 76% 54%, #000 30%, transparent 72%);
-    }
-  }
-  .vt-hero-head { font-size: var(--display-1); color: var(--forest-900); }
-  .vt-hero-sub { font-size: var(--display-2); color: var(--terra); max-width: 40ch; margin-top: 2rem; }
+  /* ── HERO ── */
+  .vt-hero { min-height: 100svh; align-content: center; overflow: hidden; background: var(--paper); padding-block: 6rem 2rem; }
+  .vt-hero-bg { position: absolute; top: 0; right: 0; bottom: 0; width: 45%;
+    background: linear-gradient(135deg, var(--dawn) 0%, var(--mist) 100%);
+    opacity: 0.6; pointer-events: none; }
+  .vt-hero-inner { position: relative; z-index: 1; max-width: 52ch; }
+  .vt-hero-head { font-size: var(--display-1); color: var(--ink); margin-top: 2.4rem; line-height: 1.05; }
+  .vt-hero-sub { font-family: var(--font-display); font-size: var(--text-xl); line-height: 1.55; color: var(--ink); max-width: 38ch; margin-top: 2rem; }
 
+  /* ── WHO ── */
+  .vt-roster { background: var(--paper-soft); padding-block: clamp(110px, 18vh, 260px); }
   .vt-who { max-width: 54rem; }
-  .vt-who-name { font-size: var(--display-2); color: var(--green); line-height: 1.12; }
-  .vt-who-lead { font-size: var(--text-xl); color: var(--gold); margin: 1.2rem 0 2.4rem; }
-  .vt-who-line { font-family: var(--font-display); font-size: var(--text-lg); color: var(--ink);
+  .vt-who-name { font-size: var(--display-2); color: var(--leaf); line-height: 1.12; }
+  .vt-who-lead { font-size: var(--text-xl); color: var(--leaf); margin: 1.2rem 0 2.4rem; }
+  .vt-who-line { font-family: var(--font-display); font-size: var(--text-lg); color: var(--ink-soft);
     line-height: 1.6; max-width: 52ch; margin-bottom: 1.4rem; }
 
-  .vt-roster { display: flex; flex-direction: column; }
-  .vt-row { display: grid; grid-template-columns: auto 1fr auto; gap: clamp(1.5rem, 4vw, 4rem); align-items: baseline;
-    padding: clamp(2.5rem, 6vh, 4.5rem) 0; border-top: 1px solid var(--line); color: inherit;
-    transition: padding-left .4s var(--ease); }
-  .vt-row:hover { padding-left: 1.2rem; }
-  .vt-row-n { font-size: var(--display-2); color: var(--moss); line-height: 1; }
-  .vt-row-name { font-size: var(--display-1); color: var(--green); margin: 0.6rem 0 0.8rem; transition: color .3s; }
-  .vt-row:hover .vt-row-name { color: var(--gold); }
-  .vt-row-short { font-family: var(--font-display); font-size: var(--text-xl); color: var(--terra); max-width: 46ch; }
-  .vt-row-meet { align-self: center; white-space: nowrap; }
-  @media (max-width: 720px) { .vt-row { grid-template-columns: auto 1fr; } .vt-row-meet { display: none; } }
-
+  /* ── END ── */
+  .vt-end { background: var(--paper); padding-block: clamp(110px, 18vh, 260px); }
   .vt-end-inner { display: flex; flex-direction: column; align-items: flex-start; gap: 1.4rem; }
-  .vt-end-line { font-size: var(--display-2); color: var(--green); }
+  .vt-end-line { font-size: var(--display-2); color: var(--ink); }
+
+  /* ── Responsive ── */
+  @media (max-width: 800px) {
+    .vt-hero-bg { display: none; }
+  }
 </style>
