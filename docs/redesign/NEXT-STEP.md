@@ -17,9 +17,11 @@ Target: **v2, `main` branch** → `verdant-studio-v2.pages.dev`. (v1 on `v1` bra
       Re-run smaller/cheaper next time (the fan-out burned 387k tokens for nothing). Resume the
       same script via: `Workflow({scriptPath: ".../verdant-v2-multiangle-attack-wf_a8a0bc1f-a43.js"})`
       (it lives in the verdant-studio workflows/scripts dir) — or just re-author it leaner.
-- [ ] **Build plan `008`** → `.claude/plans/008-v2-depth-and-voice.md` — synthesize from the
-      persona + audit files once they exist. NOT YET WRITTEN.
-- [ ] **Execution** — Haiku session(s) against plan 008. NOT STARTED.
+- [x] **Build plan `008` written** → `.claude/plans/008-v2-depth-and-voice.md`.
+      **Tasks 1 (revive 9 dead tokens via aliases) + 2 (apply language rewrite) are fully
+      specified and need NO persona input — a Haiku session can execute both immediately.**
+      Tasks 3–5 (depth, perf, assets) are BLOCKED on re-running the attack.
+- [ ] **Execution** — Haiku session vs plan 008. NOT STARTED. Start with Tasks 1 & 2.
 
 ## To resume
 
