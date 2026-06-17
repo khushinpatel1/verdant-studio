@@ -7,7 +7,7 @@ import Nav from "../components/verdant/Nav";
 interface Props { title: string; description?: string; image?: string }
 const {
   title,
-  description = "Verdant — a small, privacy-first software studio. Software grown for people, not advertisers.",
+  description = "Verdant — an independent software studio. We sell software — not you.",
   image = "/og/og-default.png"
 } = Astro.props;
 const path = Astro.url.pathname.replace(/\/$/, "") || "/verdant";

@@ -36,7 +36,7 @@ export default function Footer({ tone = "light" }: { tone?: "light" | "cream" })
 
       <div className="v-wrap v-footer-legal">
         <span>© 2026 Verdant Studio</span>
-        <span>Software grown for people, not advertisers.</span>
+        <span>An independent software studio. We sell software — not you.</span>
       </div>
 
       <style>{`
