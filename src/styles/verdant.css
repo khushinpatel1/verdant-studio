@@ -78,6 +78,18 @@
   --accent: var(--leaf);
   --radius: 4px;           /* organic comes from layout asymmetry, not fat radii */
 
+  /* v1→v2 token aliases — revive code still referencing retired names.
+     (verify rendered; nudge a shade if any band reads wrong.) */
+  --cream:      var(--paper);       /* body bg */
+  --parchment:  var(--paper-soft);  /* .v-band--paper bg */
+  --forest:     var(--ink);         /* .v-cta resting color, dark text on gold */
+  --clay:       var(--moss);        /* .v-label kicker color */
+  --moon:       var(--paper);       /* ::selection text, .v-cta--light */
+  --moss-300:   var(--sage);        /* .v-label--light on dark */
+  --green:      var(--leaf);        /* band pigment bloom */
+  --green-600:  var(--leaf-deep);   /* band pigment bloom */
+  --forest-900: var(--ink);         /* band pigment bloom (deepest) */
+
   --font-display: "Instrument Serif", Georgia, serif;
   --font-organic: "Young Serif", Georgia, serif;
   --font-body:    "Schibsted Grotesk", system-ui, sans-serif;
