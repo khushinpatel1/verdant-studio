@@ -49,128 +49,136 @@ const headers = [
 ---
 
 <Verdant title="Security — Verdant" image="/og/og-ethos.jpg">
-  <!-- ── HERO — Koson's eagle keeps watch from the paper ── -->
+  <!-- ── HERO — Luminous, type-on-light ── -->
   <section class="vs-hero">
-    <div class="v-print-field vs-hero-art" data-v-parallax="0.08" aria-hidden="true">
-      <img src="/verdant/art/koson-eagle-pine.jpg" alt="" fetchpriority="high" />
-    </div>
-    <div class="v-wrap">
+    <div class="vs-hero-bg" aria-hidden="true"></div>
+    <div class="v-wrap vs-hero-inner">
       <p class="v-label">How it's built.</p>
-      <TextReveal
-        client:load
-        as="h1"
-        className="v-display vs-hero-head"
-        lines={["Privacy you", "can %check%."]}
-      />
-      <p class="vs-hero-sub v-display">
+      <h1 class="v-display vs-hero-head">
+        Privacy you<br />can <span style="color: var(--leaf);">check</span>.
+      </h1>
+      <p class="vs-hero-sub">
         Claims are easy. This is the architecture underneath them — how Verdant
         software is built so your data stays yours, and how you can tell.
       </p>
     </div>
   </section>
 
-  <!-- ── PRINCIPLES ── -->
-  <section class="vs-principles">
-    <div class="v-wrap">
-      {principles.map((p, i) => (
-        <div class="vs-row" data-v-reveal style={`--d:${i * 0.05}s`}>
-          <span class="v-organic vs-n">{p.n}</span>
-          <div class="vs-row-text">
-            <p class="v-display vs-row-head">{p.head}</p>
-            <p class="vs-row-body">{p.body}</p>
-          </div>
+  <!-- ── PRINCIPLES — asymmetric grid ── -->
+  <section class="vs-principles vs-sec">
+    <span class="vh-num" aria-hidden="true">01</span>
+    {principles.map((p, i) => (
+      <div class={`vs-row${i % 2 ? " vs-row--alt" : ""}`} data-v-reveal style={`--d:${i * 0.05}s`}>
+        <span class="v-label v-label--bare">{p.n}</span>
+        <div class="vs-row-text">
+          <p class="v-display vs-row-head">{p.head}</p>
+          <p class="vs-row-body">{p.body}</p>
         </div>
-      ))}
-    </div>
+      </div>
+    ))}
   </section>
 
-  <!-- ── POSTURE: real response headers ── -->
-  <section class="vs-posture">
-    <div class="v-wrap">
-      <div class="vs-posture-head" data-v-reveal>
-        <p class="v-label">Checkable, right now</p>
-        <p class="vs-posture-intro v-display">What this very page sends back.</p>
-        <p class="vs-posture-note">
-          Open your browser's network inspector on this page. These are the
-          security headers every response carries — not a promise, a fact you can
-          read off the wire.
-        </p>
-      </div>
-      <ul class="vs-headers">
-        {headers.map((h, i) => (
-          <li class="vs-header" data-v-reveal style={`--d:${i * 0.05}s`}>
-            <code class="vs-header-k">{h.k}</code>
-            <code class="vs-header-v">{h.v}</code>
-            <span class="vs-header-note">{h.note}</span>
-          </li>
-        ))}
-      </ul>
-      <p class="vs-posture-foot">
-        This is a static site — no server-side database, no account, no tracker to
-        opt out of. The only way to reach the studio is an email you choose to send.
+  <!-- ── POSTURE: real response headers — luminous ── -->
+  <section class="vs-posture vs-sec">
+    <span class="vh-num" aria-hidden="true">02</span>
+    <div class="vs-posture-head" data-v-reveal>
+      <p class="v-label">Checkable, right now</p>
+      <p class="vs-posture-intro v-display">What this very page sends back.</p>
+      <p class="vs-posture-note">
+        Open your browser's network inspector on this page. These are the
+        security headers every response carries — not a promise, a fact you can
+        read off the wire.
       </p>
     </div>
+    <ul class="vs-headers">
+      {headers.map((h, i) => (
+        <li class="vs-header" data-v-reveal style={`--d:${i * 0.05}s`}>
+          <code class="vs-header-k">{h.k}</code>
+          <code class="vs-header-v">{h.v}</code>
+          <span class="vs-header-note">{h.note}</span>
+        </li>
+      ))}
+    </ul>
+    <p class="vs-posture-foot">
+      This is a static site — no server-side database, no account, no tracker to
+      opt out of. The only way to reach the studio is an email you choose to send.
+    </p>
   </section>
 
-  <!-- ── TALK ── -->
-  <section id="talk" class="vs-band">
-    <div class="vs-band-edge" aria-hidden></div>
-    <div class="v-wrap vs-talk">
-      <TextReveal client:visible as="h2" className="v-display vs-talk-head" lines={["Found a gap?", "%Tell us%."]} />
-      <a href={`mailto:${brand.email}`} class="vs-talk-mail" data-cursor="Write">{brand.email}</a>
-      <p class="v-label v-label--light vs-talk-meta">Responsible disclosure — quietly, and we'll answer</p>
-    </div>
+  <!-- ── TALK — luminous CTA ── -->
+  <section id="talk" class="vs-talk vs-sec">
+    <span class="vh-num" aria-hidden="true">03</span>
+    <h2 class="v-display vs-talk-head">
+      Found a gap?<br /><span style="color: var(--leaf);">Tell us</span>.
+    </h2>
+    <a href={`mailto:${brand.email}`} class="v-cta">{brand.email}</a>
+    <p class="v-label vs-talk-meta">Responsible disclosure — quietly, and we'll answer</p>
   </section>
 
   <Footer client:visible />
 </Verdant>
 
 <style is:global>
-  .vs-hero { padding-top: 11rem; position: relative; overflow: hidden;
-    min-height: 92svh; display: flex; flex-direction: column; justify-content: center; }
-  .vs-hero > .v-wrap { position: relative; z-index: 1; }
-  .vs-hero-art {
-    --pf-w: clamp(420px, 42vw, 640px);
-    --pf-right: -5vw;
-    --pf-y: 50%;
-    --pf-core: 26%;
-    --pf-fade: 70%;
-    /* warm the snowy greys toward the paper so the print sits IN the cream */
-    --pf-filter: sepia(0.2) saturate(0.82) brightness(1.05);
-  }
-  .vs-hero-head { font-size: var(--display-1); color: var(--forest-900); }
-  .vs-hero-sub { font-size: var(--display-2); color: var(--terra); max-width: 40ch; margin-top: 2rem; }
-  @media (max-width: 800px) {
-    .vs-hero-art { --pf-w: clamp(340px, 98vw, 430px); --pf-right: -22vw; --pf-y: 82%; --pf-opacity: 0.85; }
+  /* ── Off-axis editorial grid ── */
+  .vs-sec {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: clamp(12px, 1.6vw, 28px);
+    padding-inline: clamp(20px, 5vw, 72px);
   }
 
-  /* PRINCIPLES */
-  .vs-row { display: grid; grid-template-columns: auto 1fr; gap: clamp(1.5rem, 4vw, 3.5rem); align-items: baseline;
-    padding: clamp(2rem, 5vh, 3.2rem) 0; border-top: 1px solid var(--line); }
-  .vs-n { font-size: var(--display-2); color: var(--moss); line-height: 1; }
-  .vs-row-head { font-size: var(--display-2); line-height: 1.3; color: var(--green); max-width: 22ch; }
-  .vs-row-body { color: var(--ink); font-size: var(--text-base); line-height: 1.6; max-width: 56ch; margin-top: 0.9rem; }
+  /* ── HERO ── */
+  .vs-hero { min-height: 100svh; align-content: center; overflow: hidden; background: var(--paper); padding-block: 6rem 2rem; }
+  .vs-hero-bg { position: absolute; top: 0; right: 0; bottom: 0; width: 45%;
+    background: linear-gradient(135deg, var(--dawn) 0%, var(--mist) 100%);
+    opacity: 0.6; pointer-events: none; }
+  .vs-hero-inner { position: relative; z-index: 1; }
+  .vs-hero-head { font-size: var(--display-1); color: var(--ink); margin-top: 2.4rem; line-height: 1.05; }
+  .vs-hero-sub { font-family: var(--font-display); font-size: var(--text-xl); line-height: 1.55; color: var(--ink); max-width: 40ch; margin-top: 2rem; }
 
-  /* POSTURE */
-  .vs-posture-head { margin-bottom: 2.5rem; }
-  .vs-posture-intro { font-size: var(--display-2); color: var(--green); margin-top: 1rem; }
-  .vs-posture-note { color: var(--ink); font-size: var(--text-base); line-height: 1.6; max-width: 54ch; margin-top: 1rem; }
-  .vs-headers { list-style: none; padding: 0; margin: 0; }
+  /* ── PRINCIPLES ── */
+  .vs-principles { background: var(--paper-soft); padding-block: clamp(90px, 16vh, 220px); row-gap: 2.4rem; }
+  .vs-row { grid-column: 2 / 11; padding: clamp(1.8rem, 3vh, 2.8rem) 0; border-top: 1px solid var(--line); }
+  .vs-row--alt { grid-column: 6 / 12; }
+  .vs-row-head { font-size: var(--display-2); line-height: 1.3; color: var(--leaf); max-width: 22ch; }
+  .vs-row-body { color: var(--ink-soft); font-size: var(--text-base); line-height: 1.6; max-width: 56ch; margin-top: 0.9rem; }
+
+  /* ── POSTURE ── */
+  .vs-posture { background: var(--paper); padding-block: clamp(110px, 18vh, 260px); }
+  .vs-posture-head { grid-column: 1 / 9; margin-bottom: 2.5rem; }
+  .vs-posture-intro { font-size: var(--display-2); color: var(--leaf); margin-top: 1rem; }
+  .vs-posture-note { color: var(--ink-soft); font-size: var(--text-base); line-height: 1.6; max-width: 54ch; margin-top: 1rem; }
+  .vs-headers { grid-column: 1 / 9; list-style: none; padding: 0; margin: 2rem 0 0; }
   .vs-header { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1.1fr) minmax(0,1.4fr); gap: 1rem 1.6rem; align-items: baseline;
     padding: 1.3rem 0; border-top: 1px solid var(--line); }
-  .vs-header-k { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--green); }
-  .vs-header-v { font-family: var(--font-mono); font-size: var(--text-2xs); color: var(--terra); word-break: break-word; }
-  .vs-header-note { font-family: var(--font-display); font-size: var(--text-base); color: var(--ink); }
-  .vs-posture-foot { font-family: var(--font-display); font-size: var(--text-lg); line-height: 1.6; color: var(--ink);
+  .vs-header-k { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--leaf); }
+  .vs-header-v { font-family: var(--font-mono); font-size: var(--text-2xs); color: var(--ink); word-break: break-word; }
+  .vs-header-note { font-family: var(--font-display); font-size: var(--text-base); color: var(--ink-soft); }
+  .vs-posture-foot { grid-column: 1 / 9; font-family: var(--font-display); font-size: var(--text-lg); line-height: 1.6; color: var(--ink-soft);
     max-width: 52ch; margin-top: 2.5rem; padding-top: 1.6rem; border-top: 1px solid var(--line); }
-  @media (max-width: 700px) { .vs-header { grid-template-columns: 1fr; gap: 0.3rem; } }
 
-  /* TALK */
-  .vs-band { position: relative; background: linear-gradient(155deg, var(--forest-900), var(--forest) 55%, var(--green-600)); overflow: hidden; text-align: center; }
-  .vs-band-edge { position: absolute; top: -1px; left: 0; right: 0; height: 110px; background: var(--cream); clip-path: ellipse(60% 100% at 42% 0%); }
-  .vs-talk { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 1.6rem; }
-  .vs-talk-head { font-size: var(--display-1); color: var(--moon); }
-  .vs-talk-mail { font-family: var(--font-display); font-size: var(--display-2); color: var(--gold); border-bottom: 1px solid var(--gold); padding-bottom: 4px; transition: opacity .3s; }
-  .vs-talk-mail:hover { opacity: 0.75; }
-  .vs-talk-meta { justify-content: center; }
+  /* ── TALK ── */
+  .vs-talk { background: var(--paper); padding-block: clamp(120px, 20vh, 220px); align-content: center; }
+  .vs-talk-head { grid-column: 1 / 9; font-size: var(--display-1); color: var(--ink); line-height: 1.05; }
+  .vs-talk-head + .v-cta { grid-column: 1 / 9; margin-top: 2rem; }
+  .vs-talk-meta { grid-column: 1 / 9; margin-top: 1.2rem; }
+
+  /* ── Section numerals ── */
+  .vh-num {
+    position: absolute; top: clamp(2rem, 5vh, 4rem); left: clamp(20px, 5vw, 72px);
+    font-family: var(--font-mono); font-size: var(--text-2xs);
+    letter-spacing: 0.2em; color: var(--moss); opacity: 0.7;
+  }
+  .vh-num::after { content: ""; display: inline-block; width: 2.2rem; height: 1px;
+    background: var(--sage); vertical-align: middle; margin-left: 0.7rem; }
+
+  /* ── Responsive ── */
+  @media (max-width: 860px) {
+    .vs-hero-bg { display: none; }
+    .vs-row { grid-column: 1 / 13; }
+    .vs-posture-head, .vs-headers, .vs-posture-foot { grid-column: 1 / 13; }
+    .vs-header { grid-template-columns: 1fr; gap: 0.3rem; }
+    .vs-talk-head, .vs-talk-head + .v-cta, .vs-talk-meta { grid-column: 1 / 13; }
+  }
 </style>
