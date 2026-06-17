@@ -22,7 +22,7 @@ export const nav = {
     { label: "Ethos", href: "/verdant/ethos" },
     { label: "People", href: "/verdant/team" },
   ],
-  cta: { label: "Try Garden", href: "https://garden.khushinpatel1.workers.dev" },
+  cta: { label: "Try Garden", href: "#waitlist" },
 };
 
 export type Screen = { tab: string; img: string; line: string; body: string };
@@ -42,7 +42,9 @@ export const garden = {
   cover: "/verdant/garden/garden-home.webp",
   // vault-lock.jpg — used as back-phone teaser on homepage (intriguing encrypted-garden hint)
   vaultScreen: "/verdant/garden/vault-lock.jpg",
-  url: "https://garden.khushinpatel1.workers.dev",
+  url: "#waitlist",
+  // Pricing signal — copy only, no payment system yet. People pay for it; that's the model.
+  pricing: "$48/yr at launch — join the waitlist.",
   screens: [
     {
       tab: "Home",

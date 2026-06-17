@@ -20,14 +20,13 @@ import { garden } from "../../data/verdant";
       <p class="vg-hero-blurb">{garden.blurb}</p>
       <div class="vg-hero-actions">
         <a
-          href="https://garden.khushinpatel1.workers.dev"
-          target="_blank"
-          rel="noopener"
+          href="#waitlist"
           class="v-cta v-cta--primary"
-          data-cursor="Open"
-        >Try Garden ↗</a>
+          data-cursor="Join"
+        >Try Garden ↓</a>
         <a href="#tour" class="v-cta" data-cursor="Down">Walk through it</a>
       </div>
+      <p class="vg-hero-price">{garden.pricing}</p>
     </div>
     <div class="vg-hero-media">
       <GardenLive />
@@ -102,6 +101,22 @@ import { garden } from "../../data/verdant";
   <section class="vg-end">
     <div class="v-wrap vg-end-inner">
       <p class="v-display vg-end-line" data-v-reveal>The first thing grown here. Not the last.</p>
+      <p class="v-label v-label--bare vg-end-price" data-v-reveal>{garden.pricing}</p>
+      <form id="waitlist" class="vg-waitlist" method="POST" action="/api/waitlist" data-v-reveal>
+        <label class="v-label v-label--bare vg-waitlist-label" for="vg-waitlist-email">Get in line</label>
+        <div class="vg-waitlist-row">
+          <input
+            id="vg-waitlist-email"
+            type="email"
+            name="email"
+            required
+            placeholder="you@somewhere.calm"
+            class="vg-waitlist-input"
+            autocomplete="email"
+          />
+          <button type="submit" class="v-cta v-cta--primary" data-cursor="Send">Join the waitlist</button>
+        </div>
+      </form>
       <div class="vg-end-actions">
         <a href="/verdant" class="v-cta" data-cursor="Back">Back to the studio</a>
         <a href="/verdant/ethos#talk" class="v-cta" data-cursor="Write">Talk to us</a>
@@ -133,6 +148,7 @@ import { garden } from "../../data/verdant";
   .vg-hero-line { font-size: var(--display-2); color: var(--ink); max-width: 24ch; }
   .vg-hero-blurb { color: var(--ink-soft); font-size: var(--text-base); line-height: 1.6; max-width: 46ch; margin: 1.6rem 0 2rem; }
   .vg-hero-actions { display: flex; align-items: center; gap: 1.8rem; flex-wrap: wrap; }
+  .vg-hero-price { margin-top: 1.4rem; color: var(--leaf); font-size: var(--text-base); letter-spacing: 0.01em; }
   .vg-hero-media { position: relative; z-index: 1; display: flex; justify-content: center; }
   .vg-hero-vine { position: absolute; right: 4%; top: 0; bottom: 0; width: 130px; z-index: 1; opacity: 0.8; }
   @media (max-width: 860px) { .vg-hero { grid-template-columns: 1fr; } .vg-hero-media { margin-top: 2rem; } .vg-hero-vine { display: none; } }
@@ -183,5 +199,15 @@ import { garden } from "../../data/verdant";
   .vg-end { background: var(--paper); padding-block: clamp(110px, 18vh, 260px); }
   .vg-end-inner { display: flex; flex-direction: column; align-items: flex-start; gap: 1.6rem; }
   .vg-end-line { font-size: var(--display-2); color: var(--leaf); max-width: 20ch; }
+  .vg-end-price { color: var(--leaf); }
+  /* WAITLIST — left-aligned, grown into the closing column, not a centered SaaS box */
+  .vg-waitlist { display: flex; flex-direction: column; gap: 0.9rem; width: 100%; max-width: 42rem; }
+  .vg-waitlist-label { color: var(--ink-soft); }
+  .vg-waitlist-row { display: flex; align-items: stretch; gap: 1.2rem; flex-wrap: wrap; }
+  .vg-waitlist-input { flex: 1 1 18rem; min-width: 0; background: transparent; color: var(--ink);
+    border: 0; border-bottom: 1px solid var(--line); padding: 0.7rem 0.2rem; font-size: var(--text-base);
+    font-family: inherit; transition: border-color .35s var(--ease); }
+  .vg-waitlist-input::placeholder { color: var(--ink-soft); opacity: 0.6; }
+  .vg-waitlist-input:focus { outline: none; border-bottom-color: var(--leaf); }
   .vg-end-actions { display: flex; gap: 1.8rem; flex-wrap: wrap; }
 </style>

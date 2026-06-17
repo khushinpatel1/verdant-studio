@@ -1,0 +1,154 @@
+---
+import Verdant from "../layouts/Verdant.astro";
+import Footer from "../components/verdant/Footer";
+import { brand } from "../data/verdant";
+
+// PRIVACY POLICY — public URL (App Store prerequisite).
+// Ported verbatim-in-spirit from garden/src/ui/sheets/PrivacySheet.tsx.
+// Every claim is literally true of Garden today. Nothing invented:
+// no fabricated certifications, no invented third parties. Grove now sends
+// only account names/balances/totals — transaction histories are stripped
+// from context, so that line is accurate.
+
+const updated = "June 2026";
+
+const sections = [
+  {
+    n: "01",
+    head: "What Garden collects",
+    body:
+      "Garden stores the financial data you enter — accounts, transactions, budgets, goals, and debt records. This data lives on your device only. It is not transmitted to any server unless you explicitly connect a sync provider (none are connected by default).",
+  },
+  {
+    n: "02",
+    head: "Encryption at rest",
+    body:
+      "When you set a passphrase, your financial data is encrypted with AES-GCM 256-bit encryption before it is saved to this device's storage. The passphrase and the derived key are never written anywhere — if you lose your passphrase, there is no recovery path and no back door. If you skip the passphrase, data is stored unencrypted in your browser's local storage.",
+  },
+  {
+    n: "03",
+    head: "Sync and network",
+    body:
+      "Garden does not send your financial data to any server. There is currently no cloud sync. If you use the Grove AI assistant, your financial summary (account names, balances, totals — no transaction histories) is sent to an AI model to generate a response. That request travels over HTTPS. Grove responses are not stored by Verdant.",
+  },
+  {
+    n: "04",
+    head: "Analytics and tracking",
+    body:
+      "Garden contains no analytics SDK, no crash reporter, no ad network, and no tracking pixels. We do not know how you use the app. We do not have a user account for you. We cannot identify you.",
+  },
+  {
+    n: "05",
+    head: "Third parties",
+    body:
+      "No third party receives your financial data. The only external network call Garden makes is the Grove AI request described above. If you connect a financial data provider (SimpleFIN, SnapTrade) in a future version, that connection will be documented here before it is made available.",
+  },
+  {
+    n: "06",
+    head: "Data deletion",
+    body:
+      "Because Garden stores data only on your device, you control deletion entirely. Use “Clear all my data” in Settings to erase everything. Uninstalling the app removes the data. There is nothing on a server to delete.",
+  },
+  {
+    n: "07",
+    head: "Grove is not financial advice",
+    body:
+      "Grove is an AI assistant that reads your numbers and answers questions. It is not a licensed financial advisor, investment advisor, or tax professional. Nothing Grove says should be treated as financial, legal, or tax advice. Always verify important decisions with a qualified professional.",
+  },
+];
+---
+
+<Verdant title="Privacy policy — Verdant" image="/og/og-ethos.jpg">
+  <!-- ── HERO — luminous, type-on-light ── -->
+  <section class="vp-hero">
+    <div class="vp-hero-bg" aria-hidden="true"></div>
+    <div class="v-wrap vp-hero-inner">
+      <p class="v-label">In plain language.</p>
+      <h1 class="v-display vp-hero-head">
+        Privacy<br />policy<span style="color: var(--leaf);">.</span>
+      </h1>
+      <p class="vp-hero-sub">
+        Honest, and exactly what is true of the app today — no fabricated
+        certifications, no invented third parties. What Garden stores, where it
+        lives, and what never leaves your device.
+      </p>
+      <p class="v-label vp-hero-meta">Last updated: {updated} · {brand.name ?? "Verdant Studio"}</p>
+    </div>
+  </section>
+
+  <!-- ── SECTIONS — asymmetric editorial grid ── -->
+  <section class="vp-body vp-sec">
+    <span class="vh-num" aria-hidden="true">01</span>
+    {sections.map((s, i) => (
+      <div class={`vp-row${i % 2 ? " vp-row--alt" : ""}`} data-v-reveal style={`--d:${i * 0.05}s`}>
+        <span class="v-label v-label--bare">{s.n}</span>
+        <div class="vp-row-text">
+          <p class="v-display vp-row-head">{s.head}</p>
+          <p class="vp-row-body">{s.body}</p>
+        </div>
+      </div>
+    ))}
+  </section>
+
+  <!-- ── CONTACT — luminous close ── -->
+  <section id="contact" class="vp-contact vp-sec">
+    <span class="vh-num" aria-hidden="true">02</span>
+    <h2 class="v-display vp-contact-head">
+      Questions about<br />this <span style="color: var(--leaf);">policy</span>?
+    </h2>
+    <a href={`mailto:${brand.email}`} class="v-cta">{brand.email}</a>
+    <p class="v-label vp-contact-meta">Write to us — we'll answer</p>
+  </section>
+
+  <Footer client:visible />
+</Verdant>
+
+<style is:global>
+  /* ── Off-axis editorial grid ── */
+  .vp-sec {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: clamp(12px, 1.6vw, 28px);
+    padding-inline: clamp(20px, 5vw, 72px);
+  }
+
+  /* ── HERO ── */
+  .vp-hero { min-height: 92svh; align-content: center; overflow: hidden; background: var(--paper); padding-block: 6rem 2rem; }
+  .vp-hero-bg { position: absolute; top: 0; right: 0; bottom: 0; width: 45%;
+    background: linear-gradient(135deg, var(--dawn) 0%, var(--mist) 100%);
+    opacity: 0.6; pointer-events: none; }
+  .vp-hero-inner { position: relative; z-index: 1; }
+  .vp-hero-head { font-size: var(--display-1); color: var(--ink); margin-top: 2.4rem; line-height: 1.05; }
+  .vp-hero-sub { font-family: var(--font-display); font-size: var(--text-xl); line-height: 1.55; color: var(--ink); max-width: 44ch; margin-top: 2rem; }
+  .vp-hero-meta { margin-top: 2rem; }
+
+  /* ── SECTIONS ── */
+  .vp-body { background: var(--paper-soft); padding-block: clamp(90px, 16vh, 220px); row-gap: 2.4rem; }
+  .vp-row { grid-column: 2 / 11; padding: clamp(1.8rem, 3vh, 2.8rem) 0; border-top: 1px solid var(--line); }
+  .vp-row--alt { grid-column: 6 / 12; }
+  .vp-row-head { font-size: var(--display-2); line-height: 1.3; color: var(--leaf); max-width: 22ch; }
+  .vp-row-body { color: var(--ink-soft); font-size: var(--text-base); line-height: 1.6; max-width: 60ch; margin-top: 0.9rem; }
+
+  /* ── CONTACT ── */
+  .vp-contact { background: var(--paper); padding-block: clamp(120px, 20vh, 220px); align-content: center; }
+  .vp-contact-head { grid-column: 1 / 9; font-size: var(--display-1); color: var(--ink); line-height: 1.05; }
+  .vp-contact-head + .v-cta { grid-column: 1 / 9; margin-top: 2rem; }
+  .vp-contact-meta { grid-column: 1 / 9; margin-top: 1.2rem; }
+
+  /* ── Section numerals ── */
+  .vh-num {
+    position: absolute; top: clamp(2rem, 5vh, 4rem); left: clamp(20px, 5vw, 72px);
+    font-family: var(--font-mono); font-size: var(--text-2xs);
+    letter-spacing: 0.2em; color: var(--moss); opacity: 0.7;
+  }
+  .vh-num::after { content: ""; display: inline-block; width: 2.2rem; height: 1px;
+    background: var(--sage); vertical-align: middle; margin-left: 0.7rem; }
+
+  /* ── Responsive ── */
+  @media (max-width: 860px) {
+    .vp-hero-bg { display: none; }
+    .vp-row, .vp-row--alt { grid-column: 1 / 13; }
+    .vp-contact-head, .vp-contact-head + .v-cta, .vp-contact-meta { grid-column: 1 / 13; }
+  }
+</style>
