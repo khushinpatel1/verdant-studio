@@ -1,6 +1,6 @@
 # 008 — Verdant v2: depth + voice rebuild
 
-**Status: IN PROGRESS** (Tasks 1–2 DONE; Tasks 3–5 fully specified & executable)
+**Status: IN PROGRESS** (Tasks 1–2 DONE; Task 3 partial [security depth]; Task 4 partial [3 hi-impact perf]; Task 5 ready [assets])
 **Target:** v2, `main` branch → `verdant-studio-v2.pages.dev`
 **Source docs:** `docs/redesign/00-diagnosis.md`, `01-language-rewrite.md`, `NEXT-STEP.md`
 **Tier:** Opus authored this plan; **Haiku executes**. Sonnet only for a step Haiku stalls on twice.
