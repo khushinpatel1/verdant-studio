@@ -45,7 +45,7 @@ import { garden } from "../../data/verdant";
       {garden.screens.map((s, i) => (
         <div class={`v-wrap vg-screen${i % 2 ? " vg-screen--alt" : ""}`} data-v-reveal>
           <div class="vg-screen-media">
-            <div class="vg-phone"><div class="vg-phone-screen"><img src={s.img} alt={`Garden — ${s.tab}`} loading="lazy" /></div></div>
+            <div class="vg-phone"><div class="vg-phone-screen"><img src={s.img} alt={`Garden — ${s.tab}`} loading="lazy" width="780" height="1688" /></div></div>
           </div>
           <div class="vg-screen-text">
             <span class="v-label v-label--bare">0{i + 1} — {s.tab}</span>
@@ -66,7 +66,7 @@ import { garden } from "../../data/verdant";
         <p class="vg-grove-body">{garden.grove.body}</p>
       </div>
       <div class="vg-grove-media">
-        <div class="vg-phone"><div class="vg-phone-screen"><img src={garden.grove.img} alt="Garden — Grove" loading="lazy" /></div></div>
+        <div class="vg-phone"><div class="vg-phone-screen"><img src={garden.grove.img} alt="Garden — Grove" loading="lazy" width="780" height="1688" /></div></div>
       </div>
     </div>
   </section>
