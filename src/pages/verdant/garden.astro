@@ -73,17 +73,15 @@ import { garden } from "../../data/verdant";
     </div>
   </section>
 
-  <!-- ── WHAT STAYS YOURS — the list floats on Koson's lily pond ── -->
+  <!-- ── WHAT STAYS YOURS — luminous light fields ── -->
   <section class="vg-features">
-    <div class="v-print-field vg-feat-art" data-v-parallax="0.07" aria-hidden="true">
-      <img src="/verdant/art/koson-waterlilies.jpg" alt="" loading="lazy" decoding="async" />
-    </div>
+    <div class="vg-feat-bg" aria-hidden="true"></div>
     <div class="v-wrap">
       <p class="v-label" data-v-reveal>What stays yours</p>
       <ul class="vg-feat-list">
         {garden.notes.map((note, i) => (
           <li class="vg-feat" data-v-reveal style={`--d:${i * 0.06}s`}>
-            <span class="v-organic vg-feat-n">0{i + 1}</span>
+            <span class="v-label v-label--bare">0{i + 1}</span>
             <p class="v-display vg-feat-text">{note}</p>
           </li>
         ))}
@@ -91,17 +89,13 @@ import { garden } from "../../data/verdant";
     </div>
   </section>
 
-  <!-- ── PRIVACY band ── -->
+  <!-- ── PRIVACY — luminous light field ── -->
   <section class="vg-band">
-    <div class="vg-band-edge" aria-hidden></div>
     <div class="v-wrap vg-privacy">
-      <p class="v-label v-label--light" data-v-reveal>Plainly</p>
-      <TextReveal
-        client:visible
-        as="h2"
-        className="v-display vg-privacy-head"
-        lines={["Your numbers are locked", "before they leave your hands.", "The server holds the %ciphertext%.", "And can't read a cent of it."]}
-      />
+      <p class="v-label" data-v-reveal>Plainly</p>
+      <h2 class="v-display vg-privacy-head" data-v-reveal>
+        Your numbers are locked<br />before they leave your hands.<br />The server holds the <span style="color: var(--leaf);">ciphertext</span>.<br />And can't read a cent of it.
+      </h2>
     </div>
   </section>
 
@@ -120,82 +114,75 @@ import { garden } from "../../data/verdant";
 </Verdant>
 
 <style is:global>
-  /* PHONE FRAME */
+  /* PHONE FRAME — light finish */
   .vg-phone { --rad: 42px; --pad: 10px; position: relative; width: clamp(230px, 26vw, 300px);
     aspect-ratio: 400 / 812; border-radius: var(--rad); padding: var(--pad);
-    background: linear-gradient(160deg, #2a3b27 0%, #16271a 46%, #0a1610 100%);
-    box-shadow: 0 40px 90px -34px rgba(13,26,16,0.6), 0 0 0 1.5px rgba(255,255,255,0.05),
-                0 2px 0 rgba(255,255,255,0.08) inset, 0 -2px 8px rgba(0,0,0,0.4) inset; }
+    background: linear-gradient(160deg, #f0f2ed 0%, #e8ebe6 46%, #dfe4d7 100%);
+    box-shadow: 0 40px 90px -24px rgba(13,31,7,0.15), 0 0 0 1px rgba(47, 125, 79, 0.08),
+                0 2px 0 rgba(255,255,255,0.6) inset, 0 -2px 8px rgba(0,0,0,0.06) inset; }
   .vg-phone--hero { width: clamp(250px, 30vw, 330px); }
-  .vg-phone-screen { position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: calc(var(--rad) - var(--pad)); background: var(--cream); }
+  .vg-phone-screen { position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: calc(var(--rad) - var(--pad)); background: var(--paper); }
   .vg-phone-screen img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 0; }
   .vg-phone::after { content: ""; position: absolute; top: 14px; left: 50%; transform: translateX(-50%);
-    width: 38%; height: 7px; border-radius: 5px; background: rgba(0,0,0,0.5); z-index: 2; }
+    width: 38%; height: 7px; border-radius: 5px; background: rgba(47, 125, 79, 0.2); z-index: 2; }
 
   /* HERO */
   .vg-hero { position: relative; min-height: 94svh; display: grid; grid-template-columns: 1.05fr 0.95fr;
-    align-items: center; gap: 2rem; padding-top: 6rem; }
+    align-items: center; gap: 2rem; padding-top: 6rem; background: var(--paper); }
   .vg-hero-inner { position: relative; z-index: 2; }
-  .vg-hero-name { font-size: var(--display-1); line-height: 0.9; color: var(--green); margin: 1.5rem 0 1rem; }
-  .vg-hero-line { font-size: var(--display-2); color: var(--terra); max-width: 24ch; }
-  .vg-hero-blurb { color: var(--ink); font-size: var(--text-base); line-height: 1.6; max-width: 46ch; margin: 1.6rem 0 2rem; }
+  .vg-hero-name { font-size: var(--display-1); line-height: 0.9; color: var(--leaf); margin: 1.5rem 0 1rem; }
+  .vg-hero-line { font-size: var(--display-2); color: var(--ink); max-width: 24ch; }
+  .vg-hero-blurb { color: var(--ink-soft); font-size: var(--text-base); line-height: 1.6; max-width: 46ch; margin: 1.6rem 0 2rem; }
   .vg-hero-actions { display: flex; align-items: center; gap: 1.8rem; flex-wrap: wrap; }
   .vg-hero-media { position: relative; z-index: 1; display: flex; justify-content: center; }
   .vg-hero-vine { position: absolute; right: 4%; top: 0; bottom: 0; width: 130px; z-index: 1; opacity: 0.8; }
   @media (max-width: 860px) { .vg-hero { grid-template-columns: 1fr; } .vg-hero-media { margin-top: 2rem; } .vg-hero-vine { display: none; } }
 
   /* TOUR */
+  .vg-tour { padding-block: clamp(110px, 18vh, 260px); background: var(--paper); }
   .vg-tour-head { max-width: 38rem; margin-bottom: clamp(3rem, 8vh, 6rem); }
-  .vg-tour-intro { font-size: var(--display-2); color: var(--green); margin-top: 1rem; line-height: 1.1; }
+  .vg-tour-intro { font-size: var(--display-2); color: var(--ink); margin-top: 1rem; line-height: 1.1; }
   .vg-screens { display: flex; flex-direction: column; gap: clamp(4rem, 10vh, 9rem); }
   .vg-screen { display: grid; grid-template-columns: auto 1fr; gap: clamp(2.5rem, 6vw, 6rem); align-items: center; }
   .vg-screen--alt { grid-template-columns: 1fr auto; }
   .vg-screen--alt .vg-screen-media { order: 2; }
   .vg-screen-media { display: flex; justify-content: center; }
   .vg-screen-text { max-width: 38ch; }
-  .vg-screen-line { font-size: var(--display-2); color: var(--green); margin: 0.7rem 0 1rem; line-height: 1.15; }
-  .vg-screen-body { color: var(--ink); line-height: 1.6; font-size: var(--text-base); }
+  .vg-screen-line { font-size: var(--display-2); color: var(--leaf); margin: 0.7rem 0 1rem; line-height: 1.15; }
+  .vg-screen-body { color: var(--ink-soft); line-height: 1.6; font-size: var(--text-base); }
   @media (max-width: 760px) { .vg-screen, .vg-screen--alt { grid-template-columns: 1fr; } .vg-screen--alt .vg-screen-media { order: 0; } }
 
-  /* GROVE — set apart from the tour: a calm, inset band, phone to the side */
-  .vg-grove { padding: clamp(3rem, 8vh, 6rem) 0; }
+  /* GROVE — luminous light inset ── */
+  .vg-grove { padding: clamp(3rem, 8vh, 6rem) 0; background: var(--paper); }
   .vg-grove-inner { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: clamp(2rem, 5vw, 4rem);
-    align-items: center; padding: clamp(2rem, 5vw, 3.5rem); border-radius: 32px;
-    background: color-mix(in srgb, var(--green) 7%, var(--cream)); }
-  .vg-grove-line { font-size: var(--display-2); color: var(--green); margin: 0.8rem 0 1rem; line-height: 1.15; max-width: 18ch; }
-  .vg-grove-body { color: var(--ink); line-height: 1.6; font-size: var(--text-base); max-width: 44ch; }
+    align-items: center; padding: clamp(2rem, 5vw, 3.5rem); border-radius: 4px;
+    background: var(--paper-soft); }
+  .vg-grove-line { font-size: var(--display-2); color: var(--leaf); margin: 0.8rem 0 1rem; line-height: 1.15; max-width: 18ch; }
+  .vg-grove-body { color: var(--ink-soft); line-height: 1.6; font-size: var(--text-base); max-width: 44ch; }
   .vg-grove-media { display: flex; justify-content: center; }
   @media (max-width: 760px) { .vg-grove-inner { grid-template-columns: 1fr; } .vg-grove-media { margin-top: 1.5rem; } }
 
-  /* FEATURES — list floats on the lily pond bleeding in from the right */
-  .vg-features { position: relative; overflow: hidden; }
+  /* FEATURES — luminous light field ── */
+  .vg-features { position: relative; background: var(--paper-soft); padding-block: clamp(110px, 18vh, 260px); }
   .vg-features > .v-wrap { position: relative; z-index: 1; }
-  .vg-feat-art {
-    --pf-w: clamp(460px, 46vw, 700px);
-    --pf-right: -10vw;
-    --pf-y: 50%;
-    --pf-core: 26%;
-    --pf-fade: 72%;
-  }
+  .vg-feat-bg { position: absolute; top: 0; right: 0; bottom: 0; width: 40%;
+    background: linear-gradient(100deg, transparent, var(--mist) 60%);
+    pointer-events: none; }
   .vg-feat-list { list-style: none; padding: 0; margin: 2.5rem 0 0; max-width: 56rem; }
-  @media (max-width: 800px) {
-    .vg-feat-art { --pf-w: clamp(360px, 110vw, 480px); --pf-right: -36vw; --pf-y: 76%; --pf-opacity: 0.6; }
-  }
   .vg-feat { display: grid; grid-template-columns: auto 1fr; gap: 1.6rem; align-items: baseline;
     padding: 2rem 0; border-top: 1px solid var(--line); transition: padding-left .35s var(--ease); }
   .vg-feat:hover { padding-left: 1rem; }
-  .vg-feat-n { font-size: var(--text-2xl); color: var(--clay); }
-  .vg-feat-text { font-size: var(--display-2); color: var(--green); line-height: 1.3; }
+  .vg-feat-text { font-size: var(--display-2); color: var(--leaf); line-height: 1.3; }
   .vg-feat:nth-child(even) { padding-left: clamp(0px, 4vw, 70px); }
 
-  /* PRIVACY BAND */
-  .vg-band { position: relative; background: linear-gradient(155deg, var(--forest-900), var(--green) 90%); overflow: hidden; }
-  .vg-band-edge { position: absolute; top: -1px; left: 0; right: 0; height: 110px; background: var(--cream); clip-path: ellipse(60% 100% at 50% 0%); }
-  .vg-privacy { position: relative; z-index: 1; }
-  .vg-privacy-head { font-size: var(--display-1); color: var(--moon); line-height: 1.2; margin-top: 1.5rem; }
+  /* PRIVACY BAND — luminous light ── */
+  .vg-band { background: var(--paper); padding-block: clamp(120px, 20vh, 220px); }
+  .vg-privacy { max-width: 64ch; }
+  .vg-privacy-head { font-size: var(--display-1); color: var(--ink); line-height: 1.2; margin-top: 1.5rem; }
 
   /* CLOSING */
+  .vg-end { background: var(--paper); padding-block: clamp(110px, 18vh, 260px); }
   .vg-end-inner { display: flex; flex-direction: column; align-items: flex-start; gap: 1.6rem; }
-  .vg-end-line { font-size: var(--display-2); color: var(--green); max-width: 20ch; }
+  .vg-end-line { font-size: var(--display-2); color: var(--leaf); max-width: 20ch; }
   .vg-end-actions { display: flex; gap: 1.8rem; flex-wrap: wrap; }
 </style>
