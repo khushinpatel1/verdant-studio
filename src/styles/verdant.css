@@ -143,11 +143,11 @@
 
 [data-skin="verdant"] ::selection { background: var(--moss); color: var(--moon); }
 
-/* Tactile paper grain over the whole world — barely there. */
+/* Tactile paper grain over the whole world — barely there. (no mix-blend for perf) */
 [data-skin="verdant"] body::after {
   content: "";
   position: fixed; inset: 0; z-index: 9000;
-  pointer-events: none; opacity: 0.05; mix-blend-mode: multiply;
+  pointer-events: none; opacity: 0.05;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
@@ -241,7 +241,7 @@
    watercolor top edge. Subtle by design — contrast on the light type is kept. */
 [data-skin="verdant"] :is(.vh-band, .ve-band, .vg-band, .v-footer) { isolation: isolate; }
 
-/* living pigment — soft blooms of layered greens, breathing very slowly */
+/* living pigment — soft blooms of layered greens (static for perf) */
 [data-skin="verdant"] :is(.vh-band, .ve-band, .vg-band, .v-footer)::before {
   content: ""; position: absolute; inset: -12% -6%; z-index: 0; pointer-events: none;
   background:
@@ -249,18 +249,13 @@
     radial-gradient(44% 52% at 82% 62%, color-mix(in srgb, var(--moss) 34%, transparent), transparent 72%),
     radial-gradient(40% 42% at 60% 12%, color-mix(in srgb, var(--forest-900) 82%, transparent), transparent 70%),
     radial-gradient(52% 50% at 34% 92%, color-mix(in srgb, var(--green) 60%, transparent), transparent 72%);
-  mix-blend-mode: soft-light; opacity: 0.85;
-  animation: v-band-wash 32s var(--ease-soft) infinite alternate;
+  opacity: 0.85;
 }
-/* paper tooth — barely-there grain so the field has a surface */
+/* paper tooth — barely-there grain so the field has a surface (no blending for perf) */
 [data-skin="verdant"] :is(.vh-band, .ve-band, .vg-band, .v-footer)::after {
   content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
-  opacity: 0.07; mix-blend-mode: overlay; background-size: 200px 200px;
+  opacity: 0.07; background-size: 200px 200px;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='b'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23b)'/%3E%3C/svg%3E");
-}
-@keyframes v-band-wash {
-  0%   { transform: translate3d(-2%, -1.5%, 0) scale(1.06); }
-  100% { transform: translate3d(2.5%, 2%, 0) scale(1.15); }
 }
 /* keep the band content + cream edge above the pigment layers */
 [data-skin="verdant"] :is(.vh-band, .ve-band, .vg-band, .v-footer) > * { position: relative; z-index: 1; }

@@ -122,6 +122,14 @@ export function useReactiveField<S>(opts: {
       if (document.hidden) { cancelAnimationFrame(raf); raf = 0; lastTs = 0; }
       else if (!reduce && !raf) raf = requestAnimationFrame(frame);
     };
+    let isVisible = true;
+    const observer = new IntersectionObserver(([entry]) => {
+      isVisible = entry.isIntersecting;
+      if (!isVisible) { cancelAnimationFrame(raf); raf = 0; lastTs = 0; }
+      else if (!reduce && !raf && !document.hidden) raf = requestAnimationFrame(frame);
+    }, { threshold: 0.1 });
+    observer.observe(cv);
+
     window.addEventListener("resize", onResize);
     window.visualViewport?.addEventListener("resize", onViewportShift);
     window.addEventListener("orientationchange", onViewportShift);
@@ -136,6 +144,7 @@ export function useReactiveField<S>(opts: {
     return () => {
       cancelAnimationFrame(raf);
       clearTimeout(vvTimer);
+      observer.disconnect();
       window.removeEventListener("resize", onResize);
       window.visualViewport?.removeEventListener("resize", onViewportShift);
       window.removeEventListener("orientationchange", onViewportShift);

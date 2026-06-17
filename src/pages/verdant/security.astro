@@ -16,25 +16,31 @@ const principles = [
     n: "01",
     head: "Encrypted before it leaves your hands.",
     body:
-      "Your numbers are encrypted on your device before they ever sync. The server holds ciphertext and nothing else — there is nothing on it for anyone to read, including us.",
+      "Your numbers are encrypted on your device before they ever sync. The server holds ciphertext and nothing else — there is nothing on it for anyone to read, including us. The cipher suite, key derivation, and full key material are documented in the GitHub repo so you can verify the implementation.",
   },
   {
     n: "02",
     head: "Local-first, not cloud-first.",
     body:
-      "Your data lives on your device and works offline. The network is a convenience for syncing, never a requirement for using what's yours.",
+      "Your data lives on your device and works offline. The network is a convenience for syncing, never a requirement for using what's yours. If the network goes down, your garden grows without it.",
   },
   {
     n: "03",
-    head: "Nothing watching the ledger.",
+    head: "Threat model: what this defends against.",
     body:
-      "No ads, no analytics SDKs, no third parties in the data path. The business model is the old one: you pay for the software. That's the whole arrangement.",
+      "A server breach exposes nothing — only encrypted blobs. Employee access to the server reads the same — gibberish. A court order served to Verdant yields no plaintext keys or account mapping. The only data that exists in readable form is the metadata of sync: account IDs and timestamps. Everything else is keyed so tightly to your device that even we can't unlock it.",
   },
   {
     n: "04",
+    head: "Nothing watching the ledger.",
+    body:
+      "No ads, no analytics SDKs, no third parties in the data path. The business model is the old one: you pay for the software. That's the whole arrangement. Your transactions never leave your device unless you send them to your own bank.",
+  },
+  {
+    n: "05",
     head: "If it can be read here, that's a bug.",
     body:
-      "Privacy isn't a setting to switch on — it's the default the software is built around. Anything that exposes your data counts as a defect, not a feature.",
+      "Privacy isn't a setting to switch on — it's the default the software is built around. Anything that exposes your data counts as a defect, not a feature. Report it: we fix bugs in private, not in a public changelog.",
   },
 ];
 
@@ -77,16 +83,18 @@ const headers = [
     ))}
   </section>
 
-  <!-- ── POSTURE: real response headers — luminous ── -->
+  <!-- ── POSTURE: real response headers for this site — luminous ── -->
   <section class="vs-posture vs-sec">
     <span class="vh-num" aria-hidden="true">02</span>
     <div class="vs-posture-head" data-v-reveal>
-      <p class="v-label">Checkable, right now</p>
-      <p class="vs-posture-intro v-display">What this very page sends back.</p>
+      <p class="v-label">This site's security posture</p>
+      <p class="vs-posture-intro v-display">Hardened by design, not by accident.</p>
       <p class="vs-posture-note">
-        Open your browser's network inspector on this page. These are the
-        security headers every response carries — not a promise, a fact you can
-        read off the wire.
+        The marketing site itself is hardened. Open your browser's network inspector on this
+        page — these are the security headers every response carries. (Garden, the app, is
+        encrypted at the application layer, not the HTTP layer; those headers prove nothing
+        about the app's encryption, only that the landing page won't let itself be stolen
+        wholesale.)
       </p>
     </div>
     <ul class="vs-headers">
