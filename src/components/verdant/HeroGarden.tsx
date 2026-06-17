@@ -54,14 +54,16 @@ export default function HeroGarden({ className = "", style = {} }: HeroGardenPro
       );
     };
 
-    const rafId = setInterval(() => {
+    let rafId = 0;
+    const updateParallax = () => {
       if (svgRef.current) {
-        // Gentle parallax — subtle, not dramatic
         const translateX = (pointerX - 0.5) * 10;
         const translateY = (pointerY - 0.5) * 10;
         svgRef.current.style.transform = `translate(${translateX}px, ${translateY}px)`;
       }
-    }, 16);
+      rafId = requestAnimationFrame(updateParallax);
+    };
+    rafId = requestAnimationFrame(updateParallax);
 
     container.addEventListener("mousemove", handleMouseMove);
     container.addEventListener("mouseleave", handleMouseLeave);
@@ -140,15 +142,6 @@ export default function HeroGarden({ className = "", style = {} }: HeroGardenPro
         }}
       >
         {/* Define vine path — a growing organic curve with blooms */}
-        <defs>
-          <filter id="bloom-glow">
-            <feGaussianBlur stdDeviation="1.5" result="coloredBlur" />
-            <feMerge>
-              <feMergeNode in="coloredBlur" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
-        </defs>
 
         {/* Main vine — draws itself on load */}
         <path
@@ -179,10 +172,10 @@ export default function HeroGarden({ className = "", style = {} }: HeroGardenPro
         />
 
         {/* Blooms along the vine */}
-        <circle cx="450" cy="280" data-bloom data-r="4" fill="var(--leaf)" opacity="0" filter="url(#bloom-glow)" />
-        <circle cx="600" cy="200" data-bloom data-r="3.5" fill="var(--leaf)" opacity="0" filter="url(#bloom-glow)" />
-        <circle cx="800" cy="120" data-bloom data-r="5" fill="var(--leaf)" opacity="0" filter="url(#bloom-glow)" />
-        <circle cx="950" cy="180" data-bloom data-r="3" fill="var(--leaf)" opacity="0" filter="url(#bloom-glow)" />
+        <circle cx="450" cy="280" data-bloom data-r="4" fill="var(--leaf)" opacity="0" />
+        <circle cx="600" cy="200" data-bloom data-r="3.5" fill="var(--leaf)" opacity="0" />
+        <circle cx="800" cy="120" data-bloom data-r="5" fill="var(--leaf)" opacity="0" />
+        <circle cx="950" cy="180" data-bloom data-r="3" fill="var(--leaf)" opacity="0" />
 
         {/* Leaves — ellipses along the vine */}
         <ellipse cx="350" cy="350" rx="3" ry="6" fill="var(--moss)" opacity="0" data-leaf transform="rotate(45 350 350)" />

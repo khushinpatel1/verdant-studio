@@ -22,9 +22,21 @@ export default function Cursor() {
       b.style.transform = `translate(${bx}px, ${by}px)`;
       raf = requestAnimationFrame(tick);
     };
+    const onVisibilityChange = () => {
+      if (document.hidden) {
+        cancelAnimationFrame(raf);
+      } else {
+        raf = requestAnimationFrame(tick);
+      }
+    };
     window.addEventListener("mousemove", onMove);
+    document.addEventListener("visibilitychange", onVisibilityChange);
     raf = requestAnimationFrame(tick);
-    return () => { window.removeEventListener("mousemove", onMove); cancelAnimationFrame(raf); };
+    return () => {
+      window.removeEventListener("mousemove", onMove);
+      document.removeEventListener("visibilitychange", onVisibilityChange);
+      cancelAnimationFrame(raf);
+    };
   }, []);
 
   return (

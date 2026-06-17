@@ -70,7 +70,7 @@ export const garden = {
     tab: "Grove",
     img: "/verdant/garden/garden-grove.webp",
     line: "An assistant that reads your real numbers — and never sends them anywhere.",
-    body: "Ask anything about your money. Grove answers from your actual accounts, reads them on your device, and sends nothing out to do it. The intelligence comes to your data — not the other way around.",
+    body: "Ask anything about your money. Ask 'How long until I pay off my Amex?' and Grove answers with the month and year, pulled from your actual balances and payment history. It reads your accounts on your device and sends nothing out to do it. The intelligence comes to your data — not the other way around.",
   },
   notes: [
     "The server only ever holds ciphertext. Your device encrypts everything before it leaves.",
