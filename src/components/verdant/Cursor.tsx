@@ -15,6 +15,7 @@ export default function Cursor() {
     const b = blot.current!;
     let mx = innerWidth / 2, my = innerHeight / 2;
     let bx = mx, by = my, raf = 0;
+    let isVisible = true;
 
     const onMove = (e: MouseEvent) => { mx = e.clientX; my = e.clientY; };
     const tick = () => {
@@ -26,15 +27,26 @@ export default function Cursor() {
       if (document.hidden) {
         cancelAnimationFrame(raf);
       } else {
-        raf = requestAnimationFrame(tick);
+        raf = isVisible ? requestAnimationFrame(tick) : 0;
       }
     };
+    const observer = new IntersectionObserver((entries) => {
+      isVisible = entries[0].isIntersecting;
+      if (isVisible) {
+        raf = requestAnimationFrame(tick);
+      } else {
+        cancelAnimationFrame(raf);
+      }
+    }, { threshold: 0 });
+    observer.observe(b);
+
     window.addEventListener("mousemove", onMove);
     document.addEventListener("visibilitychange", onVisibilityChange);
     raf = requestAnimationFrame(tick);
     return () => {
       window.removeEventListener("mousemove", onMove);
       document.removeEventListener("visibilitychange", onVisibilityChange);
+      observer.disconnect();
       cancelAnimationFrame(raf);
     };
   }, []);
