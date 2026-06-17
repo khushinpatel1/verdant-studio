@@ -1,6 +1,6 @@
 # 006 — Luminous Botanical-Minimal: Raze & Rebuild
 
-Status: IN PROGRESS (Phase 1 DONE 2026-06-15, commit 4dc4b53, build+check green, pushed/deploying. Phases 2–3 PENDING — rest of site still on OLD dark/koson language until run.)
+Status: DONE (Phase 1 2026-06-15 commit 4dc4b53, Phase 2–3 2026-06-16 final commit 802f5a4. All pages luminous. Build+check green. Live on v2.)
 Tier: Haiku-executable (all creative decisions are pre-made below; transcribe, don't invent).
 Dispatched by: partnership · Opus · plan session, 2026-06-15.
 
