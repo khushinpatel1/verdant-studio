@@ -23,9 +23,9 @@ Astro 5 + React 19 islands. `npm run dev` (port 4321) · `npm run build` ·
 Deploys from the `v1` branch → Cloudflare Pages project `verdant`. Read-only by default,
 but can be edited deliberately (see "Working style" below).
 
-**v2 (luminous botanical-minimal, in progress):** Will deploy from `main` branch →
-Cloudflare Pages project `verdant-studio-v2` (you must create this in your Cloudflare
-dashboard — it will auto-watch the `main` branch once set up). Lives at `verdant-studio-v2.pages.dev`.
+**v2 (luminous botanical-minimal, in progress):** Deploys from `main` branch →
+Cloudflare Pages project `verdant-studio-v2` (created 2026-06-15, watching `main` branch).
+Lives at `https://verdant-studio-v2.pages.dev/`.
 
 **Workflow:** `.github/workflows/deploy.yml` conditionally deploys based on branch.
 When you push:
@@ -48,8 +48,8 @@ Headless Chromium here is network-blocked — **do not start a dev server**. Ins
 
 ## Working style
 - Commit in logical chunks.
-- Model tiering: Sonnet/Haiku for mechanical work; reserve Opus for hard
-  graphics/reasoning (canvas/WebGL shaders, animation timing).
+- Model tiering per `~/.claude/CLAUDE.md`: Haiku executes, Sonnet escalates per stalled step,
+  Opus only on KP's explicit call for genuine cross-cutting architecture/redesign (never agent framing).
 - Keep the existing canvas perf work intact — 30fps idle-throttle and
   `visibilitychange` pause on all canvases (SandGarden, EthosWater,
   GrowingGarden, etc.).
