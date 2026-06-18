@@ -22,7 +22,7 @@ export const nav = {
     { label: "Ethos", href: "/verdant/ethos" },
     { label: "People", href: "/verdant/team" },
   ],
-  cta: { label: "Try Garden", href: "#waitlist" },
+  cta: { label: "Start Garden", href: "https://garden.khushinpatel1.workers.dev" },
 };
 
 export type Screen = { tab: string; img: string; line: string; body: string };
@@ -42,9 +42,9 @@ export const garden = {
   cover: "/verdant/garden/garden-home.webp",
   // vault-lock.jpg — used as back-phone teaser on homepage (intriguing encrypted-garden hint)
   vaultScreen: "/verdant/garden/vault-lock.jpg",
-  url: "#waitlist",
+  url: "https://garden.khushinpatel1.workers.dev",
   // Pricing signal — copy only, no payment system yet. People pay for it; that's the model.
-  pricing: "$48 a year at launch. No free tier mining your data to subsidize it — join the waitlist.",
+  pricing: "Free during the beta. No ads, no data sold — that doesn't change.",
   onboarding: "Start fresh or import a CSV — your data, your device.",
   accountConnection: "Manual CSV import for now. Bank sync coming.",
   groveExample: "Ask 'How long until I pay off my Amex?' — Grove answers with the month and year, from your actual balances, sent nowhere.",
