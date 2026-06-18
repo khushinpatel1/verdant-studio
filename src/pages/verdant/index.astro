@@ -128,31 +128,31 @@ import { garden, ethos } from "../../data/verdant";
     -webkit-mask-image: linear-gradient(100deg, transparent, #000 38%);
             mask-image: linear-gradient(100deg, transparent, #000 38%);
   }
-  .vh-hero-text { grid-column: 1 / 7; position: relative; z-index: 1; padding-block: 6rem 2rem; }
+  .vh-hero-text { grid-column: 1 / 7; position: relative; z-index: 1; padding-block: 6rem 2rem; overflow-x: hidden; }
   .vh-hero-media { grid-column: 8 / 13; position: relative; z-index: 1; display: flex; justify-content: center; align-items: center; padding-block: 4rem; }
-  .vh-hero-head { font-size: var(--display-1); color: var(--ink); margin-top: 2.4rem; line-height: 1.05; }
+  .vh-hero-head { font-size: var(--display-1); color: var(--ink); margin-top: 2.4rem; line-height: 1.05; max-width: 100%; overflow-wrap: break-word; }
   .vh-hero-sub { font-family: var(--font-display); font-size: var(--text-xl); line-height: 1.55; color: var(--ink); max-width: 38ch; margin-top: 2rem; }
   .vh-hero-actions { display: flex; gap: 1.6rem; flex-wrap: wrap; margin-top: 2.6rem; }
   .vh-num--hero { top: auto; bottom: clamp(2rem, 6vh, 4rem); }
   @media (max-width: 860px) { .vh-hero-text { grid-column: 1 / 13; } .vh-hero-media { display: none; } }
 
   /* MANIFESTO — axis flips RIGHT. Lede pinned right, creed below it. */
-  .vh-manifesto { background: var(--paper-soft); padding-block: clamp(90px, 16vh, 220px); row-gap: 3.5rem; }
+  .vh-manifesto { background: var(--paper-soft); padding-block: clamp(90px, 16vh, 220px); row-gap: 3.5rem; overflow-x: hidden; }
   .vh-manifesto-lede { grid-column: 6 / 13; }
-  .vh-manifesto-head { font-size: var(--display-2); color: var(--ink); max-width: 16ch; margin-top: 1.2rem; line-height: 1.1; }
+  .vh-manifesto-head { font-size: var(--display-2); color: var(--ink); max-width: 16ch; margin-top: 1.2rem; line-height: 1.1; overflow-wrap: break-word; }
   .vh-creed { grid-column: 6 / 12; list-style: none; padding: 0; margin: 0; }
   .vh-creed-item { font-family: var(--font-display); font-size: var(--text-lg); line-height: 1.45; color: var(--ink-soft);
     padding: 1.4rem 0; border-top: 1px solid var(--line); transition: padding-left .35s var(--ease), color .35s; }
   .vh-creed-item:hover { padding-left: 0.8rem; color: var(--ink); }
 
   /* WORK — text left (cols 1-6), phones right (cols 7-13), real weight. */
-  .vh-work { background: var(--paper); padding-block: clamp(110px, 18vh, 260px); align-items: center; row-gap: 4rem; }
+  .vh-work { background: var(--paper); padding-block: clamp(110px, 18vh, 260px); align-items: center; row-gap: 4rem; overflow-x: hidden; }
   .vh-garden { grid-column: 1 / 13; display: grid; grid-template-columns: minmax(0, 1fr) auto;
     gap: clamp(3rem, 8vw, 9rem); align-items: center; color: inherit; text-decoration: none; }
   .vh-garden-text { max-width: 46ch; }
   .vh-product-meta { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 0.6rem 1rem; }
   .vh-product-year { font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: 0.14em; color: var(--ink-soft); }
-  .vh-garden-name { color: var(--leaf); font-size: var(--display-1); margin: 1rem 0; transition: color .3s; line-height: 1.05; }
+  .vh-garden-name { color: var(--leaf); font-size: var(--display-1); margin: 1rem 0; transition: color .3s; line-height: 1.05; max-width: 100%; overflow-wrap: break-word; }
   .vh-garden:hover .vh-garden-name { color: var(--leaf-deep); }
   .vh-product-line { font-family: var(--font-display); font-size: var(--text-xl); color: var(--ink); margin-bottom: 1.2rem; line-height: 1.4; }
   .vh-product-blurb { color: var(--ink-soft); line-height: 1.75; max-width: 46ch; margin-bottom: 1.8rem; font-size: var(--text-lg); }
@@ -174,15 +174,15 @@ import { garden, ethos } from "../../data/verdant";
   .vh-garden:hover .vh-phone--back { transform: rotate(9deg) scale(0.92) translateY(-4px); }
 
   /* QUOTE — left-pinned, mark hangs into the left gutter. Not centered. */
-  .vh-quote { background: var(--paper); padding-block: clamp(90px, 16vh, 220px); }
+  .vh-quote { background: var(--paper); padding-block: clamp(90px, 16vh, 220px); overflow-x: hidden; }
   .vh-quote-mark { grid-column: 1 / 2; grid-row: 1; align-self: start; justify-self: start;
     font-size: var(--text-4xl); line-height: 0.4; color: var(--sage); margin-left: -0.4rem; }
-  .vh-quote-text { grid-column: 2 / 10; font-size: var(--display-2); line-height: 1.32; color: var(--ink); margin-bottom: 1.6rem; }
+  .vh-quote-text { grid-column: 2 / 10; font-size: var(--display-2); line-height: 1.32; color: var(--ink); margin-bottom: 1.6rem; max-width: 100%; overflow-wrap: break-word; }
   .vh-quote-by { grid-column: 2 / 10; }
 
   /* CTA — left-pinned on a dawn wash. Not a centered stack. */
-  section.vh-cta-band { background: linear-gradient(135deg, var(--mist), var(--dawn)); padding-block: clamp(120px, 20vh, 220px); align-content: center; }
-  .vh-cta-title { grid-column: 1 / 9; font-size: var(--display-1); color: var(--ink); line-height: 1.05; }
+  section.vh-cta-band { background: linear-gradient(135deg, var(--mist), var(--dawn)); padding-block: clamp(120px, 20vh, 220px); align-content: center; overflow-x: hidden; }
+  .vh-cta-title { grid-column: 1 / 9; font-size: var(--display-1); color: var(--ink); line-height: 1.05; max-width: 100%; overflow-wrap: break-word; }
   .vh-cta-link { grid-column: 1 / 9; margin-top: 2rem; }
 
   /* Responsive — collapse to a single column, drop the off-axis offsets. */

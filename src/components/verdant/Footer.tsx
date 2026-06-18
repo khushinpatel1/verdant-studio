@@ -49,16 +49,16 @@ export default function Footer({ tone = "light" }: { tone?: "light" | "cream" })
         .v-footer-inner { position: relative; z-index: 1; display: flex; flex-wrap: wrap;
           gap: 2.5rem 4rem; justify-content: space-between; align-items: flex-start; }
         .v-footer-mark { position: relative; display: inline-flex; align-items: center; font-size: var(--text-xl); color: var(--leaf); }
-        .v-footer-tag { font-family: var(--font-display); font-size: var(--text-lg); color: var(--ink-soft); margin-top: 0.4rem; }
+        .v-footer-tag { font-family: var(--font-display); font-size: var(--text-lg); color: var(--ink); margin-top: 0.4rem; }
         .v-footer-cols { display: flex; gap: clamp(2.5rem,6vw,5rem); }
         .v-footer-col { display: flex; flex-direction: column; gap: 0.7rem; }
         .v-footer-col .v-label { margin-bottom: 0.4rem; color: var(--ink); }
         .v-footer-link { font-family: var(--font-body); font-size: var(--text-sm); color: var(--ink); transition: color .25s; }
         .v-footer-link:hover { color: var(--leaf); }
-        .v-footer-meta { font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-soft); }
+        .v-footer-meta { font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink); }
         .v-footer-legal { position: relative; z-index: 1; display: flex; flex-wrap: wrap; gap: 0.6rem 2rem; justify-content: space-between;
           margin-top: clamp(3rem,7vh,5rem); padding-top: 1.6rem; border-top: 1px solid rgba(22, 36, 27, 0.1);
-          font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); }
+          font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink); }
 
         /* the stray stone */
         .v-footer-egg { display: inline-block; width: 11px; height: 11px; margin-left: 8px; vertical-align: 3px;
