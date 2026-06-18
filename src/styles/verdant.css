@@ -83,7 +83,7 @@
   --cream:      var(--paper);       /* body bg */
   --parchment:  var(--paper-soft);  /* .v-band--paper bg */
   --forest:     var(--ink);         /* .v-cta resting color, dark text on gold */
-  --clay:       var(--moss);        /* .v-label kicker color */
+  --clay:       var(--ink-soft);    /* .v-label kicker color — ink-soft ≈7:1 on paper */
   --moon:       var(--paper);       /* ::selection text, .v-cta--light */
   --moss-300:   var(--sage);        /* .v-label--light on dark */
   --green:      var(--leaf);        /* band pigment bloom */
