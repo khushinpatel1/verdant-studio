@@ -1,8 +1,13 @@
 # 009 — Verdant site visual overhaul (layout bugs + asset/visual deficit + type)
 
-**Status:** IN PROGRESS — overnight build 2026-06-17. KP decisions locked: **Hybrid** look (cream
-base + moonlit dark feature moments + botanical accents), **both** asset routes (slice PNGs +
-procedural SVG + Canva/Figma regen — "more assets the better"), **execute everything** tonight.
+**Status:** SHIPPED (overnight 2026-06-17, main, CF Pages auto-builds). KP decisions locked:
+**Hybrid** look, **both** asset routes, execute everything. DONE: B1+B2 bugs (fe75f4f); ink kit +
+3 painted webp assets + per-page density across all pages (903d408); type specimen for review
+(5d7762c). Phase 2 type swap = KP's call after seeing /verdant/type-specimen. Phase 3 motion =
+lightly covered (new sections animate via existing choreography; pointer-reactivity extension still open).
+Asset route note: Canva/Figma MCPs are template/design generators, NOT illustration engines — no
+real txt2img tool available, so painted PNG crops + procedural SVG carried the visuals. LLM-authored
+bespoke SVG art tops out at "decent accent," not "commissioned" — the painted packs are the quality source.
 See EXECUTION block at bottom.
 **Tier:** Plan = this doc (Opus). Execution = Haiku per phase, Sonnet only on a stalled step.
 **Source:** KP, 2026-06-17, with screenshots. Two confirmed bugs + a broad "it's bare and reads as
