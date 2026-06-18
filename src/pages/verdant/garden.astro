@@ -4,6 +4,11 @@ import InkGrowth from "../../components/verdant/InkGrowth";
 import Footer from "../../components/verdant/Footer";
 import GardenLive from "../../components/verdant/GardenLive.astro";
 import GrowingGarden from "../../components/verdant/GrowingGarden";
+import Moon from "../../components/verdant/ink/Moon";
+import Enso from "../../components/verdant/ink/Enso";
+import BlossomBranch from "../../components/verdant/ink/BlossomBranch";
+import MountainRidge from "../../components/verdant/ink/MountainRidge";
+import MistLayer from "../../components/verdant/ink/MistLayer";
 import { garden } from "../../data/verdant";
 ---
 
@@ -46,8 +51,15 @@ import { garden } from "../../data/verdant";
     <div class="vg-screens">
       {garden.screens.map((s, i) => (
         <div class={`v-wrap vg-screen${i % 2 ? " vg-screen--alt" : ""}`} data-v-reveal>
+          {/* P3: leaf-beside-image — alternate side/component per row for asymmetry */}
           <div class="vg-screen-media">
-            <div class="vg-phone"><div class="vg-phone-screen"><img src={s.img} alt={`Garden — ${s.tab}`} loading="lazy" width="780" height="1688" /></div></div>
+            <div class="vg-phone vh-leaf-figure">
+              <div class="vg-phone-screen"><img src={s.img} alt={`Garden — ${s.tab}`} loading="lazy" width="780" height="1688" /></div>
+              {i % 2 === 0
+                ? <InkGrowth client:visible side="right" className="vh-leaf-accent vg-leaf-right" aria-hidden="true" />
+                : <BlossomBranch client:visible side="left" class="vh-leaf-accent vg-leaf-left" aria-hidden="true" />
+              }
+            </div>
           </div>
           <div class="vg-screen-text">
             <span class="v-label v-label--bare">0{i + 1} — {s.tab}</span>
@@ -75,7 +87,10 @@ import { garden } from "../../data/verdant";
   </section>
 
   <!-- ── WHAT STAYS YOURS — luminous light fields ── -->
+  <!-- P2: Enso watermark behind the first feature numeral -->
   <section class="vg-features">
+    <span class="vh-num" aria-hidden="true">04</span>
+    <Enso client:visible class="vh-ink-watermark vg-feat-enso" aria-hidden="true" />
     <div class="vg-feat-bg" aria-hidden="true"></div>
     <div class="v-wrap">
       <p class="v-label" data-v-reveal>What stays yours</p>
@@ -100,13 +115,37 @@ import { garden } from "../../data/verdant";
     </div>
   </section>
 
+  <!-- ── P1: INK-PANELS — moonlit moment, app philosophy ── -->
+  <!-- dark painted section: gold-framed scroll-panel gallery behind a legibility scrim -->
+  <section class="vh-night-feature v-night vg-inkpanels">
+    <div class="vh-night-bg" style="background-image:url(/verdant/paint/ink-panels.webp)"></div>
+    <div class="vh-night-scrim"></div>
+    <Moon client:visible class="vh-night-moon" />
+    <div class="vh-night-copy vg-inkpanels-copy">
+      <p class="v-label v-label--light" data-v-reveal>The philosophy</p>
+      <h2 class="v-display vg-inkpanels-head" data-v-reveal style="--d:0.08s">
+        Your finances,<br /><em>composed</em> — not surveilled.
+      </h2>
+      <p class="vg-inkpanels-body" data-v-reveal style="--d:0.14s">
+        Garden keeps a garden's pace. Nothing extracts attention;
+        nothing sells your numbers on. Just the picture of your money,
+        held privately and given back to you whole.
+      </p>
+    </div>
+  </section>
+
   <!-- ── PRIVACY — luminous light field ── -->
+  <!-- P2: Mountain+Mist atmospheric band at the cream section's bottom edge -->
   <section class="vg-band">
     <div class="v-wrap vg-privacy">
       <p class="v-label" data-v-reveal>Plainly</p>
       <h2 class="v-display vg-privacy-head" data-v-reveal>
         Your numbers are locked<br />before they leave your hands.<br />The server holds the <span style="color: var(--leaf);">ciphertext</span>.<br />And can't read a cent of it.
       </h2>
+    </div>
+    <div class="vh-ink-band vg-band-inkband" aria-hidden="true">
+      <MountainRidge client:visible class="vg-band-mountain" />
+      <MistLayer client:visible class="vg-band-mist" />
     </div>
   </section>
 
@@ -223,4 +262,83 @@ import { garden } from "../../data/verdant";
   .vg-waitlist-input::placeholder { color: var(--ink-soft); opacity: 0.6; }
   .vg-waitlist-input:focus { outline: none; border-bottom-color: var(--leaf); }
   .vg-end-actions { display: flex; gap: 1.8rem; flex-wrap: wrap; }
+
+  /* ── P3: Leaf-beside-image — tour phone frames ── */
+  /* Right-side InkGrowth (rows 0, 2): emerges from the right edge of the phone */
+  .vg-leaf-right {
+    right: -22%;
+    left: auto;
+    top: 10%;
+    bottom: auto;
+    width: 42%;
+    opacity: 0.78;
+  }
+  /* Left-side BlossomBranch (row 1): emerges from the left edge of the phone */
+  .vg-leaf-left {
+    left: -18%;
+    right: auto;
+    top: 15%;
+    bottom: auto;
+    width: 38%;
+    opacity: 0.80;
+  }
+
+  /* ── P2: Enso watermark on the features section ── */
+  /* Position near the top-left, behind the first numeral */
+  .vg-feat-enso {
+    top: clamp(2rem, 5vh, 4rem);
+    left: clamp(20px, 5vw, 72px);
+    width: clamp(160px, 22vw, 260px);
+    aspect-ratio: 1;
+  }
+  /* Features section needs position:relative for the absolute vh-num and Enso */
+  .vg-features { position: relative; }
+
+  /* ── P1: Ink-panels moonlit section ── */
+  /* Override .v-night's background so the painted webp shows through */
+  .vg-inkpanels {
+    background: transparent;
+  }
+  .vg-inkpanels-copy {
+    max-width: 52ch;
+    padding-left: clamp(0px, 2vw, 28px);
+  }
+  .vg-inkpanels-head {
+    font-size: clamp(1.9rem, 4.2vw, 3.4rem);
+    color: var(--night-ink);
+    line-height: 1.1;
+    margin-top: 1.2rem;
+    margin-bottom: 0;
+  }
+  .vg-inkpanels-body {
+    font-size: var(--text-lg);
+    line-height: 1.65;
+    color: var(--night-soft);
+    max-width: 46ch;
+    margin-top: 1.4rem;
+  }
+  @media (max-width: 860px) {
+    .vg-inkpanels-head { font-size: clamp(1.6rem, 5.5vw, 2.4rem); }
+    .vg-inkpanels-body { font-size: var(--text-base); }
+  }
+
+  /* ── P2: Mountain+Mist band on the privacy section ── */
+  /* Extra bottom padding so content clears the atmospheric band */
+  .vg-band { padding-bottom: clamp(160px, 24vh, 300px); position: relative; }
+  .vg-band-mountain {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    color: var(--moss);
+    opacity: 0.50;
+  }
+  .vg-band-mist {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    color: var(--sage);
+    opacity: 0.60;
+  }
 </style>

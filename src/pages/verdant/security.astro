@@ -1,6 +1,9 @@
 ---
 import Verdant from "../../layouts/Verdant.astro";
 import Footer from "../../components/verdant/Footer";
+import Enso from "../../components/verdant/ink/Enso";
+import MountainRidge from "../../components/verdant/ink/MountainRidge";
+import MistLayer from "../../components/verdant/ink/MistLayer";
 import { brand } from "../../data/verdant";
 
 // SECURITY — the proof page. Every claim here restates a standing Garden/studio
@@ -69,9 +72,23 @@ const headers = [
     </div>
   </section>
 
+  <!-- ── P1: PRINCIPLES DARK MOMENT — garden-band feature section ── -->
+  <section class="vh-night-feature v-night vs-principles-intro">
+    <div class="vh-night-bg" style="background-image:url(/verdant/paint/garden-band.webp)"></div>
+    <div class="vh-night-scrim"></div>
+    <div class="vh-night-copy vs-principles-intro-copy">
+      <p class="v-label v-label--light">Five principles</p>
+      <h2 class="v-display vs-principles-intro-head">
+        How your data<br />stays yours.
+      </h2>
+    </div>
+  </section>
+
   <!-- ── PRINCIPLES — asymmetric grid ── -->
+  <!-- P2: Enso watermark behind principle numerals -->
   <section class="vs-principles vs-sec">
     <span class="vh-num" aria-hidden="true">01</span>
+    <Enso client:visible class="vh-ink-watermark vs-principles-enso" aria-hidden="true" />
     {principles.map((p, i) => (
       <div class={`vs-row${i % 2 ? " vs-row--alt" : ""}`} data-v-reveal style={`--d:${i * 0.05}s`}>
         <span class="v-label v-label--bare">{p.n}</span>
@@ -84,8 +101,13 @@ const headers = [
   </section>
 
   <!-- ── POSTURE: real response headers for this site — luminous ── -->
+  <!-- P2: Mountain/Mist atmospheric band at posture section bottom -->
   <section class="vs-posture vs-sec">
     <span class="vh-num" aria-hidden="true">02</span>
+    <div class="vh-ink-band vs-posture-inkband" aria-hidden="true">
+      <MountainRidge client:visible class="vs-posture-mountain" />
+      <MistLayer client:visible class="vs-posture-mist" />
+    </div>
     <div class="vs-posture-head" data-v-reveal>
       <p class="v-label">This site's security posture</p>
       <p class="vs-posture-intro v-display">Hardened by design, not by accident.</p>
@@ -124,6 +146,57 @@ const headers = [
 
   <Footer client:visible />
 </Verdant>
+
+<style>
+  /* ── P1: Dark garden-band feature section ── */
+  .vs-principles-intro {
+    background: transparent;
+    padding-block: clamp(80px, 12vh, 160px);
+    min-height: auto;
+  }
+  .vs-principles-intro-copy {
+    max-width: 56ch;
+    padding-left: clamp(20px, 5vw, 72px);
+  }
+  .vs-principles-intro-head {
+    font-size: clamp(1.9rem, 4.2vw, 3.6rem);
+    color: var(--night-ink);
+    line-height: 1.1;
+    margin-top: 1.2rem;
+    margin-bottom: 0;
+  }
+
+  /* ── P2: Enso watermark on principles section ── */
+  .vs-principles-enso {
+    top: clamp(2.5rem, 6vh, 5rem);
+    left: clamp(20px, 5vw, 72px);
+    width: clamp(180px, 26vw, 280px);
+    aspect-ratio: 1;
+  }
+
+  /* ── P2: Mountain/Mist band at posture section bottom ── */
+  .vs-posture-mountain {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    color: var(--moss);
+    opacity: 0.55;
+  }
+  .vs-posture-mist {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    color: var(--sage);
+    opacity: 0.65;
+  }
+  .vs-posture { padding-bottom: clamp(160px, 24vh, 300px); }
+
+  @media (max-width: 860px) {
+    .vs-principles-intro-head { font-size: clamp(1.6rem, 5.5vw, 2.4rem); }
+  }
+</style>
 
 <style is:global>
   /* ── Off-axis editorial grid ── */

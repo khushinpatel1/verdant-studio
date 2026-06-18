@@ -3,6 +3,9 @@ import Verdant from "../../layouts/Verdant.astro";
 import HeroGarden from "../../components/verdant/HeroGarden";
 import VineBorder from "../../components/verdant/VineBorder";
 import Footer from "../../components/verdant/Footer";
+import Moon from "../../components/verdant/ink/Moon";
+import Enso from "../../components/verdant/ink/Enso";
+import PetalFall from "../../components/verdant/ink/PetalFall";
 import { garden, ethos } from "../../data/verdant";
 ---
 
@@ -75,9 +78,22 @@ import { garden, ethos } from "../../data/verdant";
     </p>
   </section>
 
+  <!-- GALLERY: dark ink-panels moment between Work and Quote -->
+  <!-- P1: Night feature with ink-panels gallery -->
+  <section class="vh-night-feature v-night vi-gallery">
+    <div class="vh-night-bg" style="background-image:url(/verdant/paint/ink-panels.webp)"></div>
+    <div class="vh-night-scrim"></div>
+    <div class="vh-night-copy vi-gallery-copy">
+      <p class="v-label v-label--light" data-v-reveal>The philosophy</p>
+      <h2 class="v-display vi-gallery-head" data-v-reveal style="--d:0.08s">
+        Privacy stays quiet.<br />Everything else<br /><span style="color: var(--night-gold);">grows loud</span>.
+      </h2>
+    </div>
+  </section>
+
   <!-- QUOTE: left-pinned, mark hangs into the margin. Not centered. -->
   <section class="vh-quote vh-sec">
-    <span class="vh-num" aria-hidden="true">03</span>
+    <span class="vh-num" aria-hidden="true">04</span>
     <p class="v-organic vh-quote-mark" aria-hidden="true">"</p>
     <p class="v-display vh-quote-text" data-v-reveal>
       The best software is like a good garden. You feel it was tended, but you
@@ -87,8 +103,11 @@ import { garden, ethos } from "../../data/verdant";
   </section>
 
   <!-- CTA: left-pinned, on a soft dawn wash. Not a centered stack. -->
+  <!-- P2: PetalFall subtle overlay on the CTA band -->
   <section class="vh-cta-band vh-sec" data-v-choreograph>
-    <span class="vh-num" aria-hidden="true">04</span>
+    <span class="vh-num" aria-hidden="true">05</span>
+    <Enso client:visible class="vh-ink-watermark vi-cta-enso" aria-hidden="true" />
+    <PetalFall client:visible class="vi-cta-petal" aria-hidden="true" />
     <h2 class="v-display vh-cta-title" data-v-choreo-slide>
       Software that's on <span style="color: var(--leaf);">your</span> side, for once.
     </h2>
@@ -185,6 +204,43 @@ import { garden, ethos } from "../../data/verdant";
   .vh-cta-title { grid-column: 1 / 9; font-size: var(--display-1); color: var(--ink); line-height: 1.05; max-width: 100%; overflow-wrap: break-word; }
   .vh-cta-link { grid-column: 1 / 9; margin-top: 2rem; }
 
+  /* P1: Gallery section with ink-panels dark moment */
+  .vi-gallery {
+    background: transparent;
+    padding-block: clamp(110px, 18vh, 260px);
+    min-height: 520px;
+  }
+  .vi-gallery-copy {
+    max-width: 56ch;
+    padding-left: clamp(0px, 2vw, 32px);
+  }
+  .vi-gallery-head {
+    font-size: clamp(1.9rem, 4.2vw, 3.6rem);
+    color: var(--night-ink);
+    line-height: 1.1;
+    margin-top: 1.2rem;
+    margin-bottom: 0;
+  }
+
+  /* P2: Enso watermark on the CTA section numeral */
+  .vi-cta-enso {
+    top: clamp(2.5rem, 6vh, 5rem);
+    left: clamp(20px, 5vw, 72px);
+    width: clamp(180px, 26vw, 280px);
+    aspect-ratio: 1;
+  }
+
+  /* P2: PetalFall subtle overlay on CTA band */
+  .vi-cta-petal {
+    position: absolute;
+    bottom: 0;
+    right: 10%;
+    width: 400px;
+    height: 400px;
+    opacity: 0.12;
+    pointer-events: none;
+  }
+
   /* Responsive — collapse to a single column, drop the off-axis offsets. */
   @media (max-width: 860px) {
     .vh-hero-garden { left: 0; opacity: 0.4; -webkit-mask-image: none; mask-image: none; }
@@ -196,5 +252,6 @@ import { garden, ethos } from "../../data/verdant";
     .vh-quote-text, .vh-quote-by { grid-column: 1 / 13; }
     .vh-quote-mark { grid-column: 1 / 13; }
     .vh-cta-title, .vh-cta-link { grid-column: 1 / 13; }
+    .vi-cta-petal { display: none; }
   }
 </style>

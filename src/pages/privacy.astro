@@ -1,6 +1,9 @@
 ---
 import Verdant from "../layouts/Verdant.astro";
 import Footer from "../components/verdant/Footer";
+import Enso from "../components/verdant/ink/Enso";
+import MountainRidge from "../components/verdant/ink/MountainRidge";
+import MistLayer from "../components/verdant/ink/MistLayer";
 import { brand } from "../data/verdant";
 
 // PRIVACY POLICY — public URL (App Store prerequisite).
@@ -77,8 +80,10 @@ const sections = [
   </section>
 
   <!-- ── SECTIONS — asymmetric editorial grid ── -->
+  <!-- P2: Enso watermark near the top of body sections -->
   <section class="vp-body vp-sec">
     <span class="vh-num" aria-hidden="true">01</span>
+    <Enso client:visible class="vh-ink-watermark vp-body-enso" aria-hidden="true" />
     {sections.map((s, i) => (
       <div class={`vp-row${i % 2 ? " vp-row--alt" : ""}`} data-v-reveal style={`--d:${i * 0.05}s`}>
         <span class="v-label v-label--bare">{s.n}</span>
@@ -90,7 +95,8 @@ const sections = [
     ))}
   </section>
 
-  <!-- ── CONTACT — luminous close ── -->
+  <!-- ── CONTACT — luminous close with Mountain/Mist band ── -->
+  <!-- P2: Mountain/Mist atmospheric band at bottom of contact section -->
   <section id="contact" class="vp-contact vp-sec">
     <span class="vh-num" aria-hidden="true">02</span>
     <h2 class="v-display vp-contact-head">
@@ -98,10 +104,44 @@ const sections = [
     </h2>
     <a href={`mailto:${brand.email}`} class="v-cta">{brand.email}</a>
     <p class="v-label vp-contact-meta">Write to us — we'll answer</p>
+    <div class="vh-ink-band vp-contact-inkband" aria-hidden="true">
+      <MountainRidge client:visible class="vp-contact-mountain" />
+      <MistLayer client:visible class="vp-contact-mist" />
+    </div>
   </section>
 
   <Footer client:visible />
 </Verdant>
+
+<style>
+  /* ── P2: Enso watermark on body section ── */
+  .vp-body-enso {
+    top: clamp(3rem, 8vh, 6rem);
+    right: clamp(20px, 5vw, 72px);
+    left: auto;
+    width: clamp(140px, 20vw, 220px);
+    aspect-ratio: 1;
+  }
+
+  /* ── P2: Mountain/Mist band at contact section bottom ── */
+  .vp-contact-mountain {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    color: var(--moss);
+    opacity: 0.55;
+  }
+  .vp-contact-mist {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    color: var(--sage);
+    opacity: 0.65;
+  }
+  .vp-contact { padding-bottom: clamp(160px, 24vh, 300px); }
+</style>
 
 <style is:global>
   /* ── Off-axis editorial grid ── */

@@ -2,6 +2,11 @@
 import Verdant from "../../layouts/Verdant.astro";
 import InkGrowth from "../../components/verdant/InkGrowth";
 import Footer from "../../components/verdant/Footer";
+import Moon from "../../components/verdant/ink/Moon";
+import Enso from "../../components/verdant/ink/Enso";
+import BlossomBranch from "../../components/verdant/ink/BlossomBranch";
+import MountainRidge from "../../components/verdant/ink/MountainRidge";
+import MistLayer from "../../components/verdant/ink/MistLayer";
 import { brand, ethos } from "../../data/verdant";
 ---
 
@@ -22,8 +27,10 @@ import { brand, ethos } from "../../data/verdant";
   </section>
 
   <!-- ── CREED — asymmetric grid, off-axis ── -->
+  <!-- P2: Enso watermark behind the creed numerals -->
   <section class="ve-creed ve-sec">
     <span class="vh-num" aria-hidden="true">01</span>
+    <Enso client:visible class="vh-ink-watermark ve-creed-enso" aria-hidden="true" />
     {ethos.creed.map((line, i) => (
       <div class={`ve-creed-row${i % 2 ? " ve-creed-row--alt" : ""}`} data-v-reveal style={`--d:${i * 0.05}s`}>
         <span class="v-label v-label--bare">0{i + 1}</span>
@@ -32,15 +39,36 @@ import { brand, ethos } from "../../data/verdant";
     ))}
   </section>
 
+  <!-- ── P1: MOONLIT MANIFESTO — dark painted feature, one standout moment ── -->
+  <section class="vh-night-feature v-night ve-manifesto">
+    <div class="vh-night-bg" style="background-image:url(/verdant/paint/moonlit-garden.webp)"></div>
+    <div class="vh-night-scrim"></div>
+    <Moon client:visible class="vh-night-moon" />
+    <div class="vh-night-copy ve-manifesto-copy">
+      <p class="v-label v-label--light" data-v-reveal>The conviction</p>
+      <h2 class="v-display ve-manifesto-head" data-v-reveal style="--d:0.08s">
+        Software that earns a living<br />without watching the person using it.
+      </h2>
+      <p class="ve-manifesto-body" data-v-reveal style="--d:0.14s">
+        Every product decision runs through one question: would it belong in a Japanese garden?
+        Composed, unhurried, nothing extra — but alive underneath.
+      </p>
+    </div>
+  </section>
+
   <!-- ── STORY — light image, off-axis, vine accent ── -->
+  <!-- P2: Mountain/Mist atmospheric band at section bottom -->
+  <!-- P3: BlossomBranch beside the story image -->
   <section class="ve-story ve-sec">
     <span class="vh-num" aria-hidden="true">02</span>
-    <div class="ve-story-media" data-v-reveal>
+    <div class="ve-story-media vh-leaf-figure" data-v-reveal>
       <picture>
         <source srcSet="/verdant/art/ethos-sand.webp" type="image/webp" />
         <img src="/verdant/art/ethos-sand.jpg" alt="Raked sand" loading="lazy" decoding="async" width="1600" height="1600" />
       </picture>
       <InkGrowth client:visible side="right" className="ve-story-vine" />
+      <!-- P3: BlossomBranch overlapping the left edge of the image -->
+      <BlossomBranch client:visible side="left" class="vh-leaf-accent ve-story-blossom" aria-hidden="true" />
     </div>
     <div class="ve-story-text">
       <p class="v-label" data-v-reveal>Why this exists</p>
@@ -72,6 +100,11 @@ import { brand, ethos } from "../../data/verdant";
       <p data-v-reveal style="font-size: var(--text-base); color: var(--ink-soft); line-height: 1.7;">
         {ethos.dataPortability}
       </p>
+    </div>
+    <!-- P2: Mountain/Mist atmospheric band at the cream story section's bottom edge -->
+    <div class="vh-ink-band ve-story-inkband" aria-hidden="true">
+      <MountainRidge client:visible class="ve-story-mountain" />
+      <MistLayer client:visible class="ve-story-mist" />
     </div>
   </section>
 
@@ -144,4 +177,72 @@ import { brand, ethos } from "../../data/verdant";
     .ve-story-text { grid-column: 1 / 13; }
     .ve-talk-head, .ve-talk-head + .v-cta, .ve-talk-meta { grid-column: 1 / 13; }
   }
+
+  /* ── P2: Enso watermark on creed ── */
+  /* Sits behind rows, top-left near the opening numeral */
+  .ve-creed-enso {
+    top: clamp(2.5rem, 6vh, 5rem);
+    left: clamp(20px, 5vw, 72px);
+    width: clamp(180px, 26vw, 280px);
+    aspect-ratio: 1;
+  }
+
+  /* ── P1: Moonlit manifesto section ── */
+  /* No grid needed — the section is a flex column; copy column sits left */
+  .ve-manifesto {
+    /* Override the .v-night background so it's transparent — bg comes from vh-night-bg image */
+    background: transparent;
+  }
+  .ve-manifesto-copy {
+    max-width: 56ch;
+    padding-left: clamp(0px, 2vw, 32px);
+  }
+  .ve-manifesto-head {
+    font-size: clamp(1.9rem, 4.2vw, 3.6rem);
+    color: var(--night-ink);
+    line-height: 1.1;
+    margin-top: 1.2rem;
+    margin-bottom: 0;
+  }
+  .ve-manifesto-body {
+    font-size: var(--text-lg);
+    line-height: 1.65;
+    color: var(--night-soft);
+    max-width: 48ch;
+    margin-top: 1.4rem;
+  }
+  @media (max-width: 860px) {
+    .ve-manifesto-head { font-size: clamp(1.6rem, 5.5vw, 2.4rem); }
+    .ve-manifesto-body { font-size: var(--text-base); }
+  }
+
+  /* ── P3: BlossomBranch beside the story image ── */
+  /* Override vh-leaf-accent defaults: left edge, overlapping outward */
+  .ve-story-blossom {
+    left: -14%;
+    right: auto;
+    top: 12%;
+    bottom: auto;
+    width: 36%;
+    opacity: 0.82;
+  }
+  /* P2: Mountain+Mist band — stack them inside the vh-ink-band wrapper */
+  .ve-story-mountain {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    color: var(--moss);
+    opacity: 0.55;
+  }
+  .ve-story-mist {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    color: var(--sage);
+    opacity: 0.65;
+  }
+  /* Extra bottom padding on story section so content clears the band */
+  .ve-story { padding-bottom: clamp(160px, 24vh, 300px); }
 </style>
