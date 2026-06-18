@@ -4,15 +4,15 @@ import TextReveal from "../../components/verdant/TextReveal";
 import InkGrowth from "../../components/verdant/InkGrowth";
 import Footer from "../../components/verdant/Footer";
 import GardenLive from "../../components/verdant/GardenLive.astro";
-import GrowingGarden from "../../components/verdant/GrowingGarden";
 import { garden } from "../../data/verdant";
 ---
 
 <Verdant title="Garden — personal finance, kept private — Verdant" image="/og/og-garden.jpg">
   <!-- ── HERO ── -->
-  <GrowingGarden client:load className="v-field-bg" />
-
   <section class="vg-hero">
+    <div class="v-print-field vg-hero-art" data-v-parallax="0.08" aria-hidden="true">
+      <img src="/verdant/art/garden-pond.jpg" alt="" fetchpriority="high" />
+    </div>
     <InkGrowth client:visible side="right" className="vg-hero-vine" />
     <div class="v-wrap vg-hero-inner">
       <p class="v-label">{garden.kind} · {garden.year} · {garden.status}</p>
@@ -134,7 +134,14 @@ import { garden } from "../../data/verdant";
 
   /* HERO */
   .vg-hero { position: relative; min-height: 94svh; display: grid; grid-template-columns: 1.05fr 0.95fr;
-    align-items: center; gap: 2rem; padding-top: 6rem; }
+    align-items: center; gap: 2rem; padding-top: 6rem; overflow: hidden; }
+  .vg-hero-art {
+    --pf-w: clamp(440px, 44vw, 660px);
+    --pf-right: -6vw;
+    --pf-y: 52%;
+    --pf-core: 30%;
+    --pf-fade: 74%;
+  }
   .vg-hero-inner { position: relative; z-index: 2; }
   .vg-hero-name { font-size: var(--display-1); line-height: 0.9; color: var(--green); margin: 1.5rem 0 1rem; }
   .vg-hero-line { font-size: var(--display-2); color: var(--terra); max-width: 24ch; }

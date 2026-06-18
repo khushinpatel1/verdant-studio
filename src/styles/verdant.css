@@ -221,12 +221,6 @@
 /* section rhythm override for the skin — generous, breathing */
 [data-skin="verdant"] section { padding: clamp(80px, 14vh, 200px) 0; }
 
-/* ── Reactive hero field as a fixed lower layer ──
-   The page scrolls above it; the pointer drives it anywhere on the page. */
-[data-skin="verdant"] .v-field-bg {
-  position: fixed; inset: 0; z-index: -1; pointer-events: none;
-}
-
 /* ── Green bands → wet pigment on paper ───────────────────────────────────
    Every full-bleed forest block (manifesto / privacy / talk / CTA / footer)
    shares one treatment so the green reads as washed pigment, not a flat slab:
