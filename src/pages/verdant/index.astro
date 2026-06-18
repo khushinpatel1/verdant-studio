@@ -26,6 +26,10 @@ import { garden, ethos } from "../../data/verdant";
         <a href="/verdant/ethos" class="v-cta">What we believe</a>
       </div>
     </div>
+    <div class="vh-hero-media">
+      <div class="vh-phone"><div class="vh-phone-screen"><img src={garden.cover} alt="Garden — personal finance" loading="eager" width="780" height="1688" /></div></div>
+      <div class="vh-phone vh-phone--back"><div class="vh-phone-screen"><img src={garden.vaultScreen} alt="Garden — encrypted vault" loading="eager" width="780" height="1688" /></div></div>
+    </div>
     <span class="vh-num vh-num--hero" aria-hidden="true">00</span>
   </section>
 
@@ -116,19 +120,21 @@ import { garden, ethos } from "../../data/verdant";
   .vh-num::after { content: ""; display: inline-block; width: 2.2rem; height: 1px;
     background: var(--sage); vertical-align: middle; margin-left: 0.7rem; }
 
-  /* HERO — asymmetric split: text in the left 7 cols, garden growing right. */
-  .vh-hero { min-height: 100svh; align-content: center; overflow: hidden; background: var(--paper); }
+  /* HERO — asymmetric split: text in the left 7 cols, phone mockups on the right. */
+  .vh-hero { min-height: 100svh; align-content: center; overflow: hidden; background: var(--paper); align-items: center; }
   .vh-hero-garden {
     position: absolute; top: 0; right: 0; bottom: 0; left: 38%;
     z-index: 0; pointer-events: none; opacity: 0.55;
     -webkit-mask-image: linear-gradient(100deg, transparent, #000 38%);
             mask-image: linear-gradient(100deg, transparent, #000 38%);
   }
-  .vh-hero-text { grid-column: 1 / 9; position: relative; z-index: 1; padding-block: 6rem 2rem; }
+  .vh-hero-text { grid-column: 1 / 7; position: relative; z-index: 1; padding-block: 6rem 2rem; }
+  .vh-hero-media { grid-column: 8 / 13; position: relative; z-index: 1; display: flex; justify-content: center; align-items: center; padding-block: 4rem; }
   .vh-hero-head { font-size: var(--display-1); color: var(--ink); margin-top: 2.4rem; line-height: 1.05; }
   .vh-hero-sub { font-family: var(--font-display); font-size: var(--text-xl); line-height: 1.55; color: var(--ink); max-width: 38ch; margin-top: 2rem; }
   .vh-hero-actions { display: flex; gap: 1.6rem; flex-wrap: wrap; margin-top: 2.6rem; }
   .vh-num--hero { top: auto; bottom: clamp(2rem, 6vh, 4rem); }
+  @media (max-width: 860px) { .vh-hero-text { grid-column: 1 / 13; } .vh-hero-media { display: none; } }
 
   /* MANIFESTO — axis flips RIGHT. Lede pinned right, creed below it. */
   .vh-manifesto { background: var(--paper-soft); padding-block: clamp(90px, 16vh, 220px); row-gap: 3.5rem; }
