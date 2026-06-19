@@ -1,6 +1,7 @@
 ---
 import Verdant from "../../layouts/Verdant.astro";
 import Footer from "../../components/verdant/Footer";
+import FAQAccordion from "../../components/verdant/FAQAccordion";
 ---
 
 <Verdant title="FAQ — Verdant" image="/og/og-default.png">
@@ -18,58 +19,43 @@ import Footer from "../../components/verdant/Footer";
     </div>
   </section>
 
-  <!-- ── FAQ CONTENT ── -->
+  <!-- ── FAQ ACCORDION ── -->
   <section class="ve-faq-section ve-sec">
     <span class="vh-num" aria-hidden="true">01</span>
     <div class="ve-faq-content">
-      <div class="ve-faq-item" data-v-reveal>
-        <h3 class="ve-faq-question">Is my financial data really private?</h3>
-        <p class="ve-faq-answer">
-          Yes. Garden is local-first by design. Your money data never leaves your device unless you opt in to bank sync—and even then, we can't see it. Everything is encrypted at rest with AES-GCM.
-        </p>
-      </div>
-
-      <div class="ve-faq-item" data-v-reveal style="--d: 0.05s;">
-        <h3 class="ve-faq-question">What touches a server?</h3>
-        <p class="ve-faq-answer">
-          Only what you sync deliberately. Bank credentials stay on your device. We store encrypted account snapshots for backup, nothing more. If you never use bank sync, nothing leaves your device.
-        </p>
-      </div>
-
-      <div class="ve-faq-item" data-v-reveal style="--d: 0.10s;">
-        <h3 class="ve-faq-question">Do I need a bank login?</h3>
-        <p class="ve-faq-answer">
-          Not to start. Garden works fully offline for manual entry. Bank sync is optional, comes later, and you're always in control.
-        </p>
-      </div>
-
-      <div class="ve-faq-item" data-v-reveal style="--d: 0.15s;">
-        <h3 class="ve-faq-question">What does it cost?</h3>
-        <p class="ve-faq-answer">
-          Beta is free. Forever free for beta testers. After beta, we'll announce pricing—but the model is simple: you pay for the app, not with your data.
-        </p>
-      </div>
-
-      <div class="ve-faq-item" data-v-reveal style="--d: 0.20s;">
-        <h3 class="ve-faq-question">iOS and Android?</h3>
-        <p class="ve-faq-answer">
-          Coming post-beta. Garden starts on the web and will expand to mobile. We'll build them as Capacitor apps so your data stays local.
-        </p>
-      </div>
-
-      <div class="ve-faq-item" data-v-reveal style="--d: 0.25s;">
-        <h3 class="ve-faq-question">What happens if Verdant shuts down?</h3>
-        <p class="ve-faq-answer">
-          Your data is yours. We're building a clear export format so you can always get your data back, in full, at any time. No lock-in.
-        </p>
-      </div>
-
-      <div class="ve-faq-item" data-v-reveal style="--d: 0.30s;">
-        <h3 class="ve-faq-question">Who's behind Verdant?</h3>
-        <p class="ve-faq-answer">
-          KP, a designer and maker. Verdant is independent and bootstrapped—no investors, no board, no growth pressure pulling us the wrong direction. See the <a href="/verdant/studio" style="color: var(--leaf);">studio</a> for more.
-        </p>
-      </div>
+      <FAQAccordion
+        client:visible
+        items={[
+          {
+            q: "Is my money data really private?",
+            a: "It depends on which tier you choose—and that choice is entirely yours. Manual entry is fully local: every number you type stays on your device, never touches a server. AI import (uploading a bank statement) sends that statement to a parser once, then it's discarded—the parsed data is encrypted like manual entry. Bank link (coming later) will relay plaintext balances and transactions in labeled form for as long as it's active. See the Security page for the full spectrum—privacy isn't a binary, it's a spectrum you control.",
+          },
+          {
+            q: "What touches a server, and when?",
+            a: "With manual entry: nothing. With AI import: one statement file, sent once over HTTPS, parsed, discarded—we don't store it. We store the parsed data (encrypted). With future bank sync: balances and transactions in plaintext for as long as the connection is active. In all cases, your vault passphrase stays on your device—we never see it, never could decrypt what's stored.",
+          },
+          {
+            q: "Do I need a bank login to use Garden?",
+            a: "No. Garden is fully functional with manual entry—you type in accounts, balances, transactions, and it works offline. Bank sync is optional and comes later. You're never forced to connect anything. Start with what you know, add sync when it ships, only if you want it.",
+          },
+          {
+            q: "What does it cost?",
+            a: "Beta is free. If you're testing Garden now, you keep it free forever—that's the friends-and-family promise. After beta, pricing hasn't been finalized yet, but the model is locked: you pay for the app, not with your data. No ads, no data sold, no surprises. Donations are welcome but never asked for or required.",
+          },
+          {
+            q: "iOS and Android?",
+            a: "Coming post-beta. Garden launches on the web first. Mobile apps will follow—built as Capacitor apps so your data stays encrypted and local, just like on web. No cloud-first sync, no 'move to mobile' resetting your privacy tier.",
+          },
+          {
+            q: "What happens to my data if Verdant shuts down?",
+            a: "Your data is yours. We're building a clear JSON export format so you can download everything, in full, at any time—no account needed. That export works because your vault passphrase is the only key; there's no 'admin access' to your encrypted blob. If Verdant disappears, you have your data, your key, and you're free to move it anywhere.",
+          },
+          {
+            q: "Who's behind Verdant?",
+            a: "Khushin Patel—a designer and engineer, building quietly. Verdant is independent, bootstrapped, and deliberately small. No investors, no board, no growth targets pulling in the wrong direction. That structure is intentional: no one can pressure us to sell you out because there's no one to pressure. See the studio page for more.",
+          },
+        ]}
+      />
     </div>
   </section>
 
@@ -86,16 +72,7 @@ import Footer from "../../components/verdant/Footer";
 <style is:global>
   /* ── FAQ section ── */
   .ve-faq-section { background: var(--paper-soft); padding-block: clamp(110px, 18vh, 220px); }
-  .ve-faq-content { grid-column: 2 / 11; display: flex; flex-direction: column; gap: 2rem; }
-  .ve-faq-item { padding: 1.6rem 0; border-top: 1px solid var(--line); }
-  .ve-faq-item:last-child { border-bottom: 1px solid var(--line); }
-  .ve-faq-question { font-family: var(--font-display); font-size: var(--text-xl); color: var(--ink); font-weight: 400; line-height: 1.3; margin: 0 0 0.8rem 0; }
-  .ve-faq-answer { font-size: var(--text-lg); line-height: 1.7; color: var(--ink-soft); max-width: 65ch; margin: 0; }
-
-  /* ── CTA Section ── */
-  .ve-cta-section { align-content: center; }
-  .ve-cta-head { grid-column: 1 / 9; font-size: var(--display-1); color: var(--ink); line-height: 1.05; }
-  .ve-cta-head + .v-cta { grid-column: 1 / 9; margin-top: 2rem; }
+  .ve-faq-content { grid-column: 2 / 11; display: flex; flex-direction: column; gap: 0; }
 
   /* ── Responsive ── */
   @media (max-width: 860px) {

@@ -18,50 +18,48 @@ const updated = "June 2026";
 const sections = [
   {
     n: "01",
-    head: "What Garden collects",
-    body:
-      "Garden stores the financial data you enter — accounts, transactions, budgets, goals, and debt records. This data lives on your device only. It is not transmitted to any server unless you explicitly connect a sync provider (none are connected by default).",
+    head: "The three tiers",
+    body: `Privacy in Garden is not one thing - it depends entirely on how you get your data in. Tier 1 (manual entry): data stays on your device. Tier 2 (AI import): your statement touches our parser once, gets summarized, and is discarded; the summary is forgotten. Tier 3 (bank link, not yet live): plaintext transit to sync ongoing data. See the interactive spectrum on the Security page for exactly what stays local and what touches a server at each tier.`,
   },
   {
     n: "02",
-    head: "Encryption at rest",
-    body:
-      "When you set a passphrase, your financial data is encrypted with AES-GCM 256-bit encryption before it is saved to this device's storage. The passphrase and the derived key are never written anywhere — if you lose your passphrase, there is no recovery path and no back door. If you skip the passphrase, data is stored unencrypted in your browser's local storage.",
+    head: "Tier 1: Manual entry (fully local)",
+    body: `When you type in accounts, transactions, budgets, and goals, Garden stores this data only on your device. It is not transmitted to any server. There is no sync, no cloud backup, no account. When you set a passphrase, data is encrypted with AES-GCM 256-bit encryption before it is saved to local storage. The passphrase never leaves your device; Verdant never sees it. If you lose the passphrase, there is no recovery and no back door.`,
   },
   {
     n: "03",
-    head: "Sync and network",
-    body:
-      "Garden does not send your financial data to any server. There is currently no cloud sync. If you use the Grove AI assistant, your financial summary (account names, balances, totals — no transaction histories) is sent to an AI model to generate a response. That request travels over HTTPS. Grove responses are not stored by Verdant.",
+    head: "Tier 2: AI import (touched once)",
+    body: `When you paste a bank statement into Grove, the plaintext is sent over HTTPS to our parser. The parser extracts transactions, account names, and balances, generates a summary, and discards the original statement. The summary (not the statement) is sent back to your device. Grove responses are not stored by Verdant. The original plaintext is seen only by the parser, once, in transit.`,
   },
   {
     n: "04",
-    head: "Analytics and tracking",
-    body:
-      "Garden contains no analytics SDK, no crash reporter, no ad network, and no tracking pixels. We do not know how you use the app. We do not have a user account for you. We cannot identify you.",
+    head: "Tier 3: Bank link (labeled transit, future)",
+    body: `When bank sync arrives (not yet live), you will connect a financial data provider like SimpleFIN or SnapTrade. That connection relays plaintext data from your bank to your device for as long as it is active. This will be labeled clearly in the app - it is not private by architecture, only by agreement with the provider. We will document the exact data flow before it launches.`,
   },
   {
     n: "05",
-    head: "Third parties",
-    body:
-      "No third party receives your financial data. The only external network call Garden makes is the Grove AI request described above. If you connect a financial data provider (SimpleFIN, SnapTrade) in a future version, that connection will be documented here before it is made available.",
+    head: "Encryption at rest",
+    body: `When you set a vault passphrase, your financial data is encrypted with AES-GCM 256-bit encryption on your device before it is saved to local storage. The passphrase and the derived key are never written anywhere - if you lose your passphrase, there is no recovery path and no back door. If you skip the passphrase, data is stored unencrypted in your browser's local storage.`,
   },
   {
     n: "06",
-    head: "Data deletion",
-    body:
-      "Because Garden stores data only on your device, you control deletion entirely. Use “Clear all my data” in Settings to erase everything. Uninstalling the app removes the data. There is nothing on a server to delete.",
+    head: "Analytics and tracking",
+    body: `Garden contains no analytics SDK, no crash reporter, no ad network, and no tracking pixels. We do not know how you use the app. We do not have a user account for you. We cannot identify you.`,
   },
   {
     n: "07",
+    head: "Data deletion",
+    body: `You control deletion entirely. Use "Clear all my data" in Settings to erase everything from your device. Uninstalling the app removes the data. On Tier 2 (AI import), the statement is discarded by the parser immediately after processing. On Tier 3 (bank link, future), deletion depends on your agreement with the financial data provider.`,
+  },
+  {
+    n: "08",
     head: "Grove is not financial advice",
-    body:
-      "Grove is an AI assistant that reads your numbers and answers questions. It is not a licensed financial advisor, investment advisor, or tax professional. Nothing Grove says should be treated as financial, legal, or tax advice. Always verify important decisions with a qualified professional.",
+    body: `Grove is an AI assistant that reads your numbers and answers questions. It is not a licensed financial advisor, investment advisor, or tax professional. Nothing Grove says should be treated as financial, legal, or tax advice. Always verify important decisions with a qualified professional.`,
   },
 ];
 ---
 
-<Verdant title="Privacy policy — Verdant" image="/og/og-ethos.jpg">
+<Verdant title="Privacy policy - Verdant" image="/og/og-ethos.jpg">
   <!-- ── HERO — luminous, type-on-light ── -->
   <section class="vp-hero">
     <div class="vp-hero-bg" aria-hidden="true"></div>
@@ -71,11 +69,13 @@ const sections = [
         Privacy<br />policy<span style="color: var(--leaf);">.</span>
       </h1>
       <p class="vp-hero-sub">
-        Honest, and exactly what is true of the app today — no fabricated
-        certifications, no invented third parties. What Garden stores, where it
-        lives, and what never leaves your device.
+        Honest, and exactly what is true of the app today - no fabricated
+        certifications, no invented third parties. How Garden handles your
+        financial data depends on how you get it in: fully local, touched once by
+        the parser, or labeled plaintext transit. See the
+        <a href="/verdant/security" class="vp-hero-link">3-tier privacy spectrum</a> for the exact details.
       </p>
-      <p class="v-label vp-hero-meta">Last updated: {updated} · {brand.name ?? "Verdant Studio"}</p>
+      <p class="v-label vp-hero-meta">Last updated: {updated} - {brand.name ?? "Verdant Studio"}</p>
     </div>
   </section>
 
@@ -103,7 +103,7 @@ const sections = [
       Questions about<br />this <span style="color: var(--leaf);">policy</span>?
     </h2>
     <a href={`mailto:${brand.email}`} class="v-cta">{brand.email}</a>
-    <p class="v-label vp-contact-meta">Write to us — we'll answer</p>
+    <p class="v-label vp-contact-meta">Write to us - we'll answer</p>
     <div class="vh-ink-band vp-contact-inkband" aria-hidden="true">
       <MountainRidge client:visible className="vp-contact-mountain" />
       <MistLayer client:visible className="vp-contact-mist" />
@@ -161,6 +161,8 @@ const sections = [
   .vp-hero-inner { position: relative; z-index: 1; }
   .vp-hero-head { font-size: var(--display-1); color: var(--ink); margin-top: 2.4rem; line-height: 1.05; }
   .vp-hero-sub { font-family: var(--font-display); font-size: var(--text-xl); line-height: 1.55; color: var(--ink); max-width: 44ch; margin-top: 2rem; }
+  .vp-hero-link { color: var(--leaf); text-decoration: underline; text-underline-offset: 0.2em; text-decoration-thickness: 1px; }
+  .vp-hero-link:hover { color: var(--gold); }
   .vp-hero-meta { margin-top: 2rem; }
 
   /* ── SECTIONS ── */

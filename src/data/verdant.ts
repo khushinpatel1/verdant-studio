@@ -180,18 +180,19 @@ export const studio = {
 
 export const ethos = {
   creed: [
-    "We never sell your attention. The studio is built so it can't.",
-    "If we can read your data, that's a bug — not a business model.",
-    "Software should feel like a quiet room. Most of it feels like a crowded street.",
-    "Build one thing well, not ten things anxiously. Slow is allowed here.",
+    "Privacy by structure, not by claim. We can't sell what we never touch.",
+    "If we can read your data, that's a bug — not a feature for sale.",
+    "Software should answer to you, not to the people who bought ads.",
+    "Build one thing well, not ten things anxiously. Slow is the point.",
   ],
   shipping: [
     { feature: "Garden — Early Access launch", date: "2026-06-17" },
     { feature: "Export as JSON — any time, no account needed", date: "2026-06" },
     { feature: "Grove — on-device financial assistant", date: "2026-06" },
-    { feature: "Bank sync via Plaid", date: "In progress" },
+    { feature: "Bank sync (SnapTrade, SimpleFIN)", date: "In progress" },
   ],
-  dataPortability: "Export all your data as JSON at any time. No account lock-in. No permissions needed.",
+  dataPortability: "Export all your data as JSON at any time. Manual entry stays on your device. AI imports are parsed once, never stored by us. Bank connections are labeled plaintext only.",
+  privacyStatement: "Privacy is what you choose. You control which tier fits your work. There is no flat 'never leaves your device' — we're honest about what each path touches.",
   version: "001",
   launched: "2026-06-17",
 };
