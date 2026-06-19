@@ -39,11 +39,17 @@ import { studio } from "../../data/verdant";
     </div>
   </section>
 
-  <!-- ── closing ── -->
-  <section class="vt-end">
-    <div class="v-wrap vt-end-inner">
-      <p class="v-display vt-end-line" data-v-reveal>The door is open.</p>
-      <a href="/verdant/ethos#talk" class="v-cta" data-cursor="Write">Say hello</a>
+  <!-- ── closing — offset two-column ── -->
+  <section class="vt-close">
+    <div class="v-wrap vt-close-grid">
+      <div class="vt-close-left">
+        <p class="v-label" data-v-reveal>Let's garden together</p>
+        <p class="v-display vt-close-head" data-v-reveal>The door</p>
+        <p class="v-display vt-close-head" data-v-reveal>is open.</p>
+      </div>
+      <div class="vt-close-right">
+        <a href="/verdant/ethos#talk" class="v-cta" data-cursor="Write">Say hello</a>
+      </div>
     </div>
   </section>
 
@@ -97,6 +103,14 @@ import { studio } from "../../data/verdant";
   .vt-row-meet { align-self: center; white-space: nowrap; }
   @media (max-width: 720px) { .vt-row { grid-template-columns: auto 1fr; } .vt-row-meet { display: none; } }
 
-  .vt-end-inner { display: flex; flex-direction: column; align-items: flex-start; gap: 1.4rem; }
-  .vt-end-line { font-size: var(--display-2); color: var(--green); }
+  .vt-close { padding: clamp(4rem, 10vh, 8rem) 0; }
+  .vt-close-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: clamp(3rem, 8vw, 6rem); align-items: baseline; }
+  .vt-close-left { }
+  .vt-close-head { font-size: var(--display-1); color: var(--green); line-height: 0.95; margin-bottom: 0.4rem; }
+  .vt-close-head:last-child { margin-bottom: 0; }
+  .vt-close-right { display: flex; align-items: center; }
+  @media (max-width: 800px) {
+    .vt-close-grid { grid-template-columns: 1fr; }
+    .vt-close-head { font-size: var(--display-2); }
+  }
 </style>
