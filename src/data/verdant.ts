@@ -81,6 +81,67 @@ export const garden = {
   ],
 };
 
+// PRIVACY SPECTRUM — the honest 3-tier model (verbatim from garden/VISION.md).
+// Privacy is a spectrum the user controls, disclosed per tier — never a flat
+// "never leaves your device" claim. Tier 3 (bank link) is architecture-only:
+// no live account connects yet. Do not imply otherwise.
+export type PrivacyTier = {
+  n: string;
+  key: string;
+  label: string;
+  what: string;
+  status: string;
+  privateOf: string[];
+  touchesServer: string[];
+  reality: string;
+};
+
+export const privacySpectrum: PrivacyTier[] = [
+  {
+    n: "01",
+    key: "manual",
+    label: "Manual entry",
+    what: "You type in an account, a balance, a transaction.",
+    status: "Live today",
+    privateOf: [
+      "Every number you type",
+      "Account names and balances",
+      "Budgets, goals, and debt payoff plans",
+    ],
+    touchesServer: ["Nothing. There is no server in this path."],
+    reality: "Fully private, fully local. The most honest tier — and the default.",
+  },
+  {
+    n: "02",
+    key: "ai-import",
+    label: "AI import",
+    what: "You upload a bank statement (PDF or CSV) and Grove reads it for you.",
+    status: "Live today",
+    privateOf: [
+      "The parsed data, once it's in Garden",
+      "Everything after the import — stored and encrypted exactly like manual entry",
+    ],
+    touchesServer: [
+      "The statement itself, sent once to an AI model to extract the numbers",
+      "That single request travels over HTTPS and is not stored by Verdant",
+    ],
+    reality: "Private storage — but the statement is touched once by the parser. A convenience cost, named plainly.",
+  },
+  {
+    n: "03",
+    key: "bank-link",
+    label: "Bank link",
+    what: "A direct connection to your bank or brokerage (SnapTrade, SimpleFIN, Plaid) — architecture only, not yet live.",
+    status: "Architecture-only — not live",
+    privateOf: ["Nothing extra beyond what the provider already shares with any app you connect"],
+    touchesServer: [
+      "Your account credentials, handled by the provider's own flow (Garden never sees your bank password)",
+      "Balances and transactions, relayed in labeled plaintext for as long as the link is active",
+    ],
+    reality: "The convenience tier. Plaintext transit, clearly labeled — no E2E claim here, because there can't honestly be one.",
+  },
+];
+
 // the unlisted one — reached only through the stray stone, never in nav
 export const emerald = {
   name: "Emerald",

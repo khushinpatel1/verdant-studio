@@ -2,56 +2,66 @@
 import Verdant from "../../layouts/Verdant.astro";
 import InkGrowth from "../../components/verdant/InkGrowth";
 import Footer from "../../components/verdant/Footer";
-import GardenLive from "../../components/verdant/GardenLive.astro";
 import GrowingGarden from "../../components/verdant/GrowingGarden";
+import GardenTour from "../../components/verdant/GardenTour";
+import Logo from "../../components/verdant/Logo";
 import Moon from "../../components/verdant/ink/Moon";
 import Enso from "../../components/verdant/ink/Enso";
 import BlossomBranch from "../../components/verdant/ink/BlossomBranch";
 import MountainRidge from "../../components/verdant/ink/MountainRidge";
 import MistLayer from "../../components/verdant/ink/MistLayer";
 import { garden } from "../../data/verdant";
+
+// Privacy spectrum — the honest 3-tier model (plan §0 truth correction).
+// NEVER "never leaves your device" — each tier names exactly what touches a server.
+const spectrum = [
+  { n: "01", tier: "Manual", note: "Type it in yourself. Fully local — nothing to sync, nothing to send." },
+  { n: "02", tier: "AI import", note: "A statement or CSV, read once by the parser to pull out the numbers. Encrypted before it's stored." },
+  { n: "03", tier: "Bank link", note: "When sync arrives: your bank's data travels in labeled, encrypted transit — never sold, never read by us at rest." },
+];
 ---
 
 <Verdant title="Garden — personal finance, kept private — Verdant" image="/og/og-garden.jpg">
-  <!-- ── HERO ── -->
+  <!-- ── HERO — one confident line + CTA ── -->
   <GrowingGarden client:load className="v-field-bg" />
 
   <section class="vg-hero">
     <InkGrowth client:visible side="right" className="vg-hero-vine" />
     <div class="v-wrap vg-hero-inner">
-      <p class="v-label">{garden.kind} · {garden.year} · {garden.status}</p>
+      <div class="vg-hero-mark"><Logo client:visible withWordmark={false} size={30} /></div>
+      <p class="v-label">{garden.kind} · {garden.status}</p>
       <h1 class="v-organic vg-hero-name">Garden</h1>
       <p class="vg-hero-line v-display">{garden.oneLine}</p>
-      <p class="vg-hero-blurb">{garden.blurb}</p>
       <div class="vg-hero-actions">
         <a
-          href="https://garden.khushinpatel1.workers.dev"
+          href={garden.url}
           class="v-cta v-cta--primary"
           target="_blank"
           rel="noopener"
           data-cursor="Open"
-        >Start Garden →</a>
+        >Join the beta →</a>
         <a href="#tour" class="v-cta" data-cursor="Down">Walk through it</a>
       </div>
-      <p class="vg-hero-price">{garden.pricing}</p>
-    </div>
-    <div class="vg-hero-media">
-      <GardenLive />
     </div>
   </section>
 
-  <!-- ── THREE-BED TOUR ── -->
-  <section id="tour" class="vg-tour">
+  <!-- ── GARDEN TOUR — the signature moment (plan §2A) ── -->
+  <div id="tour">
+    <GardenTour client:visible />
+  </div>
+
+  <!-- ── THREE BEDS — real screens, honest copy from data/verdant.ts ── -->
+  <section class="vg-beds">
     <div class="v-wrap">
-      <div class="vg-tour-head" data-v-reveal>
+      <div class="vg-beds-head" data-v-reveal>
         <p class="v-label">Three beds, one garden</p>
-        <p class="vg-tour-intro v-display">Everything your money is doing — and nothing it shouldn't.</p>
+        <p class="vg-beds-intro v-display">Everything your money is doing — and nothing it shouldn't.</p>
       </div>
     </div>
     <div class="vg-screens">
       {garden.screens.map((s, i) => (
         <div class={`v-wrap vg-screen${i % 2 ? " vg-screen--alt" : ""}`} data-v-reveal>
-          {/* P3: leaf-beside-image — alternate side/component per row for asymmetry */}
+          {/* leaf-beside-image — alternate side/component per row for asymmetry */}
           <div class="vg-screen-media">
             <div class="vg-phone vh-leaf-figure">
               <div class="vg-phone-screen"><img src={s.img} alt={`Garden — ${s.tab}`} loading="lazy" width="780" height="1688" /></div>
@@ -86,37 +96,7 @@ import { garden } from "../../data/verdant";
     </div>
   </section>
 
-  <!-- ── WHAT STAYS YOURS — luminous light fields ── -->
-  <!-- P2: Enso watermark behind the first feature numeral -->
-  <section class="vg-features">
-    <span class="vh-num" aria-hidden="true">04</span>
-    <Enso client:visible className="vh-ink-watermark vg-feat-enso" aria-hidden="true" />
-    <div class="vg-feat-bg" aria-hidden="true"></div>
-    <div class="v-wrap">
-      <p class="v-label" data-v-reveal>What stays yours</p>
-      <ul class="vg-feat-list">
-        <li class="vg-feat" data-v-reveal style="--d:0s">
-          <span class="v-label v-label--bare">01</span>
-          <p class="v-display vg-feat-text">{garden.notes[0]}</p>
-        </li>
-        <li class="vg-feat" data-v-reveal style="--d:0.06s">
-          <span class="v-label v-label--bare">02</span>
-          <p class="v-display vg-feat-text">{garden.accountConnection}</p>
-        </li>
-        <li class="vg-feat" data-v-reveal style="--d:0.12s">
-          <span class="v-label v-label--bare">03</span>
-          <p class="v-display vg-feat-text">{garden.notes[1]}</p>
-        </li>
-        <li class="vg-feat" data-v-reveal style="--d:0.18s">
-          <span class="v-label v-label--bare">04</span>
-          <p class="v-display vg-feat-text">{garden.notes[2]}</p>
-        </li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- ── P1: INK-PANELS — moonlit moment, app philosophy ── -->
-  <!-- dark painted section: gold-framed scroll-panel gallery behind a legibility scrim -->
+  <!-- ── PHILOSOPHY — moonlit moment ── -->
   <section class="vh-night-feature v-night vg-inkpanels">
     <div class="vh-night-bg" style="background-image:url(/verdant/paint/ink-panels.webp)"></div>
     <div class="vh-night-scrim"></div>
@@ -134,14 +114,34 @@ import { garden } from "../../data/verdant";
     </div>
   </section>
 
-  <!-- ── PRIVACY — luminous light field ── -->
-  <!-- P2: Mountain+Mist atmospheric band at the cream section's bottom edge -->
+  <!-- ── PRIVACY SPECTRUM STRIP — the honest 3-tier model, links to Security ── -->
+  <section class="vg-spectrum">
+    <span class="vh-num" aria-hidden="true">04</span>
+    <Enso client:visible className="vh-ink-watermark vg-spectrum-enso" aria-hidden="true" />
+    <div class="v-wrap">
+      <div class="vg-spectrum-head" data-v-reveal>
+        <p class="v-label">Privacy isn't a switch. It's a spectrum.</p>
+        <p class="vg-spectrum-intro v-display">You choose how close Garden gets to your numbers.</p>
+      </div>
+      <ul class="vg-spectrum-list">
+        {spectrum.map((t, i) => (
+          <li class="vg-spectrum-row" data-v-reveal style={`--d:${i * 0.06}s`}>
+            <span class="v-label v-label--bare">{t.n}</span>
+            <span class="vg-spectrum-tier">{t.tier}</span>
+            <p class="vg-spectrum-note">{t.note}</p>
+          </li>
+        ))}
+      </ul>
+      <a href="/verdant/security" class="v-cta vg-spectrum-link" data-cursor="Read">See the full architecture →</a>
+    </div>
+  </section>
+
+  <!-- ── PRICING NOD ── -->
   <section class="vg-band">
-    <div class="v-wrap vg-privacy">
-      <p class="v-label" data-v-reveal>Plainly</p>
-      <h2 class="v-display vg-privacy-head" data-v-reveal>
-        Your numbers are locked<br />before they leave your hands.<br />The server holds the <span style="color: var(--leaf);">ciphertext</span>.<br />And can't read a cent of it.
-      </h2>
+    <div class="v-wrap vg-pricing-nod" data-v-reveal>
+      <p class="v-label">Plainly</p>
+      <h2 class="v-display vg-pricing-head">{garden.pricing}</h2>
+      <a href="/verdant/pricing" class="v-cta" data-cursor="View">See the pricing model →</a>
     </div>
     <div class="vh-ink-band vg-band-inkband" aria-hidden="true">
       <MountainRidge client:visible className="vg-band-mountain" />
@@ -149,29 +149,19 @@ import { garden } from "../../data/verdant";
     </div>
   </section>
 
-  <!-- ── CLOSING ── -->
+  <!-- ── CLOSING CTA ── -->
   <section class="vg-end">
     <div class="v-wrap vg-end-inner">
       <p class="v-display vg-end-line" data-v-reveal>The first thing grown here. Not the last.</p>
-      <p class="v-label v-label--bare vg-end-price" data-v-reveal>{garden.pricing}</p>
-      <form id="waitlist" class="vg-waitlist" method="POST" action="/api/waitlist" data-v-reveal>
-        <label class="v-label v-label--bare vg-waitlist-label" for="vg-waitlist-email">Get in line</label>
-        <div class="vg-waitlist-row">
-          <input
-            id="vg-waitlist-email"
-            type="email"
-            name="email"
-            required
-            placeholder="you@somewhere.calm"
-            class="vg-waitlist-input"
-            autocomplete="email"
-          />
-          <button type="submit" class="v-cta v-cta--primary" data-cursor="Send">Join the waitlist</button>
-        </div>
-      </form>
       <div class="vg-end-actions">
+        <a
+          href={garden.url}
+          class="v-cta v-cta--primary"
+          target="_blank"
+          rel="noopener"
+          data-cursor="Open"
+        >Join the beta →</a>
         <a href="/verdant" class="v-cta" data-cursor="Back">Back to the studio</a>
-        <a href="/verdant/ethos#talk" class="v-cta" data-cursor="Write">Talk to us</a>
       </div>
     </div>
   </section>
@@ -186,29 +176,26 @@ import { garden } from "../../data/verdant";
     background: linear-gradient(160deg, #f0f2ed 0%, #e8ebe6 46%, #dfe4d7 100%);
     box-shadow: 0 40px 90px -24px rgba(13,31,7,0.15), 0 0 0 1px rgba(47, 125, 79, 0.08),
                 0 2px 0 rgba(255,255,255,0.6) inset, 0 -2px 8px rgba(0,0,0,0.06) inset; }
-  .vg-phone--hero { width: clamp(250px, 30vw, 330px); }
   .vg-phone-screen { position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: calc(var(--rad) - var(--pad)); background: var(--paper); }
   .vg-phone-screen img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 0; }
   .vg-phone::after { content: ""; position: absolute; top: 14px; left: 50%; transform: translateX(-50%);
     width: 38%; height: 7px; border-radius: 5px; background: rgba(47, 125, 79, 0.2); z-index: 2; }
 
-  /* HERO */
-  .vg-hero { position: relative; min-height: 94svh; display: grid; grid-template-columns: 1.05fr 0.95fr;
-    align-items: center; gap: 2rem; padding-top: 6rem; background: var(--paper); }
-  .vg-hero-inner { position: relative; z-index: 2; }
-  .vg-hero-name { font-size: var(--display-1); line-height: 0.9; color: var(--leaf); margin: 1.5rem 0 1rem; }
-  .vg-hero-line { font-size: var(--display-2); color: var(--ink); max-width: 24ch; }
-  .vg-hero-blurb { color: var(--ink-soft); font-size: var(--text-base); line-height: 1.6; max-width: 46ch; margin: 1.6rem 0 2rem; }
-  .vg-hero-actions { display: flex; align-items: center; gap: 1.8rem; flex-wrap: wrap; }
-  .vg-hero-price { margin-top: 1.4rem; color: var(--leaf); font-size: var(--text-base); letter-spacing: 0.01em; }
-  .vg-hero-media { position: relative; z-index: 1; display: flex; justify-content: center; }
+  /* HERO — asymmetric single column, type pinned left, not centered/stacked */
+  .vg-hero { position: relative; min-height: 86svh; display: flex; align-items: center;
+    padding-top: 6rem; background: var(--paper); }
+  .vg-hero-inner { position: relative; z-index: 2; max-width: 46rem; }
+  .vg-hero-mark { color: var(--leaf); margin-bottom: 1.2rem; opacity: 0.9; }
+  .vg-hero-name { font-size: var(--display-1); line-height: 0.9; color: var(--leaf); margin: 0.6rem 0 1.4rem; }
+  .vg-hero-line { font-size: var(--display-2); color: var(--ink); max-width: 30ch; line-height: 1.15; }
+  .vg-hero-actions { display: flex; align-items: center; gap: 1.8rem; flex-wrap: wrap; margin-top: 2.4rem; }
   .vg-hero-vine { position: absolute; right: 4%; top: 0; bottom: 0; width: 130px; z-index: 1; opacity: 0.8; }
-  @media (max-width: 860px) { .vg-hero { grid-template-columns: 1fr; } .vg-hero-media { margin-top: 2rem; } .vg-hero-vine { display: none; } }
+  @media (max-width: 860px) { .vg-hero-vine { display: none; } }
 
-  /* TOUR */
-  .vg-tour { padding-block: clamp(110px, 18vh, 260px); background: var(--paper); }
-  .vg-tour-head { max-width: 38rem; margin-bottom: clamp(3rem, 8vh, 6rem); }
-  .vg-tour-intro { font-size: var(--display-2); color: var(--ink); margin-top: 1rem; line-height: 1.1; }
+  /* BEDS */
+  .vg-beds { padding-block: clamp(110px, 18vh, 260px); background: var(--paper); }
+  .vg-beds-head { max-width: 38rem; margin-bottom: clamp(3rem, 8vh, 6rem); }
+  .vg-beds-intro { font-size: var(--display-2); color: var(--ink); margin-top: 1rem; line-height: 1.1; }
   .vg-screens { display: flex; flex-direction: column; gap: clamp(4rem, 10vh, 9rem); }
   .vg-screen { display: grid; grid-template-columns: auto 1fr; gap: clamp(2.5rem, 6vw, 6rem); align-items: center; }
   .vg-screen--alt { grid-template-columns: 1fr auto; }
@@ -219,7 +206,7 @@ import { garden } from "../../data/verdant";
   .vg-screen-body { color: var(--ink-soft); line-height: 1.6; font-size: var(--text-base); }
   @media (max-width: 760px) { .vg-screen, .vg-screen--alt { grid-template-columns: 1fr; } .vg-screen--alt .vg-screen-media { order: 0; } }
 
-  /* GROVE — luminous light inset ── */
+  /* GROVE — luminous light inset */
   .vg-grove { padding: clamp(3rem, 8vh, 6rem) 0; background: var(--paper); }
   .vg-grove-inner { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: clamp(2rem, 5vw, 4rem);
     align-items: center; padding: clamp(2rem, 5vw, 3.5rem); border-radius: 4px;
@@ -229,116 +216,51 @@ import { garden } from "../../data/verdant";
   .vg-grove-media { display: flex; justify-content: center; }
   @media (max-width: 760px) { .vg-grove-inner { grid-template-columns: 1fr; } .vg-grove-media { margin-top: 1.5rem; } }
 
-  /* FEATURES — luminous light field ── */
-  .vg-features { position: relative; background: var(--paper-soft); padding-block: clamp(110px, 18vh, 260px); }
-  .vg-features > .v-wrap { position: relative; z-index: 1; }
-  .vg-feat-bg { position: absolute; top: 0; right: 0; bottom: 0; width: 40%;
-    background: linear-gradient(100deg, transparent, var(--mist) 60%);
-    pointer-events: none; }
-  .vg-feat-list { list-style: none; padding: 0; margin: 2.5rem 0 0; max-width: 56rem; }
-  .vg-feat { display: grid; grid-template-columns: auto 1fr; gap: 1.6rem; align-items: baseline;
-    padding: 2rem 0; border-top: 1px solid var(--line); transition: padding-left .35s var(--ease); }
-  .vg-feat:hover { padding-left: 1rem; }
-  .vg-feat-text { font-size: var(--display-2); color: var(--leaf); line-height: 1.3; }
-  .vg-feat:nth-child(even) { padding-left: clamp(0px, 4vw, 70px); }
+  /* PRIVACY SPECTRUM STRIP */
+  .vg-spectrum { position: relative; background: var(--paper-soft); padding-block: clamp(110px, 18vh, 240px); }
+  .vg-spectrum-head { max-width: 44rem; }
+  .vg-spectrum-intro { font-size: var(--display-2); color: var(--ink); margin-top: 1rem; line-height: 1.15; }
+  .vg-spectrum-list { list-style: none; padding: 0; margin: 2.5rem 0 0; max-width: 60rem;
+    display: flex; flex-direction: column; }
+  .vg-spectrum-row { display: grid; grid-template-columns: auto auto 1fr; gap: 1.2rem 1.8rem; align-items: baseline;
+    padding: 1.6rem 0; border-top: 1px solid var(--line); }
+  .vg-spectrum-row:nth-child(2) { padding-left: clamp(0px, 3vw, 40px); }
+  .vg-spectrum-row:nth-child(3) { padding-left: clamp(0px, 6vw, 80px); }
+  .vg-spectrum-tier { font-family: var(--font-display); font-size: var(--text-xl); color: var(--leaf); }
+  .vg-spectrum-note { color: var(--ink-soft); font-size: var(--text-base); line-height: 1.6; max-width: 48ch; }
+  .vg-spectrum-link { margin-top: 2.6rem; }
+  .vg-spectrum-enso { top: clamp(2rem, 5vh, 4rem); right: clamp(20px, 5vw, 72px); left: auto;
+    width: clamp(160px, 22vw, 260px); aspect-ratio: 1; }
 
-  /* PRIVACY BAND — luminous light ── */
-  .vg-band { background: var(--paper); padding-block: clamp(120px, 20vh, 220px); }
-  .vg-privacy { max-width: 64ch; }
-  .vg-privacy-head { font-size: var(--display-1); color: var(--ink); line-height: 1.2; margin-top: 1.5rem; }
+  /* PRIVACY BAND / PRICING NOD — luminous light */
+  .vg-band { background: var(--paper); padding-block: clamp(120px, 20vh, 220px); position: relative;
+    padding-bottom: clamp(160px, 24vh, 300px); }
+  .vg-pricing-nod { max-width: 56ch; }
+  .vg-pricing-head { font-size: var(--display-1); color: var(--ink); line-height: 1.2; margin: 1.5rem 0 2rem; }
+  .vg-band-mountain { position: absolute; inset: 0; width: 100%; height: 100%; color: var(--moss); opacity: 0.50; }
+  .vg-band-mist { position: absolute; inset: 0; width: 100%; height: 100%; color: var(--sage); opacity: 0.60; }
 
   /* CLOSING */
   .vg-end { background: var(--paper); padding-block: clamp(110px, 18vh, 260px); }
   .vg-end-inner { display: flex; flex-direction: column; align-items: flex-start; gap: 1.6rem; }
   .vg-end-line { font-size: var(--display-2); color: var(--leaf); max-width: 20ch; }
-  .vg-end-price { color: var(--leaf); }
-  /* WAITLIST — left-aligned, grown into the closing column, not a centered SaaS box */
-  .vg-waitlist { display: flex; flex-direction: column; gap: 0.9rem; width: 100%; max-width: 42rem; }
-  .vg-waitlist-label { color: var(--ink-soft); }
-  .vg-waitlist-row { display: flex; align-items: stretch; gap: 1.2rem; flex-wrap: wrap; }
-  .vg-waitlist-input { flex: 1 1 18rem; min-width: 0; background: transparent; color: var(--ink);
-    border: 0; border-bottom: 1px solid var(--line); padding: 0.7rem 0.2rem; font-size: var(--text-base);
-    font-family: inherit; transition: border-color .35s var(--ease); }
-  .vg-waitlist-input::placeholder { color: var(--ink-soft); opacity: 0.6; }
-  .vg-waitlist-input:focus { outline: none; border-bottom-color: var(--leaf); }
-  .vg-end-actions { display: flex; gap: 1.8rem; flex-wrap: wrap; }
+  .vg-end-actions { display: flex; gap: 1.8rem; flex-wrap: wrap; margin-top: 0.6rem; }
 
-  /* ── P3: Leaf-beside-image — tour phone frames ── */
-  /* Right-side InkGrowth (rows 0, 2): emerges from the right edge of the phone */
-  .vg-leaf-right {
-    right: -22%;
-    left: auto;
-    top: 10%;
-    bottom: auto;
-    width: 42%;
-    opacity: 0.78;
-  }
-  /* Left-side BlossomBranch (row 1): emerges from the left edge of the phone */
-  .vg-leaf-left {
-    left: -18%;
-    right: auto;
-    top: 15%;
-    bottom: auto;
-    width: 38%;
-    opacity: 0.80;
-  }
+  /* leaf-beside-image — tour phone frames */
+  .vg-leaf-right { right: -22%; left: auto; top: 10%; bottom: auto; width: 42%; opacity: 0.78; }
+  .vg-leaf-left { left: -18%; right: auto; top: 15%; bottom: auto; width: 38%; opacity: 0.80; }
 
-  /* ── P2: Enso watermark on the features section ── */
-  /* Position near the top-left, behind the first numeral */
-  .vg-feat-enso {
-    top: clamp(2rem, 5vh, 4rem);
-    left: clamp(20px, 5vw, 72px);
-    width: clamp(160px, 22vw, 260px);
-    aspect-ratio: 1;
-  }
-  /* Features section needs position:relative for the absolute vh-num and Enso */
-  .vg-features { position: relative; }
-
-  /* ── P1: Ink-panels moonlit section ── */
-  /* Override .v-night's background so the painted webp shows through */
-  .vg-inkpanels {
-    background: transparent;
-  }
-  .vg-inkpanels-copy {
-    max-width: 52ch;
-    padding-left: clamp(0px, 2vw, 28px);
-  }
-  .vg-inkpanels-head {
-    font-size: clamp(1.9rem, 4.2vw, 3.4rem);
-    color: var(--night-ink);
-    line-height: 1.1;
-    margin-top: 1.2rem;
-    margin-bottom: 0;
-  }
-  .vg-inkpanels-body {
-    font-size: var(--text-lg);
-    line-height: 1.65;
-    color: var(--night-soft);
-    max-width: 46ch;
-    margin-top: 1.4rem;
-  }
+  /* ink-panels moonlit section */
+  .vg-inkpanels { background: transparent; }
+  .vg-inkpanels-copy { max-width: 52ch; padding-left: clamp(0px, 2vw, 28px); }
+  .vg-inkpanels-head { font-size: clamp(1.9rem, 4.2vw, 3.4rem); color: var(--night-ink); line-height: 1.1;
+    margin-top: 1.2rem; margin-bottom: 0; }
+  .vg-inkpanels-body { font-size: var(--text-lg); line-height: 1.65; color: var(--night-soft);
+    max-width: 46ch; margin-top: 1.4rem; }
   @media (max-width: 860px) {
     .vg-inkpanels-head { font-size: clamp(1.6rem, 5.5vw, 2.4rem); }
     .vg-inkpanels-body { font-size: var(--text-base); }
-  }
-
-  /* ── P2: Mountain+Mist band on the privacy section ── */
-  /* Extra bottom padding so content clears the atmospheric band */
-  .vg-band { padding-bottom: clamp(160px, 24vh, 300px); position: relative; }
-  .vg-band-mountain {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    color: var(--moss);
-    opacity: 0.50;
-  }
-  .vg-band-mist {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    color: var(--sage);
-    opacity: 0.60;
+    .vg-spectrum-row:nth-child(2), .vg-spectrum-row:nth-child(3) { padding-left: 0; }
+    .vg-spectrum-row { grid-template-columns: 1fr; gap: 0.4rem; }
   }
 </style>
