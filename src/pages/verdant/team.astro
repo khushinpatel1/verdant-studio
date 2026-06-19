@@ -12,7 +12,7 @@ import { studio } from "../../data/verdant";
   <!-- P2: PetalFall subtle overlay on the hero -->
   <section class="vt-hero">
     <div class="vt-hero-bg" aria-hidden="true"></div>
-    <PetalFall client:visible class="vt-hero-petal" aria-hidden="true" />
+    <PetalFall client:visible className="vt-hero-petal" aria-hidden="true" />
     <div class="v-wrap vt-hero-inner">
       <p class="v-label">The gardeners</p>
       <h1 class="v-display vt-hero-head">
@@ -30,7 +30,7 @@ import { studio } from "../../data/verdant";
   <section class="vt-roster">
     <div class="v-wrap vt-who">
       <h2 class="v-display vt-who-name" data-v-reveal>{studio.who}</h2>
-      <BlossomBranch client:visible side="right" class="vh-leaf-accent vt-who-blossom" aria-hidden="true" />
+      <BlossomBranch client:visible side="right" className="vh-leaf-accent vt-who-blossom" aria-hidden="true" />
       <p class="vt-who-lead v-display" data-v-reveal>{studio.lead}</p>
       {studio.lines.map((line, i) => (
         <p class="vt-who-line" data-v-reveal style={`--d:${i * 0.06}s`}>{line}</p>
@@ -43,7 +43,7 @@ import { studio } from "../../data/verdant";
   <section class="vh-night-feature v-night vt-end">
     <div class="vh-night-bg" style="background-image:url(/verdant/paint/moonlit-garden.webp)"></div>
     <div class="vh-night-scrim"></div>
-    <Moon client:visible class="vh-night-moon" />
+    <Moon client:visible className="vh-night-moon" />
     <div class="vh-night-copy vt-end-inner">
       <p class="v-display vt-end-line" data-v-reveal>The door is <span style="color: var(--leaf);">open</span>.</p>
       <a href="/verdant/ethos#talk" class="v-cta">Say hello</a>

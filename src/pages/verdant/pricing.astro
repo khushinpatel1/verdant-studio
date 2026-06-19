@@ -1,0 +1,80 @@
+---
+import Verdant from "../../layouts/Verdant.astro";
+import Footer from "../../components/verdant/Footer";
+---
+
+<Verdant title="Pricing — Verdant" image="/og/og-default.png">
+  <!-- ── HERO — Luminous, asymmetric. Text left, soft field right. ── -->
+  <section class="ve-hero">
+    <div class="ve-hero-bg" aria-hidden="true"></div>
+    <div class="v-wrap ve-hero-inner">
+      <p class="v-label">Honest pricing</p>
+      <h1 class="v-display ve-hero-head">
+        You pay for the app.<br />We don't <span style="color: var(--leaf);">sell you</span>.
+      </h1>
+      <p class="ve-hero-sub">
+        Garden is in early access. Beta testers get lifetime free access. Simple.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── PRICING MODEL — light card, straightforward ── -->
+  <section class="ve-pricing-section ve-sec">
+    <span class="vh-num" aria-hidden="true">01</span>
+    <div class="ve-pricing-card" data-v-reveal>
+      <h2 class="v-display ve-pricing-head">The model</h2>
+      <p class="ve-pricing-copy">
+        You pay for the app — that's the whole business. No ads, no data sold, ever.
+      </p>
+      <ul class="ve-pricing-list">
+        <li data-v-reveal style="--d: 0.05s;">
+          <span class="ve-pricing-bullet">•</span> Garden is subscription software
+        </li>
+        <li data-v-reveal style="--d: 0.10s;">
+          <span class="ve-pricing-bullet">•</span> Beta testers get lifetime free
+        </li>
+        <li data-v-reveal style="--d: 0.15s;">
+          <span class="ve-pricing-bullet">•</span> Pricing finalizes post-beta
+        </li>
+      </ul>
+      <p style="margin-top: 2rem; color: var(--ink-soft); font-size: var(--text-base);">
+        When bank sync arrives, it's billed at cost to us, not marked up.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── CTA — Join the beta ── -->
+  <section class="ve-cta-section ve-sec">
+    <span class="vh-num" aria-hidden="true">02</span>
+    <h2 class="v-display ve-cta-head">Ready to <span style="color: var(--leaf);">grow</span>?</h2>
+    <a href="#" class="v-cta">Join the beta</a>
+    <p class="v-label ve-cta-meta">No credit card required</p>
+  </section>
+
+  <Footer client:visible />
+</Verdant>
+
+<style is:global>
+  /* ── Pricing section ── */
+  .ve-pricing-section { background: var(--paper-soft); padding-block: clamp(110px, 18vh, 220px); }
+  .ve-pricing-card { grid-column: 2 / 11; padding: clamp(2.4rem, 4vh, 3.6rem); background: var(--card); border-radius: var(--radius); }
+  .ve-pricing-head { font-size: var(--display-1); color: var(--ink); margin-bottom: 1.6rem; }
+  .ve-pricing-copy { font-size: var(--text-lg); line-height: 1.7; color: var(--ink-soft); max-width: 50ch; }
+  .ve-pricing-list { list-style: none; padding: 0; margin: 1.8rem 0; display: flex; flex-direction: column; gap: 1rem; }
+  .ve-pricing-list li { font-size: var(--text-lg); color: var(--ink-soft); line-height: 1.6; }
+  .ve-pricing-bullet { color: var(--leaf); margin-right: 0.6rem; }
+
+  /* ── CTA Section ── */
+  .ve-cta-section { background: var(--paper); padding-block: clamp(120px, 20vh, 220px); align-content: center; }
+  .ve-cta-head { grid-column: 1 / 9; font-size: var(--display-1); color: var(--ink); line-height: 1.05; }
+  .ve-cta-head + .v-cta { grid-column: 1 / 9; margin-top: 2rem; }
+  .ve-cta-meta { grid-column: 1 / 9; margin-top: 1.2rem; }
+
+  /* ── Responsive ── */
+  @media (max-width: 860px) {
+    .ve-hero-bg { display: none; }
+    .ve-hero-inner { grid-column: 1 / 13; }
+    .ve-pricing-card { grid-column: 1 / 13; }
+    .ve-cta-head, .ve-cta-head + .v-cta, .ve-cta-meta { grid-column: 1 / 13; }
+  }
+</style>

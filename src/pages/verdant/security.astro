@@ -88,7 +88,7 @@ const headers = [
   <!-- P2: Enso watermark behind principle numerals -->
   <section class="vs-principles vs-sec">
     <span class="vh-num" aria-hidden="true">01</span>
-    <Enso client:visible class="vh-ink-watermark vs-principles-enso" aria-hidden="true" />
+    <Enso client:visible className="vh-ink-watermark vs-principles-enso" aria-hidden="true" />
     {principles.map((p, i) => (
       <div class={`vs-row${i % 2 ? " vs-row--alt" : ""}`} data-v-reveal style={`--d:${i * 0.05}s`}>
         <span class="v-label v-label--bare">{p.n}</span>
@@ -105,8 +105,8 @@ const headers = [
   <section class="vs-posture vs-sec">
     <span class="vh-num" aria-hidden="true">02</span>
     <div class="vh-ink-band vs-posture-inkband" aria-hidden="true">
-      <MountainRidge client:visible class="vs-posture-mountain" />
-      <MistLayer client:visible class="vs-posture-mist" />
+      <MountainRidge client:visible className="vs-posture-mountain" />
+      <MistLayer client:visible className="vs-posture-mist" />
     </div>
     <div class="vs-posture-head" data-v-reveal>
       <p class="v-label">This site's security posture</p>

@@ -1,0 +1,120 @@
+---
+import Verdant from "../../layouts/Verdant.astro";
+import Footer from "../../components/verdant/Footer";
+---
+
+<Verdant title="Join the Beta — Verdant" image="/og/og-default.png">
+  <!-- ── HERO — Luminous, asymmetric. Text left, soft field right. ── -->
+  <section class="ve-hero">
+    <div class="ve-hero-bg" aria-hidden="true"></div>
+    <div class="v-wrap ve-hero-inner">
+      <p class="v-label">The ascent</p>
+      <h1 class="v-display ve-hero-head">
+        Garden is <span style="color: var(--leaf);">growing</span>.
+      </h1>
+      <p class="ve-hero-sub">
+        What's ready today, what's coming, and how you can help shape it.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── READY NOW ── -->
+  <section class="ve-beta-section ve-sec">
+    <span class="vh-num" aria-hidden="true">01</span>
+    <div class="ve-beta-card" data-v-reveal>
+      <h2 class="v-display ve-beta-head">Ready now</h2>
+      <ul class="ve-beta-list">
+        <li data-v-reveal style="--d: 0.05s;">
+          <span class="ve-beta-check">✓</span> Local-first net worth tracking
+        </li>
+        <li data-v-reveal style="--d: 0.10s;">
+          <span class="ve-beta-check">✓</span> Multi-account portfolio view
+        </li>
+        <li data-v-reveal style="--d: 0.15s;">
+          <span class="ve-beta-check">✓</span> Full data privacy — no servers required
+        </li>
+        <li data-v-reveal style="--d: 0.20s;">
+          <span class="ve-beta-check">✓</span> Works offline, no account needed to start
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ── COMING SOON ── -->
+  <section class="ve-beta-section ve-sec" style="background: var(--paper-soft);">
+    <span class="vh-num" aria-hidden="true">02</span>
+    <div class="ve-beta-card" data-v-reveal>
+      <h2 class="v-display ve-beta-head">In the soil</h2>
+      <ul class="ve-beta-list">
+        <li data-v-reveal style="--d: 0.05s;">
+          <span class="ve-beta-sprout">⦿</span> Secure bank sync (AES-GCM at rest)
+        </li>
+        <li data-v-reveal style="--d: 0.10s;">
+          <span class="ve-beta-sprout">⦿</span> Goal-setting and growth tracking
+        </li>
+        <li data-v-reveal style="--d: 0.15s;">
+          <span class="ve-beta-sprout">⦿</span> Cross-platform (iOS, Android, web)
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ── WHAT WE ASK ── -->
+  <section class="ve-beta-section ve-sec">
+    <span class="vh-num" aria-hidden="true">03</span>
+    <div class="ve-beta-card" data-v-reveal>
+      <h2 class="v-display ve-beta-head">What we ask of testers</h2>
+      <p class="ve-beta-copy">
+        Beta testers help us find rough edges, test on real devices, and tell us what's working.
+      </p>
+      <ul class="ve-beta-list">
+        <li data-v-reveal style="--d: 0.05s;">
+          <span class="ve-beta-bullet">•</span> Try the features. Break things.
+        </li>
+        <li data-v-reveal style="--d: 0.10s;">
+          <span class="ve-beta-bullet">•</span> Report what doesn't work (or does).
+        </li>
+        <li data-v-reveal style="--d: 0.15s;">
+          <span class="ve-beta-bullet">•</span> Expect change. Beta is not stable yet.
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ── CTA — Get started ── -->
+  <section class="ve-cta-section ve-sec" style="background: var(--paper-soft);">
+    <span class="vh-num" aria-hidden="true">04</span>
+    <h2 class="v-display ve-cta-head">Ready to <span style="color: var(--leaf);">join</span>?</h2>
+    <a href="https://garden.khushinpatel1.workers.dev" class="v-cta">Get started</a>
+    <p class="v-label ve-cta-meta">No credit card required • Free lifetime access for beta testers</p>
+  </section>
+
+  <Footer client:visible />
+</Verdant>
+
+<style is:global>
+  /* ── Beta section ── */
+  .ve-beta-section { padding-block: clamp(110px, 18vh, 220px); }
+  .ve-beta-card { grid-column: 2 / 11; padding: clamp(2.4rem, 4vh, 3.6rem); background: var(--card); border-radius: var(--radius); }
+  .ve-beta-head { font-size: var(--display-1); color: var(--ink); margin-bottom: 1.6rem; }
+  .ve-beta-copy { font-size: var(--text-lg); line-height: 1.7; color: var(--ink-soft); max-width: 50ch; margin-bottom: 1.6rem; }
+  .ve-beta-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 1.2rem; }
+  .ve-beta-list li { font-size: var(--text-lg); color: var(--ink-soft); line-height: 1.6; }
+  .ve-beta-check { color: var(--leaf); font-weight: 700; margin-right: 0.8rem; }
+  .ve-beta-sprout { color: var(--leaf); margin-right: 0.8rem; font-size: 1.1em; }
+  .ve-beta-bullet { color: var(--leaf); margin-right: 0.6rem; }
+
+  /* ── CTA Section ── */
+  .ve-cta-section { align-content: center; }
+  .ve-cta-head { grid-column: 1 / 9; font-size: var(--display-1); color: var(--ink); line-height: 1.05; }
+  .ve-cta-head + .v-cta { grid-column: 1 / 9; margin-top: 2rem; }
+  .ve-cta-meta { grid-column: 1 / 9; margin-top: 1.2rem; }
+
+  /* ── Responsive ── */
+  @media (max-width: 860px) {
+    .ve-hero-bg { display: none; }
+    .ve-hero-inner { grid-column: 1 / 13; }
+    .ve-beta-card { grid-column: 1 / 13; }
+    .ve-cta-head, .ve-cta-head + .v-cta, .ve-cta-meta { grid-column: 1 / 13; }
+  }
+</style>

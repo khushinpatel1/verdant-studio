@@ -1,0 +1,107 @@
+---
+import Verdant from "../../layouts/Verdant.astro";
+import Footer from "../../components/verdant/Footer";
+---
+
+<Verdant title="FAQ — Verdant" image="/og/og-default.png">
+  <!-- ── HERO — Luminous, asymmetric. Text left, soft field right. ── -->
+  <section class="ve-hero">
+    <div class="ve-hero-bg" aria-hidden="true"></div>
+    <div class="v-wrap ve-hero-inner">
+      <p class="v-label">Questions</p>
+      <h1 class="v-display ve-hero-head">
+        The things<br />people <span style="color: var(--leaf);">ask</span>.
+      </h1>
+      <p class="ve-hero-sub">
+        Privacy, features, pricing, platform—everything we thought you'd want to know.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── FAQ CONTENT ── -->
+  <section class="ve-faq-section ve-sec">
+    <span class="vh-num" aria-hidden="true">01</span>
+    <div class="ve-faq-content">
+      <div class="ve-faq-item" data-v-reveal>
+        <h3 class="ve-faq-question">Is my financial data really private?</h3>
+        <p class="ve-faq-answer">
+          Yes. Garden is local-first by design. Your money data never leaves your device unless you opt in to bank sync—and even then, we can't see it. Everything is encrypted at rest with AES-GCM.
+        </p>
+      </div>
+
+      <div class="ve-faq-item" data-v-reveal style="--d: 0.05s;">
+        <h3 class="ve-faq-question">What touches a server?</h3>
+        <p class="ve-faq-answer">
+          Only what you sync deliberately. Bank credentials stay on your device. We store encrypted account snapshots for backup, nothing more. If you never use bank sync, nothing leaves your device.
+        </p>
+      </div>
+
+      <div class="ve-faq-item" data-v-reveal style="--d: 0.10s;">
+        <h3 class="ve-faq-question">Do I need a bank login?</h3>
+        <p class="ve-faq-answer">
+          Not to start. Garden works fully offline for manual entry. Bank sync is optional, comes later, and you're always in control.
+        </p>
+      </div>
+
+      <div class="ve-faq-item" data-v-reveal style="--d: 0.15s;">
+        <h3 class="ve-faq-question">What does it cost?</h3>
+        <p class="ve-faq-answer">
+          Beta is free. Forever free for beta testers. After beta, we'll announce pricing—but the model is simple: you pay for the app, not with your data.
+        </p>
+      </div>
+
+      <div class="ve-faq-item" data-v-reveal style="--d: 0.20s;">
+        <h3 class="ve-faq-question">iOS and Android?</h3>
+        <p class="ve-faq-answer">
+          Coming post-beta. Garden starts on the web and will expand to mobile. We'll build them as Capacitor apps so your data stays local.
+        </p>
+      </div>
+
+      <div class="ve-faq-item" data-v-reveal style="--d: 0.25s;">
+        <h3 class="ve-faq-question">What happens if Verdant shuts down?</h3>
+        <p class="ve-faq-answer">
+          Your data is yours. We're building a clear export format so you can always get your data back, in full, at any time. No lock-in.
+        </p>
+      </div>
+
+      <div class="ve-faq-item" data-v-reveal style="--d: 0.30s;">
+        <h3 class="ve-faq-question">Who's behind Verdant?</h3>
+        <p class="ve-faq-answer">
+          KP, a designer and maker. Verdant is independent and bootstrapped—no investors, no board, no growth pressure pulling us the wrong direction. See the <a href="/verdant/studio" style="color: var(--leaf);">studio</a> for more.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA ── -->
+  <section class="ve-cta-section ve-sec" style="background: var(--paper-soft);">
+    <span class="vh-num" aria-hidden="true">02</span>
+    <h2 class="v-display ve-cta-head">More <span style="color: var(--leaf);">questions</span>?</h2>
+    <a href="mailto:verdantmail@proton.me" class="v-cta">Email us</a>
+  </section>
+
+  <Footer client:visible />
+</Verdant>
+
+<style is:global>
+  /* ── FAQ section ── */
+  .ve-faq-section { background: var(--paper-soft); padding-block: clamp(110px, 18vh, 220px); }
+  .ve-faq-content { grid-column: 2 / 11; display: flex; flex-direction: column; gap: 2rem; }
+  .ve-faq-item { padding: 1.6rem 0; border-top: 1px solid var(--line); }
+  .ve-faq-item:last-child { border-bottom: 1px solid var(--line); }
+  .ve-faq-question { font-family: var(--font-display); font-size: var(--text-xl); color: var(--ink); font-weight: 400; line-height: 1.3; margin: 0 0 0.8rem 0; }
+  .ve-faq-answer { font-size: var(--text-lg); line-height: 1.7; color: var(--ink-soft); max-width: 65ch; margin: 0; }
+
+  /* ── CTA Section ── */
+  .ve-cta-section { align-content: center; }
+  .ve-cta-head { grid-column: 1 / 9; font-size: var(--display-1); color: var(--ink); line-height: 1.05; }
+  .ve-cta-head + .v-cta { grid-column: 1 / 9; margin-top: 2rem; }
+
+  /* ── Responsive ── */
+  @media (max-width: 860px) {
+    .ve-hero-bg { display: none; }
+    .ve-hero-inner { grid-column: 1 / 13; }
+    .ve-faq-content { grid-column: 1 / 13; }
+    .ve-cta-head, .ve-cta-head + .v-cta { grid-column: 1 / 13; }
+  }
+</style>

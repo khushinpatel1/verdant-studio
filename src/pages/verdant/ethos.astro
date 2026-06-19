@@ -30,7 +30,7 @@ import { brand, ethos } from "../../data/verdant";
   <!-- P2: Enso watermark behind the creed numerals -->
   <section class="ve-creed ve-sec">
     <span class="vh-num" aria-hidden="true">01</span>
-    <Enso client:visible class="vh-ink-watermark ve-creed-enso" aria-hidden="true" />
+    <Enso client:visible className="vh-ink-watermark ve-creed-enso" aria-hidden="true" />
     {ethos.creed.map((line, i) => (
       <div class={`ve-creed-row${i % 2 ? " ve-creed-row--alt" : ""}`} data-v-reveal style={`--d:${i * 0.05}s`}>
         <span class="v-label v-label--bare">0{i + 1}</span>
@@ -43,7 +43,7 @@ import { brand, ethos } from "../../data/verdant";
   <section class="vh-night-feature v-night ve-manifesto">
     <div class="vh-night-bg" style="background-image:url(/verdant/paint/moonlit-garden.webp)"></div>
     <div class="vh-night-scrim"></div>
-    <Moon client:visible class="vh-night-moon" />
+    <Moon client:visible className="vh-night-moon" />
     <div class="vh-night-copy ve-manifesto-copy">
       <p class="v-label v-label--light" data-v-reveal>The conviction</p>
       <h2 class="v-display ve-manifesto-head" data-v-reveal style="--d:0.08s">
@@ -68,7 +68,7 @@ import { brand, ethos } from "../../data/verdant";
       </picture>
       <InkGrowth client:visible side="right" className="ve-story-vine" />
       <!-- P3: BlossomBranch overlapping the left edge of the image -->
-      <BlossomBranch client:visible side="left" class="vh-leaf-accent ve-story-blossom" aria-hidden="true" />
+      <BlossomBranch client:visible side="left" className="vh-leaf-accent ve-story-blossom" aria-hidden="true" />
     </div>
     <div class="ve-story-text">
       <p class="v-label" data-v-reveal>Why this exists</p>
@@ -103,8 +103,8 @@ import { brand, ethos } from "../../data/verdant";
     </div>
     <!-- P2: Mountain/Mist atmospheric band at the cream story section's bottom edge -->
     <div class="vh-ink-band ve-story-inkband" aria-hidden="true">
-      <MountainRidge client:visible class="ve-story-mountain" />
-      <MistLayer client:visible class="ve-story-mist" />
+      <MountainRidge client:visible className="ve-story-mountain" />
+      <MistLayer client:visible className="ve-story-mist" />
     </div>
   </section>
 

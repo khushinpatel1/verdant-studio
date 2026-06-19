@@ -57,7 +57,7 @@ import { garden } from "../../data/verdant";
               <div class="vg-phone-screen"><img src={s.img} alt={`Garden — ${s.tab}`} loading="lazy" width="780" height="1688" /></div>
               {i % 2 === 0
                 ? <InkGrowth client:visible side="right" className="vh-leaf-accent vg-leaf-right" aria-hidden="true" />
-                : <BlossomBranch client:visible side="left" class="vh-leaf-accent vg-leaf-left" aria-hidden="true" />
+                : <BlossomBranch client:visible side="left" className="vh-leaf-accent vg-leaf-left" aria-hidden="true" />
               }
             </div>
           </div>
@@ -90,7 +90,7 @@ import { garden } from "../../data/verdant";
   <!-- P2: Enso watermark behind the first feature numeral -->
   <section class="vg-features">
     <span class="vh-num" aria-hidden="true">04</span>
-    <Enso client:visible class="vh-ink-watermark vg-feat-enso" aria-hidden="true" />
+    <Enso client:visible className="vh-ink-watermark vg-feat-enso" aria-hidden="true" />
     <div class="vg-feat-bg" aria-hidden="true"></div>
     <div class="v-wrap">
       <p class="v-label" data-v-reveal>What stays yours</p>
@@ -120,7 +120,7 @@ import { garden } from "../../data/verdant";
   <section class="vh-night-feature v-night vg-inkpanels">
     <div class="vh-night-bg" style="background-image:url(/verdant/paint/ink-panels.webp)"></div>
     <div class="vh-night-scrim"></div>
-    <Moon client:visible class="vh-night-moon" />
+    <Moon client:visible className="vh-night-moon" />
     <div class="vh-night-copy vg-inkpanels-copy">
       <p class="v-label v-label--light" data-v-reveal>The philosophy</p>
       <h2 class="v-display vg-inkpanels-head" data-v-reveal style="--d:0.08s">
@@ -144,8 +144,8 @@ import { garden } from "../../data/verdant";
       </h2>
     </div>
     <div class="vh-ink-band vg-band-inkband" aria-hidden="true">
-      <MountainRidge client:visible class="vg-band-mountain" />
-      <MistLayer client:visible class="vg-band-mist" />
+      <MountainRidge client:visible className="vg-band-mountain" />
+      <MistLayer client:visible className="vg-band-mist" />
     </div>
   </section>
 

@@ -83,7 +83,7 @@ const sections = [
   <!-- P2: Enso watermark near the top of body sections -->
   <section class="vp-body vp-sec">
     <span class="vh-num" aria-hidden="true">01</span>
-    <Enso client:visible class="vh-ink-watermark vp-body-enso" aria-hidden="true" />
+    <Enso client:visible className="vh-ink-watermark vp-body-enso" aria-hidden="true" />
     {sections.map((s, i) => (
       <div class={`vp-row${i % 2 ? " vp-row--alt" : ""}`} data-v-reveal style={`--d:${i * 0.05}s`}>
         <span class="v-label v-label--bare">{s.n}</span>
@@ -105,8 +105,8 @@ const sections = [
     <a href={`mailto:${brand.email}`} class="v-cta">{brand.email}</a>
     <p class="v-label vp-contact-meta">Write to us — we'll answer</p>
     <div class="vh-ink-band vp-contact-inkband" aria-hidden="true">
-      <MountainRidge client:visible class="vp-contact-mountain" />
-      <MistLayer client:visible class="vp-contact-mist" />
+      <MountainRidge client:visible className="vp-contact-mountain" />
+      <MistLayer client:visible className="vp-contact-mist" />
     </div>
   </section>
 

@@ -65,8 +65,8 @@
   --sage:       #b9cfa9;   /* tint / borders */
 
   /* ink + single calligraphic gold */
-  --ink:        #16241b;   /* body text — deep green-black, not pure black */
-  --ink-soft:   #45584a;   /* secondary text */
+  --ink:        #0f1612;   /* body text — deep green-black, not pure black; raised contrast */
+  --ink-soft:   #2d3d32;   /* secondary text; raised to 11.3:1 on paper for crisp type */
   --gold:       #b88a2e;   /* the one delicate-hand accent */
 
   /* contract used by global.css + components */
@@ -153,6 +153,19 @@
 
 /* ── Utility grammar (v-) ───────────────────────────────────────────────── */
 .v-wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 clamp(20px, 5vw, 56px); }
+
+/* Image container soft-clipping — applies a feathered radial mask to any image,
+   replacing hard borders with a soft dissolve. Use on <img> or its parent <div>. */
+.v-img-soft {
+  -webkit-mask-image: radial-gradient(
+    ellipse 56% 60% at 50% 48%,
+    #000 0%, #000 65%, transparent 90%
+  );
+  mask-image: radial-gradient(
+    ellipse 56% 60% at 50% 48%,
+    #000 0%, #000 65%, transparent 90%
+  );
+}
 
 /* scoped to the skin so they beat the element-qualified [data-skin] h1..h4 rule */
 [data-skin="verdant"] .v-display { font-family: var(--font-display); font-weight: 400; letter-spacing: -0.02em; line-height: 1.0; }
@@ -337,6 +350,52 @@
     ellipse var(--pf-mask-x, 54%) var(--pf-mask-y, 52%) at 50% 50%,
     #000 var(--pf-core, 36%), transparent var(--pf-fade, 74%)));
   will-change: transform;
+}
+
+/* ── Soft-masked image utilities — kill the "square cutout" look ───────────
+   Replace hard rectangular borders on images with soft radial or asymmetric
+   masks that dissolve into the background, giving the aesthetic of a crop
+   pulled from a larger composition rather than a clipped box.
+
+   .v-img-mask-radial: soft elliptical radial mask (feathers to transparent)
+   .v-img-mask-asymmetric: linear mask with gentle angle (one edge fades sooner)
+   Usage: apply to <div> or <img>, or use --mask custom props on child <img>. */
+
+[data-skin="verdant"] .v-img-mask-radial,
+[data-skin="verdant"] .v-img-mask-radial img {
+  -webkit-mask-image: radial-gradient(
+    ellipse 58% 62% at 50% 50%,
+    #000 0%, #000 68%, transparent 92%
+  );
+  mask-image: radial-gradient(
+    ellipse 58% 62% at 50% 50%,
+    #000 0%, #000 68%, transparent 92%
+  );
+}
+
+[data-skin="verdant"] .v-img-mask-asymmetric,
+[data-skin="verdant"] .v-img-mask-asymmetric img {
+  -webkit-mask-image: linear-gradient(
+    135deg,
+    #000 0%, #000 45%, transparent 88%
+  );
+  mask-image: linear-gradient(
+    135deg,
+    #000 0%, #000 45%, transparent 88%
+  );
+}
+
+/* Soft feathered edge for card-like containers (replaces hard border-radius) */
+[data-skin="verdant"] .v-card-soft {
+  -webkit-mask-image: radial-gradient(
+    ellipse 52% 48% at 50% 50%,
+    #000 0%, #000 62%, transparent 88%
+  );
+  mask-image: radial-gradient(
+    ellipse 52% 48% at 50% 50%,
+    #000 0%, #000 62%, transparent 88%
+  );
+  border-radius: 0;
 }
 
 /* ── Vine-border motif: asymmetric growing border for sections ──────────────

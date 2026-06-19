@@ -16,13 +16,12 @@ export const brand = {
 
 export const nav = {
   links: [
-    { label: "Studio", href: "/verdant" },
     { label: "Garden", href: "/verdant/garden" },
     { label: "Security", href: "/verdant/security" },
-    { label: "Ethos", href: "/verdant/ethos" },
-    { label: "People", href: "/verdant/team" },
+    { label: "Pricing", href: "/verdant/pricing" },
+    { label: "Studio", href: "/verdant/studio" },
   ],
-  cta: { label: "Start Garden", href: "https://garden.khushinpatel1.workers.dev" },
+  cta: { label: "Join the beta", href: "/verdant/beta" },
 };
 
 export type Screen = { tab: string; img: string; line: string; body: string };

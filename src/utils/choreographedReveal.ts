@@ -20,7 +20,7 @@ interface ChoreographyConfig {
   ease?: string;
 }
 
-const defaultConfig: ChoreographyConfig = {
+const defaultConfig: Required<ChoreographyConfig> = {
   staggerDelay: 0.08,
   duration: 0.9,
   ease: "cubic-bezier(0.22, 1, 0.36, 1)", // --ease from verdant.css
