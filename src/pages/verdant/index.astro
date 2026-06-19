@@ -1,6 +1,7 @@
 ---
 import Verdant from "../../layouts/Verdant.astro";
 import TextReveal from "../../components/verdant/TextReveal";
+import InkGrowth from "../../components/verdant/InkGrowth";
 import Footer from "../../components/verdant/Footer";
 import { brand, garden, ethos } from "../../data/verdant";
 ---
@@ -55,6 +56,7 @@ import { brand, garden, ethos } from "../../data/verdant";
 
   <!-- ── WORK / THE FIRST PROJECT ── -->
   <section id="work" class="vh-work">
+    <InkGrowth client:visible side="left" className="vh-work-vine" />
     <div class="v-wrap">
       <div class="vh-work-head" data-v-reveal>
         <p class="v-label">The first project</p>
@@ -156,6 +158,9 @@ import { brand, garden, ethos } from "../../data/verdant";
   .vh-stats-link:hover { color: var(--gold); }
 
   /* WORK — the first project */
+  .vh-work { position: relative; }
+  .vh-work-vine { position: absolute; left: clamp(-12px, 1vw, 16px); top: 4%; width: 116px; height: 380px; z-index: 0; opacity: 0.72; pointer-events: none; }
+  @media (max-width: 980px) { .vh-work-vine { display: none; } }
   .vh-work-head { margin-bottom: 4rem; }
   .vh-work-intro { font-size: var(--display-2); color: var(--green); margin-top: 1rem; }
   .vh-garden { display: grid; grid-template-columns: auto 1fr; gap: clamp(2.5rem, 6vw, 6rem); align-items: center; color: inherit; }
