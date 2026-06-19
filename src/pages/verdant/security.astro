@@ -112,13 +112,19 @@ const headers = [
     </div>
   </section>
 
-  <!-- ── TALK ── -->
-  <section id="talk" class="vs-band">
-    <div class="vs-band-edge" aria-hidden></div>
-    <div class="v-wrap vs-talk">
-      <TextReveal client:visible as="h2" className="v-display vs-talk-head" lines={["Found a gap?", "%Tell us%."]} />
-      <a href={`mailto:${brand.email}`} class="vs-talk-mail" data-cursor="Write">{brand.email}</a>
-      <p class="v-label v-label--light vs-talk-meta">Responsible disclosure — quietly, and we'll answer</p>
+  <!-- ── NIGHT CLOSING — bespoke-night band + asymmetric text ── -->
+  <section class="vs-close">
+    <div class="v-night-band">
+      <div class="v-print-field" data-pf-src="bespoke-night-garden">
+        <img src="/verdant/bespoke-night-garden.webp" alt="" aria-hidden="true" />
+      </div>
+    </div>
+    <div class="v-wrap vs-close-inner">
+      <div class="vs-close-text">
+        <p class="v-label v-label--light">Found a gap?</p>
+        <p class="v-display vs-close-head">%Tell us%.</p>
+        <a href={`mailto:${brand.email}`} class="vs-close-mail" data-cursor="Write">{brand.email}</a>
+      </div>
     </div>
   </section>
 
@@ -165,12 +171,15 @@ const headers = [
     max-width: 52ch; margin-top: 2.5rem; padding-top: 1.6rem; border-top: 1px solid var(--line); }
   @media (max-width: 700px) { .vs-header { grid-template-columns: 1fr; gap: 0.3rem; } }
 
-  /* TALK */
-  .vs-band { position: relative; background: linear-gradient(155deg, var(--forest-900), var(--forest) 55%, var(--green-600)); overflow: hidden; text-align: center; }
-  .vs-band-edge { position: absolute; top: -1px; left: 0; right: 0; height: 110px; background: var(--cream); clip-path: ellipse(60% 100% at 42% 0%); }
-  .vs-talk { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 1.6rem; }
-  .vs-talk-head { font-size: var(--display-1); color: var(--moon); }
-  .vs-talk-mail { font-family: var(--font-display); font-size: var(--display-2); color: var(--gold); border-bottom: 1px solid var(--gold); padding-bottom: 4px; transition: opacity .3s; }
-  .vs-talk-mail:hover { opacity: 0.75; }
-  .vs-talk-meta { justify-content: center; }
+  /* CLOSING — dark night band with asymmetric text */
+  .vs-close { position: relative; background: linear-gradient(140deg, #0a1408, #0f1f0a, #0d1810); overflow: hidden; }
+  .vs-close .v-night-band { position: absolute; inset: 0; z-index: 0; }
+  .vs-close-inner { position: relative; z-index: 1; padding: clamp(4rem, 10vh, 8rem) 0; display: grid; grid-template-columns: 1fr auto; gap: clamp(2rem, 6vw, 5rem); align-items: baseline; }
+  .vs-close-text { max-width: 52ch; }
+  .vs-close-head { font-size: var(--display-1); color: var(--moon); margin: 0.8rem 0 1.6rem; }
+  .vs-close-mail { font-family: var(--font-display); font-size: var(--text-lg); color: var(--gold); border-bottom: 1px solid var(--gold); padding-bottom: 4px; transition: opacity .3s; }
+  .vs-close-mail:hover { opacity: 0.75; }
+  @media (max-width: 800px) {
+    .vs-close-inner { grid-template-columns: 1fr; }
+  }
 </style>
