@@ -318,7 +318,7 @@
   right: var(--pf-right, auto);
   width: var(--pf-w, 46vw);
   max-width: none;
-  transform: translate(var(--pf-tx, 0%), calc(-50% + var(--vp, 0px)));
+  transform: translate3d(var(--pf-tx, 0%), calc(-50% + var(--vp, 0px)), 0);
   mix-blend-mode: var(--pf-blend, multiply);
   opacity: var(--pf-opacity, 1);
   filter: var(--pf-filter, none);
