@@ -3,11 +3,14 @@
 > Status: **APPROVED — IN PROGRESS** (KP go 2026-06-19; pricing + logo decided; run fully autonomous to live).
 
 ## ⛑ RECOVERY / CHECKPOINT (read FIRST if resuming after a crash or usage-limit)
-- **Background build workflow run ID:** `wf_cd6594e0-35b` (task `wbqyug20t`).
-- **Resume command:** `Workflow({scriptPath: "/Users/khushinpatel/.claude/projects/-Users-khushinpatel-Dev-garden/14dce605-141c-4c46-ba5c-7c1b93847cac/workflows/scripts/verdant-007-redesign-wf_cd6594e0-35b.js", resumeFromRunId: "wf_cd6594e0-35b"})` — completed agents return cached, only unfinished/changed re-run. Same-session only; if a fresh session, re-fire the script (commits below show what's already done).
+- **TRUE STATE 2026-06-19 16:1x PDT (after first run hit the 3:40pm usage limit):**
+  - ✅ **P1 committed** `306a82f` (tokens/logo[enso]/nav/footer/routes/assets). Note: 5 non-fatal TS errors, dist/ still built.
+  - ✅ **P2 5/7 committed** `2411c21` (ScrollPillars, GardenTour, PrivacySpectrum + home/garden/pricing). Saved manually post-limit.
+  - 🟡 **Continuation run LIVE:** run ID `wf_91d6e888-2c1` (task `wuf3tzeuj`) — doing P2-finish (security+beta) → **V-mark swap** (enso→temp V) → all P3 → all P4(garden) → render check. Commits per phase.
+- **Resume command (continuation):** `Workflow({scriptPath: "/Users/khushinpatel/.claude/projects/-Users-khushinpatel-Dev-verdant-studio/14dce605-141c-4c46-ba5c-7c1b93847cac/workflows/scripts/verdant-007-continue-wf_91d6e888-2c1.js", resumeFromRunId: "wf_91d6e888-2c1"})` — completed agents return cached. If fresh session, re-fire the script (commits below show what's already done).
 - **Branches (work is HERE, not on main):** verdant-studio `redesign/007`; garden `redesign/007-onboarding`.
-- **Checkpointing:** workflow commits **per phase** (P1→P4) on those branches — each phase is saved before the next starts. Check progress: `git -C ~/Dev/verdant-studio log --oneline redesign/007` and the garden branch.
-- **NOT yet done (manual, post-build):** (1) swap `VerdantMark` enso→**temp V** glyph + regen favicon; (2) Opus rendered review + slop fixes on signature moments; (3) merge `redesign/007`→main (=deploy), confirm CI, redirect v1; (4) append the loop efficiency audit's real token numbers. See `partnership/docs/reference/ultracode-loop-audit.md`.
+- **Checkpointing:** workflow commits **per phase** on those branches. Check progress: `git -C ~/Dev/verdant-studio log --oneline redesign/007` and the garden branch.
+- **NOT yet done (manual, post-build, after continuation completes):** (1) Opus rendered review + slop fixes on signature moments; (2) merge `redesign/007`→main (=deploy), confirm CI green, redirect v1→canonical, report live SHA; (3) garden `redesign/007-onboarding`→main + deploy; (4) append the loop efficiency audit's real token numbers (first run: 35 agents / 1,053,983 subagent tokens / 335 tool uses / ~17min for P1+partial-P2). See `partnership/docs/reference/ultracode-loop-audit.md`. **V-mark swap is now IN the continuation run, no longer manual.**
 > Tier: Opus authored (taste/architecture). Execution: 1–2 Haiku sessions via `ultracode-loop`.
 > Repos touched: **verdant-studio** (site, primary) + **garden** (in-app onboarding, Phase 4).
 > Foundation: **v2 architecture, fresh design.** Keep the GSAP/Lenis/ink-library/choreography
