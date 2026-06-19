@@ -1,16 +1,17 @@
 /**
- * VerdantMark — the studio's mark: a clean ensō open-ring (a single
- * brush-gesture circle with one deliberate break) paired with "Verdant" in
- * the display serif. Mirrors Logo.tsx's API (withWordmark, size, className)
- * but is a wholly separate glyph — the sprout (Logo.tsx) now belongs to
- * Garden the product; this ring is Verdant the studio.
+ * VerdantMark — the studio's mark.
  *
- * Derived from ink/Enso.tsx's gesture but simplified to a crisp, static
- * logo glyph: one path, currentColor, no draw-on animation, no wash/dry-
- * brush texture. Reads clean at 16px (favicon scale).
+ * PLACEHOLDER GLYPH (2026-06-19): the previous ensō open-ring read as a
+ * "C/O" and was rejected. Replaced with a temporary geometric "V" in the
+ * Anthropic register — clean, confident, restrained, not a playful
+ * sunburst. One quiet character detail: the right arm tapers into a small
+ * leaf-bud terminal instead of a square cut. Monochrome, currentColor, two
+ * strokes, reads clean at 16px (favicon scale). This stays in place only
+ * until a final mark is commissioned — do not treat as the permanent logo.
  *
- * The break sits at the lower-left (~225deg), open toward the page —
- * incomplete on purpose, the zen-circle convention.
+ * Mirrors Logo.tsx's API (withWordmark, size, className) but is a wholly
+ * separate glyph — the sprout (Logo.tsx) now belongs to Garden the
+ * product; this V is Verdant the studio.
  */
 export default function VerdantMark({
   withWordmark = true,
@@ -33,21 +34,28 @@ export default function VerdantMark({
         aria-hidden="true"
       >
         {/*
-          Single brush-gesture ring, one sweep, one break.
-          Starts just past the gap (upper-left), travels clockwise almost
-          a full turn, stops short at the lower-left — the break stays open.
-          Slightly uneven radius (9.6 in, 10.4 out) so it reads hand-drawn,
-          not a perfect circle traced by a tool.
+          Geometric V, two strokes meeting at a rounded vertex.
+          Left arm: straight descent then rise to the vertex.
+          Right arm: rises from the vertex, then the terminal eases off the
+          straight line into a short curl — the one quiet "leaf-bud" detail.
         */}
         <path
-          d="M11 6.2
-             C 14 4.6 18.4 4.6 21.6 6.6
-             C 25.4 9 27.2 13.2 26.4 17.2
-             C 25.6 21.2 22.4 24.6 18.4 25.6
-             C 14.8 26.5 10.8 25.4 8.2 22.7
-             C 6.6 21 5.7 18.7 5.8 16.4"
+          d="M5 5.5
+             L15.6 25.5
+             C 15.95 26.17 16.93 26.17 17.27 25.5
+             L24.2 12.2"
           stroke="currentColor"
-          strokeWidth="2.4"
+          strokeWidth="2.6"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          fill="none"
+        />
+        <path
+          d="M24.2 12.2
+             C 25.4 11.6 26.6 11.85 27.1 10.85
+             C 27.5 10.05 27.1 9.1 26.25 8.85"
+          stroke="currentColor"
+          strokeWidth="1.5"
           strokeLinecap="round"
           fill="none"
         />

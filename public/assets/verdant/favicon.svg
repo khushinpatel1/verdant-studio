@@ -1,12 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <!-- Verdant studio mark — the ensō: a single brush-gesture open ring with
-       one deliberate break. Same path family as
-       src/components/verdant/VerdantMark.tsx. Adapts to color scheme. -->
+  <!-- Verdant studio mark — PLACEHOLDER (2026-06-19): temporary geometric
+       "V" replacing the rejected ensō ring (read as a "C/O"). Right arm
+       tapers into a small leaf-bud terminal. Same path family as
+       src/components/verdant/VerdantMark.tsx. Adapts to color scheme.
+       Replace when a final mark is commissioned. -->
   <style>
     .v-fi { stroke: #2d5016; }
     @media (prefers-color-scheme: dark) {
       .v-fi { stroke: #c8d5b9; }
     }
   </style>
-  <path class="v-fi" d="M11 6.2 C 14 4.6 18.4 4.6 21.6 6.6 C 25.4 9 27.2 13.2 26.4 17.2 C 25.6 21.2 22.4 24.6 18.4 25.6 C 14.8 26.5 10.8 25.4 8.2 22.7 C 6.6 21 5.7 18.7 5.8 16.4" fill="none" stroke-width="2.4" stroke-linecap="round"/>
+  <path class="v-fi" d="M5 5.5 L15.6 25.5 C 15.95 26.17 16.93 26.17 17.27 25.5 L24.2 12.2" fill="none" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path class="v-fi" d="M24.2 12.2 C 25.4 11.6 26.6 11.85 27.1 10.85 C 27.5 10.05 27.1 9.1 26.25 8.85" fill="none" stroke-width="1.5" stroke-linecap="round"/>
 </svg>
