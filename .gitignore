@@ -4,3 +4,5 @@ dist/
 .DS_Store
 *.log
 shots/
+.codesight/*
+!.codesight/CODESIGHT.md

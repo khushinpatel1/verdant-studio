@@ -1,5 +1,7 @@
 # Verdant Studio
 
+> Module map: read `.codesight/CODESIGHT.md` FIRST instead of exploring the tree; regen with `codesight` after big changes.
+
 > Cross-project rules live in `~/.claude/CLAUDE.md`.
 
 ## What this is
