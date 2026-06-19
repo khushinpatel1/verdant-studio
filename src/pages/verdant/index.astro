@@ -2,14 +2,15 @@
 import Verdant from "../../layouts/Verdant.astro";
 import TextReveal from "../../components/verdant/TextReveal";
 import Footer from "../../components/verdant/Footer";
-import GrassField from "../../components/verdant/GrassField";
 import { brand, garden, ethos } from "../../data/verdant";
 ---
 
 <Verdant title="Verdant — software grown for people">
   <!-- ── HERO: type on paper. The page's one print lives at the closing CTA. ── -->
   <section class="vh-hero">
-    <GrassField client:load />
+    <div class="v-print-field vh-hero-art" data-v-parallax="0.05" aria-hidden="true">
+      <img src="/verdant/art/hero-grasses-sun.jpg" alt="" fetchpriority="high" decoding="async" />
+    </div>
     <div class="v-wrap vh-hero-inner">
       <p class="v-label">Verdant Studio — independent software</p>
       <TextReveal
@@ -117,7 +118,24 @@ import { brand, garden, ethos } from "../../data/verdant";
   .vh-hero-head { font-size: var(--display-1); color: var(--forest-900); max-width: 15ch; margin-top: 2.4rem; }
   .vh-hero-sub { font-family: var(--font-display); font-size: var(--text-lg); line-height: 1.6; color: var(--ink); max-width: 44ch; margin-top: 2rem; }
   .vh-hero-actions { display: flex; gap: 1.6rem; flex-wrap: wrap; margin-top: 2.4rem; }
-  .vh-hero-canvas { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; display: block; }
+  .vh-hero-art {
+    z-index: 0;
+    --pf-blend: normal;
+    --pf-opacity: 0.95;
+    --pf-w: clamp(620px, 62vw, 1000px);
+    --pf-right: -8vw;
+    --pf-y: 52%;
+    --pf-mask: radial-gradient(ellipse 82% 72% at 76% 48%, #000 38%, transparent 80%);
+  }
+  @media (max-width: 800px) {
+    .vh-hero-art {
+      --pf-w: clamp(420px, 128vw, 560px);
+      --pf-right: -30vw;
+      --pf-y: 78%;
+      --pf-opacity: 0.85;
+      --pf-mask: radial-gradient(ellipse 72% 58% at 74% 54%, #000 32%, transparent 74%);
+    }
+  }
   .vh-scrollcue { position: absolute; left: 50%; bottom: 2rem; transform: translateX(-50%); z-index: 2; display: grid; place-items: start center; width: 24px; height: 46px; }
   .vh-scrollcue-line { width: 1px; height: 40px; background: linear-gradient(var(--green), transparent); transform-origin: top center; animation: vh-cue 2.6s var(--ease) infinite; }
   @keyframes vh-cue { 0% { transform: scaleY(0); opacity: 0; } 25% { opacity: 0.9; } 55% { transform: scaleY(1) translateY(0); opacity: 0.9; } 100% { transform: scaleY(1) translateY(8px); opacity: 0; } }
