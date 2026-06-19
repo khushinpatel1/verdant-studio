@@ -1,6 +1,6 @@
 # 006 — Full-site redesign campaign
 
-Status: **IN PROGRESS** (2026-06-19) — handoff doc for Haiku execution sessions.
+Status: **DONE** (2026-06-19) — Session A + B complete. v1 branch live at verdant-1wg.pages.dev.
 
 Branch: `v1`. Live: verdant-1wg.pages.dev. Build: `npm run build` (must be green before push).
 
@@ -56,6 +56,12 @@ drop into `verdant-studio/src/assets/` (or `public/`) before page work consumes 
 - [x] Home growing-vine, mobile-visible (8dbdbc0, 5cf8b1a)
 - [x] Found real asset folder `~/Dev/assests`; inventoried; bespoke-night confirmed by KP
 - [x] Confirmed the per-page terminal-CTA uniformity against disk
+- [x] **Session A** — asset-prep: night-board panel cropped, hero landscapes + square subjects as WebP, .v-night-band component built (d3ae8b5)
+- [x] **Session B** — de-uniform pages (4 commits):
+  - ethos: quiet asymmetric light closing, "We answer quietly" (72d1a8b)
+  - security: dark night-band with asymmetric text overlay (16c5e5d)
+  - team: offset two-column layout, "The door / is open" split rhythm (bffe378)
+  - garden: dark privacy-first closing with koi-red subject radial mask (99786d7, 71abc1b)
 
 ## HAIKU EXECUTION SESSIONS (sequential — each is one focused Haiku session)
 
