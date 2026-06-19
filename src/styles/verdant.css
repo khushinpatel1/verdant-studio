@@ -330,3 +330,34 @@
     #000 var(--pf-core, 36%), transparent var(--pf-fade, 74%)));
   will-change: transform;
 }
+
+/* ── Night band: dark background with bespoke-night imagery ───────────────
+   Reusable dark closing section using v-print-field + a dark gradient base.
+   Customize per-page: override --nb-* to adjust position, height, etc.
+   Default: horizontal garden scene, screen blend, bottom-right placement. */
+[data-skin="verdant"] .v-night-band {
+  position: relative;
+  background: linear-gradient(140deg, #0a1408, #0f1f0a, #0d1810);
+  overflow: hidden;
+}
+[data-skin="verdant"] .v-night-band .v-print-field {
+  z-index: 0;
+  --pf-blend: screen;
+  --pf-opacity: 0.75;
+  --pf-w: clamp(420px, 52vw, 720px);
+  --pf-right: 3vw;
+  --pf-y: 68%;
+  --pf-mask-x: 56%;
+  --pf-mask-y: 54%;
+  --pf-core: 32%;
+  --pf-fade: 76%;
+  --pf-filter: saturate(0.65) contrast(1.06);
+}
+@media (max-width: 800px) {
+  [data-skin="verdant"] .v-night-band .v-print-field {
+    --pf-w: clamp(300px, 110vw, 500px);
+    --pf-right: -8vw;
+    --pf-y: 65%;
+    --pf-opacity: 0.7;
+  }
+}
