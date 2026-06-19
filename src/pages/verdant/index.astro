@@ -2,29 +2,32 @@
 import Verdant from "../../layouts/Verdant.astro";
 import TextReveal from "../../components/verdant/TextReveal";
 import Footer from "../../components/verdant/Footer";
+import GrassField from "../../components/verdant/GrassField";
 import { brand, garden, ethos } from "../../data/verdant";
 ---
 
 <Verdant title="Verdant — software grown for people">
   <!-- ── HERO: type on paper. The page's one print lives at the closing CTA. ── -->
   <section class="vh-hero">
+    <GrassField client:load />
     <div class="v-wrap vh-hero-inner">
       <p class="v-label">Verdant Studio — independent software</p>
       <TextReveal
         client:load
         as="h1"
         className="v-display vh-hero-head"
-        lines={["Software grown for", "%people%, not advertisers."]}
+        lines={["Most apps are quietly", "working against you.", "Ours %can't%."]}
       />
       <p class="vh-hero-sub">
-        Quiet software — tools that do their work and get out of the way.
-        Nothing here watches you back.
+        No ads. No trackers. No data to sell — because it never leaves your device.
+        We built it so we couldn't betray you, even if someone bought us tomorrow.
       </p>
       <div class="vh-hero-actions">
-        <a href="#work" class="v-cta" data-cursor="Down">See the work</a>
+        <a href="/verdant/security" class="v-cta" data-cursor="Look">See how it's built</a>
         <a href="/verdant/ethos" class="v-cta" data-cursor="Read">The ethos</a>
       </div>
     </div>
+    <a href="#work" class="vh-scrollcue" data-cursor="Down" aria-label="Scroll to the work"><span class="vh-scrollcue-line"></span></a>
   </section>
 
   <!-- ── MANIFESTO — paper treatment (the dark band is reserved for the CTA) ── -->
@@ -114,6 +117,11 @@ import { brand, garden, ethos } from "../../data/verdant";
   .vh-hero-head { font-size: var(--display-1); color: var(--forest-900); max-width: 15ch; margin-top: 2.4rem; }
   .vh-hero-sub { font-family: var(--font-display); font-size: var(--text-lg); line-height: 1.6; color: var(--ink); max-width: 44ch; margin-top: 2rem; }
   .vh-hero-actions { display: flex; gap: 1.6rem; flex-wrap: wrap; margin-top: 2.4rem; }
+  .vh-hero-canvas { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; display: block; }
+  .vh-scrollcue { position: absolute; left: 50%; bottom: 2rem; transform: translateX(-50%); z-index: 2; display: grid; place-items: start center; width: 24px; height: 46px; }
+  .vh-scrollcue-line { width: 1px; height: 40px; background: linear-gradient(var(--green), transparent); transform-origin: top center; animation: vh-cue 2.6s var(--ease) infinite; }
+  @keyframes vh-cue { 0% { transform: scaleY(0); opacity: 0; } 25% { opacity: 0.9; } 55% { transform: scaleY(1) translateY(0); opacity: 0.9; } 100% { transform: scaleY(1) translateY(8px); opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) { .vh-scrollcue-line { animation: none; opacity: 0.5; } }
 
   /* BANDS */
   .vh-band { position: relative; background: linear-gradient(155deg, var(--forest-900), var(--forest) 55%, var(--green-600)); overflow: hidden; }
