@@ -1,0 +1,150 @@
+---
+import Verdant from "../../layouts/Verdant.astro";
+import Footer from "../../components/verdant/Footer";
+import Bamboo from "../../components/verdant/ink/Bamboo";
+import StoneLantern from "../../components/verdant/ink/StoneLantern";
+
+// PRICING — the honest model page. NO dollar figures (KP's numbers stay internal
+// until the full business-mode revamp pre-ship — see plan §3, §9). Beta testers
+// get Garden lifetime free; the model is named, not priced.
+
+const model = [
+  {
+    n: "01",
+    head: "You pay for the app.",
+    body: "That's the whole business. No ads, no data sold, ever — to anyone, for any reason. The software is the product, and you're the customer, not the inventory.",
+  },
+  {
+    n: "02",
+    head: "Beta testers keep it, free, for good.",
+    body: "This is friends-and-family beta. Everyone who tests Garden now gets lifetime access at no cost — not an introductory rate, not a trial that expires. Pricing for everyone after the beta is still being worked out.",
+  },
+  {
+    n: "03",
+    head: "Bank sync, billed at cost.",
+    body: "When secure bank sync arrives, it's passed through at what it actually costs us to run — not marked up as a profit center. The model doesn't change just because the feature got harder to build.",
+  },
+];
+---
+
+<Verdant title="Pricing — Verdant" image="/og/og-default.png">
+  <!-- ── HERO — asymmetric, the headline is the whole argument ── -->
+  <section class="vp-hero">
+    <div class="vp-hero-bg" aria-hidden="true"></div>
+    <div class="v-wrap vp-hero-inner">
+      <p class="v-label">How Garden makes money</p>
+      <h1 class="v-display vp-hero-head">
+        You pay for the app.<br />We don't <span style="color: var(--leaf);">sell you</span>.
+      </h1>
+      <p class="vp-hero-sub">
+        Most money apps make their real money by knowing too much about you.
+        Garden makes its money the plain way — directly, from people who use it.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── MODEL — asymmetric editorial rows, off-axis like security's principles ── -->
+  <section class="vp-model vp-sec">
+    <span class="vh-num" aria-hidden="true">01</span>
+    <Bamboo client:visible className="vh-ink-watermark vp-model-bamboo" aria-hidden="true" />
+    {model.map((m, i) => (
+      <div class={`vp-row${i % 2 ? " vp-row--alt" : ""}`} data-v-reveal style={`--d:${i * 0.05}s`}>
+        <span class="v-label v-label--bare">{m.n}</span>
+        <div class="vp-row-text">
+          <p class="v-display vp-row-head">{m.head}</p>
+          <p class="vp-row-body">{m.body}</p>
+        </div>
+      </div>
+    ))}
+  </section>
+
+  <!-- ── BETA TERMS — restrained paper band, not a slab ── -->
+  <section class="ve-band vp-beta v-band--paper">
+    <div class="v-wrap vp-beta-inner" data-v-reveal>
+      <div class="v-band-hr" aria-hidden="true"></div>
+      <p class="v-label">Friends-and-family beta</p>
+      <p class="v-display vp-beta-head">
+        Test it now. Keep it <em>forever</em>.
+      </p>
+      <p class="vp-beta-body">
+        Beta access is free for as long as you use Garden — that doesn't expire,
+        upsell, or quietly downgrade later. If you'd like to support the studio
+        beyond that, a donation is always welcome, but never asked for and never
+        required. Using Garden and telling us what's broken is plenty.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── CTA — Join the beta ── -->
+  <section class="vp-cta vp-sec">
+    <span class="vh-num" aria-hidden="true">02</span>
+    <StoneLantern client:visible className="vh-leaf-accent vp-cta-lantern" aria-hidden="true" />
+    <h2 class="v-display vp-cta-head">Ready to <span style="color: var(--leaf);">grow</span>?</h2>
+    <a href="/verdant/beta" class="v-cta v-cta--primary">Join the beta</a>
+    <p class="v-label vp-cta-meta">No credit card. No catch.</p>
+  </section>
+
+  <Footer client:visible />
+</Verdant>
+
+<style>
+  /* ── HERO ── */
+  .vp-hero { min-height: 86svh; align-content: center; overflow: hidden; background: var(--paper); padding-block: 6rem 2rem; position: relative; }
+  .vp-hero-bg {
+    position: absolute; top: 0; right: 0; bottom: 0; width: 42%;
+    background: linear-gradient(135deg, var(--dawn) 0%, var(--mist) 100%);
+    opacity: 0.55; pointer-events: none;
+  }
+  .vp-hero-inner { position: relative; z-index: 1; }
+  .vp-hero-head { font-size: var(--display-1); color: var(--ink); margin-top: 2.4rem; line-height: 1.05; max-width: 18ch; }
+  .vp-hero-sub { font-family: var(--font-display); font-size: var(--text-xl); line-height: 1.55; color: var(--ink-soft); max-width: 42ch; margin-top: 2rem; }
+
+  /* ── MODEL — bamboo watermark ── */
+  .vp-model-bamboo {
+    top: clamp(2rem, 5vh, 4rem);
+    right: clamp(20px, 5vw, 72px);
+    left: auto;
+    width: clamp(140px, 18vw, 220px);
+    aspect-ratio: 0.5;
+  }
+
+  /* ── BETA TERMS band ── */
+  .vp-beta { padding-block: clamp(90px, 14vh, 170px); }
+  .vp-beta-inner { max-width: 58ch; }
+  .vp-beta-head { font-size: var(--display-2); margin-top: 1rem; line-height: 1.15; }
+  .vp-beta-body { font-size: var(--text-lg); line-height: 1.7; margin-top: 1.4rem; max-width: 54ch; }
+
+  /* ── CTA — lantern accent, off-center ── */
+  .vp-cta { padding-block: clamp(120px, 20vh, 220px); align-content: center; position: relative; overflow: hidden; }
+  .vp-cta-lantern { width: 22%; right: -4%; top: 12%; opacity: 0.5; color: var(--moss); }
+  .vp-cta-head { grid-column: 1 / 8; font-size: var(--display-1); color: var(--ink); line-height: 1.05; }
+  .vp-cta-head + .v-cta { grid-column: 1 / 8; margin-top: 2rem; }
+  .vp-cta-meta { grid-column: 1 / 8; margin-top: 1.2rem; }
+
+  /* ── Responsive ── */
+  @media (max-width: 860px) {
+    .vp-hero-bg { display: none; }
+    .vp-row { grid-column: 1 / 13; }
+    .vp-model-bamboo { display: none; }
+    .vp-cta-lantern { display: none; }
+    .vp-cta-head, .vp-cta-head + .v-cta, .vp-cta-meta { grid-column: 1 / 13; }
+  }
+</style>
+
+<style is:global>
+  /* ── Off-axis editorial grid (shared shape w/ security page) ── */
+  .vp-sec {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: clamp(12px, 1.6vw, 28px);
+    padding-inline: clamp(20px, 5vw, 72px);
+  }
+
+  /* ── MODEL rows ── */
+  .vp-model { background: var(--paper-soft); padding-block: clamp(90px, 16vh, 220px); row-gap: 2.4rem; }
+  .vp-row { grid-column: 2 / 11; padding: clamp(1.8rem, 3vh, 2.8rem) 0; border-top: 1px solid var(--line); }
+  .vp-row--alt { grid-column: 6 / 12; }
+  .vp-row-head { font-size: var(--display-2); line-height: 1.3; color: var(--leaf); max-width: 22ch; }
+  .vp-row-body { color: var(--ink-soft); font-size: var(--text-base); line-height: 1.6; max-width: 52ch; margin-top: 0.9rem; }
+</style>

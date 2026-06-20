@@ -16,13 +16,12 @@ export const brand = {
 
 export const nav = {
   links: [
-    { label: "Studio", href: "/verdant" },
     { label: "Garden", href: "/verdant/garden" },
     { label: "Security", href: "/verdant/security" },
-    { label: "Ethos", href: "/verdant/ethos" },
-    { label: "People", href: "/verdant/team" },
+    { label: "Pricing", href: "/verdant/pricing" },
+    { label: "Studio", href: "/verdant/studio" },
   ],
-  cta: { label: "Start Garden", href: "https://garden.khushinpatel1.workers.dev" },
+  cta: { label: "Join the beta", href: "/verdant/beta" },
 };
 
 export type Screen = { tab: string; img: string; line: string; body: string };
@@ -82,6 +81,67 @@ export const garden = {
   ],
 };
 
+// PRIVACY SPECTRUM — the honest 3-tier model (verbatim from garden/VISION.md).
+// Privacy is a spectrum the user controls, disclosed per tier — never a flat
+// "never leaves your device" claim. Tier 3 (bank link) is architecture-only:
+// no live account connects yet. Do not imply otherwise.
+export type PrivacyTier = {
+  n: string;
+  key: string;
+  label: string;
+  what: string;
+  status: string;
+  privateOf: string[];
+  touchesServer: string[];
+  reality: string;
+};
+
+export const privacySpectrum: PrivacyTier[] = [
+  {
+    n: "01",
+    key: "manual",
+    label: "Manual entry",
+    what: "You type in an account, a balance, a transaction.",
+    status: "Live today",
+    privateOf: [
+      "Every number you type",
+      "Account names and balances",
+      "Budgets, goals, and debt payoff plans",
+    ],
+    touchesServer: ["Nothing. There is no server in this path."],
+    reality: "Fully private, fully local. The most honest tier — and the default.",
+  },
+  {
+    n: "02",
+    key: "ai-import",
+    label: "AI import",
+    what: "You upload a bank statement (PDF or CSV) and Grove reads it for you.",
+    status: "Live today",
+    privateOf: [
+      "The parsed data, once it's in Garden",
+      "Everything after the import — stored and encrypted exactly like manual entry",
+    ],
+    touchesServer: [
+      "The statement itself, sent once to an AI model to extract the numbers",
+      "That single request travels over HTTPS and is not stored by Verdant",
+    ],
+    reality: "Private storage — but the statement is touched once by the parser. A convenience cost, named plainly.",
+  },
+  {
+    n: "03",
+    key: "bank-link",
+    label: "Bank link",
+    what: "A direct connection to your bank or brokerage (SnapTrade, SimpleFIN, Plaid) — architecture only, not yet live.",
+    status: "Architecture-only — not live",
+    privateOf: ["Nothing extra beyond what the provider already shares with any app you connect"],
+    touchesServer: [
+      "Your account credentials, handled by the provider's own flow (Garden never sees your bank password)",
+      "Balances and transactions, relayed in labeled plaintext for as long as the link is active",
+    ],
+    reality: "The convenience tier. Plaintext transit, clearly labeled — no E2E claim here, because there can't honestly be one.",
+  },
+];
+
 // the unlisted one — reached only through the stray stone, never in nav
 export const emerald = {
   name: "Emerald",
@@ -120,18 +180,19 @@ export const studio = {
 
 export const ethos = {
   creed: [
-    "We never sell your attention. The studio is built so it can't.",
-    "If we can read your data, that's a bug — not a business model.",
-    "Software should feel like a quiet room. Most of it feels like a crowded street.",
-    "Build one thing well, not ten things anxiously. Slow is allowed here.",
+    "Privacy by structure, not by claim. We can't sell what we never touch.",
+    "If we can read your data, that's a bug — not a feature for sale.",
+    "Software should answer to you, not to the people who bought ads.",
+    "Build one thing well, not ten things anxiously. Slow is the point.",
   ],
   shipping: [
     { feature: "Garden — Early Access launch", date: "2026-06-17" },
     { feature: "Export as JSON — any time, no account needed", date: "2026-06" },
     { feature: "Grove — on-device financial assistant", date: "2026-06" },
-    { feature: "Bank sync via Plaid", date: "In progress" },
+    { feature: "Bank sync (SnapTrade, SimpleFIN)", date: "In progress" },
   ],
-  dataPortability: "Export all your data as JSON at any time. No account lock-in. No permissions needed.",
+  dataPortability: "Export all your data as JSON at any time. Manual entry stays on your device. AI imports are parsed once, never stored by us. Bank connections are labeled plaintext only.",
+  privacyStatement: "Privacy is what you choose. You control which tier fits your work. There is no flat 'never leaves your device' — we're honest about what each path touches.",
   version: "001",
   launched: "2026-06-17",
 };

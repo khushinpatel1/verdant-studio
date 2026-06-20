@@ -4,39 +4,151 @@ import { emerald, brand } from "../../data/verdant";
 ---
 
 <Verdant title="Emerald — Verdant" image="/og/og-emerald.jpg">
-  <div class="vem-bg" aria-hidden></div>
-
-  <section class="vem">
-    <div class="v-wrap vem-inner">
-      <img class="vem-art" src={emerald.cover} alt="" aria-hidden width="1600" height="1600" />
+  <section class="vem-hero">
+    <div class="v-wrap vem-content">
       <p class="v-label vem-kind">{emerald.kind}</p>
-      <h1 class="v-display vem-name">Emerald</h1>
-      <p class="vem-line v-display">{emerald.oneLine}</p>
+      <h1 class="v-display vem-title">Emerald</h1>
+      <p class="vem-line">{emerald.oneLine}</p>
       <p class="vem-blurb">{emerald.blurb}</p>
-      <a href="/verdant" class="v-cta v-cta--light vem-back" data-cursor="Leave">Back to the garden</a>
-      <p class="vem-foot">{brand.email}</p>
+      <a href="/verdant" class="v-cta vem-back">Back to the garden</a>
+    </div>
+    <div class="vem-art-wrap">
+      <img class="vem-art" src={emerald.cover} alt="" aria-hidden width="1600" height="1600" />
     </div>
   </section>
+
+  <div class="vem-footer-band">
+    <p class="vem-foot">{brand.email}</p>
+  </div>
 </Verdant>
 
 <style is:global>
-  .vem-bg { position: fixed; inset: 0; z-index: -2;
-    background: linear-gradient(135deg, var(--paper) 0%, var(--paper-soft) 50%, var(--mist) 100%); }
-  .vem { position: relative; z-index: 1; min-height: 100svh; display: flex; align-items: center; overflow: hidden; }
-  .vem-inner { position: relative; max-width: 60ch; padding: 8rem 0; }
-  .vem-art { position: absolute; right: -8%; top: 50%; transform: translateY(-50%); width: clamp(280px, 38vw, 540px); z-index: -1;
-    opacity: 0.45; filter: saturate(0.9) brightness(1.0);
-    -webkit-mask-image: radial-gradient(70% 70% at 60% 50%, #000 8%, transparent 72%);
-            mask-image: radial-gradient(70% 70% at 60% 50%, #000 8%, transparent 72%); }
-  .vem-kind { color: var(--ink-soft); }
-  .vem-name { font-size: clamp(4rem, 13vw, 11rem); color: var(--leaf); line-height: 1.0; margin: 1.5rem 0 1.5rem; }
-  .vem-name::after { content: ""; display: inline-block; width: 0.22em; height: 0.22em; margin-left: 0.18em; vertical-align: 0.1em;
-    border-radius: 60% 40% 55% 45% / 50% 60% 40% 50%;
-    background: radial-gradient(circle at 35% 30%, var(--leaf), var(--leaf-deep) 65%, var(--moss));
-    box-shadow: 0 0 24px rgba(47, 125, 79, 0.3); }
-  .vem-line { font-size: clamp(1.4rem, 2.6vw, 2.2rem); color: var(--leaf); max-width: 24ch; }
-  .vem-blurb { color: var(--ink-soft); line-height: 1.75; max-width: 50ch; margin: 1.8rem 0 2.6rem; }
-  .vem-back { color: var(--ink); }
-  .vem-foot { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase;
-    color: var(--ink-soft); opacity: 0.5; margin-top: 4rem; }
+  .vem-hero {
+    position: relative;
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: clamp(2rem, 8vw, 6rem);
+    padding: clamp(4rem, 8vh, 8rem) 0;
+    background: var(--paper);
+  }
+
+  .vem-content {
+    flex: 1;
+    max-width: 52ch;
+  }
+
+  .vem-kind {
+    color: var(--ink-soft);
+    margin-bottom: 1.2rem;
+  }
+
+  .vem-title {
+    font-size: var(--display-1);
+    color: var(--leaf);
+    line-height: 1.0;
+    margin: 0 0 1.5rem;
+  }
+
+  .vem-line {
+    font-family: var(--font-display);
+    font-size: var(--display-2);
+    color: var(--leaf);
+    line-height: 1.2;
+    max-width: 28ch;
+    margin: 0 0 1.8rem;
+  }
+
+  .vem-blurb {
+    font-family: var(--font-body);
+    font-size: var(--text-lg);
+    color: var(--ink-soft);
+    line-height: 1.7;
+    max-width: 54ch;
+    margin: 0 0 2.2rem;
+  }
+
+  .vem-back {
+    display: inline-flex;
+    color: var(--ink);
+  }
+
+  .vem-art-wrap {
+    flex: 1;
+    position: relative;
+    height: clamp(340px, 60vh, 600px);
+    min-width: 0;
+  }
+
+  .vem-art {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: var(--radius);
+    opacity: 0.95;
+    -webkit-mask-image: radial-gradient(
+      ellipse 54% 56% at 50% 50%,
+      #000 0%, #000 68%, transparent 90%
+    );
+    mask-image: radial-gradient(
+      ellipse 54% 56% at 50% 50%,
+      #000 0%, #000 68%, transparent 90%
+    );
+  }
+
+  .vem-footer-band {
+    background: var(--paper-soft);
+    padding: clamp(3rem, 6vh, 5rem) 0;
+    text-align: center;
+    border-top: 1px solid var(--sage);
+  }
+
+  .vem-foot {
+    color: var(--ink-soft);
+    opacity: 0.65;
+    margin: 0;
+  }
+
+  @media (max-width: 1024px) {
+    .vem-hero {
+      flex-direction: column;
+      min-height: auto;
+      padding: clamp(3rem, 6vh, 5rem) 0;
+    }
+
+    .vem-art-wrap {
+      height: clamp(280px, 50vh, 480px);
+      width: 100%;
+    }
+
+    .vem-line {
+      font-size: var(--text-4xl);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .vem-hero {
+      padding: 2rem 0;
+    }
+
+    .vem-title {
+      font-size: clamp(2.8rem, 10vw, 4rem);
+    }
+
+    .vem-line {
+      font-size: var(--text-2xl);
+    }
+
+    .vem-blurb {
+      font-size: var(--text-base);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .vem-art {
+      opacity: 0.95;
+    }
+  }
 </style>

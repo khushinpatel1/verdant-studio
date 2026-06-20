@@ -37,10 +37,6 @@ export default function VineBorder({ position = "top", className = "" }: VineBor
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && !timelineRef.current) {
-          if (timelineRef.current) {
-            timelineRef.current.kill();
-          }
-
           const timeline = gsap.timeline();
           timelineRef.current = timeline;
           drawGrowth(timeline, svgRef.current!);

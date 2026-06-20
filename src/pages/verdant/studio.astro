@@ -1,0 +1,174 @@
+---
+import Verdant from "../../layouts/Verdant.astro";
+import Footer from "../../components/verdant/Footer";
+import Moon from "../../components/verdant/ink/Moon";
+import BlossomBranch from "../../components/verdant/ink/BlossomBranch";
+import PetalFall from "../../components/verdant/ink/PetalFall";
+import { studio, brand } from "../../data/verdant";
+---
+
+<Verdant title="Studio — Verdant" image="/og/og-team.jpg">
+  <!-- ── HERO — luminous, asymmetric ── -->
+  <!-- P2: PetalFall subtle overlay on the hero -->
+  <section class="vs-hero">
+    <div class="vs-hero-bg" aria-hidden="true"></div>
+    <PetalFall client:visible className="vs-hero-petal" aria-hidden="true" />
+    <div class="v-wrap vs-hero-inner">
+      <p class="v-label">The studio</p>
+      <h1 class="v-display vs-hero-head">
+        Small, on <span style="color: var(--leaf);">purpose</span>.
+      </h1>
+      <p class="vs-hero-sub">
+        One person, building quietly. No layer between you and the work being done — and no invented roster pretending otherwise.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── WHO — an honest statement ── -->
+  <!-- P3: BlossomBranch beside the studio statement -->
+  <section class="vs-studio">
+    <div class="v-wrap vs-who">
+      <h2 class="v-display vs-who-name" data-v-reveal>{studio.who}</h2>
+      <BlossomBranch client:visible side="right" className="vh-leaf-accent vs-who-blossom" aria-hidden="true" />
+      <p class="vs-who-lead v-display" data-v-reveal>{studio.lead}</p>
+      {studio.lines.map((line, i) => (
+        <p class="vs-who-line" data-v-reveal style={`--d:${i * 0.06}s`}>{line}</p>
+      ))}
+    </div>
+  </section>
+
+  <!-- ── PHILOSOPHY — the conviction woven in ── -->
+  <section class="vs-philosophy vs-sec">
+    <div class="v-wrap">
+      <p class="v-label" data-v-reveal>The conviction</p>
+      <h2 class="v-display vs-philosophy-head" data-v-reveal>
+        Software that earns a living<br />without <span style="color: var(--leaf);">watching</span> the person using it.
+      </h2>
+      <p class="vs-philosophy-body" data-v-reveal style="--d:0.08s">
+        Verdant exists as a refusal. The industry it came from treats attention as a crop. This studio's structure makes sure it can't — no investors to answer to, no growth targets pulling it toward compromise, no reason to ever know more about you than you choose to tell.
+      </p>
+      <p class="vs-philosophy-body" data-v-reveal style="--d:0.12s">
+        Every product decision runs through one question: would it belong in a Japanese garden? Composed, unhurried, nothing extra — but alive underneath.
+      </p>
+      <div class="vs-philosophy-link" data-v-reveal style="--d:0.16s">
+        <a href="/verdant/ethos" class="v-cta">Read the full ethos</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── EMERALD HINT — a subtle stray stone ── -->
+  <section class="vs-emerald vs-sec">
+    <div class="v-wrap">
+      <p class="v-label" data-v-reveal>What else</p>
+      <p class="vs-emerald-line" data-v-reveal>
+        Garden is the first public project. But the studio is always growing things. Some in the light, some kept deliberately quiet until they're ready. A stray stone in the footer leads the curious elsewhere.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── CLOSING — Moonlit garden behind the closing invitation ── -->
+  <!-- P1: Moonlit garden behind the closing invitation -->
+  <section class="vh-night-feature v-night vs-end">
+    <div class="vh-night-bg" style="background-image:url(/verdant/paint/moonlit-garden.webp)"></div>
+    <div class="vh-night-scrim"></div>
+    <Moon client:visible className="vh-night-moon" />
+    <div class="vh-night-copy vs-end-inner">
+      <p class="v-display vs-end-line" data-v-reveal>The door is <span style="color: var(--leaf);">open</span>.</p>
+      <a href={`mailto:${brand.email}`} class="v-cta">Say hello</a>
+    </div>
+  </section>
+
+  <Footer client:visible />
+</Verdant>
+
+<style is:global>
+  /* ── HERO ── */
+  .vs-hero { min-height: 100svh; align-content: center; overflow: hidden; background: var(--paper); padding-block: 6rem 2rem; }
+  .vs-hero-bg { position: absolute; top: 0; right: 0; bottom: 0; width: 45%;
+    background: linear-gradient(135deg, var(--dawn) 0%, var(--mist) 100%);
+    opacity: 0.6; pointer-events: none; }
+  .vs-hero-inner { position: relative; z-index: 1; max-width: 52ch; }
+  .vs-hero-head { font-size: var(--display-1); color: var(--ink); margin-top: 2.4rem; line-height: 1.05; }
+  .vs-hero-sub { font-family: var(--font-display); font-size: var(--text-xl); line-height: 1.55; color: var(--ink); max-width: 42ch; margin-top: 2rem; }
+
+  /* ── WHO ── */
+  .vs-studio { background: var(--paper-soft); padding-block: clamp(110px, 18vh, 260px); }
+  .vs-who { max-width: 54rem; }
+  .vs-who-name { font-size: var(--display-2); color: var(--leaf); line-height: 1.12; }
+  .vs-who-lead { font-size: var(--text-xl); color: var(--leaf); margin: 1.2rem 0 2.4rem; }
+  .vs-who-line { font-family: var(--font-display); font-size: var(--text-lg); color: var(--ink-soft);
+    line-height: 1.6; max-width: 52ch; margin-bottom: 1.4rem; }
+
+  /* ── PHILOSOPHY ── */
+  .vs-philosophy { background: var(--paper); padding-block: clamp(110px, 18vh, 260px); }
+  .vs-philosophy .v-wrap { max-width: 54rem; }
+  .vs-philosophy-head { font-size: var(--display-2); color: var(--ink); line-height: 1.1; margin-top: 1.2rem; }
+  .vs-philosophy-body { font-size: var(--text-lg); line-height: 1.65; color: var(--ink-soft); max-width: 52ch; margin-top: 1.6rem; }
+  .vs-philosophy-link { margin-top: 2.4rem; }
+
+  /* ── EMERALD HINT ── */
+  .vs-emerald { background: var(--paper-soft); padding-block: clamp(90px, 16vh, 200px); }
+  .vs-emerald .v-wrap { max-width: 54rem; }
+  .vs-emerald-line { font-size: var(--text-lg); line-height: 1.65; color: var(--ink-soft); max-width: 50ch; margin-top: 1.2rem; }
+
+  /* ── END ── */
+  .vs-end { background: var(--paper); padding-block: clamp(120px, 20vh, 220px); }
+  .vs-end-inner { display: flex; flex-direction: column; align-items: flex-start; gap: 1.4rem; }
+  .vs-end-line { font-size: var(--display-2); color: var(--ink); }
+
+  /* ── P2: PetalFall subtle overlay on hero ── */
+  .vs-hero-petal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    max-width: 900px;
+    height: 100%;
+    max-height: 600px;
+    opacity: 0.18;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── P3: BlossomBranch beside studio statement ── */
+  .vs-who-blossom {
+    position: absolute;
+    right: -12%;
+    top: 8%;
+    width: 28%;
+    opacity: 0.7;
+  }
+
+  /* ── P1: Moonlit closing ── */
+  .vs-end {
+    /* Override .v-night background so the painted image shows through */
+    background: transparent;
+    padding-block: clamp(120px, 20vh, 220px);
+    min-height: 520px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  .vs-end-inner {
+    max-width: 56ch;
+    padding-left: clamp(0px, 2vw, 32px);
+    z-index: 2;
+  }
+  .vs-end-line {
+    font-size: clamp(1.9rem, 4.2vw, 3.6rem);
+    color: var(--night-ink);
+    line-height: 1.1;
+    margin-bottom: 1.6rem;
+  }
+  .vs-end .v-cta {
+    color: var(--night-gold);
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 800px) {
+    .vs-hero-bg { display: none; }
+    .vs-who-blossom { display: none; }
+    .vs-end-line { font-size: clamp(1.6rem, 5.5vw, 2.4rem); }
+  }
+</style>

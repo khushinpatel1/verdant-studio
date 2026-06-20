@@ -1,35 +1,51 @@
-import { brand, nav, ethos } from "../../data/verdant";
+import { brand, ethos } from "../../data/verdant";
 import Logo from "./Logo";
 
 /**
- * VERDANT footer — a light band on luminous gradient. Hidden in it: one stray
- * jade stone (the only path to /verdant/emerald), never labelled.
+ * VERDANT footer — three-column structure: Product, Trust, Studio.
+ * Hidden: one stray jade stone (the only path to /verdant/emerald), never labelled.
  */
 export default function Footer({ tone = "light" }: { tone?: "light" | "cream" }) {
   return (
     <footer className={`v-footer v-footer--${tone}`} data-v-reveal>
       <div className="v-wrap v-footer-inner">
+        {/* Brand + mark + stone */}
         <div className="v-footer-brand">
           <span className="v-footer-mark">
             <Logo size={26} />
             {/* the stray stone → /verdant/emerald */}
             <a href="/verdant/emerald" className="v-footer-egg" aria-label="·"><span /></a>
           </span>
-          <p className="v-footer-tag">{brand.tagline}</p>
+          <p className="v-footer-tag">Independent · Privacy-first</p>
         </div>
 
+        {/* Three-column nav */}
         <nav className="v-footer-cols">
+          {/* Product column */}
           <div className="v-footer-col">
-            <p className="v-label v-label--bare">Pages</p>
-            {nav.links.map((l) => (
-              <a key={l.href} href={l.href} className="v-footer-link">{l.label}</a>
-            ))}
+            <p className="v-label v-label--bare">Product</p>
+            <a href="/verdant/garden" className="v-footer-link">Garden</a>
+            <a href="/verdant/pricing" className="v-footer-link">Pricing</a>
+            <a href="/verdant/beta" className="v-footer-link">Join the beta</a>
+            <a href="/verdant/notes" className="v-footer-link">Field Notes</a>
           </div>
+
+          {/* Trust column */}
+          <div className="v-footer-col">
+            <p className="v-label v-label--bare">Trust</p>
+            <a href="/verdant/security" className="v-footer-link">Security</a>
+            <a href="/privacy" className="v-footer-link">Privacy</a>
+            <a href="/terms" className="v-footer-link">Terms</a>
+            <a href="/verdant/security#data" className="v-footer-link">Your data rights</a>
+          </div>
+
+          {/* Studio column */}
           <div className="v-footer-col">
             <p className="v-label v-label--bare">Studio</p>
-            <a href={`mailto:${brand.email}`} className="v-footer-link">{brand.email}</a>
-            <span className="v-footer-meta">Independent</span>
-            <span className="v-footer-meta">Privacy-first by design</span>
+            <a href="/verdant" className="v-footer-link">Studio</a>
+            <a href="/verdant/ethos" className="v-footer-link">Ethos</a>
+            <a href="/verdant/faq" className="v-footer-link">FAQ</a>
+            <a href={`mailto:${brand.email}`} className="v-footer-link">Contact</a>
           </div>
         </nav>
       </div>
@@ -48,14 +64,14 @@ export default function Footer({ tone = "light" }: { tone?: "light" | "cream" })
           background: linear-gradient(135deg, var(--mist), var(--dawn)); }
         .v-footer-inner { position: relative; z-index: 1; display: flex; flex-wrap: wrap;
           gap: 2.5rem 4rem; justify-content: space-between; align-items: flex-start; }
+        .v-footer-brand { display: flex; flex-direction: column; gap: 0.8rem; }
         .v-footer-mark { position: relative; display: inline-flex; align-items: center; font-size: var(--text-xl); color: var(--leaf); }
-        .v-footer-tag { font-family: var(--font-display); font-size: var(--text-lg); color: var(--ink); margin-top: 0.4rem; }
+        .v-footer-tag { font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink); margin: 0; }
         .v-footer-cols { display: flex; gap: clamp(2.5rem,6vw,5rem); }
         .v-footer-col { display: flex; flex-direction: column; gap: 0.7rem; }
         .v-footer-col .v-label { margin-bottom: 0.4rem; color: var(--ink); }
         .v-footer-link { font-family: var(--font-body); font-size: var(--text-sm); color: var(--ink); transition: color .25s; }
         .v-footer-link:hover { color: var(--leaf); }
-        .v-footer-meta { font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink); }
         .v-footer-legal { position: relative; z-index: 1; display: flex; flex-wrap: wrap; gap: 0.6rem 2rem; justify-content: space-between;
           margin-top: clamp(3rem,7vh,5rem); padding-top: 1.6rem; border-top: 1px solid rgba(22, 36, 27, 0.1);
           font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink); }

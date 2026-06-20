@@ -17,11 +17,10 @@ import { brand, ethos } from "../../data/verdant";
     <div class="v-wrap ve-hero-inner">
       <p class="v-label">What holds.</p>
       <h1 class="v-display ve-hero-head">
-        A quiet kind<br />of <span style="color: var(--leaf);">conviction</span>.
+        Built so it <span style="color: var(--leaf);">can't</span> betray you.
       </h1>
       <p class="ve-hero-sub">
-        Built as a refusal of the industry it came from — software that earns a
-        living without watching the person using it.
+        Software that answers to you, not investors. Structurally on your side, from the ground up.
       </p>
     </div>
   </section>
@@ -30,7 +29,7 @@ import { brand, ethos } from "../../data/verdant";
   <!-- P2: Enso watermark behind the creed numerals -->
   <section class="ve-creed ve-sec">
     <span class="vh-num" aria-hidden="true">01</span>
-    <Enso client:visible class="vh-ink-watermark ve-creed-enso" aria-hidden="true" />
+    <Enso client:visible className="vh-ink-watermark ve-creed-enso" aria-hidden="true" />
     {ethos.creed.map((line, i) => (
       <div class={`ve-creed-row${i % 2 ? " ve-creed-row--alt" : ""}`} data-v-reveal style={`--d:${i * 0.05}s`}>
         <span class="v-label v-label--bare">0{i + 1}</span>
@@ -43,15 +42,14 @@ import { brand, ethos } from "../../data/verdant";
   <section class="vh-night-feature v-night ve-manifesto">
     <div class="vh-night-bg" style="background-image:url(/verdant/paint/moonlit-garden.webp)"></div>
     <div class="vh-night-scrim"></div>
-    <Moon client:visible class="vh-night-moon" />
+    <Moon client:visible className="vh-night-moon" />
     <div class="vh-night-copy ve-manifesto-copy">
-      <p class="v-label v-label--light" data-v-reveal>The conviction</p>
+      <p class="v-label v-label--light" data-v-reveal>The founding call</p>
       <h2 class="v-display ve-manifesto-head" data-v-reveal style="--d:0.08s">
-        Software that earns a living<br />without watching the person using it.
+        You pay for it. That's the whole business.
       </h2>
       <p class="ve-manifesto-body" data-v-reveal style="--d:0.14s">
-        Every product decision runs through one question: would it belong in a Japanese garden?
-        Composed, unhurried, nothing extra — but alive underneath.
+        No ads, no data for sale, no investors steering you toward growth at your expense. The company makes money the plain way — you decide if it's worth paying for. That's the structure that makes betrayal impossible.
       </p>
     </div>
   </section>
@@ -63,30 +61,32 @@ import { brand, ethos } from "../../data/verdant";
     <span class="vh-num" aria-hidden="true">02</span>
     <div class="ve-story-media vh-leaf-figure" data-v-reveal>
       <picture>
-        <source srcSet="/verdant/art/ethos-sand.webp" type="image/webp" />
+        <source srcset="/verdant/art/ethos-sand.webp" type="image/webp" />
         <img src="/verdant/art/ethos-sand.jpg" alt="Raked sand" loading="lazy" decoding="async" width="1600" height="1600" />
       </picture>
       <InkGrowth client:visible side="right" className="ve-story-vine" />
       <!-- P3: BlossomBranch overlapping the left edge of the image -->
-      <BlossomBranch client:visible side="left" class="vh-leaf-accent ve-story-blossom" aria-hidden="true" />
+      <BlossomBranch client:visible side="left" className="vh-leaf-accent ve-story-blossom" aria-hidden="true" />
     </div>
     <div class="ve-story-text">
       <p class="v-label" data-v-reveal>Why this exists</p>
       <p data-v-reveal>
-        Verdant started from one stubborn opinion: that software can earn a
-        living without selling the person using it. The whole industry seems to
-        run the other way — free, because you're the product. This is the refusal
-        of that.
+        Verdant started from one refusal: the refusal to build a company that sells what it shouldn't.
+        The whole industry inverts it — you get the software free because *you're* the product. Advertising, data
+        brokers, investor returns that only work if engagement climbs. This is structured differently.
       </p>
       <p data-v-reveal>
-        So it stays small on purpose. One person, modern tools, no investors to
-        answer to and no growth target pulling it toward something it would have
-        to apologise for. A few things, made well, finished.
+        It stays small on purpose. One person, the tools that work, no investors whose returns depend on your data,
+        no growth target that would pull it toward compromise. A few things, made well, finished.
       </p>
       <p data-v-reveal>
-        The Japanese garden is the standing reference. Composed, unhurried,
-        alive underneath — nothing extra, everything placed on purpose. When a
-        decision is hard, the test is whether it would belong in one.
+        Privacy here isn't marketing — it's structural. You choose your privacy tier. Manual entry stays on your device.
+        AI imports are parsed once, never stored by us. Bank links are plaintext transit, clearly marked. There's no flat claim
+        of "never leaves your device," because that would be dishonest about what convenience costs.
+      </p>
+      <p data-v-reveal>
+        The Japanese garden is the reference point: composed, unhurried, alive underneath — nothing extra, everything on purpose.
+        When a decision is hard, the test is whether it belongs there.
       </p>
       <p class="v-label" data-v-reveal style="margin-top: 2rem;">Shipped + in progress</p>
       <ul style="list-style: none; padding: 0; margin: 1rem 0;">
@@ -96,24 +96,28 @@ import { brand, ethos } from "../../data/verdant";
           </li>
         ))}
       </ul>
-      <p class="v-label" data-v-reveal style="margin-top: 2rem;">Data portability</p>
+      <p class="v-label" data-v-reveal style="margin-top: 2rem;">Your privacy, your choice</p>
+      <p data-v-reveal style="font-size: var(--text-base); color: var(--ink-soft); line-height: 1.7;">
+        {ethos.privacyStatement}
+      </p>
+      <p class="v-label" data-v-reveal style="margin-top: 2rem;">You own your data</p>
       <p data-v-reveal style="font-size: var(--text-base); color: var(--ink-soft); line-height: 1.7;">
         {ethos.dataPortability}
       </p>
     </div>
     <!-- P2: Mountain/Mist atmospheric band at the cream story section's bottom edge -->
     <div class="vh-ink-band ve-story-inkband" aria-hidden="true">
-      <MountainRidge client:visible class="ve-story-mountain" />
-      <MistLayer client:visible class="ve-story-mist" />
+      <MountainRidge client:visible className="ve-story-mountain" />
+      <MistLayer client:visible className="ve-story-mist" />
     </div>
   </section>
 
   <!-- ── TALK — luminous CTA band, left-pinned ── -->
   <section id="talk" class="ve-talk ve-sec">
     <span class="vh-num" aria-hidden="true">03</span>
-    <h2 class="v-display ve-talk-head">Tell us what<br />you're <span style="color: var(--leaf);">building</span>.</h2>
+    <h2 class="v-display ve-talk-head">Built for people<br />who <span style="color: var(--leaf);">trust structure</span>,<br />not promises.</h2>
     <a href={`mailto:${brand.email}`} class="v-cta">{brand.email}</a>
-    <p class="v-label ve-talk-meta">Verdant — independent, privacy-first</p>
+    <p class="v-label ve-talk-meta">Verdant — independent, privacy-first, structurally on your side</p>
   </section>
 
   <Footer client:visible />
