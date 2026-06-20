@@ -361,6 +361,9 @@ export default function GardenTour({ className = "" }: GardenTourProps) {
           object-position: 50% 0;
           opacity: 0;
           transition: opacity 0.6s var(--ease-soft);
+          /* Assets bleed into frame: radial mask fades edges to transparent */
+          -webkit-mask-image: radial-gradient(ellipse 90% 90% at 50% 50%, #000 0%, #000 65%, transparent 95%);
+          mask-image: radial-gradient(ellipse 90% 90% at 50% 50%, #000 0%, #000 65%, transparent 95%);
         }
         .vgt-frame-screen-el.is-active {
           opacity: 1;

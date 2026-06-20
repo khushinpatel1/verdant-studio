@@ -156,8 +156,24 @@
 /* ── Utility grammar (v-) ───────────────────────────────────────────────── */
 .v-wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 clamp(20px, 5vw, 56px); }
 
-/* Image container soft-clipping — applies a feathered radial mask to any image,
-   replacing hard borders with a soft dissolve. Use on <img> or its parent <div>. */
+/* Bleed mask — feathered radial edge on any photographic/video asset.
+   Replaces hard borders with a soft dissolve into the background. */
+.v-bleed {
+  -webkit-mask-image: radial-gradient(ellipse 85% 85% at 50% 50%, #000 0%, #000 60%, transparent 95%);
+  mask-image: radial-gradient(ellipse 85% 85% at 50% 50%, #000 0%, #000 60%, transparent 95%);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+
+/* Icon variant — circular mask for small square assets (icons, small images in cards) */
+.v-bleed--icon {
+  -webkit-mask-image: radial-gradient(circle at 50% 50%, #000 0%, #000 75%, transparent 100%);
+  mask-image: radial-gradient(circle at 50% 50%, #000 0%, #000 75%, transparent 100%);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+
+/* Legacy fallback — old v-img-soft for backwards compat */
 .v-img-soft {
   -webkit-mask-image: radial-gradient(
     ellipse 56% 60% at 50% 48%,

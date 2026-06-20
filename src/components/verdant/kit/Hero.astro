@@ -66,10 +66,10 @@ const respectReducedMotion = true;
           loop={videoLoop}
           playsinline={videoPlaysinline}
           preload="metadata"
-          class="v-hero__video"
+          class="v-hero__video v-bleed"
         />
       ) : mediaSrc ? (
-        <img src={mediaSrc} alt="" class="v-hero__image" />
+        <img src={mediaSrc} alt="" class="v-hero__image v-bleed" />
       ) : null}
     </div>
   )}
@@ -170,9 +170,6 @@ const respectReducedMotion = true;
     height: auto;
     display: block;
     border-radius: var(--radius);
-    /* Assets bleed into bg: radial mask fades edges to transparent */
-    -webkit-mask-image: radial-gradient(ellipse 85% 85% at 50% 50%, #000 0%, #000 60%, transparent 95%);
-    mask-image: radial-gradient(ellipse 85% 85% at 50% 50%, #000 0%, #000 60%, transparent 95%);
   }
 
   @media (prefers-reduced-motion: reduce) {
