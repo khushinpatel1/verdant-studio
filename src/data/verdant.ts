@@ -18,8 +18,9 @@ export const nav = {
   links: [
     { label: "Garden", href: "/verdant/garden" },
     { label: "Security", href: "/verdant/security" },
+    { label: "Roadmap", href: "/verdant/roadmap" },
     { label: "Pricing", href: "/verdant/pricing" },
-    { label: "Studio", href: "/verdant/studio" },
+    { label: "About", href: "/verdant/studio" },
   ],
   cta: { label: "Join the beta", href: "/verdant/beta" },
 };

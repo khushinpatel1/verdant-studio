@@ -7,15 +7,14 @@ import CardGrid from "../../components/verdant/kit/CardGrid.astro";
 import Card from "../../components/verdant/kit/Card.astro";
 import CTABand from "../../components/verdant/kit/CTABand.astro";
 import Band from "../../components/verdant/kit/Band.astro";
-import Carousel from "../../components/verdant/kit/Carousel";
 import { brand, garden, emerald } from "../../data/verdant";
 ---
 
 <Verdant title="Verdant — software grown for people">
   <Hero
     eyebrow="Verdant Studio — independent software"
-    headline="Most apps work against you. Ours can't."
-    sub="No ads. No trackers. Your data stays yours — encrypted on your device. Designed so we couldn't betray you even if we tried."
+    headline="Private personal finance."
+    sub="Track accounts, budgets, goals, and net worth — without selling your data to do it. Built by Verdant Studio."
     cta1={{ label: "Explore Garden", href: "/verdant/garden" }}
     cta2={{ label: "Read the ethos", href: "/verdant/ethos" }}
     media={true}
@@ -24,7 +23,7 @@ import { brand, garden, emerald } from "../../data/verdant";
 
   <CardGrid cols={3}>
     <Card
-      icon="/verdant/media/koi.jpg"
+      icon="/verdant/garden/garden-home.webp"
       headline="Garden"
       blurb="Your financial life — private, on your device."
       link={{ label: "Explore", href: "/verdant/garden" }}
@@ -48,14 +47,14 @@ import { brand, garden, emerald } from "../../data/verdant";
     headline="Garden: your whole financial life in one place"
     body={garden.blurb}
     media={true}
-    mediaSrc={garden.cover}
+    mediaSrc="/verdant/garden/garden-money.webp"
     cta={{ label: "Walk through Garden", href: "/verdant/garden" }}
   />
 
   <FeatureRow
     align="right"
     headline="Privacy structured, not promised"
-    body="Manual entry stays fully local. AI import touches it once. Bank links travel labeled and in the open. You choose the tier; the architecture holds it."
+    body="Manual entry stays fully local. AI import touches your data once. Bank sync travels encrypted. You choose the tier."
     media={true}
     mediaSrc="/verdant/art/ethos-sand.jpg"
   />
@@ -66,24 +65,6 @@ import { brand, garden, emerald } from "../../data/verdant";
     body={emerald.blurb}
     media={true}
     mediaSrc={emerald.cover}
-  />
-
-  <Carousel
-    client:visible
-    items={[
-      {
-        id: "1",
-        content: "First note about Garden's early access release and privacy guarantees."
-      },
-      {
-        id: "2",
-        content: "Updates on the roadmap and what's coming next."
-      },
-      {
-        id: "3",
-        content: "Stories from beta testers and their experiences."
-      }
-    ]}
   />
 
   <CTABand

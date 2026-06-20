@@ -1,0 +1,21 @@
+---
+import Verdant from "../../layouts/Verdant.astro";
+import Footer from "../../components/verdant/Footer";
+import Hero from "../../components/verdant/kit/Hero.astro";
+import CardGrid from "../../components/verdant/kit/CardGrid.astro";
+import Card from "../../components/verdant/kit/Card.astro";
+---
+
+<Verdant title="Roadmap — Garden" description="What's shipped, what's being tested, what's planned.">
+  <Hero headline="Where Garden stands" sub="Built slow, on purpose. Here's exactly what's live, what's being tested, and what's next." />
+  <CardGrid cols={3} title="Building">
+    <Card headline="Bank sync" blurb="Labeled, encrypted account linking. In active development." />
+  </CardGrid>
+  <CardGrid cols={3} title="Testing">
+    <Card headline="Grove (AI assistant)" blurb="Ask questions about your own numbers, answered locally." />
+  </CardGrid>
+  <CardGrid cols={3} title="Planned">
+    <Card headline="Multi-currency" blurb="Track accounts across currencies in one net worth view." />
+  </CardGrid>
+  <Footer client:visible />
+</Verdant>
