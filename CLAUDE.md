@@ -44,3 +44,23 @@ Headless Chromium here is network-blocked — **do not start a dev server**. Ins
   `visibilitychange` pause on all canvases (SandGarden, EthosWater,
   GrowingGarden, etc.).
 - All hero interactions must support touch (no hover-only affordances).
+
+## Visual assets — standing rules
+
+**Rule 1: Assets bleed into their background (no stamped-photo edges)**
+Every image and video must fade into the section background — no hard rectangular
+frame, no "photo pasted on a page" look. Implement via radial mask gradients
+(`mask-image` / `-webkit-mask-image`) in the Kit primitives (Hero, FeatureRow, Card):
+- Large media (Hero, FeatureRow): `radial-gradient(ellipse 85% 85% at 50%, #000 0%, #000 60%, transparent 95%)`
+- Icons (Card): `radial-gradient(circle at 50%, #000 0%, #000 75%, transparent 100%)`
+
+The section's background is the cream ground (`--cream` or `--paper`); the mask makes
+edges transparent so assets blend seamlessly. Apply the mask in the Kit component styles,
+not per-image — it's automatic everywhere.
+
+**Rule 2: No Japanese writing or iconography**
+No kanji text, no hanko seals, no torii gates, no stone lanterns. These are KP's standing
+preference — the site is English-only, visually Western. Koi, cranes, blossoms, moon,
+landscapes, and other nature subjects are fine. Writing and shrine imagery are out.
+Strip any inherited seals/script from incoming assets (use Python PIL, `sips`, or a
+content-aware tool) before placing them.
