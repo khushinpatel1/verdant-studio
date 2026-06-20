@@ -1,16 +1,17 @@
 # 007 — Verdant public-beta redesign (the company is different now)
 
-> Status: **APPROVED — IN PROGRESS** (KP go 2026-06-19; pricing + logo decided; run fully autonomous to live).
+> Status: **SHIPPED — LIVE 2026-06-19** (KP go 2026-06-19; both site + garden onboarding deployed green).
 
-## ⛑ RECOVERY / CHECKPOINT (read FIRST if resuming after a crash or usage-limit)
-- **TRUE STATE 2026-06-19 16:1x PDT (after first run hit the 3:40pm usage limit):**
-  - ✅ **P1 committed** `306a82f` (tokens/logo[enso]/nav/footer/routes/assets). Note: 5 non-fatal TS errors, dist/ still built.
-  - ✅ **P2 5/7 committed** `2411c21` (ScrollPillars, GardenTour, PrivacySpectrum + home/garden/pricing). Saved manually post-limit.
-  - 🟡 **Continuation run LIVE:** run ID `wf_91d6e888-2c1` (task `wuf3tzeuj`) — doing P2-finish (security+beta) → **V-mark swap** (enso→temp V) → all P3 → all P4(garden) → render check. Commits per phase.
-- **Resume command (continuation):** `Workflow({scriptPath: "/Users/khushinpatel/.claude/projects/-Users-khushinpatel-Dev-verdant-studio/14dce605-141c-4c46-ba5c-7c1b93847cac/workflows/scripts/verdant-007-continue-wf_91d6e888-2c1.js", resumeFromRunId: "wf_91d6e888-2c1"})` — completed agents return cached. If fresh session, re-fire the script (commits below show what's already done).
-- **Branches (work is HERE, not on main):** verdant-studio `redesign/007`; garden `redesign/007-onboarding`.
-- **Checkpointing:** workflow commits **per phase** on those branches. Check progress: `git -C ~/Dev/verdant-studio log --oneline redesign/007` and the garden branch.
-- **NOT yet done (manual, post-build, after continuation completes):** (1) Opus rendered review + slop fixes on signature moments; (2) merge `redesign/007`→main (=deploy), confirm CI green, redirect v1→canonical, report live SHA; (3) garden `redesign/007-onboarding`→main + deploy; (4) append the loop efficiency audit's real token numbers (first run: 35 agents / 1,053,983 subagent tokens / 335 tool uses / ~17min for P1+partial-P2). See `partnership/docs/reference/ultracode-loop-audit.md`. **V-mark swap is now IN the continuation run, no longer manual.**
+## ✅ SHIPPED (2026-06-19)
+- **Verdant site:** merged `redesign/007`→main `4f48071`, GH Actions Deploy **green (39s)**, **live at https://verdant-studio-v2.pages.dev/**. Verified: new pages (/verdant/pricing, /beta, /security, /faq, /notes, /studio, /terms) all 200; pricing serves "you pay for the app" + "lifetime access at no cost" with **zero dollar figures**; honest 3-tier privacy copy throughout.
+- **Garden onboarding:** merged `redesign/007-onboarding`→main `188228f`, GH Actions Deploy **green**, **live at https://garden.khushinpatel1.workers.dev/**. 184/184 tests pass. New ExploreStep "make it yours" surface + richer WelcomeStep + expanded first-run tour + honest copy.
+- **Build journey (crash-insured per-phase commits):** P1 `306a82f` → P2-partial `2411c21` (saved manually after first run hit the 3:40pm usage limit) → P2-finish `1166c08` → V-mark `06df5af` → P3 `665e979` → garden P4 `718e660`. Two workflow runs (`wf_cd6594e0-35b` + continuation `wf_91d6e888-2c1`).
+- **Signature moments:** ScrollPillars (Home) + GardenTour (Garden, video-ready slot documented) — both have pinned-desktop / tappable-touch / reduced-motion modes, growth-based crossfade, honest copy. **NOTE: scroll/hydration behavior can only be judged on the LIVE site — headless preview can't hydrate.**
+
+## ⚠️ HONEST REMAINERS (not blockers to live)
+- **V mark is a TEMP placeholder** (geometric V, enso rejected) — until a final mark is commissioned.
+- **v1 redirect (verdant-1wg → canonical) NOT done** — BLOCKED: no owned canonical domain yet (verdant.studio is a third party's, per 024 KP-OWED). Can't redirect to a domain we don't own. v1 stays frozen + live alongside v2.
+- **Garden pricing business-mode scrutiny** — separate deferred task (TODO).
 > Tier: Opus authored (taste/architecture). Execution: 1–2 Haiku sessions via `ultracode-loop`.
 > Repos touched: **verdant-studio** (site, primary) + **garden** (in-app onboarding, Phase 4).
 > Foundation: **v2 architecture, fresh design.** Keep the GSAP/Lenis/ink-library/choreography
