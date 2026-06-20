@@ -1,215 +1,66 @@
 ---
 import Verdant from "../../layouts/Verdant.astro";
-import TextReveal from "../../components/verdant/TextReveal";
-import InkGrowth from "../../components/verdant/InkGrowth";
 import Footer from "../../components/verdant/Footer";
-import GardenLive from "../../components/verdant/GardenLive.astro";
+import Hero from "../../components/verdant/kit/Hero.astro";
+import FeatureRow from "../../components/verdant/kit/FeatureRow.astro";
+import CardGrid from "../../components/verdant/kit/CardGrid.astro";
+import Card from "../../components/verdant/kit/Card.astro";
+import CTABand from "../../components/verdant/kit/CTABand.astro";
+import GardenTour from "../../components/verdant/GardenTour";
 import { garden } from "../../data/verdant";
 ---
 
-<Verdant title="Garden — personal finance, kept private — Verdant" image="/og/og-garden.jpg">
-  <!-- ── HERO ── -->
-  <section class="vg-hero">
-    <div class="v-print-field vg-hero-art" data-v-parallax="0.08" aria-hidden="true">
-      <img src="/verdant/art/garden-pond.jpg" alt="" fetchpriority="high" />
-    </div>
-    <InkGrowth client:visible side="right" className="vg-hero-vine" />
-    <div class="v-wrap vg-hero-inner">
-      <p class="v-label">{garden.kind} · {garden.year} · {garden.status}</p>
-      <h1 class="v-organic vg-hero-name">Garden</h1>
-      <p class="vg-hero-line v-display">{garden.oneLine}</p>
-      <p class="vg-hero-blurb">{garden.blurb}</p>
-      <div class="vg-hero-actions">
-        <a
-          href="https://garden.khushinpatel1.workers.dev"
-          target="_blank"
-          rel="noopener"
-          class="v-cta v-cta--primary"
-          data-cursor="Open"
-        >Try Garden ↗</a>
-        <a href="#tour" class="v-cta" data-cursor="Down">Walk through it</a>
-      </div>
-    </div>
-    <div class="vg-hero-media">
-      <GardenLive />
-    </div>
-  </section>
+<Verdant title="Garden — Personal finance, kept private" description={garden.blurb}>
+  <Hero
+    headline={garden.name}
+    sub={garden.oneLine}
+    cta1={{ label: "Try Garden", href: garden.url }}
+    cta2={{ label: "Security", href: "/verdant/security" }}
+    media={true}
+    videoSrc="/verdant/media/hero-landscape-2.webp"
+    mediaPoster={garden.cover}
+  />
 
-  <!-- ── THREE-BED TOUR ── -->
-  <section id="tour" class="vg-tour">
-    <div class="v-wrap">
-      <div class="vg-tour-head" data-v-reveal>
-        <p class="v-label">Three beds, one garden</p>
-        <p class="vg-tour-intro v-display">Everything your money is doing — and nothing it shouldn't.</p>
-      </div>
-    </div>
-    <div class="vg-screens">
-      {garden.screens.map((s, i) => (
-        <div class={`v-wrap vg-screen${i % 2 ? " vg-screen--alt" : ""}`} data-v-reveal>
-          <div class="vg-screen-media">
-            <div class="vg-phone"><div class="vg-phone-screen"><img src={s.img} alt={`Garden — ${s.tab}`} loading="lazy" /></div></div>
-          </div>
-          <div class="vg-screen-text">
-            <span class="v-label v-label--bare">0{i + 1} — {s.tab}</span>
-            <h2 class="v-display vg-screen-line">{s.line}</h2>
-            <p class="vg-screen-body">{s.body}</p>
-          </div>
-        </div>
-      ))}
-    </div>
-  </section>
+  <FeatureRow
+    align="left"
+    headline="See the whole garden"
+    body="Net worth across every account. One number, one place. The first thing you see when you open the app."
+    media={true}
+    mediaSrc={garden.screens[0].img}
+  />
 
-  <!-- ── GROVE — the presence, not a tab ── -->
-  <section class="vg-grove">
-    <div class="v-wrap vg-grove-inner" data-v-reveal>
-      <div class="vg-grove-text">
-        <span class="v-label v-label--bare">{garden.grove.tab} — reachable from anywhere</span>
-        <h2 class="v-display vg-grove-line">{garden.grove.line}</h2>
-        <p class="vg-grove-body">{garden.grove.body}</p>
-      </div>
-      <div class="vg-grove-media">
-        <div class="vg-phone"><div class="vg-phone-screen"><img src={garden.grove.img} alt="Garden — Grove" loading="lazy" /></div></div>
-      </div>
-    </div>
-  </section>
+  <FeatureRow
+    align="right"
+    headline="Pull the weeds"
+    body="Where it goes, what it adds up to, and the quiet subscriptions draining you. Budgets that track themselves."
+    media={true}
+    mediaSrc={garden.screens[1].img}
+  />
 
-  <!-- ── WHAT STAYS YOURS — the list floats on Koson's lily pond ── -->
-  <section class="vg-features">
-    <div class="v-print-field vg-feat-art" data-v-parallax="0.07" aria-hidden="true">
-      <img src="/verdant/art/koson-waterlilies.jpg" alt="" loading="lazy" decoding="async" />
-    </div>
-    <div class="v-wrap">
-      <p class="v-label" data-v-reveal>What stays yours</p>
-      <ul class="vg-feat-list">
-        {garden.notes.map((note, i) => (
-          <li class="vg-feat" data-v-reveal style={`--d:${i * 0.06}s`}>
-            <span class="v-organic vg-feat-n">0{i + 1}</span>
-            <p class="v-display vg-feat-text">{note}</p>
-          </li>
-        ))}
-      </ul>
-    </div>
-  </section>
+  <FeatureRow
+    align="left"
+    headline="Plant and untangle"
+    body="Goals with real dates. Debt in order. One number to pay. A year you'll be free. The interest you'll save."
+    media={true}
+    mediaSrc={garden.screens[2].img}
+  />
 
-  <!-- ── CLOSING — dark privacy-first, asymmetric with subject accent ── -->
-  <section class="vg-close">
-    <div class="vg-close-bg" aria-hidden></div>
-    <div class="v-wrap vg-close-inner">
-      <div class="vg-close-left">
-        <p class="v-label v-label--light">Plainly</p>
-        <TextReveal
-          client:visible
-          as="h3"
-          className="v-display vg-close-head"
-          lines={["Your numbers locked before they leave.", "The server holds %ciphertext%.", "It can't read a cent."]}
-        />
-      </div>
-      <div class="vg-close-right">
-        <div class="vg-close-subject" aria-hidden="true">
-          <img src="/verdant/subject-koi-red.webp" alt="" />
-        </div>
-        <div class="vg-close-actions">
-          <a href="/verdant" class="v-cta" data-cursor="Back">Back to studio</a>
-          <a href="/verdant/ethos#talk" class="v-cta" data-cursor="Write">Talk to us</a>
-        </div>
-      </div>
-    </div>
-  </section>
+  <div style="padding: clamp(3rem, 8vw, 5rem) clamp(20px, 5vw, 56px); max-width: var(--maxw); margin: 0 auto;">
+    <GardenTour client:visible />
+  </div>
+
+  <CardGrid cols={3} title="Built on">
+    <Card headline="Private by structure" blurb="You choose the tier; the architecture holds it." />
+    <Card headline="Works offline" blurb="Your garden is yours whether or not there's a signal." />
+    <Card headline="Honest model" blurb="You pay for the app. That's the whole business." />
+  </CardGrid>
+
+  <CTABand
+    headline="Start your garden"
+    sub="Private. Encrypted. On your device."
+    cta={{ label: "Try Garden", href: garden.url }}
+    ctaSecondary={{ label: "Pricing", href: "/verdant/pricing" }}
+  />
 
   <Footer client:visible />
 </Verdant>
-
-<style is:global>
-  /* PHONE FRAME */
-  .vg-phone { --rad: 42px; --pad: 10px; position: relative; width: clamp(230px, 26vw, 300px);
-    aspect-ratio: 400 / 812; border-radius: var(--rad); padding: var(--pad);
-    background: linear-gradient(160deg, #2a3b27 0%, #16271a 46%, #0a1610 100%);
-    box-shadow: 0 40px 90px -34px rgba(13,26,16,0.6), 0 0 0 1.5px rgba(255,255,255,0.05),
-                0 2px 0 rgba(255,255,255,0.08) inset, 0 -2px 8px rgba(0,0,0,0.4) inset; }
-  .vg-phone--hero { width: clamp(250px, 30vw, 330px); }
-  .vg-phone-screen { position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: calc(var(--rad) - var(--pad)); background: var(--cream); }
-  .vg-phone-screen img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 0; }
-  .vg-phone::after { content: ""; position: absolute; top: 14px; left: 50%; transform: translateX(-50%);
-    width: 38%; height: 7px; border-radius: 5px; background: rgba(0,0,0,0.5); z-index: 2; }
-
-  /* HERO */
-  .vg-hero { position: relative; min-height: 94svh; display: grid; grid-template-columns: 1.05fr 0.95fr;
-    align-items: center; gap: 2rem; padding-top: 6rem; overflow: hidden; }
-  .vg-hero-art {
-    --pf-w: clamp(440px, 44vw, 660px);
-    --pf-right: -6vw;
-    --pf-y: 52%;
-    --pf-core: 30%;
-    --pf-fade: 74%;
-  }
-  .vg-hero-inner { position: relative; z-index: 2; }
-  .vg-hero-name { font-size: var(--display-1); line-height: 0.9; color: var(--green); margin: 1.5rem 0 1rem; }
-  .vg-hero-line { font-size: var(--display-2); color: var(--terra); max-width: 24ch; }
-  .vg-hero-blurb { color: var(--ink); font-size: var(--text-base); line-height: 1.6; max-width: 46ch; margin: 1.6rem 0 2rem; }
-  .vg-hero-actions { display: flex; align-items: center; gap: 1.8rem; flex-wrap: wrap; }
-  .vg-hero-media { position: relative; z-index: 1; display: flex; justify-content: center; }
-  .vg-hero-vine { position: absolute; right: 4%; top: 0; bottom: 0; width: 130px; z-index: 1; opacity: 0.8; }
-  @media (max-width: 860px) { .vg-hero { grid-template-columns: 1fr; } .vg-hero-media { margin-top: 2rem; } .vg-hero-vine { display: none; } }
-
-  /* TOUR */
-  .vg-tour-head { max-width: 38rem; margin-bottom: clamp(3rem, 8vh, 6rem); }
-  .vg-tour-intro { font-size: var(--display-2); color: var(--green); margin-top: 1rem; line-height: 1.1; }
-  .vg-screens { display: flex; flex-direction: column; gap: clamp(4rem, 10vh, 9rem); }
-  .vg-screen { display: grid; grid-template-columns: auto 1fr; gap: clamp(2.5rem, 6vw, 6rem); align-items: center; }
-  .vg-screen--alt { grid-template-columns: 1fr auto; }
-  .vg-screen--alt .vg-screen-media { order: 2; }
-  .vg-screen-media { display: flex; justify-content: center; }
-  .vg-screen-text { max-width: 38ch; }
-  .vg-screen-line { font-size: var(--display-2); color: var(--green); margin: 0.7rem 0 1rem; line-height: 1.15; }
-  .vg-screen-body { color: var(--ink); line-height: 1.6; font-size: var(--text-base); }
-  @media (max-width: 760px) { .vg-screen, .vg-screen--alt { grid-template-columns: 1fr; } .vg-screen--alt .vg-screen-media { order: 0; } }
-
-  /* GROVE — set apart from the tour: a calm, inset band, phone to the side */
-  .vg-grove { padding: clamp(3rem, 8vh, 6rem) 0; }
-  .vg-grove-inner { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: clamp(2rem, 5vw, 4rem);
-    align-items: center; padding: clamp(2rem, 5vw, 3.5rem); border-radius: 32px;
-    background: color-mix(in srgb, var(--green) 7%, var(--cream)); }
-  .vg-grove-line { font-size: var(--display-2); color: var(--green); margin: 0.8rem 0 1rem; line-height: 1.15; max-width: 18ch; }
-  .vg-grove-body { color: var(--ink); line-height: 1.6; font-size: var(--text-base); max-width: 44ch; }
-  .vg-grove-media { display: flex; justify-content: center; }
-  @media (max-width: 760px) { .vg-grove-inner { grid-template-columns: 1fr; } .vg-grove-media { margin-top: 1.5rem; } }
-
-  /* FEATURES — list floats on the lily pond bleeding in from the right */
-  .vg-features { position: relative; overflow: hidden; }
-  .vg-features > .v-wrap { position: relative; z-index: 1; }
-  .vg-feat-art {
-    --pf-w: clamp(460px, 46vw, 700px);
-    --pf-right: -10vw;
-    --pf-y: 50%;
-    --pf-core: 26%;
-    --pf-fade: 72%;
-  }
-  .vg-feat-list { list-style: none; padding: 0; margin: 2.5rem 0 0; max-width: 56rem; }
-  @media (max-width: 800px) {
-    .vg-feat-art { --pf-w: clamp(360px, 110vw, 480px); --pf-right: -36vw; --pf-y: 76%; --pf-opacity: 0.6; }
-  }
-  .vg-feat { display: grid; grid-template-columns: auto 1fr; gap: 1.6rem; align-items: baseline;
-    padding: 2rem 0; border-top: 1px solid var(--line); transition: padding-left .35s var(--ease); }
-  .vg-feat:hover { padding-left: 1rem; }
-  .vg-feat-n { font-size: var(--text-2xl); color: var(--clay); }
-  .vg-feat-text { font-size: var(--display-2); color: var(--green); line-height: 1.3; }
-  .vg-feat:nth-child(even) { padding-left: clamp(0px, 4vw, 70px); }
-
-  /* CLOSING — dark privacy band + actions, asymmetric with subject image */
-  .vg-close { position: relative; background: linear-gradient(140deg, #0a1408, #0f1f0a, #0d1810); overflow: hidden; }
-  .vg-close-bg { position: absolute; inset: 0; opacity: 0.3; background: radial-gradient(circle at 75% 50%, rgba(15, 200, 130, 0.1) 0%, transparent 60%); pointer-events: none; }
-  .vg-close-inner { position: relative; z-index: 1; padding: clamp(5rem, 12vh, 9rem) 0; display: grid; grid-template-columns: 1fr 1.1fr; gap: clamp(3rem, 8vw, 6rem); align-items: start; }
-  .vg-close-left { max-width: 44ch; }
-  .vg-close-head { font-size: var(--display-1); color: var(--moon); line-height: 1.2; margin-top: 1.2rem; }
-  .vg-close-right { display: flex; flex-direction: column; gap: clamp(2rem, 4vw, 3rem); align-items: flex-start; }
-  .vg-close-subject { width: clamp(200px, 24vw, 320px); aspect-ratio: 1; overflow: hidden; }
-  .vg-close-subject img { width: 100%; height: 100%; object-fit: cover; filter: saturate(0.9) brightness(0.95); mix-blend-mode: screen; opacity: 0.8;
-    -webkit-mask-image: radial-gradient(circle at 50% 50%, #000 0%, #000 68%, transparent 100%);
-    mask-image: radial-gradient(circle at 50% 50%, #000 0%, #000 68%, transparent 100%); }
-  .vg-close-actions { display: flex; flex-direction: column; gap: 1rem; }
-  @media (max-width: 800px) {
-    .vg-close-inner { grid-template-columns: 1fr; }
-    .vg-close-head { font-size: var(--display-2); }
-    .vg-close-subject { width: clamp(180px, 40vw, 240px); }
-  }
-</style>
