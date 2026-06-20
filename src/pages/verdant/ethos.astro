@@ -136,8 +136,9 @@ import { brand, ethos } from "../../data/verdant";
   /* ── HERO — asymmetric, text left + soft light field ── */
   .ve-hero { min-height: 100svh; align-content: center; overflow: hidden; background: var(--paper); padding-block: 6rem 2rem; }
   .ve-hero-bg { position: absolute; top: 0; right: 0; bottom: 0; width: 45%;
-    background: linear-gradient(135deg, var(--mist) 0%, var(--dawn) 100%);
-    opacity: 0.6; pointer-events: none; }
+    background-image: url('/verdant/media/topic-ethos.webp');
+    background-size: cover; background-position: center;
+    opacity: 0.7; pointer-events: none; }
   .ve-hero-inner { grid-column: 1 / 8; position: relative; z-index: 1; }
   .ve-hero-head { font-size: var(--display-1); color: var(--ink); margin-top: 2.4rem; line-height: 1.05; }
   .ve-hero-sub { font-family: var(--font-display); font-size: var(--text-xl); line-height: 1.55; color: var(--ink); max-width: 38ch; margin-top: 2rem; }
