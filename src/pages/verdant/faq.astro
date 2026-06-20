@@ -1,84 +1,27 @@
 ---
 import Verdant from "../../layouts/Verdant.astro";
 import Footer from "../../components/verdant/Footer";
+import Hero from "../../components/verdant/kit/Hero.astro";
+import CTABand from "../../components/verdant/kit/CTABand.astro";
 import FAQAccordion from "../../components/verdant/FAQAccordion";
+import { faq } from "../../data/verdant";
 ---
 
-<Verdant title="FAQ — Verdant" image="/og/og-default.png">
-  <!-- ── HERO — Luminous, asymmetric. Text left, soft field right. ── -->
-  <section class="ve-hero">
-    <div class="ve-hero-bg" aria-hidden="true"></div>
-    <div class="v-wrap ve-hero-inner">
-      <p class="v-label">Questions</p>
-      <h1 class="v-display ve-hero-head">
-        The things<br />people <span style="color: var(--leaf);">ask</span>.
-      </h1>
-      <p class="ve-hero-sub">
-        Privacy, features, pricing, platform—everything we thought you'd want to know.
-      </p>
-    </div>
-  </section>
+<Verdant title="FAQ — Verdant" description="Answers to common questions.">
+  <Hero
+    headline="Common questions"
+    sub="Ask us anything. If we don't have the answer, we'll find it."
+  />
 
-  <!-- ── FAQ ACCORDION ── -->
-  <section class="ve-faq-section ve-sec">
-    <span class="vh-num" aria-hidden="true">01</span>
-    <div class="ve-faq-content">
-      <FAQAccordion
-        client:visible
-        items={[
-          {
-            q: "Is my money data really private?",
-            a: "It depends on which tier you choose—and that choice is entirely yours. Manual entry is fully local: every number you type stays on your device, never touches a server. AI import (uploading a bank statement) sends that statement to a parser once, then it's discarded—the parsed data is encrypted like manual entry. Bank link (coming later) will relay plaintext balances and transactions in labeled form for as long as it's active. See the Security page for the full spectrum—privacy isn't a binary, it's a spectrum you control.",
-          },
-          {
-            q: "What touches a server, and when?",
-            a: "With manual entry: nothing. With AI import: one statement file, sent once over HTTPS, parsed, discarded—we don't store it. We store the parsed data (encrypted). With future bank sync: balances and transactions in plaintext for as long as the connection is active. In all cases, your vault passphrase stays on your device—we never see it, never could decrypt what's stored.",
-          },
-          {
-            q: "Do I need a bank login to use Garden?",
-            a: "No. Garden is fully functional with manual entry—you type in accounts, balances, transactions, and it works offline. Bank sync is optional and comes later. You're never forced to connect anything. Start with what you know, add sync when it ships, only if you want it.",
-          },
-          {
-            q: "What does it cost?",
-            a: "Beta is free. If you're testing Garden now, you keep it free forever—that's the friends-and-family promise. After beta, pricing hasn't been finalized yet, but the model is locked: you pay for the app, not with your data. No ads, no data sold, no surprises. Donations are welcome but never asked for or required.",
-          },
-          {
-            q: "iOS and Android?",
-            a: "Coming post-beta. Garden launches on the web first. Mobile apps will follow—built as Capacitor apps so your data stays encrypted and local, just like on web. No cloud-first sync, no 'move to mobile' resetting your privacy tier.",
-          },
-          {
-            q: "What happens to my data if Verdant shuts down?",
-            a: "Your data is yours. We're building a clear JSON export format so you can download everything, in full, at any time—no account needed. That export works because your vault passphrase is the only key; there's no 'admin access' to your encrypted blob. If Verdant disappears, you have your data, your key, and you're free to move it anywhere.",
-          },
-          {
-            q: "Who's behind Verdant?",
-            a: "Khushin Patel—a designer and engineer, building quietly. Verdant is independent, bootstrapped, and deliberately small. No investors, no board, no growth targets pulling in the wrong direction. That structure is intentional: no one can pressure us to sell you out because there's no one to pressure. See the studio page for more.",
-          },
-        ]}
-      />
-    </div>
-  </section>
+  <div style="padding: clamp(3rem, 8vw, 5rem) clamp(20px, 5vw, 56px); max-width: var(--maxw); margin: 0 auto;">
+    <FAQAccordion client:visible items={faq} />
+  </div>
 
-  <!-- ── CTA ── -->
-  <section class="ve-cta-section ve-sec" style="background: var(--paper-soft);">
-    <span class="vh-num" aria-hidden="true">02</span>
-    <h2 class="v-display ve-cta-head">More <span style="color: var(--leaf);">questions</span>?</h2>
-    <a href="mailto:verdantmail@proton.me" class="v-cta">Email us</a>
-  </section>
+  <CTABand
+    headline="Still have questions?"
+    sub="Reach out. We're here to help."
+    cta={{ label: "Email us", href: "mailto:verdantmail@proton.me" }}
+  />
 
   <Footer client:visible />
 </Verdant>
-
-<style is:global>
-  /* ── FAQ section ── */
-  .ve-faq-section { background: var(--paper-soft); padding-block: clamp(110px, 18vh, 220px); }
-  .ve-faq-content { grid-column: 2 / 11; display: flex; flex-direction: column; gap: 0; }
-
-  /* ── Responsive ── */
-  @media (max-width: 860px) {
-    .ve-hero-bg { display: none; }
-    .ve-hero-inner { grid-column: 1 / 13; }
-    .ve-faq-content { grid-column: 1 / 13; }
-    .ve-cta-head, .ve-cta-head + .v-cta { grid-column: 1 / 13; }
-  }
-</style>

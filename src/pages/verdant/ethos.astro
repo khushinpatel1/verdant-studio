@@ -1,253 +1,62 @@
 ---
 import Verdant from "../../layouts/Verdant.astro";
-import InkGrowth from "../../components/verdant/InkGrowth";
 import Footer from "../../components/verdant/Footer";
-import Moon from "../../components/verdant/ink/Moon";
-import Enso from "../../components/verdant/ink/Enso";
-import BlossomBranch from "../../components/verdant/ink/BlossomBranch";
-import MountainRidge from "../../components/verdant/ink/MountainRidge";
-import MistLayer from "../../components/verdant/ink/MistLayer";
-import { brand, ethos } from "../../data/verdant";
+import Hero from "../../components/verdant/kit/Hero.astro";
+import FeatureRow from "../../components/verdant/kit/FeatureRow.astro";
+import Steps from "../../components/verdant/kit/Steps.astro";
+import CTABand from "../../components/verdant/kit/CTABand.astro";
+import { ethos } from "../../data/verdant";
 ---
 
-<Verdant title="Ethos — Verdant" image="/og/og-ethos.jpg">
-  <!-- ── HERO — Luminous, asymmetric. Text left, soft field right. ── -->
-  <section class="ve-hero">
-    <div class="ve-hero-bg" aria-hidden="true"></div>
-    <div class="v-wrap ve-hero-inner">
-      <p class="v-label">What holds.</p>
-      <h1 class="v-display ve-hero-head">
-        Built so it <span style="color: var(--leaf);">can't</span> betray you.
-      </h1>
-      <p class="ve-hero-sub">
-        Software that answers to you, not investors. Structurally on your side, from the ground up.
-      </p>
-    </div>
-  </section>
+<Verdant title="Ethos — What Verdant believes" description="A quiet kind of conviction about how software should work.">
+  <Hero
+    headline="A quiet kind of conviction"
+    sub="Built as a refusal of the industry it came from — software that earns a living without watching the person using it."
+    cta1={{ label: "Try Garden", href: "https://garden.khushinpatel1.workers.dev" }}
+    media={true}
+    mediaSrc="/verdant/art/koson-dragonfly-lotus.jpg"
+  />
 
-  <!-- ── CREED — asymmetric grid, off-axis ── -->
-  <!-- P2: Enso watermark behind the creed numerals -->
-  <section class="ve-creed ve-sec">
-    <span class="vh-num" aria-hidden="true">01</span>
-    <Enso client:visible className="vh-ink-watermark ve-creed-enso" aria-hidden="true" />
-    {ethos.creed.map((line, i) => (
-      <div class={`ve-creed-row${i % 2 ? " ve-creed-row--alt" : ""}`} data-v-reveal style={`--d:${i * 0.05}s`}>
-        <span class="v-label v-label--bare">0{i + 1}</span>
-        <p class="v-display ve-creed-text">{line}</p>
-      </div>
-    ))}
-  </section>
+  <div style="padding: clamp(3rem, 8vw, 5rem) clamp(20px, 5vw, 56px); max-width: var(--maxw); margin: 0 auto;">
+    <div style="display: grid; gap: 2rem;">
+      {ethos.creed.map((line) => (
+        <div style="border-top: 1px solid var(--line); padding-top: 1.5rem; font-size: var(--text-lg); line-height: 1.6; color: var(--fg);">
+          {line}
+        </div>
+      ))}
+    </div>
+  </div>
 
-  <!-- ── P1: MOONLIT MANIFESTO — dark painted feature, one standout moment ── -->
-  <section class="vh-night-feature v-night ve-manifesto">
-    <div class="vh-night-bg" style="background-image:url(/verdant/paint/moonlit-garden.webp)"></div>
-    <div class="vh-night-scrim"></div>
-    <Moon client:visible className="vh-night-moon" />
-    <div class="vh-night-copy ve-manifesto-copy">
-      <p class="v-label v-label--light" data-v-reveal>The founding call</p>
-      <h2 class="v-display ve-manifesto-head" data-v-reveal style="--d:0.08s">
-        You pay for it. That's the whole business.
-      </h2>
-      <p class="ve-manifesto-body" data-v-reveal style="--d:0.14s">
-        No ads, no data for sale, no investors steering you toward growth at your expense. The company makes money the plain way — you decide if it's worth paying for. That's the structure that makes betrayal impossible.
-      </p>
-    </div>
-  </section>
+  <FeatureRow
+    align="left"
+    headline="Why this exists"
+    body="Most apps work for a model that wasn't yours to begin with — extract value, not build it. We built Verdant for the opposite: it works for you, kept private by architecture, never by promise."
+    media={true}
+    mediaSrc="/verdant/art/ethos-sand.jpg"
+  />
 
-  <!-- ── STORY — light image, off-axis, vine accent ── -->
-  <!-- P2: Mountain/Mist atmospheric band at section bottom -->
-  <!-- P3: BlossomBranch beside the story image -->
-  <section class="ve-story ve-sec">
-    <span class="vh-num" aria-hidden="true">02</span>
-    <div class="ve-story-media vh-leaf-figure" data-v-reveal>
-      <picture>
-        <source srcset="/verdant/art/ethos-sand.webp" type="image/webp" />
-        <img src="/verdant/art/ethos-sand.jpg" alt="Raked sand" loading="lazy" decoding="async" width="1600" height="1600" />
-      </picture>
-      <InkGrowth client:visible side="right" className="ve-story-vine" />
-      <!-- P3: BlossomBranch overlapping the left edge of the image -->
-      <BlossomBranch client:visible side="left" className="vh-leaf-accent ve-story-blossom" aria-hidden="true" />
-    </div>
-    <div class="ve-story-text">
-      <p class="v-label" data-v-reveal>Why this exists</p>
-      <p data-v-reveal>
-        Verdant started from one refusal: the refusal to build a company that sells what it shouldn't.
-        The whole industry inverts it — you get the software free because *you're* the product. Advertising, data
-        brokers, investor returns that only work if engagement climbs. This is structured differently.
-      </p>
-      <p data-v-reveal>
-        It stays small on purpose. One person, the tools that work, no investors whose returns depend on your data,
-        no growth target that would pull it toward compromise. A few things, made well, finished.
-      </p>
-      <p data-v-reveal>
-        Privacy here isn't marketing — it's structural. You choose your privacy tier. Manual entry stays on your device.
-        AI imports are parsed once, never stored by us. Bank links are plaintext transit, clearly marked. There's no flat claim
-        of "never leaves your device," because that would be dishonest about what convenience costs.
-      </p>
-      <p data-v-reveal>
-        The Japanese garden is the reference point: composed, unhurried, alive underneath — nothing extra, everything on purpose.
-        When a decision is hard, the test is whether it belongs there.
-      </p>
-      <p class="v-label" data-v-reveal style="margin-top: 2rem;">Shipped + in progress</p>
-      <ul style="list-style: none; padding: 0; margin: 1rem 0;">
-        {ethos.shipping.map((item) => (
-          <li data-v-reveal style="font-size: var(--text-sm); color: var(--ink-soft); line-height: 1.8;">
-            <span style="color: var(--leaf);">{item.feature}</span> — {item.date}
-          </li>
-        ))}
-      </ul>
-      <p class="v-label" data-v-reveal style="margin-top: 2rem;">Your privacy, your choice</p>
-      <p data-v-reveal style="font-size: var(--text-base); color: var(--ink-soft); line-height: 1.7;">
-        {ethos.privacyStatement}
-      </p>
-      <p class="v-label" data-v-reveal style="margin-top: 2rem;">You own your data</p>
-      <p data-v-reveal style="font-size: var(--text-base); color: var(--ink-soft); line-height: 1.7;">
-        {ethos.dataPortability}
-      </p>
-    </div>
-    <!-- P2: Mountain/Mist atmospheric band at the cream story section's bottom edge -->
-    <div class="vh-ink-band ve-story-inkband" aria-hidden="true">
-      <MountainRidge client:visible className="ve-story-mountain" />
-      <MistLayer client:visible className="ve-story-mist" />
-    </div>
-  </section>
+  <FeatureRow
+    align="right"
+    headline="How we keep it"
+    body="Code you can read. A security audit you can check. No dark patterns. No dark mode for the business model. We're accountable to you, not an algorithm."
+    media={true}
+    mediaSrc="/verdant/art/koson-waterlilies.jpg"
+  />
 
-  <!-- ── TALK — luminous CTA band, left-pinned ── -->
-  <section id="talk" class="ve-talk ve-sec">
-    <span class="vh-num" aria-hidden="true">03</span>
-    <h2 class="v-display ve-talk-head">Built for people<br />who <span style="color: var(--leaf);">trust structure</span>,<br />not promises.</h2>
-    <a href={`mailto:${brand.email}`} class="v-cta">{brand.email}</a>
-    <p class="v-label ve-talk-meta">Verdant — independent, privacy-first, structurally on your side</p>
-  </section>
+  <Steps
+    title="Our Three Laws"
+    steps={[
+      { number: "01", headline: "Your data is yours", body: "Encrypted on your device. The server holds only ciphertext." },
+      { number: "02", headline: "No ads, no tracking", body: "You're the customer, never the product. Full stop." },
+      { number: "03", headline: "Built in the open", body: "Code, security, privacy — auditable, explained, real." }
+    ]}
+  />
+
+  <CTABand
+    headline="Let's talk"
+    sub="Questions, feedback, or just thoughts?"
+    cta={{ label: "Email us", href: "mailto:verdantmail@proton.me" }}
+  />
 
   <Footer client:visible />
 </Verdant>
-
-<style is:global>
-  /* ── Off-axis editorial grid (matching homepage) ── */
-  .ve-sec {
-    position: relative;
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    column-gap: clamp(12px, 1.6vw, 28px);
-    padding-inline: clamp(20px, 5vw, 72px);
-  }
-
-  /* ── HERO — asymmetric, text left + soft light field ── */
-  .ve-hero { min-height: 100svh; align-content: center; overflow: hidden; background: var(--paper); padding-block: 6rem 2rem; }
-  .ve-hero-bg { position: absolute; top: 0; right: 0; bottom: 0; width: 45%;
-    background-image: url('/verdant/media/topic-ethos.webp');
-    background-size: cover; background-position: center;
-    opacity: 0.7; pointer-events: none; }
-  .ve-hero-inner { grid-column: 1 / 8; position: relative; z-index: 1; }
-  .ve-hero-head { font-size: var(--display-1); color: var(--ink); margin-top: 2.4rem; line-height: 1.05; }
-  .ve-hero-sub { font-family: var(--font-display); font-size: var(--text-xl); line-height: 1.55; color: var(--ink); max-width: 38ch; margin-top: 2rem; }
-
-  /* ── CREED — asymmetric grid, off-axis rows ── */
-  .ve-creed { background: var(--paper-soft); padding-block: clamp(90px, 16vh, 220px); row-gap: 2.4rem; }
-  .ve-creed-row { grid-column: 2 / 11; padding: clamp(1.8rem, 3vh, 2.8rem) 0; border-top: 1px solid var(--line); }
-  .ve-creed-row--alt { grid-column: 6 / 12; }
-  .ve-creed-text { font-family: var(--font-display); font-size: var(--text-xl); color: var(--ink); line-height: 1.4; max-width: 30ch; }
-
-  /* ── STORY — off-axis, image left with vine, text right ── */
-  .ve-story { background: var(--paper); padding-block: clamp(110px, 18vh, 260px); }
-  .ve-story-media { grid-column: 1 / 7; position: relative; }
-  .ve-story-media img { width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: 4px; }
-  .ve-story-vine { position: absolute; right: -60px; top: 8%; width: 130px; height: 300px; opacity: 0.75; }
-  .ve-story-text { grid-column: 7 / 13; display: flex; flex-direction: column; gap: 1.6rem; padding-top: 2rem; }
-  .ve-story-text p:not(.v-label) { font-size: var(--text-lg); line-height: 1.7; color: var(--ink-soft); max-width: 50ch; }
-
-  /* ── TALK — luminous left-pinned CTA ── */
-  .ve-talk { background: var(--paper); padding-block: clamp(120px, 20vh, 220px); align-content: center; }
-  .ve-talk-head { grid-column: 1 / 9; font-size: var(--display-1); color: var(--ink); line-height: 1.05; }
-  .ve-talk-head + .v-cta { grid-column: 1 / 9; margin-top: 2rem; }
-  .ve-talk-meta { grid-column: 1 / 9; margin-top: 1.2rem; }
-
-  /* ── Section numerals ── */
-  .vh-num {
-    position: absolute; top: clamp(2rem, 5vh, 4rem); left: clamp(20px, 5vw, 72px);
-    font-family: var(--font-mono); font-size: var(--text-2xs);
-    letter-spacing: 0.2em; color: var(--moss); opacity: 0.7;
-  }
-  .vh-num::after { content: ""; display: inline-block; width: 2.2rem; height: 1px;
-    background: var(--sage); vertical-align: middle; margin-left: 0.7rem; }
-
-  /* ── Responsive ── */
-  @media (max-width: 860px) {
-    .ve-hero-bg { display: none; }
-    .ve-hero-inner { grid-column: 1 / 13; }
-    .ve-creed-row { grid-column: 1 / 13; }
-    .ve-story-media { grid-column: 1 / 13; }
-    .ve-story-vine { display: none; }
-    .ve-story-text { grid-column: 1 / 13; }
-    .ve-talk-head, .ve-talk-head + .v-cta, .ve-talk-meta { grid-column: 1 / 13; }
-  }
-
-  /* ── P2: Enso watermark on creed ── */
-  /* Sits behind rows, top-left near the opening numeral */
-  .ve-creed-enso {
-    top: clamp(2.5rem, 6vh, 5rem);
-    left: clamp(20px, 5vw, 72px);
-    width: clamp(180px, 26vw, 280px);
-    aspect-ratio: 1;
-  }
-
-  /* ── P1: Moonlit manifesto section ── */
-  /* No grid needed — the section is a flex column; copy column sits left */
-  .ve-manifesto {
-    /* Override the .v-night background so it's transparent — bg comes from vh-night-bg image */
-    background: transparent;
-  }
-  .ve-manifesto-copy {
-    max-width: 56ch;
-    padding-left: clamp(0px, 2vw, 32px);
-  }
-  .ve-manifesto-head {
-    font-size: clamp(1.9rem, 4.2vw, 3.6rem);
-    color: var(--night-ink);
-    line-height: 1.1;
-    margin-top: 1.2rem;
-    margin-bottom: 0;
-  }
-  .ve-manifesto-body {
-    font-size: var(--text-lg);
-    line-height: 1.65;
-    color: var(--night-soft);
-    max-width: 48ch;
-    margin-top: 1.4rem;
-  }
-  @media (max-width: 860px) {
-    .ve-manifesto-head { font-size: clamp(1.6rem, 5.5vw, 2.4rem); }
-    .ve-manifesto-body { font-size: var(--text-base); }
-  }
-
-  /* ── P3: BlossomBranch beside the story image ── */
-  /* Override vh-leaf-accent defaults: left edge, overlapping outward */
-  .ve-story-blossom {
-    left: -14%;
-    right: auto;
-    top: 12%;
-    bottom: auto;
-    width: 36%;
-    opacity: 0.82;
-  }
-  /* P2: Mountain+Mist band — stack them inside the vh-ink-band wrapper */
-  .ve-story-mountain {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    color: var(--moss);
-    opacity: 0.55;
-  }
-  .ve-story-mist {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    color: var(--sage);
-    opacity: 0.65;
-  }
-  /* Extra bottom padding on story section so content clears the band */
-  .ve-story { padding-bottom: clamp(160px, 24vh, 300px); }
-</style>

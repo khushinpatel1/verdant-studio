@@ -4,4 +4,11 @@ dist/
 .DS_Store
 *.log
 shots/
-.assets-source/
+.codesight/*
+!.codesight/CODESIGHT.md
+
+# foreign AI-tool configs (Claude-only)
+.cursorrules
+AGENTS.md
+codex.md
+.github/copilot-instructions.md

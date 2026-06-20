@@ -39,8 +39,8 @@ export const garden = {
   blurb:
     "Most money apps make their money by knowing too much about you. Garden makes its money the plain way — you pay for it. Your accounts, your numbers, your plans: encrypted, kept on your device, sold to no one.",
   cover: "/verdant/garden/garden-home.webp",
-  // vault-lock.jpg — used as back-phone teaser on homepage (intriguing encrypted-garden hint)
-  vaultScreen: "/verdant/garden/vault-lock.jpg",
+  // hero-landscape — light hero background for back-phone teaser
+  vaultScreen: "/verdant/media/hero-landscape-3.jpg",
   url: "https://garden.khushinpatel1.workers.dev",
   // Pricing signal — copy only, no payment system yet. People pay for it; that's the model.
   pricing: "Free during the beta. No ads, no data sold — that doesn't change.",
@@ -147,7 +147,7 @@ export const emerald = {
   name: "Emerald",
   kind: "Project two — focused ambition",
   oneLine: "Growing in the soil. Ships when it's ready.",
-  cover: "/verdant/art/emerald-dusk.jpg",
+  cover: "/verdant/media/koi-moon.jpg",
   blurb:
     "Not a distraction, not a roadmap item. A real project, built with the same quiet conviction as Garden — finished when it's finished, not a day sooner. You only found this because you went looking. That's who it's for.",
 };
@@ -196,3 +196,31 @@ export const ethos = {
   version: "001",
   launched: "2026-06-17",
 };
+
+export const faq = [
+  {
+    q: "Is my data really private?",
+    a: "Yes. Everything is encrypted on your device before it leaves. The server holds only ciphertext. We literally cannot read your numbers.",
+  },
+  {
+    q: "What about bank sync?",
+    a: "Bank connections are architecture-only right now — we're not live yet. When we wire it, it'll be labeled plaintext transit through a third-party provider (SnapTrade, SimpleFIN, Plaid). Fully honest about the privacy tradeoff.",
+  },
+  {
+    q: "Can I export my data?",
+    a: "Yes. Anytime. As JSON. No restrictions. Your data is yours to take.",
+  },
+  {
+    q: "What does Grove cost?",
+    a: "Nothing extra. Grove is part of the app. It works on your device only — no API calls to OpenAI or anywhere else.",
+  },
+  {
+    q: "How much will Garden cost after the beta?",
+    a: "We're still figuring that out. Beta testers keep lifetime access for free. When we do charge, it'll be honest and low — server costs plus a small margin. No surprise paywalls.",
+  },
+  {
+    q: "Do you sell my data?",
+    a: "No. We don't sell it, don't share it with advertisers, don't use it to train models. We can't — it's encrypted.",
+  },
+];
+

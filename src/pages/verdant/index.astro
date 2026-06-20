@@ -1,246 +1,98 @@
 ---
 import Verdant from "../../layouts/Verdant.astro";
-import GrowingGarden from "../../components/verdant/GrowingGarden";
-import Logo from "../../components/verdant/Logo";
-import ScrollPillars from "../../components/verdant/ScrollPillars";
-import InkGrowth from "../../components/verdant/InkGrowth";
-import Enso from "../../components/verdant/ink/Enso";
-import PetalFall from "../../components/verdant/ink/PetalFall";
 import Footer from "../../components/verdant/Footer";
-import { garden, brand } from "../../data/verdant";
+import Hero from "../../components/verdant/kit/Hero.astro";
+import FeatureRow from "../../components/verdant/kit/FeatureRow.astro";
+import CardGrid from "../../components/verdant/kit/CardGrid.astro";
+import Card from "../../components/verdant/kit/Card.astro";
+import CTABand from "../../components/verdant/kit/CTABand.astro";
+import Band from "../../components/verdant/kit/Band.astro";
+import Carousel from "../../components/verdant/kit/Carousel";
+import { brand, garden, emerald } from "../../data/verdant";
 ---
 
-<Verdant title="Verdant — Independent Software Studio">
-  <!-- ════════ HERO ════════
-       Asymmetric split: the reactive garden field fills the canvas, masked
-       to bleed away under the right-pinned copy column. Type is NOT centered
-       and NOT a square-cropped box — it hangs in the right 6 columns, the
-       field shows fullest on the left where there's no type to fight. -->
-  <section class="vh-hero vh-sec">
-    <GrowingGarden client:load className="vh-hero-garden" />
-    <div class="vh-hero-mark">
-      <Logo withWordmark={false} size={20} />
-    </div>
-    <div class="vh-hero-text">
-      <p class="v-label">{brand.tagline}</p>
-      <h1 class="v-display vh-hero-head">
-        Software that answers<br />to <span style="color: var(--leaf);">you</span> —<br />and no one else.
-      </h1>
-      <p class="vh-hero-sub">
-        Most money apps sell your spending to stay free. We sell the app instead — you own the software, the numbers stay yours.
-      </p>
-      <div class="vh-hero-actions">
-        <a href="#pillars" class="v-cta">What that means</a>
-        <a href="/verdant/garden" class="v-cta v-cta--primary">Meet Garden</a>
-      </div>
-    </div>
-    <span class="vh-num vh-num--hero" aria-hidden="true">00</span>
-  </section>
+<Verdant title="Verdant — software grown for people">
+  <Hero
+    eyebrow="Verdant Studio — independent software"
+    headline="Most apps work against you. Ours can't."
+    sub="No ads. No trackers. Your data stays yours — encrypted on your device. Designed so we couldn't betray you even if we tried."
+    cta1={{ label: "Explore Garden", href: "/verdant/garden" }}
+    cta2={{ label: "Read the ethos", href: "/verdant/ethos" }}
+    media={true}
+    videoSrc="/verdant/media/hero-landscape-1.webp"
+    mediaPoster="/verdant/media/hero-landscape-1.webp"
+  />
 
-  <!-- ════════ STUDIO ONE-LINE ════════
-       A single confident sentence, axis flipped right — dense, not a hero
-       repeat. Sits between the garden and the signature pillars. -->
-  <section class="vh-studio vh-sec" data-v-reveal>
-    <span class="vh-num" aria-hidden="true">01</span>
-    <p class="v-display vh-studio-line">
-      Verdant is a small studio building software that <em>can't</em> betray you — structurally, not by promise.
-    </p>
-  </section>
+  <CardGrid cols={3}>
+    <Card
+      icon="/verdant/art/koi-cream.jpg"
+      headline="Garden"
+      blurb="Your financial life — private, on your device."
+      link={{ label: "Explore", href: "/verdant/garden" }}
+    />
+    <Card
+      icon="/verdant/art/lantern-strip.png"
+      headline="Security"
+      blurb="The privacy guarantees, verified and explained."
+      link={{ label: "Learn", href: "/verdant/security" }}
+    />
+    <Card
+      icon="/verdant/art/hero-grasses-sun.jpg"
+      headline="Ethos"
+      blurb="Why we built this, and what we believe about software."
+      link={{ label: "Read", href: "/verdant/ethos" }}
+    />
+  </CardGrid>
 
-  <!-- ════════ SCROLL PILLARS — the signature moment ════════ -->
-  <div id="pillars">
-    <ScrollPillars />
-  </div>
+  <FeatureRow
+    align="left"
+    headline="Garden: your whole financial life in one place"
+    body={garden.blurb}
+    media={true}
+    mediaSrc={garden.cover}
+    cta={{ label: "Walk through Garden", href: "/verdant/garden" }}
+  />
 
-  <!-- ════════ GARDEN TEASER ════════
-       The product card. Off-axis: text left (cols 1-6), the phone pair
-       hangs right, overlapping the next section's edge slightly. -->
-  <section class="vh-work vh-sec">
-    <span class="vh-num" aria-hidden="true">02</span>
-    <a href="/verdant/garden" class="vh-garden">
-      <div class="vh-garden-text">
-        <div class="vh-product-meta">
-          <span class="v-label v-label--bare">{garden.idx} — {garden.kind}</span>
-          <span class="vh-product-year">{garden.year} — {garden.status}</span>
-        </div>
-        <h2 class="v-display vh-garden-name">Garden</h2>
-        <p class="vh-product-line">{garden.oneLine}</p>
-        <p class="vh-product-blurb">{garden.blurb}</p>
-        <span class="v-cta">Walk through Garden</span>
-      </div>
-      <div class="vh-garden-media">
-        <InkGrowth client:visible side="right" className="vh-leaf-accent vh-garden-leaf" aria-hidden="true" />
-        <div class="vh-phone"><div class="vh-phone-screen"><img src={garden.cover} alt="Garden — overview" loading="lazy" width="780" height="1688" /></div></div>
-        <div class="vh-phone vh-phone--back"><div class="vh-phone-screen"><img src={garden.vaultScreen} alt="Garden — encrypted vault" loading="lazy" width="780" height="1688" /></div></div>
-      </div>
-    </a>
-    <p class="vh-more-note" data-v-reveal>
-      A second project is in the soil — it ships when it's ready, not before.
-    </p>
-  </section>
+  <FeatureRow
+    align="right"
+    headline="Privacy structured, not promised"
+    body="Manual entry stays fully local. AI import touches it once. Bank links travel labeled and in the open. You choose the tier; the architecture holds it."
+    media={true}
+    mediaSrc="/verdant/media/topic-privacy.webp"
+  />
 
-  <!-- ════════ PRIVACY NOD ════════
-       One honest line, no overclaim, linking to the spectrum. Sits on its
-       own quiet band so it doesn't compete with the teaser above it. -->
-  <section class="vh-privacy vh-sec" data-v-reveal>
-    <span class="vh-num" aria-hidden="true">03</span>
-    <p class="v-display vh-privacy-line">
-      Manual entry stays fully local. AI import is touched once by the parser.
-      Bank sync travels labeled, never silent. <a href="/verdant/security" class="v-link vh-privacy-link">See the full spectrum →</a>
-    </p>
-  </section>
+  <FeatureRow
+    align="left"
+    headline="Emerald: the next thing in the soil"
+    body={emerald.blurb}
+    media={true}
+    mediaSrc={emerald.cover}
+  />
 
-  <!-- ════════ PULL-QUOTE ════════
-       Left-pinned, mark hangs into the margin. Not centered. -->
-  <section class="vh-quote vh-sec">
-    <span class="vh-num" aria-hidden="true">04</span>
-    <p class="v-organic vh-quote-mark" aria-hidden="true">"</p>
-    <p class="v-display vh-quote-text" data-v-reveal>
-      The best software is like a good garden. You feel it was tended, but you
-      never catch it <em>trying</em>.
-    </p>
-    <p class="v-label vh-quote-by">Khushin Patel — Verdant</p>
-  </section>
+  <Carousel
+    client:visible
+    items={[
+      {
+        id: "1",
+        content: "First note about Garden's early access release and privacy guarantees."
+      },
+      {
+        id: "2",
+        content: "Updates on the roadmap and what's coming next."
+      },
+      {
+        id: "3",
+        content: "Stories from beta testers and their experiences."
+      }
+    ]}
+  />
 
-  <!-- ════════ CTA BAND — Join the beta ════════ -->
-  <section class="vh-cta-band vh-sec" data-v-choreograph>
-    <span class="vh-num" aria-hidden="true">05</span>
-    <Enso client:visible className="vh-ink-watermark vi-cta-enso" aria-hidden="true" />
-    <PetalFall client:visible className="vi-cta-petal" aria-hidden="true" />
-    <h2 class="v-display vh-cta-title" data-v-choreo-slide>
-      Software that's on <span style="color: var(--leaf);">your</span> side, for once.
-    </h2>
-    <a href="/verdant/beta" class="v-cta v-cta--primary vh-cta-link" data-v-choreo-slide data-v-choreodelay="0.16">Join the beta</a>
-    <p class="v-label" style="margin-top: 1.6rem; color: var(--leaf);" data-v-choreo-slide data-v-choreodelay="0.24">{garden.pricing}</p>
-  </section>
+  <CTABand
+    headline="Grow something quiet"
+    sub="Join us in building software that respects your data."
+    cta={{ label: "Start a conversation", href: "/verdant/ethos#talk" }}
+    ctaSecondary={{ label: "Try Garden", href: "https://garden.khushinpatel1.workers.dev" }}
+  />
 
   <Footer client:visible />
 </Verdant>
-
-<style is:global>
-  /* Off-axis editorial grid. Every section is a 12-col field; content is
-     pinned to a column range, not floated in a centered .v-wrap. The axis
-     flips down the page so no two sections share it. */
-  .vh-sec {
-    position: relative;
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    column-gap: clamp(12px, 1.6vw, 28px);
-    padding-inline: clamp(20px, 5vw, 72px);
-  }
-
-  /* Section numerals — mono, hung in the gutter. Editorial rhythm marker. */
-  .vh-num {
-    position: absolute; top: clamp(2rem, 5vh, 4rem); left: clamp(20px, 5vw, 72px);
-    font-family: var(--font-mono); font-size: var(--text-2xs);
-    letter-spacing: 0.2em; color: var(--moss); opacity: 0.7;
-  }
-  .vh-num::after { content: ""; display: inline-block; width: 2.2rem; height: 1px;
-    background: var(--sage); vertical-align: middle; margin-left: 0.7rem; }
-
-  /* ── HERO — asymmetric: the reactive field owns the canvas, type is
-     pinned to the RIGHT 6 columns (not centered, not a box). The field
-     itself is full-bleed and masked so it reads fullest where there's no
-     type, fading under the copy column instead of stopping at a hard edge. */
-  .vh-hero { min-height: 100svh; align-content: center; overflow: hidden; background: var(--paper); align-items: center; }
-  .vh-hero-garden {
-    position: absolute; inset: 0;
-    z-index: 0; pointer-events: none;
-    -webkit-mask-image: linear-gradient(255deg, transparent 4%, #000 30%, #000 56%, transparent 78%);
-            mask-image: linear-gradient(255deg, transparent 4%, #000 30%, #000 56%, transparent 78%);
-  }
-  .vh-hero-mark {
-    position: absolute; top: clamp(2rem, 5vh, 4rem); right: clamp(20px, 5vw, 72px);
-    z-index: 2; color: var(--leaf); opacity: 0.92;
-  }
-  .vh-hero-text { grid-column: 7 / 13; position: relative; z-index: 1; padding-block: 7rem 2rem; overflow-x: hidden; }
-  .vh-hero-head { font-size: var(--display-1); color: var(--ink); margin-top: 2.4rem; line-height: 1.05; max-width: 100%; overflow-wrap: break-word; }
-  .vh-hero-sub { font-family: var(--font-display); font-size: var(--text-xl); line-height: 1.55; color: var(--ink); max-width: 38ch; margin-top: 2rem; }
-  .vh-hero-actions { display: flex; gap: 1.6rem; flex-wrap: wrap; margin-top: 2.6rem; align-items: center; }
-  .vh-num--hero { top: auto; bottom: clamp(2rem, 6vh, 4rem); }
-  @media (max-width: 860px) {
-    .vh-hero-text { grid-column: 1 / 13; }
-    .vh-hero-garden { -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 38%); mask-image: linear-gradient(180deg, transparent 0%, #000 38%); }
-    .vh-hero-mark { right: auto; left: clamp(20px, 5vw, 72px); }
-  }
-
-  /* ── STUDIO ONE-LINE — axis flips RIGHT, dense, single sentence. */
-  .vh-studio { background: var(--paper-soft); padding-block: clamp(80px, 13vh, 160px); overflow-x: hidden; }
-  .vh-studio-line { grid-column: 5 / 13; font-size: var(--display-2); color: var(--ink); line-height: 1.18; max-width: 32ch; overflow-wrap: break-word; }
-  @media (max-width: 860px) { .vh-studio-line { grid-column: 1 / 13; max-width: 100%; } }
-
-  /* ── WORK — text left (cols 1-6), phones right, real weight. */
-  .vh-work { background: var(--paper); padding-block: clamp(110px, 18vh, 260px); align-items: center; row-gap: 4rem; overflow-x: hidden; }
-  .vh-garden { grid-column: 1 / 13; display: grid; grid-template-columns: minmax(0, 1fr) auto;
-    gap: clamp(3rem, 8vw, 9rem); align-items: center; color: inherit; text-decoration: none; }
-  .vh-garden-text { max-width: 46ch; }
-  .vh-product-meta { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 0.6rem 1rem; }
-  .vh-product-year { font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: 0.14em; color: var(--ink-soft); }
-  .vh-garden-name { color: var(--leaf); font-size: var(--display-1); margin: 1rem 0; transition: color .3s; line-height: 1.05; max-width: 100%; overflow-wrap: break-word; }
-  .vh-garden:hover .vh-garden-name { color: var(--leaf-deep); }
-  .vh-product-line { font-family: var(--font-display); font-size: var(--text-xl); color: var(--ink); margin-bottom: 1.2rem; line-height: 1.4; }
-  .vh-product-blurb { color: var(--ink-soft); line-height: 1.75; max-width: 46ch; margin-bottom: 1.8rem; font-size: var(--text-lg); }
-  .vh-more-note { grid-column: 1 / 7; font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: 0.06em;
-    color: var(--ink-soft); padding-top: 1.6rem; border-top: 1px solid var(--line); }
-  .vh-garden-media { position: relative; display: flex; justify-content: center; min-width: 0; }
-  .vh-garden-leaf { right: -16%; top: 6%; width: 34%; opacity: 0.7; }
-
-  /* phone frame */
-  .vh-phone { --rad: 40px; --pad: 9px; position: relative; width: clamp(200px, 22vw, 270px); aspect-ratio: 400 / 812;
-    border-radius: var(--rad); padding: var(--pad); flex: none;
-    background: linear-gradient(160deg, #2a3b27 0%, #16271a 46%, #0a1610 100%);
-    box-shadow: 0 40px 90px -34px rgba(13,26,16,0.6), 0 0 0 1.5px rgba(255,255,255,0.05),
-                0 2px 0 rgba(255,255,255,0.08) inset, 0 -2px 8px rgba(0,0,0,0.4) inset;
-    transition: transform .6s var(--ease); }
-  .vh-phone-screen { width: 100%; height: 100%; overflow: hidden; border-radius: calc(var(--rad) - var(--pad)); background: var(--paper); }
-  .vh-phone-screen img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 0; }
-  .vh-phone--back { position: absolute; left: 22%; top: 8%; z-index: -1; transform: rotate(6deg) scale(0.92); opacity: 0.92; }
-  .vh-garden:hover .vh-phone { transform: translateY(-8px); }
-  .vh-garden:hover .vh-phone--back { transform: rotate(9deg) scale(0.92) translateY(-4px); }
-
-  /* ── PRIVACY NOD — quiet, single line, axis flips right again. */
-  .vh-privacy { background: var(--paper-soft); padding-block: clamp(70px, 11vh, 140px); overflow-x: hidden; }
-  .vh-privacy-line { grid-column: 4 / 13; font-family: var(--font-display); font-size: var(--text-xl); line-height: 1.55; color: var(--ink-soft); max-width: 52ch; }
-  .vh-privacy-link { color: var(--leaf); white-space: nowrap; }
-  @media (max-width: 860px) { .vh-privacy-line { grid-column: 1 / 13; max-width: 100%; } }
-
-  /* ── QUOTE — left-pinned, mark hangs into the left gutter. Not centered. */
-  .vh-quote { background: var(--paper); padding-block: clamp(90px, 16vh, 220px); overflow-x: hidden; }
-  .vh-quote-mark { grid-column: 1 / 2; grid-row: 1; align-self: start; justify-self: start;
-    font-size: var(--text-4xl); line-height: 0.4; color: var(--sage); margin-left: -0.4rem; }
-  .vh-quote-text { grid-column: 2 / 10; font-size: var(--display-2); line-height: 1.32; color: var(--ink); margin-bottom: 1.6rem; max-width: 100%; overflow-wrap: break-word; }
-  .vh-quote-by { grid-column: 2 / 10; }
-
-  /* ── CTA — left-pinned on a dawn wash. Not a centered stack. */
-  section.vh-cta-band { background: linear-gradient(135deg, var(--mist), var(--dawn)); padding-block: clamp(120px, 20vh, 220px); align-content: center; overflow-x: hidden; }
-  .vh-cta-title { grid-column: 1 / 9; font-size: var(--display-1); color: var(--ink); line-height: 1.05; max-width: 100%; overflow-wrap: break-word; }
-  .vh-cta-link { grid-column: 1 / 9; margin-top: 2rem; }
-
-  .vi-cta-enso {
-    top: clamp(2.5rem, 6vh, 5rem);
-    left: clamp(20px, 5vw, 72px);
-    width: clamp(180px, 26vw, 280px);
-    aspect-ratio: 1;
-  }
-  .vi-cta-petal {
-    position: absolute;
-    bottom: 0;
-    right: 10%;
-    width: 400px;
-    height: 400px;
-    opacity: 0.12;
-    pointer-events: none;
-  }
-
-  /* Responsive — collapse to a single column, drop the off-axis offsets. */
-  @media (max-width: 860px) {
-    .vh-garden { grid-template-columns: 1fr; }
-    .vh-phone--back { display: none; }
-    .vh-garden-leaf { display: none; }
-    .vh-more-note { grid-column: 1 / 13; }
-    .vh-quote-text, .vh-quote-by { grid-column: 1 / 13; }
-    .vh-quote-mark { grid-column: 1 / 13; }
-    .vh-cta-title, .vh-cta-link { grid-column: 1 / 13; }
-    .vi-cta-petal { display: none; }
-  }
-</style>

@@ -1,313 +1,44 @@
 ---
 import Verdant from "../../layouts/Verdant.astro";
 import Footer from "../../components/verdant/Footer";
+import Hero from "../../components/verdant/kit/Hero.astro";
+import CardGrid from "../../components/verdant/kit/CardGrid.astro";
+import Card from "../../components/verdant/kit/Card.astro";
+import CTABand from "../../components/verdant/kit/CTABand.astro";
 import PrivacySpectrum from "../../components/verdant/PrivacySpectrum";
-import Enso from "../../components/verdant/ink/Enso";
-import Moon from "../../components/verdant/ink/Moon";
-import MountainRidge from "../../components/verdant/ink/MountainRidge";
-import MistLayer from "../../components/verdant/ink/MistLayer";
-import { brand } from "../../data/verdant";
-
-// SECURITY — the spine page (plan §3). Signature moment: the interactive
-// 3-tier PrivacySpectrum (manual / AI import / bank link), already built as
-// a standalone component and wired in here for the first time. Everything
-// below it is honest scaffolding around the same true claims: an E2E-at-rest
-// explainer (vault passphrase → AES-GCM, server holds ciphertext only), a
-// plain-words threat model, and the real response headers for this site.
-//
-// HONESTY GATE: no "never leaves your device." Bank link is clearly marked
-// architecture-only, plaintext-in-transit, not live. Nothing invented.
-
-const e2e = [
-  {
-    n: "01",
-    head: "You set a vault passphrase.",
-    body:
-      "It never leaves your device and Verdant never sees it. It's the only key that can unlock your data — lose it, and there's no back door, not even for us.",
-  },
-  {
-    n: "02",
-    head: "Your data is sealed with AES-GCM before it syncs.",
-    body:
-      "Numbers, accounts, plans — encrypted on your device with a key derived from your passphrase. What leaves your device is already unreadable.",
-  },
-  {
-    n: "03",
-    head: "The server holds ciphertext. Nothing else.",
-    body:
-      "Garden's sync server stores encrypted blobs and the metadata needed to route them — account IDs, timestamps. It cannot decrypt what it stores. That's not a policy, it's the architecture.",
-  },
-];
-
-const threatModel = [
-  {
-    q: "A server breach happens. What does the attacker get?",
-    a: "Encrypted blobs and routing metadata. Without your passphrase, the blobs are noise.",
-  },
-  {
-    q: "Can a Verdant employee read my transactions?",
-    a: "No — the same ciphertext we'd hand to an attacker is what we see ourselves. There's no admin view of decrypted data.",
-  },
-  {
-    q: "What if Verdant gets a legal request for my data?",
-    a: "We can hand over what we have: ciphertext, account IDs, timestamps. We cannot hand over plaintext, because we never hold the key that makes it readable.",
-  },
-  {
-    q: "What's NOT covered by encryption-at-rest?",
-    a: "The AI-import path sends a statement to a parser once, in transit (tier 2). A future bank link relays plaintext for as long as it's connected (tier 3, not yet live). Both are named in the spectrum above — encryption-at-rest protects what's stored, not every step of getting data in.",
-  },
-];
-
-// Literally true of THIS site's responses — straight from public/_headers.
-const headers = [
-  { k: "X-Frame-Options", v: "SAMEORIGIN", note: "Can't be silently embedded in another site." },
-  { k: "X-Content-Type-Options", v: "nosniff", note: "Browsers honour declared types — no guessing." },
-  { k: "Referrer-Policy", v: "strict-origin-when-cross-origin", note: "Leaks no path data to other origins." },
-  { k: "Permissions-Policy", v: "camera=(), microphone=(), geolocation=()", note: "The site asks for none of these. Denied outright." },
-];
+import FAQAccordion from "../../components/verdant/FAQAccordion";
+import { faq } from "../../data/verdant";
 ---
 
-<Verdant title="Security — Verdant" image="/og/og-ethos.jpg">
-  <!-- ── HERO — Luminous, type-on-light ── -->
-  <section class="vs-hero">
-    <div class="vs-hero-bg" aria-hidden="true"></div>
-    <div class="v-wrap vs-hero-inner">
-      <p class="v-label">How it's built.</p>
-      <h1 class="v-display vs-hero-head">
-        Privacy you<br />can <span style="color: var(--leaf);">check</span>.
-      </h1>
-      <p class="vs-hero-sub">
-        Not one privacy claim — three. What's private depends entirely on how
-        you get your data in. Toggle a tier below and see exactly what stays
-        on your device and what touches a server, for each one.
-      </p>
-    </div>
-  </section>
+<Verdant title="Security — How Garden keeps your data private" description="The privacy guarantees, verified and explained.">
+  <Hero
+    headline="Security is structural"
+    sub="Not by promise — by architecture. Your data is encrypted before it leaves your device. The server can't read it."
+    cta1={{ label: "Try Garden", href: "https://garden.khushinpatel1.workers.dev" }}
+    media={true}
+    mediaSrc="/verdant/media/topic-security.webp"
+  />
 
-  <!-- ── SPECTRUM — the signature moment: interactive 3-tier toggle ── -->
-  <section class="vs-spectrum vs-sec">
-    <span class="vh-num" aria-hidden="true">01</span>
-    <Enso client:visible className="vh-ink-watermark vs-spectrum-enso" aria-hidden="true" />
-    <div class="vs-spectrum-head" data-v-reveal>
-      <p class="v-label v-label--bare">The privacy spectrum</p>
-      <p class="v-display vs-spectrum-intro">Private by structure, not by promise.</p>
-    </div>
-    <PrivacySpectrum client:visible className="vs-spectrum-widget" />
-  </section>
+  <CardGrid cols={3} title="The guarantees">
+    <Card headline="Local-first encryption" blurb="Your device holds the keys. The server holds only ciphertext." />
+    <Card headline="No tracking" blurb="No ads, no analytics, no third parties watching your ledger." />
+    <Card headline="Offline by default" blurb="Works with no connection. Your numbers stay yours." />
+  </CardGrid>
 
-  <!-- ── E2E-AT-REST — dark night-band, the serious tone ── -->
-  <section class="vh-night-feature v-night vs-e2e">
-    <div class="vh-night-bg" style="background-image:url(/verdant/paint/moonlit-garden.webp)"></div>
-    <div class="vh-night-scrim"></div>
-    <Moon client:visible className="vh-night-moon" aria-hidden="true" />
-    <div class="vh-night-copy vs-e2e-copy">
-      <p class="v-label v-label--light">Encrypted at rest</p>
-      <h2 class="v-display vs-e2e-head">A key only<br />you hold.</h2>
-      <p class="vs-e2e-sub">
-        Once data is in Garden, here's exactly what stands between it and
-        anyone else — including us.
-      </p>
-      <ol class="vs-e2e-list">
-        {e2e.map((s) => (
-          <li class="vs-e2e-row" data-v-reveal style={`--d:${Number(s.n) * 0.04}s`}>
-            <span class="vs-e2e-n">{s.n}</span>
-            <div>
-              <p class="vs-e2e-row-head">{s.head}</p>
-              <p class="vs-e2e-row-body">{s.body}</p>
-            </div>
-          </li>
-        ))}
-      </ol>
-    </div>
-  </section>
+  <div style="padding: clamp(3rem, 8vw, 5rem) clamp(20px, 5vw, 56px); max-width: var(--maxw); margin: 0 auto;">
+    <PrivacySpectrum client:visible />
+  </div>
 
-  <!-- ── THREAT MODEL — plain words, asymmetric Q&A ── -->
-  <section class="vs-threat vs-sec">
-    <span class="vh-num" aria-hidden="true">02</span>
-    <div class="vs-threat-head" data-v-reveal>
-      <p class="v-label">Threat model, in plain words</p>
-      <p class="vs-threat-intro v-display">What this defends against — and what it doesn't.</p>
-    </div>
-    <dl class="vs-threat-list">
-      {threatModel.map((t, i) => (
-        <div class={`vs-threat-row${i % 2 ? " vs-threat-row--alt" : ""}`} data-v-reveal style={`--d:${i * 0.05}s`}>
-          <dt class="vs-threat-q">{t.q}</dt>
-          <dd class="vs-threat-a">{t.a}</dd>
-        </div>
-      ))}
-    </dl>
-  </section>
+  <div style="padding: clamp(3rem, 8vw, 5rem) clamp(20px, 5vw, 56px); max-width: var(--maxw); margin: 0 auto;">
+    <h2 style="font-size: var(--text-3xl); color: var(--fg); margin-bottom: 2rem;">Questions?</h2>
+    <FAQAccordion client:visible items={faq} />
+  </div>
 
-  <!-- ── POSTURE: real response headers for this site — luminous ── -->
-  <section class="vs-posture vs-sec">
-    <span class="vh-num" aria-hidden="true">03</span>
-    <div class="vh-ink-band vs-posture-inkband" aria-hidden="true">
-      <MountainRidge client:visible className="vs-posture-mountain" />
-      <MistLayer client:visible className="vs-posture-mist" />
-    </div>
-    <div class="vs-posture-head" data-v-reveal>
-      <p class="v-label">This site's security posture</p>
-      <p class="vs-posture-intro v-display">Hardened by design, not by accident.</p>
-      <p class="vs-posture-note">
-        The marketing site itself is hardened. Open your browser's network inspector on this
-        page — these are the security headers every response carries. (Garden, the app, is
-        encrypted at the application layer, not the HTTP layer; those headers prove nothing
-        about the app's encryption, only that the landing page won't let itself be stolen
-        wholesale.)
-      </p>
-    </div>
-    <ul class="vs-headers">
-      {headers.map((h, i) => (
-        <li class="vs-header" data-v-reveal style={`--d:${i * 0.05}s`}>
-          <code class="vs-header-k">{h.k}</code>
-          <code class="vs-header-v">{h.v}</code>
-          <span class="vs-header-note">{h.note}</span>
-        </li>
-      ))}
-    </ul>
-    <p class="vs-posture-foot">
-      This is a static site — no server-side database, no account, no tracker to
-      opt out of. The only way to reach the studio is an email you choose to send.
-      The legal detail lives in the
-      <a href="/privacy" class="vs-inline-link">Privacy policy</a> and
-      <a href="/terms" class="vs-inline-link">Terms</a>.
-    </p>
-  </section>
-
-  <!-- ── TALK — luminous CTA ── -->
-  <section id="talk" class="vs-talk vs-sec">
-    <span class="vh-num" aria-hidden="true">04</span>
-    <h2 class="v-display vs-talk-head">
-      Found a gap?<br /><span style="color: var(--leaf);">Tell us</span>.
-    </h2>
-    <a href={`mailto:${brand.email}`} class="v-cta">{brand.email}</a>
-    <p class="v-label vs-talk-meta">Responsible disclosure — quietly, and we'll answer</p>
-  </section>
+  <CTABand
+    headline="Security questions?"
+    sub="We're transparent about how it works."
+    cta={{ label: "Email us", href: "mailto:verdantmail@proton.me" }}
+  />
 
   <Footer client:visible />
 </Verdant>
-
-<style>
-  /* ── SPECTRUM — signature moment ── */
-  .vs-spectrum { background: var(--paper-soft); padding-block: clamp(90px, 14vh, 180px); row-gap: 2.4rem; }
-  .vs-spectrum-head { grid-column: 1 / 9; margin-bottom: clamp(2rem, 4vh, 3.2rem); }
-  .vs-spectrum-intro { font-size: var(--display-2); color: var(--ink); margin-top: 1rem; max-width: 30ch; }
-  .vs-spectrum-widget { grid-column: 1 / 13; }
-  .vs-spectrum-enso {
-    top: clamp(2rem, 5vh, 4rem);
-    right: clamp(20px, 5vw, 72px);
-    left: auto;
-    width: clamp(160px, 22vw, 240px);
-    aspect-ratio: 1;
-  }
-
-  /* ── E2E-AT-REST — dark night band ── */
-  .vs-e2e { min-height: auto; padding-block: clamp(90px, 14vh, 170px); }
-  .vs-e2e-copy { max-width: 62ch; }
-  .vs-e2e-head { font-size: clamp(2rem, 4.4vw, 3.6rem); line-height: 1.08; margin-top: 1.2rem; }
-  .vs-e2e-sub { font-size: var(--text-lg); line-height: 1.6; max-width: 48ch; margin-top: 1.4rem; }
-  .vs-e2e-list { list-style: none; padding: 0; margin: clamp(2.2rem, 4vh, 3.2rem) 0 0; display: flex; flex-direction: column; gap: 1.8rem; }
-  .vs-e2e-row { display: grid; grid-template-columns: 2.4rem 1fr; gap: 0.4rem 1.2rem; border-top: 1px solid var(--night-sage); padding-top: 1.4rem; }
-  .vs-e2e-n { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.16em; color: var(--night-gold); opacity: 0.85; }
-  .vs-e2e-row-head { font-family: var(--font-display); font-size: var(--text-xl); color: var(--night-ink); line-height: 1.3; }
-  .vs-e2e-row-body { color: var(--night-soft); font-size: var(--text-base); line-height: 1.6; max-width: 52ch; margin-top: 0.5rem; }
-
-  /* ── THREAT MODEL ── */
-  .vs-threat { background: var(--paper); padding-block: clamp(100px, 16vh, 220px); row-gap: 2rem; }
-  .vs-threat-head { grid-column: 1 / 9; margin-bottom: 1rem; }
-  .vs-threat-intro { font-size: var(--display-2); color: var(--ink); margin-top: 1rem; max-width: 34ch; }
-  .vs-threat-list { grid-column: 1 / 13; display: grid; grid-template-columns: repeat(12, 1fr); column-gap: clamp(12px, 1.6vw, 28px); row-gap: 1.6rem; margin: clamp(1.6rem, 3vh, 2.6rem) 0 0; }
-  .vs-threat-row { grid-column: 1 / 8; padding: clamp(1.4rem, 2.4vh, 2rem) 0; border-top: 1px solid var(--line); }
-  .vs-threat-row--alt { grid-column: 5 / 13; }
-  .vs-threat-q { font-family: var(--font-display); font-size: var(--text-xl); color: var(--leaf); line-height: 1.35; max-width: 34ch; }
-  .vs-threat-a { color: var(--ink-soft); font-size: var(--text-base); line-height: 1.6; max-width: 50ch; margin: 0.7rem 0 0; padding: 0; }
-
-  /* ── Inline legal links ── */
-  .vs-inline-link { color: var(--leaf); text-underline-offset: 0.2em; text-decoration: underline; text-decoration-thickness: 1px; }
-  .vs-inline-link:hover { color: var(--gold); }
-
-  /* ── P2: Mountain/Mist band at posture section bottom ── */
-  .vs-posture-mountain {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    color: var(--moss);
-    opacity: 0.55;
-  }
-  .vs-posture-mist {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    color: var(--sage);
-    opacity: 0.65;
-  }
-  .vs-posture { padding-bottom: clamp(160px, 24vh, 300px); }
-
-  @media (max-width: 860px) {
-    .vs-spectrum-head { grid-column: 1 / 13; }
-    .vs-spectrum-enso { display: none; }
-    .vs-e2e-row { grid-template-columns: 1fr; gap: 0.3rem; }
-    .vs-threat-head { grid-column: 1 / 13; }
-    .vs-threat-row, .vs-threat-row--alt { grid-column: 1 / 13; }
-  }
-</style>
-
-<style is:global>
-  /* ── Off-axis editorial grid ── */
-  .vs-sec {
-    position: relative;
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    column-gap: clamp(12px, 1.6vw, 28px);
-    padding-inline: clamp(20px, 5vw, 72px);
-  }
-
-  /* ── HERO ── */
-  .vs-hero { min-height: 100svh; align-content: center; overflow: hidden; background: var(--paper); padding-block: 6rem 2rem; }
-  .vs-hero-bg { position: absolute; top: 0; right: 0; bottom: 0; width: 45%;
-    background-image: url('/verdant/media/topic-security.webp');
-    background-size: cover; background-position: center;
-    opacity: 0.75; pointer-events: none; }
-  .vs-hero-inner { position: relative; z-index: 1; }
-  .vs-hero-head { font-size: var(--display-1); color: var(--ink); margin-top: 2.4rem; line-height: 1.05; }
-  .vs-hero-sub { font-family: var(--font-display); font-size: var(--text-xl); line-height: 1.55; color: var(--ink); max-width: 44ch; margin-top: 2rem; }
-
-  /* ── POSTURE ── */
-  .vs-posture { background: var(--paper); padding-block: clamp(110px, 18vh, 260px); }
-  .vs-posture-head { grid-column: 1 / 9; margin-bottom: 2.5rem; }
-  .vs-posture-intro { font-size: var(--display-2); color: var(--leaf); margin-top: 1rem; }
-  .vs-posture-note { color: var(--ink-soft); font-size: var(--text-base); line-height: 1.6; max-width: 54ch; margin-top: 1rem; }
-  .vs-headers { grid-column: 1 / 9; list-style: none; padding: 0; margin: 2rem 0 0; }
-  .vs-header { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1.1fr) minmax(0,1.4fr); gap: 1rem 1.6rem; align-items: baseline;
-    padding: 1.3rem 0; border-top: 1px solid var(--line); }
-  .vs-header-k { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--leaf); }
-  .vs-header-v { font-family: var(--font-mono); font-size: var(--text-2xs); color: var(--ink); word-break: break-word; }
-  .vs-header-note { font-family: var(--font-display); font-size: var(--text-base); color: var(--ink-soft); }
-  .vs-posture-foot { grid-column: 1 / 9; font-family: var(--font-display); font-size: var(--text-lg); line-height: 1.6; color: var(--ink-soft);
-    max-width: 52ch; margin-top: 2.5rem; padding-top: 1.6rem; border-top: 1px solid var(--line); }
-
-  /* ── TALK ── */
-  .vs-talk { background: var(--paper); padding-block: clamp(120px, 20vh, 220px); align-content: center; }
-  .vs-talk-head { grid-column: 1 / 9; font-size: var(--display-1); color: var(--ink); line-height: 1.05; }
-  .vs-talk-head + .v-cta { grid-column: 1 / 9; margin-top: 2rem; }
-  .vs-talk-meta { grid-column: 1 / 9; margin-top: 1.2rem; }
-
-  /* ── Section numerals ── */
-  .vh-num {
-    position: absolute; top: clamp(2rem, 5vh, 4rem); left: clamp(20px, 5vw, 72px);
-    font-family: var(--font-mono); font-size: var(--text-2xs);
-    letter-spacing: 0.2em; color: var(--moss); opacity: 0.7;
-  }
-  .vh-num::after { content: ""; display: inline-block; width: 2.2rem; height: 1px;
-    background: var(--sage); vertical-align: middle; margin-left: 0.7rem; }
-
-  /* ── Responsive ── */
-  @media (max-width: 860px) {
-    .vs-hero-bg { display: none; }
-    .vs-posture-head, .vs-headers, .vs-posture-foot { grid-column: 1 / 13; }
-    .vs-header { grid-template-columns: 1fr; gap: 0.3rem; }
-    .vs-talk-head, .vs-talk-head + .v-cta, .vs-talk-meta { grid-column: 1 / 13; }
-  }
-</style>

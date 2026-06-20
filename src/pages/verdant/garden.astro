@@ -1,15 +1,12 @@
 ---
 import Verdant from "../../layouts/Verdant.astro";
-import InkGrowth from "../../components/verdant/InkGrowth";
 import Footer from "../../components/verdant/Footer";
-import GrowingGarden from "../../components/verdant/GrowingGarden";
+import Hero from "../../components/verdant/kit/Hero.astro";
+import FeatureRow from "../../components/verdant/kit/FeatureRow.astro";
+import CardGrid from "../../components/verdant/kit/CardGrid.astro";
+import Card from "../../components/verdant/kit/Card.astro";
+import CTABand from "../../components/verdant/kit/CTABand.astro";
 import GardenTour from "../../components/verdant/GardenTour";
-import Logo from "../../components/verdant/Logo";
-import Moon from "../../components/verdant/ink/Moon";
-import Enso from "../../components/verdant/ink/Enso";
-import BlossomBranch from "../../components/verdant/ink/BlossomBranch";
-import MountainRidge from "../../components/verdant/ink/MountainRidge";
-import MistLayer from "../../components/verdant/ink/MistLayer";
 import { garden } from "../../data/verdant";
 
 // Privacy spectrum — the honest 3-tier model (plan §0 truth correction).
@@ -21,251 +18,57 @@ const spectrum = [
 ];
 ---
 
-<Verdant title="Garden — personal finance, kept private — Verdant" image="/og/og-garden.jpg">
-  <!-- ── HERO — one confident line + CTA ── -->
-  <GrowingGarden client:load className="v-field-bg" />
+<Verdant title="Garden — Personal finance, kept private" description={garden.blurb}>
+  <Hero
+    headline={garden.name}
+    sub={garden.oneLine}
+    cta1={{ label: "Try Garden", href: garden.url }}
+    cta2={{ label: "Security", href: "/verdant/security" }}
+    media={true}
+    videoSrc="/verdant/media/hero-landscape-2.webp"
+    mediaPoster={garden.cover}
+  />
 
-  <section class="vg-hero">
-    <InkGrowth client:visible side="right" className="vg-hero-vine" />
-    <div class="v-wrap vg-hero-inner">
-      <div class="vg-hero-mark"><Logo client:visible withWordmark={false} size={30} /></div>
-      <p class="v-label">{garden.kind} · {garden.status}</p>
-      <h1 class="v-organic vg-hero-name">Garden</h1>
-      <p class="vg-hero-line v-display">{garden.oneLine}</p>
-      <div class="vg-hero-actions">
-        <a
-          href={garden.url}
-          class="v-cta v-cta--primary"
-          target="_blank"
-          rel="noopener"
-          data-cursor="Open"
-        >Join the beta →</a>
-        <a href="#tour" class="v-cta" data-cursor="Down">Walk through it</a>
-      </div>
-    </div>
-  </section>
+  <FeatureRow
+    align="left"
+    headline="See the whole garden"
+    body="Net worth across every account. One number, one place. The first thing you see when you open the app."
+    media={true}
+    mediaSrc={garden.screens[0].img}
+  />
 
-  <!-- ── GARDEN TOUR — the signature moment (plan §2A) ── -->
-  <div id="tour">
+  <FeatureRow
+    align="right"
+    headline="Pull the weeds"
+    body="Where it goes, what it adds up to, and the quiet subscriptions draining you. Budgets that track themselves."
+    media={true}
+    mediaSrc={garden.screens[1].img}
+  />
+
+  <FeatureRow
+    align="left"
+    headline="Plant and untangle"
+    body="Goals with real dates. Debt in order. One number to pay. A year you'll be free. The interest you'll save."
+    media={true}
+    mediaSrc={garden.screens[2].img}
+  />
+
+  <div style="padding: clamp(3rem, 8vw, 5rem) clamp(20px, 5vw, 56px); max-width: var(--maxw); margin: 0 auto;">
     <GardenTour client:visible />
   </div>
 
-  <!-- ── THREE BEDS — real screens, honest copy from data/verdant.ts ── -->
-  <section class="vg-beds">
-    <div class="v-wrap">
-      <div class="vg-beds-head" data-v-reveal>
-        <p class="v-label">Three beds, one garden</p>
-        <p class="vg-beds-intro v-display">Everything your money is doing — and nothing it shouldn't.</p>
-      </div>
-    </div>
-    <div class="vg-screens">
-      {garden.screens.map((s, i) => (
-        <div class={`v-wrap vg-screen${i % 2 ? " vg-screen--alt" : ""}`} data-v-reveal>
-          {/* leaf-beside-image — alternate side/component per row for asymmetry */}
-          <div class="vg-screen-media">
-            <div class="vg-phone vh-leaf-figure">
-              <div class="vg-phone-screen"><img src={s.img} alt={`Garden — ${s.tab}`} loading="lazy" width="780" height="1688" /></div>
-              {i % 2 === 0
-                ? <InkGrowth client:visible side="right" className="vh-leaf-accent vg-leaf-right" aria-hidden="true" />
-                : <BlossomBranch client:visible side="left" className="vh-leaf-accent vg-leaf-left" aria-hidden="true" />
-              }
-            </div>
-          </div>
-          <div class="vg-screen-text">
-            <span class="v-label v-label--bare">0{i + 1} — {s.tab}</span>
-            <h2 class="v-display vg-screen-line">{s.line}</h2>
-            <p class="vg-screen-body">{s.body}</p>
-          </div>
-        </div>
-      ))}
-    </div>
-  </section>
+  <CardGrid cols={3} title="Built on">
+    <Card headline="Private by structure" blurb="You choose the tier; the architecture holds it." />
+    <Card headline="Works offline" blurb="Your garden is yours whether or not there's a signal." />
+    <Card headline="Honest model" blurb="You pay for the app. That's the whole business." />
+  </CardGrid>
 
-  <!-- ── GROVE — the presence, not a tab ── -->
-  <section class="vg-grove">
-    <div class="v-wrap vg-grove-inner" data-v-reveal>
-      <div class="vg-grove-text">
-        <span class="v-label v-label--bare">{garden.grove.tab} — reachable from anywhere</span>
-        <h2 class="v-display vg-grove-line">{garden.grove.line}</h2>
-        <p class="vg-grove-body">{garden.grove.body}</p>
-        <p class="vg-grove-body" style="margin-top: 1.2rem; font-size: var(--text-sm); color: var(--leaf);">Example: {garden.groveExample}</p>
-      </div>
-      <div class="vg-grove-media">
-        <div class="vg-phone"><div class="vg-phone-screen"><img src={garden.grove.img} alt="Garden — Grove" loading="lazy" width="780" height="1688" /></div></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── PHILOSOPHY — moonlit moment ── -->
-  <section class="vh-night-feature v-night vg-inkpanels">
-    <div class="vh-night-bg" style="background-image:url(/verdant/paint/ink-panels.webp)"></div>
-    <div class="vh-night-scrim"></div>
-    <Moon client:visible className="vh-night-moon" />
-    <div class="vh-night-copy vg-inkpanels-copy">
-      <p class="v-label v-label--light" data-v-reveal>The philosophy</p>
-      <h2 class="v-display vg-inkpanels-head" data-v-reveal style="--d:0.08s">
-        Your finances,<br /><em>composed</em> — not surveilled.
-      </h2>
-      <p class="vg-inkpanels-body" data-v-reveal style="--d:0.14s">
-        Garden keeps a garden's pace. Nothing extracts attention;
-        nothing sells your numbers on. Just the picture of your money,
-        held privately and given back to you whole.
-      </p>
-    </div>
-  </section>
-
-  <!-- ── PRIVACY SPECTRUM STRIP — the honest 3-tier model, links to Security ── -->
-  <section class="vg-spectrum">
-    <span class="vh-num" aria-hidden="true">04</span>
-    <Enso client:visible className="vh-ink-watermark vg-spectrum-enso" aria-hidden="true" />
-    <div class="v-wrap">
-      <div class="vg-spectrum-head" data-v-reveal>
-        <p class="v-label">Privacy isn't a switch. It's a spectrum.</p>
-        <p class="vg-spectrum-intro v-display">You choose how close Garden gets to your numbers.</p>
-      </div>
-      <ul class="vg-spectrum-list">
-        {spectrum.map((t, i) => (
-          <li class="vg-spectrum-row" data-v-reveal style={`--d:${i * 0.06}s`}>
-            <span class="v-label v-label--bare">{t.n}</span>
-            <span class="vg-spectrum-tier">{t.tier}</span>
-            <p class="vg-spectrum-note">{t.note}</p>
-          </li>
-        ))}
-      </ul>
-      <a href="/verdant/security" class="v-cta vg-spectrum-link" data-cursor="Read">See the full architecture →</a>
-    </div>
-  </section>
-
-  <!-- ── PRICING NOD ── -->
-  <section class="vg-band">
-    <div class="v-wrap vg-pricing-nod" data-v-reveal>
-      <p class="v-label">Plainly</p>
-      <h2 class="v-display vg-pricing-head">{garden.pricing}</h2>
-      <a href="/verdant/pricing" class="v-cta" data-cursor="View">See the pricing model →</a>
-    </div>
-    <div class="vh-ink-band vg-band-inkband" aria-hidden="true">
-      <MountainRidge client:visible className="vg-band-mountain" />
-      <MistLayer client:visible className="vg-band-mist" />
-    </div>
-  </section>
-
-  <!-- ── CLOSING CTA ── -->
-  <section class="vg-end">
-    <div class="v-wrap vg-end-inner">
-      <p class="v-display vg-end-line" data-v-reveal>The first thing grown here. Not the last.</p>
-      <div class="vg-end-actions">
-        <a
-          href={garden.url}
-          class="v-cta v-cta--primary"
-          target="_blank"
-          rel="noopener"
-          data-cursor="Open"
-        >Join the beta →</a>
-        <a href="/verdant" class="v-cta" data-cursor="Back">Back to the studio</a>
-      </div>
-    </div>
-  </section>
+  <CTABand
+    headline="Start your garden"
+    sub="Private. Encrypted. On your device."
+    cta={{ label: "Try Garden", href: garden.url }}
+    ctaSecondary={{ label: "Pricing", href: "/verdant/pricing" }}
+  />
 
   <Footer client:visible />
 </Verdant>
-
-<style is:global>
-  /* PHONE FRAME — light finish */
-  .vg-phone { --rad: 42px; --pad: 10px; position: relative; width: clamp(230px, 26vw, 300px);
-    aspect-ratio: 400 / 812; border-radius: var(--rad); padding: var(--pad);
-    background: linear-gradient(160deg, #f0f2ed 0%, #e8ebe6 46%, #dfe4d7 100%);
-    box-shadow: 0 40px 90px -24px rgba(13,31,7,0.15), 0 0 0 1px rgba(47, 125, 79, 0.08),
-                0 2px 0 rgba(255,255,255,0.6) inset, 0 -2px 8px rgba(0,0,0,0.06) inset; }
-  .vg-phone-screen { position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: calc(var(--rad) - var(--pad)); background: var(--paper); }
-  .vg-phone-screen img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 0; }
-  .vg-phone::after { content: ""; position: absolute; top: 14px; left: 50%; transform: translateX(-50%);
-    width: 38%; height: 7px; border-radius: 5px; background: rgba(47, 125, 79, 0.2); z-index: 2; }
-
-  /* HERO — asymmetric single column, type pinned left, not centered/stacked */
-  .vg-hero { position: relative; min-height: 86svh; display: flex; align-items: center;
-    padding-top: 6rem; background: var(--paper);
-    background-image: linear-gradient(90deg, var(--paper) 0%, transparent 35%),
-                      url('/verdant/media/hero-landscape-2.webp');
-    background-size: cover; background-position: right center; background-attachment: fixed; }
-  .vg-hero::before { content: ''; position: absolute; inset: 0;
-    background: linear-gradient(90deg, var(--paper) 0%, transparent 50%); z-index: 1; }
-  .vg-hero-inner { position: relative; z-index: 2; max-width: 46rem; }
-  .vg-hero-mark { color: var(--leaf); margin-bottom: 1.2rem; opacity: 0.9; }
-  .vg-hero-name { font-size: var(--display-1); line-height: 0.9; color: var(--leaf); margin: 0.6rem 0 1.4rem; }
-  .vg-hero-line { font-size: var(--display-2); color: var(--ink); max-width: 30ch; line-height: 1.15; }
-  .vg-hero-actions { display: flex; align-items: center; gap: 1.8rem; flex-wrap: wrap; margin-top: 2.4rem; }
-  .vg-hero-vine { position: absolute; right: 4%; top: 0; bottom: 0; width: 130px; z-index: 1; opacity: 0.8; }
-  @media (max-width: 860px) { .vg-hero-vine { display: none; } }
-
-  /* BEDS */
-  .vg-beds { padding-block: clamp(110px, 18vh, 260px); background: var(--paper); }
-  .vg-beds-head { max-width: 38rem; margin-bottom: clamp(3rem, 8vh, 6rem); }
-  .vg-beds-intro { font-size: var(--display-2); color: var(--ink); margin-top: 1rem; line-height: 1.1; }
-  .vg-screens { display: flex; flex-direction: column; gap: clamp(4rem, 10vh, 9rem); }
-  .vg-screen { display: grid; grid-template-columns: auto 1fr; gap: clamp(2.5rem, 6vw, 6rem); align-items: center; }
-  .vg-screen--alt { grid-template-columns: 1fr auto; }
-  .vg-screen--alt .vg-screen-media { order: 2; }
-  .vg-screen-media { display: flex; justify-content: center; }
-  .vg-screen-text { max-width: 38ch; }
-  .vg-screen-line { font-size: var(--display-2); color: var(--leaf); margin: 0.7rem 0 1rem; line-height: 1.15; }
-  .vg-screen-body { color: var(--ink-soft); line-height: 1.6; font-size: var(--text-base); }
-  @media (max-width: 760px) { .vg-screen, .vg-screen--alt { grid-template-columns: 1fr; } .vg-screen--alt .vg-screen-media { order: 0; } }
-
-  /* GROVE — luminous light inset */
-  .vg-grove { padding: clamp(3rem, 8vh, 6rem) 0; background: var(--paper); }
-  .vg-grove-inner { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: clamp(2rem, 5vw, 4rem);
-    align-items: center; padding: clamp(2rem, 5vw, 3.5rem); border-radius: 4px;
-    background: var(--paper-soft); }
-  .vg-grove-line { font-size: var(--display-2); color: var(--leaf); margin: 0.8rem 0 1rem; line-height: 1.15; max-width: 18ch; }
-  .vg-grove-body { color: var(--ink-soft); line-height: 1.6; font-size: var(--text-base); max-width: 44ch; }
-  .vg-grove-media { display: flex; justify-content: center; }
-  @media (max-width: 760px) { .vg-grove-inner { grid-template-columns: 1fr; } .vg-grove-media { margin-top: 1.5rem; } }
-
-  /* PRIVACY SPECTRUM STRIP */
-  .vg-spectrum { position: relative; background: var(--paper-soft); padding-block: clamp(110px, 18vh, 240px); }
-  .vg-spectrum-head { max-width: 44rem; }
-  .vg-spectrum-intro { font-size: var(--display-2); color: var(--ink); margin-top: 1rem; line-height: 1.15; }
-  .vg-spectrum-list { list-style: none; padding: 0; margin: 2.5rem 0 0; max-width: 60rem;
-    display: flex; flex-direction: column; }
-  .vg-spectrum-row { display: grid; grid-template-columns: auto auto 1fr; gap: 1.2rem 1.8rem; align-items: baseline;
-    padding: 1.6rem 0; border-top: 1px solid var(--line); }
-  .vg-spectrum-row:nth-child(2) { padding-left: clamp(0px, 3vw, 40px); }
-  .vg-spectrum-row:nth-child(3) { padding-left: clamp(0px, 6vw, 80px); }
-  .vg-spectrum-tier { font-family: var(--font-display); font-size: var(--text-xl); color: var(--leaf); }
-  .vg-spectrum-note { color: var(--ink-soft); font-size: var(--text-base); line-height: 1.6; max-width: 48ch; }
-  .vg-spectrum-link { margin-top: 2.6rem; }
-  .vg-spectrum-enso { top: clamp(2rem, 5vh, 4rem); right: clamp(20px, 5vw, 72px); left: auto;
-    width: clamp(160px, 22vw, 260px); aspect-ratio: 1; }
-
-  /* PRIVACY BAND / PRICING NOD — luminous light */
-  .vg-band { background: var(--paper); padding-block: clamp(120px, 20vh, 220px); position: relative;
-    padding-bottom: clamp(160px, 24vh, 300px); }
-  .vg-pricing-nod { max-width: 56ch; }
-  .vg-pricing-head { font-size: var(--display-1); color: var(--ink); line-height: 1.2; margin: 1.5rem 0 2rem; }
-  .vg-band-mountain { position: absolute; inset: 0; width: 100%; height: 100%; color: var(--moss); opacity: 0.50; }
-  .vg-band-mist { position: absolute; inset: 0; width: 100%; height: 100%; color: var(--sage); opacity: 0.60; }
-
-  /* CLOSING */
-  .vg-end { background: var(--paper); padding-block: clamp(110px, 18vh, 260px); }
-  .vg-end-inner { display: flex; flex-direction: column; align-items: flex-start; gap: 1.6rem; }
-  .vg-end-line { font-size: var(--display-2); color: var(--leaf); max-width: 20ch; }
-  .vg-end-actions { display: flex; gap: 1.8rem; flex-wrap: wrap; margin-top: 0.6rem; }
-
-  /* leaf-beside-image — tour phone frames */
-  .vg-leaf-right { right: -22%; left: auto; top: 10%; bottom: auto; width: 42%; opacity: 0.78; }
-  .vg-leaf-left { left: -18%; right: auto; top: 15%; bottom: auto; width: 38%; opacity: 0.80; }
-
-  /* ink-panels moonlit section */
-  .vg-inkpanels { background: transparent; }
-  .vg-inkpanels-copy { max-width: 52ch; padding-left: clamp(0px, 2vw, 28px); }
-  .vg-inkpanels-head { font-size: clamp(1.9rem, 4.2vw, 3.4rem); color: var(--night-ink); line-height: 1.1;
-    margin-top: 1.2rem; margin-bottom: 0; }
-  .vg-inkpanels-body { font-size: var(--text-lg); line-height: 1.65; color: var(--night-soft);
-    max-width: 46ch; margin-top: 1.4rem; }
-  @media (max-width: 860px) {
-    .vg-inkpanels-head { font-size: clamp(1.6rem, 5.5vw, 2.4rem); }
-    .vg-inkpanels-body { font-size: var(--text-base); }
-    .vg-spectrum-row:nth-child(2), .vg-spectrum-row:nth-child(3) { padding-left: 0; }
-    .vg-spectrum-row { grid-template-columns: 1fr; gap: 0.4rem; }
-  }
-</style>

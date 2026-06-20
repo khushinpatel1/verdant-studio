@@ -243,12 +243,6 @@
 /* section rhythm override for the skin — generous, breathing */
 [data-skin="verdant"] section { padding: clamp(80px, 14vh, 200px) 0; }
 
-/* ── Reactive hero field as a fixed lower layer ──
-   The page scrolls above it; the pointer drives it anywhere on the page. */
-[data-skin="verdant"] .v-field-bg {
-  position: fixed; inset: 0; z-index: -1; pointer-events: none;
-}
-
 /* ── Green bands → wet pigment on paper ───────────────────────────────────
    Every full-bleed forest block (manifesto / privacy / talk / CTA / footer)
    shares one treatment so the green reads as washed pigment, not a flat slab:
@@ -341,7 +335,7 @@
   right: var(--pf-right, auto);
   width: var(--pf-w, 46vw);
   max-width: none;
-  transform: translate(var(--pf-tx, 0%), calc(-50% + var(--vp, 0px)));
+  transform: translate3d(var(--pf-tx, 0%), calc(-50% + var(--vp, 0px)), 0);
   mix-blend-mode: var(--pf-blend, multiply);
   opacity: var(--pf-opacity, 1);
   filter: var(--pf-filter, none);
@@ -354,347 +348,33 @@
   will-change: transform;
 }
 
-/* ── Soft-masked image utilities — kill the "square cutout" look ───────────
-   Replace hard rectangular borders on images with soft radial or asymmetric
-   masks that dissolve into the background, giving the aesthetic of a crop
-   pulled from a larger composition rather than a clipped box.
-
-   .v-img-mask-radial: soft elliptical radial mask (feathers to transparent)
-   .v-img-mask-asymmetric: linear mask with gentle angle (one edge fades sooner)
-   Usage: apply to <div> or <img>, or use --mask custom props on child <img>. */
-
-[data-skin="verdant"] .v-img-mask-radial,
-[data-skin="verdant"] .v-img-mask-radial img {
-  -webkit-mask-image: radial-gradient(
-    ellipse 58% 62% at 50% 50%,
-    #000 0%, #000 68%, transparent 92%
-  );
-  mask-image: radial-gradient(
-    ellipse 58% 62% at 50% 50%,
-    #000 0%, #000 68%, transparent 92%
-  );
-}
-
-[data-skin="verdant"] .v-img-mask-asymmetric,
-[data-skin="verdant"] .v-img-mask-asymmetric img {
-  -webkit-mask-image: linear-gradient(
-    135deg,
-    #000 0%, #000 45%, transparent 88%
-  );
-  mask-image: linear-gradient(
-    135deg,
-    #000 0%, #000 45%, transparent 88%
-  );
-}
-
-/* Soft feathered edge for card-like containers (replaces hard border-radius) */
-[data-skin="verdant"] .v-card-soft {
-  -webkit-mask-image: radial-gradient(
-    ellipse 52% 48% at 50% 50%,
-    #000 0%, #000 62%, transparent 88%
-  );
-  mask-image: radial-gradient(
-    ellipse 52% 48% at 50% 50%,
-    #000 0%, #000 62%, transparent 88%
-  );
-  border-radius: 0;
-}
-
-/* ── Vine-border motif: asymmetric growing border for sections ──────────────
-   Drawn SVG applied to section edges. Animates on scroll-reveal via the
-   existing observer. Reusable across pages (sections, Garden charts, etc). */
-.v-vine-border {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: -1;
-}
-.v-vine-border svg {
-  width: 100%;
-  height: 100%;
-}
-
-/* ── Moonlit night tokens ────────────────────────────────────────────────────
-   A dark skin for hybrid night/feature moments. Designed to sit as a panel
-   on the cream base — not a global dark mode flip, but a deliberate section
-   that says "night has come." Used via .v-night on any block element.
-
-   Palette: deep ink-navy charcoal base, moonlight-cream text, muted sage,
-   a warmer gold (moonlit gold, slightly brighter than day --gold), and a
-   sage mid-tone for secondary elements. Ink-wash and sumi-e components
-   inside a .v-night panel read in their `currentColor` which maps to
-   --night-ink (moonlight cream).
-   ──────────────────────────────────────────────────────────────────────────── */
-[data-skin="verdant"] {
-  --night-bg:   #10171b;  /* deep ink navy-charcoal */
-  --night-bg-2: #1a242a;  /* raised surface — cards, panels */
-  --night-ink:  #f2efe2;  /* moonlight cream — primary text */
-  --night-soft: #b9c4bb;  /* muted sage — secondary text */
-  --night-gold: #d8b25e;  /* moonlit gold — warmer than day --gold */
-  --night-sage: #6f8a78;  /* sage mid-tone — borders, dividers */
-}
-
-/* .v-night: wraps any section/div in the moonlit skin.
-   Headings, labels, body, and borders all remap to night tokens.
-   A soft radial vignette at the top and bottom edges creates the
-   "fading into dark" feel — moonlit moment emerging from cream.         */
-.v-night,
-[data-skin="verdant"] .v-night {
-  background:  var(--night-bg);
-  color:       var(--night-ink);
-
-  /* Vertical soft vignette via inner box-shadow: the section bleeds
-     from near-transparent at the very top/bottom edge to solid dark.
-     This is tasteful — not a gradient on the background, but a depth
-     shadow that gives the panel its "pooling ink" quality.             */
-  box-shadow:
-    inset 0  56px 64px -40px rgba(16, 23, 27, 0.82),   /* top fade-in */
-    inset 0 -56px 64px -40px rgba(16, 23, 27, 0.82);   /* bottom fade-out */
-}
-
-/* Heading voices inside a night panel → moonlight cream */
-.v-night h1,
-.v-night h2,
-.v-night h3,
-.v-night h4,
-[data-skin="verdant"] .v-night h1,
-[data-skin="verdant"] .v-night h2,
-[data-skin="verdant"] .v-night h3,
-[data-skin="verdant"] .v-night h4 {
-  color: var(--night-ink);
-}
-
-/* Display class inside night panel */
-[data-skin="verdant"] .v-night .v-display {
-  color: var(--night-ink);
-}
-[data-skin="verdant"] .v-night .v-display em {
-  color: var(--night-gold);
-}
-
-/* Body text */
-.v-night p,
-.v-night li,
-[data-skin="verdant"] .v-night p,
-[data-skin="verdant"] .v-night li {
-  color: var(--night-soft);
-}
-
-/* Emphasis → moonlit gold */
-.v-night em,
-[data-skin="verdant"] .v-night em {
-  color: var(--night-gold);
-  font-style: italic;
-}
-
-/* Labels → muted sage on night */
-.v-night .v-label,
-[data-skin="verdant"] .v-night .v-label {
-  color: var(--night-soft);
-}
-
-/* CTA links → moonlit in night context */
-.v-night .v-cta,
-[data-skin="verdant"] .v-night .v-cta {
-  color: var(--night-ink);
-}
-.v-night .v-cta::before,
-[data-skin="verdant"] .v-night .v-cta::before {
-  background: var(--night-gold);
-}
-.v-night .v-cta:hover,
-[data-skin="verdant"] .v-night .v-cta:hover {
-  color: var(--night-gold);
-}
-
-/* Hairline borders / rules → night-sage */
-.v-night hr,
-.v-night .v-band-hr,
-[data-skin="verdant"] .v-night hr,
-[data-skin="verdant"] .v-night .v-band-hr {
-  background: linear-gradient(90deg, var(--night-gold), transparent 70%);
-  opacity: 0.4;
-  border: none;
-  height: 1px;
-}
-
-/* Card-like raised surfaces inside night */
-.v-night .v-night-card,
-[data-skin="verdant"] .v-night .v-night-card {
-  background: var(--night-bg-2);
-  border: 1px solid var(--night-sage);
-  border-radius: var(--radius);
-}
-
-/* Ink art components inside .v-night: currentColor → night cream, so the
-   sumi-e pieces render in moonlit white rather than dark ink.
-   Override with color: var(--night-ink) on the component wrapper if needed. */
-.v-night svg,
-[data-skin="verdant"] .v-night svg {
-  color: var(--night-ink);
-}
-
-/* color-scheme tells the browser this zone prefers dark */
-.v-night,
-[data-skin="verdant"] .v-night {
-  color-scheme: dark;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .v-night,
-  [data-skin="verdant"] .v-night {
-    /* vignette stays (not motion-related) */
-    box-shadow:
-      inset 0  56px 64px -40px rgba(16, 23, 27, 0.82),
-      inset 0 -56px 64px -40px rgba(16, 23, 27, 0.82);
-  }
-}
-
-/* ── PAGE-DENSITY PATTERNS (shared, reference build on ethos) ────────────────
-   P1 / P2 / P3 — reused verbatim across every page agent.
-   Nothing in these rules assumes ethos-specific dimensions; they're generic
-   containers. Per-instance overrides (grid-column, margin, etc.) live in the
-   page's own <style is:global> block.
-   ──────────────────────────────────────────────────────────────────────────── */
-
-/* ── P1: Dark painted feature (the moonlit moment) ───────────────────────
-   .vh-night-feature  — the section wrapper: relative, full-width, tall.
-   .vh-night-bg       — absolutely-positioned painted webp (set via inline style).
-   .vh-night-scrim    — contrast scrim so body text is ≥4.5:1 on the image.
-   .vh-night-copy     — readable copy column above scrim + bg.
-   .vh-night-moon     — optional ink Moon accent, top-right corner.            */
-
-.vh-night-feature {
+/* ── Night band: dark background with bespoke-night imagery ───────────────
+   Reusable dark closing section using v-print-field + a dark gradient base.
+   Customize per-page: override --nb-* to adjust position, height, etc.
+   Default: horizontal garden scene, screen blend, bottom-right placement. */
+[data-skin="verdant"] .v-night-band {
   position: relative;
-  width: 100%;
-  min-height: clamp(480px, 70vh, 860px);
-  padding-block: clamp(80px, 14vh, 160px);
-  padding-inline: clamp(20px, 5vw, 72px);
+  background: linear-gradient(140deg, #0a1408, #0f1f0a, #0d1810);
   overflow: hidden;
-  display: flex;
-  align-items: center;
 }
-
-.vh-night-bg {
-  position: absolute;
-  inset: 0;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  /* painted image is passed in via inline style="background-image:url(...)" */
-}
-
-/* Scrim: top half slightly darker (keeps headings crisp), bottom somewhat lighter
-   (body text still ≥4.5:1 against the darkened image at ~rgba(10,15,19,.46)).
-   The .v-night panel itself also sets background to --night-bg, which this
-   overrides at full-bleed. We sit on top via z-index. */
-.vh-night-scrim {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(10, 15, 19, 0.78) 0%,
-    rgba(10, 15, 19, 0.52) 55%,
-    rgba(10, 15, 19, 0.42) 100%
-  );
-  pointer-events: none;
-  z-index: 1;
-}
-
-/* Copy sits above bg + scrim */
-.vh-night-copy {
-  position: relative;
-  z-index: 2;
-  max-width: 56ch;
-}
-
-/* Moon: absolute, top-right, large, low opacity so it's atmospheric not literal */
-.vh-night-moon {
-  position: absolute;
-  top: clamp(-40px, -4vw, -20px);
-  right: clamp(-60px, -5vw, -20px);
-  width: clamp(220px, 28vw, 380px);
-  height: auto;
-  aspect-ratio: 240 / 260; /* Moon viewBox ratio */
-  opacity: 0.28;
-  z-index: 2;
-  pointer-events: none;
-}
-
-@media (max-width: 860px) {
-  .vh-night-feature {
-    min-height: clamp(320px, 60vw, 500px);
-    padding-block: clamp(60px, 10vh, 100px);
-  }
-  .vh-night-moon {
-    width: clamp(140px, 38vw, 220px);
-    opacity: 0.18;
-  }
-}
-
-/* ── P2: Ink accent classes ───────────────────────────────────────────────
-   .vh-ink-watermark  — large Enso/Moon behind a heading or numeral, low opacity.
-   .vh-ink-band       — Mountain/Mist atmospheric strip at section bottom edge.
-   .vh-ink-side       — BlossomBranch/InkGrowth entering beside a column.        */
-
-/* Watermark: absolute, centered behind section content, very low opacity.
-   Place inside a position:relative section, sized generously so the circle reads. */
-.vh-ink-watermark {
-  position: absolute;
+[data-skin="verdant"] .v-night-band .v-print-field {
   z-index: 0;
-  pointer-events: none;
-  opacity: 0.10;
-  /* default geometry — override per instance as needed */
-  width: clamp(180px, 30vw, 320px);
-  aspect-ratio: 1;
+  --pf-blend: screen;
+  --pf-opacity: 0.75;
+  --pf-w: clamp(420px, 52vw, 720px);
+  --pf-right: 3vw;
+  --pf-y: 68%;
+  --pf-mask-x: 56%;
+  --pf-mask-y: 54%;
+  --pf-core: 32%;
+  --pf-fade: 76%;
+  --pf-filter: saturate(0.65) contrast(1.06);
 }
-
-/* Atmospheric footer band: pinned to bottom of a cream section.
-   MountainRidge + MistLayer stack inside this wrapper, absolutely placed.
-   The wrapper itself is absolute/full-width so content flows above it. */
-.vh-ink-band {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  pointer-events: none;
-  z-index: 0;
-  overflow: hidden;
-  /* height controlled per instance; default gives headroom for mountain ridges */
-  height: clamp(120px, 18vw, 240px);
-}
-
-/* Side accent: positions a branch/vine beside an image or copy column.
-   Must sit inside a position:relative parent (the image wrapper or grid cell). */
-.vh-ink-side {
-  position: absolute;
-  z-index: 1;
-  pointer-events: none;
-  /* default: hangs off the right edge — override left/right/top per instance */
-}
-
-/* ── P3: Leaf-beside-image signature ─────────────────────────────────────
-   .vh-leaf-figure  — relative wrapper around a product/portrait image.
-   .vh-leaf-accent  — absolute ink accent overlapping one edge of the figure.   */
-
-.vh-leaf-figure {
-  position: relative;
-}
-
-/* The accent overlaps the figure edge; size + position override per instance.
-   Default: right edge, ~38% of parent width, mid-height anchor. */
-.vh-leaf-accent {
-  position: absolute;
-  z-index: 1;
-  pointer-events: none;
-  width: 38%;
-  /* vertical and horizontal pin overridden per use */
-  right: -18%;
-  top: 8%;
-  bottom: auto;
+@media (max-width: 800px) {
+  [data-skin="verdant"] .v-night-band .v-print-field {
+    --pf-w: clamp(300px, 110vw, 500px);
+    --pf-right: -8vw;
+    --pf-y: 65%;
+    --pf-opacity: 0.7;
+  }
 }
