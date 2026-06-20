@@ -104,6 +104,15 @@
   --text-2xl: 1.728rem;  --text-3xl: 2.074rem; --text-4xl: 2.488rem;
   --display-1: clamp(2.8rem, 6vw, 5.6rem);  --display-2: clamp(2rem, 4.5vw, 3.6rem);
 
+  /* v2→v1 token aliases (for code still using v2 names) */
+  --paper:      var(--cream);       /* v2 base bg → v1 cream */
+  --paper-soft: var(--sage-soft);   /* v2 section wash → v1 sage-soft */
+  --mist:       var(--sage-soft);   /* v2 light field → v1 sage-soft */
+  --dawn:       var(--parchment);   /* v2 warm field → v1 parchment */
+  --leaf:       var(--green);       /* v2 accent → v1 green */
+  --leaf-deep:  var(--green-600);   /* v2 hover → v1 green-600 */
+  --ink-soft:   var(--muted);       /* v2 secondary → v1 muted */
+
   color-scheme: light;
 }
 

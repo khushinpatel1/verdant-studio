@@ -61,20 +61,24 @@ export default function Footer({ tone = "light" }: { tone?: "light" | "cream" })
       <style>{`
         .v-footer { position: relative; margin-top: clamp(4rem,10vh,9rem);
           padding: clamp(6rem,12vh,9rem) 0 3rem; overflow: hidden;
-          background: linear-gradient(135deg, var(--mist), var(--dawn)); }
+          background: var(--cream);
+          border-top: 1px solid var(--line); }
+        .v-footer::before { content: ''; position: absolute; inset: 0; background:
+          linear-gradient(180deg, transparent 0%, rgba(13,31,7,0.02) 50%, rgba(13,31,7,0.04) 100%);
+          pointer-events: none; z-index: 0; }
         .v-footer-inner { position: relative; z-index: 1; display: flex; flex-wrap: wrap;
           gap: 2.5rem 4rem; justify-content: space-between; align-items: flex-start; }
         .v-footer-brand { display: flex; flex-direction: column; gap: 0.8rem; }
-        .v-footer-mark { position: relative; display: inline-flex; align-items: center; font-size: var(--text-xl); color: var(--leaf); }
-        .v-footer-tag { font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink); margin: 0; }
+        .v-footer-mark { position: relative; display: inline-flex; align-items: center; font-size: var(--text-xl); color: var(--green); }
+        .v-footer-tag { font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin: 0; }
         .v-footer-cols { display: flex; gap: clamp(2.5rem,6vw,5rem); }
         .v-footer-col { display: flex; flex-direction: column; gap: 0.7rem; }
-        .v-footer-col .v-label { margin-bottom: 0.4rem; color: var(--ink); }
+        .v-footer-col .v-label { margin-bottom: 0.4rem; color: var(--muted); }
         .v-footer-link { font-family: var(--font-body); font-size: var(--text-sm); color: var(--ink); transition: color .25s; }
-        .v-footer-link:hover { color: var(--leaf); }
+        .v-footer-link:hover { color: var(--green); }
         .v-footer-legal { position: relative; z-index: 1; display: flex; flex-wrap: wrap; gap: 0.6rem 2rem; justify-content: space-between;
-          margin-top: clamp(3rem,7vh,5rem); padding-top: 1.6rem; border-top: 1px solid rgba(22, 36, 27, 0.1);
-          font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink); }
+          margin-top: clamp(3rem,7vh,5rem); padding-top: 1.6rem; border-top: 1px solid var(--line);
+          font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
 
         /* the stray stone */
         .v-footer-egg { display: inline-block; width: 11px; height: 11px; margin-left: 8px; vertical-align: 3px;
