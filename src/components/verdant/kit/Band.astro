@@ -7,8 +7,10 @@ const { title } = Astro.props;
 ---
 
 <section class="v-band">
-  {title && <h2 class="v-band__title">{title}</h2>}
-  <slot />
+  <div class="v-band__content">
+    {title && <h2 class="v-band__title">{title}</h2>}
+    <slot />
+  </div>
 </section>
 
 <style>
@@ -20,9 +22,9 @@ const { title } = Astro.props;
       var(--green-600) 100%
     );
     color: var(--cream);
-    padding: clamp(3rem, 8vw, 5rem) var(--v-pad-h, clamp(20px, 5vw, 56px));
     position: relative;
     clip-path: polygon(0 0, 100% 3%, 100% 97%, 0 100%);
+    overflow: hidden;
   }
 
   .v-band::before {
@@ -40,6 +42,7 @@ const { title } = Astro.props;
     z-index: 1;
     max-width: var(--maxw);
     margin: 0 auto;
+    padding: clamp(3rem, 8vw, 5rem) clamp(20px, 5vw, 56px);
   }
 
   .v-band__title {

@@ -1,220 +1,103 @@
 ---
 import Verdant from "../../layouts/Verdant.astro";
-import TextReveal from "../../components/verdant/TextReveal";
-import InkGrowth from "../../components/verdant/InkGrowth";
 import Footer from "../../components/verdant/Footer";
-import { brand, garden, ethos } from "../../data/verdant";
+import Hero from "../../components/verdant/kit/Hero.astro";
+import FeatureRow from "../../components/verdant/kit/FeatureRow.astro";
+import CardGrid from "../../components/verdant/kit/CardGrid.astro";
+import Card from "../../components/verdant/kit/Card.astro";
+import CTABand from "../../components/verdant/kit/CTABand.astro";
+import Band from "../../components/verdant/kit/Band.astro";
+import ScrollPillars from "../../components/verdant/ScrollPillars";
+import Carousel from "../../components/verdant/kit/Carousel";
+import { brand, garden, emerald } from "../../data/verdant";
 ---
 
 <Verdant title="Verdant — software grown for people">
-  <!-- ── HERO: type on paper. The page's one print lives at the closing CTA. ── -->
-  <section class="vh-hero">
-    <div class="v-print-field vh-hero-art" data-v-parallax="0.05" aria-hidden="true">
-      <img src="/verdant/art/hero-grasses-sun.jpg" alt="" fetchpriority="high" decoding="async" />
-    </div>
-    <div class="v-wrap vh-hero-inner">
-      <p class="v-label">Verdant Studio — independent software</p>
-      <TextReveal
-        client:load
-        as="h1"
-        className="v-display vh-hero-head"
-        lines={["Most apps are quietly", "working against you.", "Ours %can't%."]}
-      />
-      <p class="vh-hero-sub">
-        No ads. No trackers. No data to sell — because it never leaves your device.
-        We built it so we couldn't betray you, even if someone bought us tomorrow.
-      </p>
-      <div class="vh-hero-actions">
-        <a href="/verdant/security" class="v-cta" data-cursor="Look">See how it's built</a>
-        <a href="/verdant/ethos" class="v-cta" data-cursor="Read">The ethos</a>
-      </div>
-    </div>
-    <a href="#work" class="vh-scrollcue" data-cursor="Down" aria-label="Scroll to the work"><span class="vh-scrollcue-line"></span></a>
-  </section>
+  <Hero
+    eyebrow="Verdant Studio — independent software"
+    headline="Most apps work against you. Ours can't."
+    sub="No ads. No trackers. Your data stays yours — encrypted on your device. Designed so we couldn't betray you even if we tried."
+    cta1={{ label: "Explore Garden", href: "/verdant/garden" }}
+    cta2={{ label: "Read the ethos", href: "/verdant/ethos" }}
+    media={true}
+    videoSrc="/verdant/media/hero-landscape-1.webp"
+    mediaPoster="/verdant/media/hero-landscape-1.webp"
+  />
 
-  <!-- ── MANIFESTO — paper treatment (the dark band is reserved for the CTA) ── -->
-  <section class="vh-band v-band--paper">
-    <div class="v-wrap vh-manifesto">
-      <div class="v-band-hr" aria-hidden></div>
-      <p class="v-label">The manifesto</p>
-      <TextReveal
-        client:visible
-        as="h2"
-        className="v-display vh-manifesto-head"
-        lines={["Care spent", "on what %stays quiet%."]}
-      />
-      <div class="vh-manifesto-body">
-        <ul class="vh-creed">
-          {ethos.creed.map((line, i) => (
-            <li class="vh-creed-item" data-v-reveal style={`--d:${i * 0.06}s`}>{line}</li>
-          ))}
-        </ul>
-        <a href="/verdant/security" class="vh-stats-link" data-cursor="Read">How it's built — the privacy, checked →</a>
-      </div>
-    </div>
-  </section>
+  <CardGrid cols={3}>
+    <Card
+      icon="/verdant/art/koi-cream.jpg"
+      headline="Garden"
+      blurb="Your financial life — private, on your device."
+      link={{ label: "Explore", href: "/verdant/garden" }}
+    />
+    <Card
+      icon="/verdant/art/lantern-strip.png"
+      headline="Security"
+      blurb="The privacy guarantees, verified and explained."
+      link={{ label: "Learn", href: "/verdant/security" }}
+    />
+    <Card
+      icon="/verdant/art/hero-grasses-sun.jpg"
+      headline="Ethos"
+      blurb="Why we built this, and what we believe about software."
+      link={{ label: "Read", href: "/verdant/ethos" }}
+    />
+  </CardGrid>
 
-  <!-- ── WORK / THE FIRST PROJECT ── -->
-  <section id="work" class="vh-work">
-    <InkGrowth client:visible side="left" className="vh-work-vine" />
-    <div class="v-wrap">
-      <div class="vh-work-head" data-v-reveal>
-        <p class="v-label">The first project</p>
-        <p class="vh-work-intro v-display">One thing, finished — then the next.</p>
-      </div>
+  <FeatureRow
+    align="left"
+    headline="Garden: your whole financial life in one place"
+    body={garden.blurb}
+    media={true}
+    mediaSrc={garden.cover}
+    cta={{ label: "Walk through Garden", href: "/verdant/garden" }}
+  />
 
-      <a href="/verdant/garden" class="vh-garden" data-cursor="Open Garden" data-v-reveal>
-        <div class="vh-garden-media">
-          <div class="vh-phone"><div class="vh-phone-screen"><img src={garden.cover} alt="Garden — overview" loading="lazy" /></div></div>
-          <div class="vh-phone vh-phone--back"><div class="vh-phone-screen"><img src={garden.vaultScreen} alt="Garden — encrypted vault" loading="lazy" /></div></div>
-        </div>
-        <div class="vh-garden-text">
-          <div class="vh-product-meta">
-            <span class="v-label v-label--bare">{garden.idx} — {garden.kind}</span>
-            <span class="vh-product-year">{garden.year} · {garden.status}</span>
-          </div>
-          <h3 class="v-display vh-garden-name">Garden</h3>
-          <p class="vh-product-line">{garden.oneLine}</p>
-          <p class="vh-product-blurb">{garden.blurb}</p>
-          <span class="v-cta">Walk through Garden</span>
-        </div>
-      </a>
+  <FeatureRow
+    align="right"
+    headline="Privacy structured, not promised"
+    body="Manual entry stays fully local. AI import touches it once. Bank links travel labeled and in the open. You choose the tier; the architecture holds it."
+    media={true}
+    mediaSrc="/verdant/media/topic-privacy.webp"
+  />
 
-      <p class="vh-more-note" data-v-reveal>
-        A second project is in the soil — it ships when it's ready, not before.
-      </p>
-    </div>
-  </section>
+  <FeatureRow
+    align="left"
+    headline="Emerald: the next thing in the soil"
+    body={emerald.blurb}
+    media={true}
+    mediaSrc={emerald.cover}
+  />
 
-  <!-- ── PULL QUOTE ── -->
-  <section class="vh-quote">
-    <div class="v-wrap">
-      <p class="v-organic vh-quote-mark">”</p>
-      <p class="v-display vh-quote-text" data-v-reveal>
-        The best software is like a good garden. You feel it was tended, but you
-        never catch it <em>trying</em>.
-      </p>
-      <p class="v-label vh-quote-by">Khushin Patel — Verdant</p>
-    </div>
-  </section>
+  <Band title="What Garden is built on">
+    <ScrollPillars client:visible />
+  </Band>
 
-  <!-- ── CTA BAND — Koson's full moon rises in the forest ── -->
-  <section class="vh-band vh-cta-band">
-    <div class="vh-band-edge" aria-hidden></div>
-    <div class="v-print-field vh-cta-moon" data-v-parallax="0.06" aria-hidden="true">
-      <img src="/verdant/art/koson-grasses-moon.jpg" alt="" loading="lazy" decoding="async" />
-    </div>
-    <div class="v-wrap vh-cta-inner">
-      <TextReveal client:visible as="h2" className="v-display vh-cta-title" lines={["Grow something", "%quiet%."]} />
-      <a href="/verdant/ethos#talk" class="v-cta v-cta--light" data-cursor="Write">Start a conversation</a>
-    </div>
-  </section>
+  <Carousel
+    client:visible
+    items={[
+      {
+        id: "1",
+        content: "First note about Garden's early access release and privacy guarantees."
+      },
+      {
+        id: "2",
+        content: "Updates on the roadmap and what's coming next."
+      },
+      {
+        id: "3",
+        content: "Stories from beta testers and their experiences."
+      }
+    ]}
+  />
+
+  <CTABand
+    headline="Grow something quiet"
+    sub="Join us in building software that respects your data."
+    cta={{ label: "Start a conversation", href: "/verdant/ethos#talk" }}
+    ctaSecondary={{ label: "Try Garden", href: "https://garden.khushinpatel1.workers.dev" }}
+  />
 
   <Footer client:visible />
 </Verdant>
-
-<style is:global>
-  /* HERO — type on paper, no print (the page's one print is at the CTA close) */
-  .vh-hero { position: relative; min-height: 100svh; display: flex; flex-direction: column; justify-content: center; overflow: hidden; }
-  .vh-hero-inner { position: relative; z-index: 1; padding-top: 8rem; padding-bottom: 4rem; }
-  .vh-hero-head { font-size: var(--display-1); color: var(--forest-900); max-width: 15ch; margin-top: 2.4rem; }
-  .vh-hero-sub { font-family: var(--font-display); font-size: var(--text-lg); line-height: 1.6; color: var(--ink); max-width: 44ch; margin-top: 2rem; }
-  .vh-hero-actions { display: flex; gap: 1.6rem; flex-wrap: wrap; margin-top: 2.4rem; }
-  .vh-hero-art {
-    z-index: 0;
-    --pf-blend: normal;
-    --pf-opacity: 0.95;
-    --pf-w: clamp(620px, 62vw, 1000px);
-    --pf-right: -8vw;
-    --pf-y: 52%;
-    --pf-mask: radial-gradient(ellipse 82% 72% at 76% 48%, #000 38%, transparent 80%);
-  }
-  @media (max-width: 800px) {
-    .vh-hero-art {
-      --pf-w: clamp(420px, 128vw, 560px);
-      --pf-right: -30vw;
-      --pf-y: 78%;
-      --pf-opacity: 0.85;
-      --pf-mask: radial-gradient(ellipse 72% 58% at 74% 54%, #000 32%, transparent 74%);
-    }
-  }
-  .vh-scrollcue { position: absolute; left: 50%; bottom: 2rem; transform: translateX(-50%); z-index: 2; display: grid; place-items: start center; width: 24px; height: 46px; }
-  .vh-scrollcue-line { width: 1px; height: 40px; background: linear-gradient(var(--green), transparent); transform-origin: top center; animation: vh-cue 2.6s var(--ease) infinite; }
-  @keyframes vh-cue { 0% { transform: scaleY(0); opacity: 0; } 25% { opacity: 0.9; } 55% { transform: scaleY(1) translateY(0); opacity: 0.9; } 100% { transform: scaleY(1) translateY(8px); opacity: 0; } }
-  @media (prefers-reduced-motion: reduce) { .vh-scrollcue-line { animation: none; opacity: 0.5; } }
-
-  /* BANDS */
-  .vh-band { position: relative; background: linear-gradient(155deg, var(--forest-900), var(--forest) 55%, var(--green-600)); overflow: hidden; }
-  .vh-band-edge { position: absolute; top: -1px; left: 0; right: 0; height: 110px; background: var(--cream); clip-path: ellipse(62% 100% at 38% 0%); }
-  .vh-manifesto { position: relative; z-index: 1; }
-  .vh-manifesto-head { font-size: var(--display-2); color: var(--ink); max-width: 18ch; margin-bottom: 3.5rem; }
-  .vh-manifesto-body { max-width: 62ch; }
-  .vh-creed { list-style: none; padding: 0; margin: 0; }
-  .vh-creed-item { font-family: var(--font-display); font-size: var(--text-lg); line-height: 1.45; color: var(--muted);
-    padding: 1.4rem 0; border-top: 1px solid var(--line); transition: padding-left .35s var(--ease), color .35s; }
-  .vh-creed-item:hover { padding-left: 0.8rem; color: var(--ink); }
-  .vh-stats-link { display: inline-block; font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: 0.08em; color: var(--clay);
-    padding-top: 1.4rem; margin-top: 0.2rem; transition: color .3s; }
-  .vh-stats-link:hover { color: var(--gold); }
-
-  /* WORK — the first project */
-  .vh-work { position: relative; }
-  .vh-work-vine { position: absolute; left: clamp(-12px, 1vw, 16px); top: 4%; width: 116px; height: 380px; z-index: 0; opacity: 0.72; pointer-events: none; }
-  @media (max-width: 980px) { .vh-work-vine { width: 62px; left: -16px; top: 2%; height: 300px; opacity: 0.5; } }
-  .vh-work-head { margin-bottom: 4rem; }
-  .vh-work-intro { font-size: var(--display-2); color: var(--green); margin-top: 1rem; }
-  .vh-garden { display: grid; grid-template-columns: auto 1fr; gap: clamp(2.5rem, 6vw, 6rem); align-items: center; color: inherit; }
-  .vh-garden-media { position: relative; display: flex; justify-content: center; min-width: 0; }
-  .vh-garden-text { max-width: 46ch; position: relative; z-index: 1; }
-  .vh-product-meta { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 0.6rem 1rem; }
-  .vh-product-year { font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: 0.14em; color: var(--clay); }
-  .vh-garden-name { font-size: var(--display-2); color: var(--green); margin: 0.5rem 0 0.8rem; transition: color .3s; }
-  .vh-garden:hover .vh-garden-name { color: var(--gold); }
-  .vh-product-line { font-family: var(--font-display); font-size: var(--text-xl); color: var(--terra); margin-bottom: 1rem; }
-  .vh-product-blurb { color: var(--muted); line-height: 1.7; max-width: 46ch; margin-bottom: 1.4rem; }
-  .vh-more-note { font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: 0.06em; color: var(--clay);
-    margin-top: clamp(3rem, 7vh, 5rem); padding-top: 1.6rem; border-top: 1px solid var(--line); max-width: 40ch; }
-
-  /* phone frame (home) */
-  .vh-phone { --rad: 40px; --pad: 9px; position: relative; width: clamp(190px, 21vw, 250px); aspect-ratio: 400 / 812;
-    border-radius: var(--rad); padding: var(--pad); flex: none;
-    background: linear-gradient(160deg, #2a3b27 0%, #16271a 46%, #0a1610 100%);
-    box-shadow: 0 40px 90px -34px rgba(13,26,16,0.6), 0 0 0 1.5px rgba(255,255,255,0.05),
-                0 2px 0 rgba(255,255,255,0.08) inset, 0 -2px 8px rgba(0,0,0,0.4) inset;
-    transition: transform .6s var(--ease); }
-  .vh-phone-screen { width: 100%; height: 100%; overflow: hidden; border-radius: calc(var(--rad) - var(--pad)); background: var(--cream); }
-  .vh-phone-screen img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 0; }
-  .vh-phone--back { position: absolute; left: 22%; top: 8%; z-index: -1; transform: rotate(6deg) scale(0.92); opacity: 0.92; }
-  .vh-garden:hover .vh-phone { transform: translateY(-8px); }
-  .vh-garden:hover .vh-phone--back { transform: rotate(9deg) scale(0.92) translateY(-4px); }
-  @media (max-width: 800px) { .vh-garden { grid-template-columns: 1fr; } .vh-phone--back { display: none; } }
-
-  /* QUOTE */
-  .vh-quote { text-align: center; }
-  .vh-quote .v-wrap { max-width: 56rem; }
-  .vh-quote-mark { font-size: var(--text-4xl); line-height: 0.4; color: var(--sage); }
-  .vh-quote-text { font-size: var(--display-2); line-height: 1.35; color: var(--green); margin: 0 auto 1.6rem; }
-  .vh-quote-by { justify-content: center; }
-
-  /* CTA BAND — the moon print surfaces out of the forest via screen blend.
-     Band runs tall so the full moon can hang above the headline. */
-  [data-skin="verdant"] section.vh-cta-band { text-align: center; padding: clamp(160px, 28vh, 320px) 0; }
-  .vh-cta-moon {
-    z-index: 0;
-    --pf-blend: screen;
-    --pf-opacity: 0.8;
-    --pf-w: clamp(460px, 46vw, 680px);
-    --pf-right: 4vw;
-    --pf-y: 84%;
-    --pf-mask-x: 58%;
-    --pf-mask-y: 55%;
-    --pf-core: 34%;
-    --pf-fade: 80%;
-    --pf-filter: saturate(0.72) contrast(1.08);
-  }
-  .vh-cta-inner { display: flex; flex-direction: column; align-items: center; gap: 2rem; position: relative; z-index: 1; }
-  .vh-cta-title { font-size: var(--display-1); color: var(--moon); }
-  @media (max-width: 800px) {
-    .vh-cta-moon { --pf-w: min(130vw, 520px); --pf-right: -12vw; --pf-y: 80%; --pf-opacity: 0.7; }
-  }
-</style>
