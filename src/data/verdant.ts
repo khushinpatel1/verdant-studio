@@ -147,7 +147,7 @@ export const emerald = {
   name: "Emerald",
   kind: "Project two — focused ambition",
   oneLine: "Growing in the soil. Ships when it's ready.",
-  cover: "/verdant/media/koi-moon.jpg",
+  cover: "/verdant/art/koi-cream.jpg",
   blurb:
     "Not a distraction, not a roadmap item. A real project, built with the same quiet conviction as Garden — finished when it's finished, not a day sooner. You only found this because you went looking. That's who it's for.",
 };
