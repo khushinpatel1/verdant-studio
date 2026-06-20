@@ -123,5 +123,8 @@ const {
     height: auto;
     display: block;
     border-radius: var(--radius);
+    /* Assets bleed into bg: radial mask fades edges to transparent */
+    -webkit-mask-image: radial-gradient(ellipse 85% 85% at 50% 50%, #000 0%, #000 60%, transparent 95%);
+    mask-image: radial-gradient(ellipse 85% 85% at 50% 50%, #000 0%, #000 60%, transparent 95%);
   }
 </style>
