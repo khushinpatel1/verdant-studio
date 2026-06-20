@@ -1,7 +1,7 @@
 ---
 import Verdant from "../../layouts/Verdant.astro";
 import GrowingGarden from "../../components/verdant/GrowingGarden";
-import VerdantMark from "../../components/verdant/VerdantMark";
+import Logo from "../../components/verdant/Logo";
 import ScrollPillars from "../../components/verdant/ScrollPillars";
 import InkGrowth from "../../components/verdant/InkGrowth";
 import Enso from "../../components/verdant/ink/Enso";
@@ -19,7 +19,7 @@ import { garden, brand } from "../../data/verdant";
   <section class="vh-hero vh-sec">
     <GrowingGarden client:load className="vh-hero-garden" />
     <div class="vh-hero-mark">
-      <VerdantMark size={20} />
+      <Logo withWordmark={false} size={20} />
     </div>
     <div class="vh-hero-text">
       <p class="v-label">{brand.tagline}</p>
