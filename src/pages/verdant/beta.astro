@@ -1,0 +1,268 @@
+---
+import Verdant from "../../layouts/Verdant.astro";
+import Footer from "../../components/verdant/Footer";
+import Logo from "../../components/verdant/Logo";
+import BlossomBranch from "../../components/verdant/ink/BlossomBranch";
+import Koi from "../../components/verdant/ink/Koi";
+import MountainRidge from "../../components/verdant/ink/MountainRidge";
+import MistLayer from "../../components/verdant/ink/MistLayer";
+import { garden, privacySpectrum } from "../../data/verdant";
+
+// JOIN THE BETA — "the ascent." The site→app bridge: what the beta is, what's
+// ready today vs still in soil, the privacy posture DURING beta (the honest
+// 3-tier spectrum, not a flat claim), what we ask of testers, and a clean
+// handoff to the live app. Every line traces to data/verdant.ts or the plan —
+// no invented dates, numbers, or promises beyond what's already true.
+
+const ready = [
+  { n: "01", head: "Net worth, all in one place.", body: "Every account you add — manual or imported — rolled into one honest number, updated the moment you change something." },
+  { n: "02", head: "Money and Plan, working today.", body: "Spending broken down by category, budgets that keep their own score, goals with a real date, debts put in payoff order." },
+  { n: "03", head: "Grove, the on-device assistant.", body: "Ask it about your real balances and it answers from them — read on your device, sent nowhere to do it." },
+  { n: "04", head: "Manual entry and AI import.", body: "Type a number in yourself, or hand Grove a statement and let it read the figures out for you. Both work now." },
+];
+
+const soil = [
+  { n: "01", head: "Bank link (SnapTrade, SimpleFIN, Plaid).", body: "Architecture is built; no live account connects yet. When it ships, it's the convenience tier — labeled plaintext transit, named plainly, not hidden behind a privacy claim that isn't true." },
+  { n: "02", head: "iOS and Android.", body: "Garden runs as a web app today. Native shells are next, not yet." },
+  { n: "03", head: "Pricing beyond the beta.", body: "Beta testers keep lifetime access. What everyone pays after that is still being worked out — see Pricing." },
+];
+
+const ask = [
+  "Use it like it's real money — because it is. Add your actual accounts, not a test ledger.",
+  "Tell us the moment something feels wrong, slow, or untrustworthy. That report is worth more than praise.",
+  "Expect rough edges. This is early access, not a finished product wearing a beta label.",
+];
+---
+
+<Verdant title="Join the Beta — Verdant" description="What Garden's beta is today, what's still in soil, the privacy posture while you test, and the handoff to the live app." image="/og/og-default.png">
+  <!-- ── HERO — asymmetric: copy pinned left, koi drifting the right field ── -->
+  <section class="vb-hero">
+    <Koi client:visible className="vb-hero-koi" aria-hidden="true" />
+    <div class="v-wrap vb-hero-inner">
+      <p class="v-label">The ascent</p>
+      <h1 class="v-display vb-hero-head">
+        Garden is open.<br />Help it <span style="color: var(--leaf);">grow</span>.
+      </h1>
+      <p class="vb-hero-sub">
+        This is friends-and-family beta — a real app, used by real people, still
+        being shaped by what they find. Here's exactly what that means: what
+        works today, what's still in soil, and how your numbers are handled
+        while you test.
+      </p>
+      <div class="vb-hero-actions">
+        <a href={garden.url} class="v-cta v-cta--primary" target="_blank" rel="noopener" data-cursor="Open">
+          Open Garden →
+        </a>
+        <a href="#posture" class="v-cta" data-cursor="Down">How your data's handled</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── READY NOW — asymmetric editorial rows ── -->
+  <section class="vb-ready vb-sec">
+    <span class="vh-num" aria-hidden="true">01</span>
+    <div class="vb-ready-head" data-v-reveal>
+      <p class="v-label">Live today</p>
+      <p class="v-display vb-ready-intro">Not a preview. The real app.</p>
+    </div>
+    {ready.map((r, i) => (
+      <div class={`vb-row${i % 2 ? " vb-row--alt" : ""}`} data-v-reveal style={`--d:${i * 0.05}s`}>
+        <span class="v-label v-label--bare">{r.n}</span>
+        <div class="vb-row-text">
+          <p class="v-display vb-row-head">{r.head}</p>
+          <p class="vb-row-body">{r.body}</p>
+        </div>
+      </div>
+    ))}
+  </section>
+
+  <!-- ── IN THE SOIL — paper band, restrained, asymmetric stack ── -->
+  <section class="ve-band vb-soil v-band--paper">
+    <BlossomBranch client:visible className="vh-leaf-accent vb-soil-branch" aria-hidden="true" />
+    <div class="v-wrap vb-soil-inner">
+      <div class="v-band-hr" aria-hidden="true"></div>
+      <p class="v-label">Still in soil</p>
+      <p class="v-display vb-soil-intro">What's coming, named honestly.</p>
+      <div class="vb-soil-list">
+        {soil.map((s, i) => (
+          <div class="vb-soil-item" data-v-reveal style={`--d:${i * 0.06}s`}>
+            <span class="vb-soil-n">{s.n}</span>
+            <div>
+              <p class="vb-soil-head">{s.head}</p>
+              <p class="vb-soil-body">{s.body}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PRIVACY DURING BETA — dark night-band, the spectrum restated for testers ── -->
+  <section id="posture" class="vh-night-feature v-night vb-posture-intro">
+    <div class="vh-night-bg" style="background-image:url(/verdant/paint/garden-band.webp)"></div>
+    <div class="vh-night-scrim"></div>
+    <div class="vh-night-copy vb-posture-intro-copy">
+      <p class="v-label v-label--light">While you test</p>
+      <h2 class="v-display vb-posture-intro-head">
+        Beta doesn't loosen<br />the privacy spectrum.
+      </h2>
+      <p class="vb-posture-intro-sub">
+        Every account you add during beta sits on the same three tiers Garden
+        ships with — nothing relaxed, nothing waived because it's "just a test."
+      </p>
+    </div>
+  </section>
+
+  <section class="vb-spectrum vb-sec">
+    <span class="vh-num" aria-hidden="true">02</span>
+    <MountainRidge client:visible className="vb-spectrum-ridge" aria-hidden="true" />
+    {privacySpectrum.map((tier, i) => (
+      <div class={`vb-tier${i % 2 ? " vb-tier--alt" : ""}`} data-v-reveal style={`--d:${i * 0.06}s`}>
+        <div class="vb-tier-head">
+          <span class="v-label v-label--bare">{tier.n}</span>
+          <p class="v-display vb-tier-label">{tier.label}</p>
+          <span class="vb-tier-status" data-live={tier.status.startsWith("Live")}>{tier.status}</span>
+        </div>
+        <p class="vb-tier-what">{tier.what}</p>
+        <p class="vb-tier-reality">{tier.reality}</p>
+      </div>
+    ))}
+    <p class="vb-spectrum-foot" data-v-reveal>
+      Full breakdown of what's private and what touches a server, tier by tier:
+      <a href="/verdant/security" class="v-link">read Security →</a>
+    </p>
+  </section>
+
+  <!-- ── WHAT WE ASK — single column, restrained, no card grid ── -->
+  <section class="vb-ask vb-sec">
+    <span class="vh-num" aria-hidden="true">03</span>
+    <div class="vb-ask-inner" data-v-reveal>
+      <p class="v-label">What we ask of testers</p>
+      <p class="v-display vb-ask-head">Three things. That's the whole list.</p>
+      <ol class="vb-ask-list">
+        {ask.map((a, i) => (
+          <li data-v-reveal style={`--d:${0.05 + i * 0.06}s`}><span class="vb-ask-n">{String(i + 1).padStart(2, "0")}</span>{a}</li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- ── HANDOFF — the bridge to the live app. The signature CTA. ── -->
+  <section class="vb-handoff vb-sec">
+    <MistLayer client:visible className="vb-handoff-mist" aria-hidden="true" />
+    <div class="vb-handoff-inner" data-v-reveal>
+      <div class="vb-handoff-mark"><Logo withWordmark={false} size={30} /></div>
+      <p class="v-label">From the site, into the soil</p>
+      <h2 class="v-display vb-handoff-head">
+        Open Garden.<br />Bring your <span style="color: var(--leaf);">real</span> numbers.
+      </h2>
+      <p class="vb-handoff-body">
+        No waitlist, no invite code — the app is live now at the address below.
+        Beta access is free, and stays free for everyone who tests it.
+      </p>
+      <a href={garden.url} class="v-cta v-cta--primary vb-handoff-cta" target="_blank" rel="noopener" data-cursor="Open">
+        Open garden.khushinpatel1.workers.dev →
+      </a>
+      <p class="v-label vb-handoff-meta">No credit card · Free for the life of your account</p>
+    </div>
+  </section>
+
+  <Footer client:visible />
+</Verdant>
+
+<style>
+  /* ── HERO ── */
+  .vb-hero { min-height: 92svh; align-content: center; overflow: hidden; background: var(--paper); padding-block: 7rem 2rem; position: relative; }
+  .vb-hero-inner { position: relative; z-index: 1; }
+  .vb-hero-head { font-size: var(--display-1); color: var(--ink); margin-top: 2.2rem; line-height: 1.04; max-width: 17ch; }
+  .vb-hero-sub { font-family: var(--font-display); font-size: var(--text-xl); line-height: 1.55; color: var(--ink-soft); max-width: 46ch; margin-top: 1.8rem; }
+  .vb-hero-actions { display: flex; align-items: center; gap: 2rem; margin-top: 2.4rem; flex-wrap: wrap; }
+
+  /* ── READY ── */
+  .vb-ready { background: var(--paper-soft); padding-block: clamp(90px, 16vh, 220px); row-gap: 2.2rem; }
+  .vb-ready-head { grid-column: 1 / 13; margin-bottom: 1.2rem; }
+  .vb-ready-intro { font-size: var(--display-2); color: var(--ink); margin-top: 1rem; max-width: 30ch; }
+  .vb-row { grid-column: 2 / 11; padding: clamp(1.6rem, 2.6vh, 2.4rem) 0; border-top: 1px solid var(--line); }
+  .vb-row--alt { grid-column: 6 / 13; }
+  .vb-row-head { font-size: var(--display-2); line-height: 1.25; color: var(--leaf); max-width: 24ch; }
+  .vb-row-body { color: var(--ink-soft); font-size: var(--text-base); line-height: 1.6; max-width: 50ch; margin-top: 0.8rem; }
+
+  /* ── SOIL — paper band, branch off right ── */
+  .vb-soil { position: relative; overflow: hidden; padding-block: clamp(90px, 14vh, 190px); }
+  .vb-soil-inner { max-width: 64ch; }
+  .vb-soil-intro { font-size: var(--display-2); margin-top: 0.6rem; line-height: 1.15; }
+  .vb-soil-list { margin-top: 2.4rem; display: flex; flex-direction: column; gap: 1.8rem; }
+  .vb-soil-item { display: grid; grid-template-columns: 2.4rem 1fr; gap: 0.4rem 1.2rem; }
+  .vb-soil-n { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--gold); letter-spacing: 0.1em; padding-top: 0.2rem; }
+  .vb-soil-head { font-family: var(--font-display); font-size: var(--text-xl); color: var(--ink); line-height: 1.3; }
+  .vb-soil-body { color: var(--ink-soft); font-size: var(--text-sm); line-height: 1.6; max-width: 56ch; margin-top: 0.4rem; }
+
+  /* ── PRIVACY DURING BETA — dark feature ── */
+  .vb-posture-intro { background: transparent; padding-block: clamp(80px, 12vh, 160px); min-height: auto; }
+  .vb-posture-intro-copy { max-width: 58ch; padding-left: clamp(20px, 5vw, 72px); }
+  .vb-posture-intro-head { font-size: clamp(1.9rem, 4.2vw, 3.6rem); color: var(--night-ink); line-height: 1.1; margin-top: 1.1rem; margin-bottom: 0; }
+  .vb-posture-intro-sub { font-family: var(--font-display); font-size: var(--text-lg); color: var(--night-soft); max-width: 50ch; margin-top: 1.2rem; line-height: 1.6; }
+
+  /* ── SPECTRUM — asymmetric stacked tiers, mountain ridge ground ── */
+  .vb-spectrum { position: relative; overflow: hidden; background: var(--paper); padding-block: clamp(100px, 16vh, 230px); row-gap: 2rem; }
+  .vb-tier { grid-column: 1 / 8; position: relative; z-index: 1; padding: clamp(1.6rem, 2.6vh, 2.2rem) 0; border-top: 1px solid var(--line); }
+  .vb-tier--alt { grid-column: 5 / 13; }
+  .vb-tier-head { display: flex; align-items: baseline; gap: 1rem; flex-wrap: wrap; }
+  .vb-tier-label { font-size: var(--display-2); color: var(--ink); margin: 0; }
+  .vb-tier-status { font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-soft); padding: 0.2rem 0.6rem; border: 1px solid var(--line); border-radius: var(--radius); }
+  .vb-tier-status[data-live="true"] { color: var(--leaf-deep); border-color: var(--sage); }
+  .vb-tier-what { color: var(--ink-soft); font-size: var(--text-base); line-height: 1.6; max-width: 48ch; margin-top: 0.8rem; }
+  .vb-tier-reality { font-family: var(--font-display); font-size: var(--text-lg); color: var(--leaf); line-height: 1.5; max-width: 46ch; margin-top: 0.6rem; }
+  .vb-spectrum-foot { grid-column: 1 / 13; position: relative; z-index: 1; margin-top: 1.6rem; padding-top: 1.6rem; border-top: 1px solid var(--line);
+    font-family: var(--font-display); font-size: var(--text-base); color: var(--ink-soft); }
+
+  /* ── ASK — single restrained column ── */
+  .vb-ask { background: var(--paper-soft); padding-block: clamp(100px, 16vh, 220px); }
+  .vb-ask-inner { grid-column: 1 / 9; }
+  .vb-ask-head { font-size: var(--display-2); color: var(--ink); margin-top: 0.8rem; max-width: 28ch; }
+  .vb-ask-list { list-style: none; padding: 0; margin: 2.4rem 0 0; display: flex; flex-direction: column; gap: 1.6rem; }
+  .vb-ask-list li { display: grid; grid-template-columns: 2.6rem 1fr; gap: 0 1.2rem; align-items: baseline;
+    font-family: var(--font-display); font-size: var(--text-xl); color: var(--ink-soft); line-height: 1.5; max-width: 56ch;
+    padding-top: 1.3rem; border-top: 1px solid var(--line); }
+  .vb-ask-n { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--gold); letter-spacing: 0.1em; }
+
+  /* ── HANDOFF — the bridge, off-center ── */
+  .vb-handoff { position: relative; overflow: hidden; background: var(--paper); padding-block: clamp(130px, 22vh, 260px); align-content: center; }
+  .vb-handoff-inner { grid-column: 1 / 9; position: relative; z-index: 1; }
+  .vb-handoff-head { font-size: var(--display-1); color: var(--ink); line-height: 1.04; margin-top: 0.8rem; max-width: 18ch; }
+  .vb-handoff-body { font-family: var(--font-display); font-size: var(--text-lg); color: var(--ink-soft); max-width: 48ch; margin-top: 1.4rem; line-height: 1.6; }
+  .vb-handoff-cta { margin-top: 2.2rem; }
+  .vb-handoff-meta { margin-top: 1.2rem; }
+
+  /* ── Responsive ── */
+  @media (max-width: 860px) {
+    .vb-ready-head, .vb-row { grid-column: 1 / 13; }
+    .vb-tier, .vb-tier--alt { grid-column: 1 / 13; }
+    .vb-ask-inner, .vb-handoff-inner { grid-column: 1 / 13; }
+  }
+</style>
+
+<style is:global>
+  /* ── Off-axis editorial grid (shared shape w/ security/pricing) ── */
+  .vb-sec {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: clamp(12px, 1.6vw, 28px);
+    padding-inline: clamp(20px, 5vw, 72px);
+  }
+
+  /* ── React-island accent placements (global: islands render their own root,
+     so Astro's scoped data-astro-cid attribute never reaches them) ── */
+  .vb-hero-koi { position: absolute; top: 14%; right: -4%; width: clamp(220px, 26vw, 380px); opacity: 0.5; color: var(--moss); pointer-events: none; z-index: 0; }
+  .vb-soil-branch { width: 26%; right: -6%; top: 4%; opacity: 0.45; color: var(--moss); }
+  .vb-spectrum-ridge { position: absolute; bottom: 0; left: 0; width: 100%; height: clamp(100px, 14vw, 200px); color: var(--sage); opacity: 0.45; pointer-events: none; z-index: 0; }
+  .vb-handoff-mist { position: absolute; bottom: 0; left: 0; width: 100%; height: clamp(90px, 12vw, 180px); color: var(--sage); opacity: 0.5; pointer-events: none; z-index: 0; }
+  .vb-handoff-mark { color: var(--leaf); margin-bottom: 1.4rem; }
+
+  @media (max-width: 860px) {
+    .vb-hero-koi { display: none; }
+    .vb-soil-branch { display: none; }
+    .vb-spectrum-ridge { opacity: 0.25; }
+  }
+</style>

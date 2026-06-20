@@ -1,0 +1,397 @@
+---
+import Verdant from "../../layouts/Verdant.astro";
+---
+
+<Verdant title="Verdant Type Specimen">
+  <section class="spec-hero">
+    <div class="spec-wrap">
+      <div class="spec-intro">
+        <p class="v-label">Type Review</p>
+        <h1 class="v-display spec-title">Verdant Type Specimen</h1>
+        <p class="spec-desc">Current pairing reviewed for coherence, scale, and tonal fit across the product. Each family is tested in its real context on the site.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- DISPLAY: Instrument Serif (the voice voice) -->
+  <section class="spec-section">
+    <div class="spec-wrap">
+      <div class="spec-family">
+        <div class="spec-family-meta">
+          <span class="v-label v-label--bare">Display Voice</span>
+          <h2 class="spec-family-name">Instrument Serif</h2>
+          <p class="spec-family-role">Hero headings, page titles, major section heads. High-contrast serif with serene, majestic quality.</p>
+          <p class="spec-tech">CSS token: <code>var(--font-display)</code> | 400 weight, italic accent | File: InstrumentSerif-Regular/Italic.woff2</p>
+        </div>
+
+        <div class="spec-display-grid">
+          <div class="spec-display-sample">
+            <h3 class="spec-sample-label" style="font-family: var(--font-mono);">--display-1 (clamp 2.8rem–5.6rem)</h3>
+            <p class="v-display" style="font-size: var(--display-1); margin: 2rem 0;">Software that answers to <em>you</em>.</p>
+          </div>
+
+          <div class="spec-display-sample">
+            <h3 class="spec-sample-label" style="font-family: var(--font-mono);">--display-2 (clamp 2rem–3.6rem)</h3>
+            <p class="v-display" style="font-size: var(--display-2); margin: 2rem 0;">Care spent on what <em>stays quiet</em>.</p>
+          </div>
+
+          <div class="spec-display-sample">
+            <h3 class="spec-sample-label" style="font-family: var(--font-mono);">Italic Emphasis (gold)</h3>
+            <p class="v-display" style="font-size: var(--text-2xl); margin: 2rem 0;">The best software is like a good <em>garden</em>. You feel it was <em>tended</em>, but you never catch it <em>trying</em>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ORGANIC: Young Serif (growth accent) -->
+  <section class="spec-section spec-section--alt">
+    <div class="spec-wrap">
+      <div class="spec-family">
+        <div class="spec-family-meta">
+          <span class="v-label v-label--bare">Growth Accent</span>
+          <h2 class="spec-family-name">Young Serif</h2>
+          <p class="spec-family-role">Big growth moments, quote marks, botanical moments. Chunky serif with personality; used sparingly for impact.</p>
+          <p class="spec-tech">CSS token: <code>var(--font-organic)</code> | 400 weight | File: YoungSerif-Regular.woff2</p>
+        </div>
+
+        <div class="spec-display-grid">
+          <div class="spec-display-sample">
+            <h3 class="spec-sample-label" style="font-family: var(--font-mono);">Quote Mark (--text-4xl)</h3>
+            <p class="v-organic" style="font-size: var(--text-4xl); line-height: 0.4; color: var(--sage); margin: 2rem 0;">"</p>
+          </div>
+
+          <div class="spec-display-sample">
+            <h3 class="spec-sample-label" style="font-family: var(--font-mono);">Section Moment (--text-2xl)</h3>
+            <p class="v-organic" style="font-size: var(--text-2xl); margin: 2rem 0; line-height: 1.4;">Privacy stays quiet. Everything else grows loud.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BODY: Schibsted Grotesk (the silence) -->
+  <section class="spec-section">
+    <div class="spec-wrap">
+      <div class="spec-family">
+        <div class="spec-family-meta">
+          <span class="v-label v-label--bare">Body & UI</span>
+          <h2 class="spec-family-name">Schibsted Grotesk</h2>
+          <p class="spec-family-role">Body copy, secondary headings, interface text. Warm, calm sans-serif; the stillness that reads.</p>
+          <p class="spec-tech">CSS token: <code>var(--font-body)</code> | 400 regular, 500 medium, 700 bold | Files: SchibstedGrotesk-Regular/Medium/Bold.woff2</p>
+        </div>
+
+        <div class="spec-display-grid">
+          <div class="spec-display-sample">
+            <h3 class="spec-sample-label" style="font-family: var(--font-mono);">--text-base (1rem)</h3>
+            <p style="font-family: var(--font-body); font-size: var(--text-base); line-height: 1.6; color: var(--ink); max-width: 58ch; margin: 1.5rem 0;">Most money apps sell your spending to stay free. We sell the app instead — you own the software, the numbers stay yours. We make a living the old-fashioned way: you pay us.</p>
+          </div>
+
+          <div class="spec-display-sample">
+            <h3 class="spec-sample-label" style="font-family: var(--font-mono);">--text-lg (1.2rem)</h3>
+            <p style="font-family: var(--font-body); font-size: var(--text-lg); line-height: 1.6; color: var(--ink); max-width: 58ch; margin: 1.5rem 0;">No ads, no data sold, no third party reading over your shoulder. That one fact decides everything we build.</p>
+          </div>
+
+          <div class="spec-display-sample">
+            <h3 class="spec-sample-label" style="font-family: var(--font-mono);">--text-sm (0.926rem)</h3>
+            <p style="font-family: var(--font-body); font-size: var(--text-sm); line-height: 1.6; color: var(--ink-soft); margin: 1.5rem 0;">A second project is in the soil — it ships when it's ready, not before.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MONO: Fragment Mono (labels & data) -->
+  <section class="spec-section spec-section--alt">
+    <div class="spec-wrap">
+      <div class="spec-family">
+        <div class="spec-family-meta">
+          <span class="v-label v-label--bare">Labels & Data</span>
+          <h2 class="spec-family-name">Fragment Mono</h2>
+          <p class="spec-family-role">Technical layer. Uppercase tracked labels, numerals, metadata. Quiet but precise.</p>
+          <p class="spec-tech">CSS token: <code>var(--font-mono)</code> | 400 weight | File: FragmentMono-Regular.woff2</p>
+        </div>
+
+        <div class="spec-display-grid">
+          <div class="spec-display-sample">
+            <h3 class="spec-sample-label" style="font-family: var(--font-mono);">.v-label (uppercase tracked)</h3>
+            <p class="v-label" style="margin: 2rem 0;">Verdant Studio - independent software</p>
+          </div>
+
+          <div class="spec-display-sample">
+            <h3 class="spec-sample-label" style="font-family: var(--font-mono);">Numerals (for sequencing)</h3>
+            <div style="display: flex; gap: 2rem; align-items: baseline; margin: 2rem 0;">
+              <span style="font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: 0.2em; color: var(--moss); opacity: 0.7;">00</span>
+              <span style="font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: 0.2em; color: var(--moss); opacity: 0.7;">01</span>
+              <span style="font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: 0.2em; color: var(--moss); opacity: 0.7;">02</span>
+            </div>
+          </div>
+
+          <div class="spec-display-sample">
+            <h3 class="spec-sample-label" style="font-family: var(--font-mono);">Metadata (product year)</h3>
+            <p style="font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: 0.14em; color: var(--ink-soft); margin: 2rem 0;">2025 - public beta</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAIRING IN CONTEXT: Real stacked section -->
+  <section class="spec-section">
+    <div class="spec-wrap">
+      <div class="spec-family">
+        <div class="spec-family-meta">
+          <span class="v-label v-label--bare">Pairing in Context</span>
+          <h2 class="spec-family-name">Full Stack Example</h2>
+          <p class="spec-family-role">How the four families compose together in real site rhythm: label → headline → body → accent.</p>
+        </div>
+
+        <div class="spec-context-block">
+          <p class="v-label">The manifest</p>
+          <h2 class="v-display" style="font-size: var(--display-2); color: var(--ink); margin: 1.2rem 0 1.6rem; line-height: 1.1;">Care spent on what <span style="color: var(--leaf);">stays quiet</span>.</h2>
+          <p style="font-family: var(--font-body); font-size: var(--text-lg); line-height: 1.6; color: var(--ink-soft); max-width: 58ch; margin-bottom: 1.8rem;">The design of the software — the interface, the behavior, the rhythm — should feel like it was built with care. Not flashy. Not trying to impress. Just thoughtfully made, and then gotten out of the way so the numbers can live quietly.</p>
+          <p class="v-label" style="margin-top: 1.6rem;">Privacy + ownership</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ALTERNATIVES: Text-only descriptions -->
+  <section class="spec-section spec-section--alt">
+    <div class="spec-wrap">
+      <div class="spec-family">
+        <div class="spec-family-meta">
+          <span class="v-label v-label--bare">Alternative Pairings</span>
+          <h2 class="spec-family-name">If the pairing needs refreshing</h2>
+          <p class="spec-family-role">These are described in text only — not swapped in. Evaluate conceptually against the current pairing.</p>
+        </div>
+
+        <div class="spec-alt-grid">
+          <div class="spec-alt-card">
+            <h3 style="font-family: var(--font-body); font-weight: 500; font-size: var(--text-lg); color: var(--ink); margin-bottom: 0.8rem;">Option A: Editorial Refresh</h3>
+            <p style="font-family: var(--font-body); font-size: var(--text-base); color: var(--ink-soft); line-height: 1.6;">
+              <strong>Display:</strong> Fraunces or GT Sectra — more editorial, higher personality. <strong>Body:</strong> Keep Schibsted (its warmth is load-bearing). <strong>Reason:</strong> If Instrument Serif reads too serene/museum-like, these are living editorial serifs with more vowel presence.
+            </p>
+          </div>
+
+          <div class="spec-alt-card">
+            <h3 style="font-family: var(--font-body); font-weight: 500; font-size: var(--text-lg); color: var(--ink); margin-bottom: 0.8rem;">Option B: Contemporary Humanist</h3>
+            <p style="font-family: var(--font-body); font-size: var(--text-base); color: var(--ink-soft); line-height: 1.6;">
+              <strong>Display:</strong> Grotesk (SF Pro, Inter Tight, or Dm Mono) — same family as body but bolder. <strong>Body:</strong> Keep Schibsted. <strong>Reason:</strong> Monoweight or reduced-contrast display. Only pursue if the two-voice tonal split feels dissonant.
+            </p>
+          </div>
+
+          <div class="spec-alt-card">
+            <h3 style="font-family: var(--font-body); font-weight: 500; font-size: var(--text-lg); color: var(--ink); margin-bottom: 0.8rem;">Option C: Botanical Emphasis</h3>
+            <p style="font-family: var(--font-body); font-size: var(--text-base); color: var(--ink-soft); line-height: 1.6;">
+              <strong>Display:</strong> Instrument Serif (unchanged). <strong>Organic:</strong> Scale Young Serif up; use it for secondary heads (--text-3xl). <strong>Reason:</strong> If the botanical voice feels underused, this elevates Young Serif beyond just quote marks.
+            </p>
+          </div>
+
+          <div class="spec-alt-card">
+            <h3 style="font-family: var(--font-body); font-weight: 500; font-size: var(--text-lg); color: var(--ink); margin-bottom: 0.8rem;">Option D: Condensed Modern</h3>
+            <p style="font-family: var(--font-body); font-size: var(--text-base); color: var(--ink-soft); line-height: 1.6;">
+              <strong>Display:</strong> Condense serif (Atlas Grotesk Condensed, Druk Wide) — narrow, high-impact. <strong>Body:</strong> Keep Schibsted. <strong>Reason:</strong> Only if the current display feels too loose or the page needs visual tightness. Risk: can read "tech product" unless applied with restraint.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOADING NOTE -->
+  <section class="spec-section">
+    <div class="spec-wrap">
+      <div class="spec-note">
+        <p class="v-label">Font Delivery</p>
+        <p style="font-family: var(--font-body); font-size: var(--text-base); color: var(--ink-soft); line-height: 1.6; max-width: 65ch;">
+          All families are <strong>self-hosted</strong> in <code style="font-family: var(--font-mono); background: var(--paper-soft); padding: 0.2em 0.5em; border-radius: 2px;">/public/fonts/verdant/</code>, loaded in <code style="font-family: var(--font-mono); background: var(--paper-soft); padding: 0.2em 0.5em; border-radius: 2px;">src/styles/verdant.css</code> via <code style="font-family: var(--font-mono); background: var(--paper-soft); padding: 0.2em 0.5em; border-radius: 2px;">@font-face</code> with <code style="font-family: var(--font-mono); background: var(--paper-soft); padding: 0.2em 0.5em; border-radius: 2px;">font-display: swap</code>. No Google Fonts defaults — every font is intentional, chosen to avoid AI-generated aesthetic tells.
+        </p>
+      </div>
+    </div>
+  </section>
+</Verdant>
+
+<style is:global>
+  [data-skin="verdant"] .spec-section {
+    padding-block: clamp(100px, 16vh, 180px);
+    background: var(--paper);
+  }
+
+  [data-skin="verdant"] .spec-section--alt {
+    background: var(--paper-soft);
+  }
+
+  .spec-wrap {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 clamp(20px, 5vw, 56px);
+  }
+
+  .spec-hero {
+    min-height: 50vh;
+    display: flex;
+    align-items: center;
+    background: var(--paper);
+    padding-block: clamp(80px, 14vh, 160px);
+  }
+
+  .spec-intro {
+    max-width: 52ch;
+  }
+
+  .spec-title {
+    font-size: var(--display-1);
+    color: var(--ink);
+    margin: 1.2rem 0 1.6rem;
+    line-height: 1.05;
+  }
+
+  .spec-desc {
+    font-family: var(--font-body);
+    font-size: var(--text-lg);
+    color: var(--ink-soft);
+    line-height: 1.6;
+    max-width: 52ch;
+  }
+
+  /* Family block layout */
+  .spec-family {
+    display: grid;
+    gap: 3.5rem;
+  }
+
+  .spec-family-meta {
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 2.4rem;
+  }
+
+  .spec-family-name {
+    font-family: var(--font-display);
+    font-size: var(--text-3xl);
+    color: var(--ink);
+    margin: 0.8rem 0 0;
+    font-weight: 400;
+  }
+
+  .spec-family-role {
+    font-family: var(--font-body);
+    font-size: var(--text-lg);
+    color: var(--ink-soft);
+    margin-top: 1rem;
+    line-height: 1.6;
+    max-width: 65ch;
+  }
+
+  .spec-tech {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--ink-soft);
+    margin-top: 1rem;
+    line-height: 1.5;
+    opacity: 0.85;
+  }
+
+  .spec-tech code {
+    background: color-mix(in srgb, var(--mist) 60%, transparent);
+    padding: 0.1em 0.4em;
+    border-radius: 2px;
+    font-size: 0.95em;
+  }
+
+  /* Display sample grid */
+  .spec-display-grid {
+    display: grid;
+    gap: 3rem;
+  }
+
+  .spec-display-sample {
+    padding: 2rem;
+    background: var(--cream);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+  }
+
+  [data-skin="verdant"] .spec-section--alt .spec-display-sample {
+    background: var(--paper);
+  }
+
+  .spec-sample-label {
+    font-size: var(--text-xs);
+    letter-spacing: 0.15em;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  /* Context block (real section rhythm) */
+  .spec-context-block {
+    padding: 3rem;
+    background: var(--cream);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+  }
+
+  [data-skin="verdant"] .spec-section--alt .spec-context-block {
+    background: var(--paper);
+  }
+
+  /* Alternative pairing cards */
+  .spec-alt-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+
+  .spec-alt-card {
+    padding: 2rem;
+    background: var(--cream);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+  }
+
+  [data-skin="verdant"] .spec-section--alt .spec-alt-card {
+    background: var(--paper);
+  }
+
+  /* Footer note */
+  .spec-note {
+    padding: 2.4rem;
+    background: var(--cream);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    border-left: 3px solid var(--gold);
+  }
+
+  .spec-note p {
+    margin: 0;
+    font-family: var(--font-body);
+    color: var(--ink);
+  }
+
+  .spec-note code {
+    font-family: var(--font-mono);
+    background: color-mix(in srgb, var(--mist) 60%, transparent);
+    padding: 0.1em 0.35em;
+    border-radius: 2px;
+    font-size: 0.9em;
+  }
+
+  @media (max-width: 768px) {
+    .spec-title {
+      font-size: var(--display-2);
+    }
+
+    .spec-alt-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .spec-display-sample,
+    .spec-context-block,
+    .spec-alt-card,
+    .spec-note {
+      padding: 1.5rem;
+    }
+  }
+</style>
