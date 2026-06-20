@@ -156,21 +156,44 @@
 /* ── Utility grammar (v-) ───────────────────────────────────────────────── */
 .v-wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 clamp(20px, 5vw, 56px); }
 
-/* Bleed mask — feathered radial edge on any photographic/video asset.
-   Replaces hard borders with a soft dissolve into the background. */
+/* Bleed — the v1 "printed into the paper" dissolve. Two forces together:
+   (1) mix-blend-mode:multiply melts the art's off-white ground straight into
+       the cream page (no visible seam where the ground meets the bg), and
+   (2) a TIGHT radial mask whose feather lands INSIDE the box, so every edge
+       fades to nothing before the rectangle. The old 85% mask sized the
+       ellipse larger than the box, dumping the whole feather off-canvas —
+       that's why edges read hard. No border, no radius: a feather can't be
+       clipped by a rounded rectangle. Only ever put on light-ground art. */
 .v-bleed {
-  -webkit-mask-image: radial-gradient(ellipse 85% 85% at 50% 50%, #000 0%, #000 60%, transparent 95%);
-  mask-image: radial-gradient(ellipse 85% 85% at 50% 50%, #000 0%, #000 60%, transparent 95%);
+  -webkit-mask-image: radial-gradient(ellipse 60% 62% at 50% 50%, #000 34%, rgba(0,0,0,0.5) 64%, transparent 88%);
+  mask-image: radial-gradient(ellipse 60% 62% at 50% 50%, #000 34%, rgba(0,0,0,0.5) 64%, transparent 88%);
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  mix-blend-mode: multiply;
+  border-radius: 0 !important;
 }
 
-/* Icon variant — circular mask for small square assets (icons, small images in cards) */
+/* Product/app screenshots (/verdant/garden/*) are NOT botanical art on paper:
+   multiply would mute their colour and the tight art-mask would clip UI that
+   runs to the edge. Keep them crisp (no blend) with a gentle feather that only
+   softens the rectangle's edge — enough to kill the hard box, not the content. */
+[data-skin="verdant"] img.v-bleed[src*="/verdant/garden/"],
+[data-skin="verdant"] video.v-bleed[src*="/verdant/garden/"] {
+  mix-blend-mode: normal;
+  -webkit-mask-image: radial-gradient(ellipse 76% 82% at 50% 50%, #000 62%, transparent 99%);
+  mask-image: radial-gradient(ellipse 76% 82% at 50% 50%, #000 62%, transparent 99%);
+}
+
+/* Icon variant — small square card art. Tight circular dissolve + multiply. */
 .v-bleed--icon {
-  -webkit-mask-image: radial-gradient(circle at 50% 50%, #000 0%, #000 75%, transparent 100%);
-  mask-image: radial-gradient(circle at 50% 50%, #000 0%, #000 75%, transparent 100%);
+  -webkit-mask-image: radial-gradient(circle at 50% 50%, #000 40%, transparent 78%);
+  mask-image: radial-gradient(circle at 50% 50%, #000 40%, transparent 78%);
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
+  mix-blend-mode: multiply;
+  border-radius: 0 !important;
 }
 
 /* Legacy fallback — old v-img-soft for backwards compat */

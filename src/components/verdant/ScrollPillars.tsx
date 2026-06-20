@@ -16,7 +16,7 @@ import BlossomBranch from "./ink/BlossomBranch";
  * Icon choice: the four already-built sumi-e components in ink/ (Koi,
  * StoneLantern, Bamboo, BlossomBranch) ARE the "sculptural clay icon" set —
  * built for exactly this kind of moment, on-brand, no raster placeholder
- * needed. `koi-cream.jpg` sits behind each icon as a faint textured backdrop
+ * needed. `koi.jpg` sits behind each icon as a faint textured backdrop
  * instead of being the icon itself — the fallback asset, used as intended.
  *
  * Touch: no pin (scroll-jacking on touch is hostile). A tappable segmented
@@ -320,8 +320,8 @@ function PillarStyles() {
         -webkit-mask-image: radial-gradient(ellipse 58% 58% at 50% 50%, #000 0%, #000 55%, transparent 90%);
         mask-image: radial-gradient(ellipse 58% 58% at 50% 50%, #000 0%, #000 55%, transparent 90%);
       }
-      .vp-icon-wrap[data-backdrop="koi"] .vp-icon-backdrop { background-image: url(/verdant/art/koi-cream.jpg); }
-      .vp-icon-wrap[data-backdrop="lantern"] .vp-icon-backdrop { background-image: url(/verdant/art/koi-cream.jpg); }
+      .vp-icon-wrap[data-backdrop="koi"] .vp-icon-backdrop { background-image: url(/verdant/media/koi.jpg); }
+      .vp-icon-wrap[data-backdrop="lantern"] .vp-icon-backdrop { background-image: url(/verdant/media/koi.jpg); }
       .vp-icon {
         position: relative;
         z-index: 1;

@@ -83,9 +83,18 @@ import Footer from "../../components/verdant/Footer";
 </Verdant>
 
 <style is:global>
-  /* ── Notes section ── */
+  /* ── Notes section ──
+     NOTE: this page predates the v3 kit and referenced a 12-col grid that no
+     longer exists, so `grid-column` was a no-op and the content fell hard to
+     the viewport's left edge. Pin it to the site wrap (maxw + the same
+     horizontal pad as every kit section) so the margins match the rest. */
+  /* beat the global `[data-skin] section { padding: … 0 }` reset (which the
+     kit dodges via inner wrappers) by matching with the skin prefix too. */
+  [data-skin="verdant"] .ve-notes-section,
+  [data-skin="verdant"] .ve-cta-section { padding-inline: clamp(20px, 5vw, 56px); }
   .ve-notes-section { background: var(--paper-soft); padding-block: clamp(110px, 18vh, 220px); }
-  .ve-notes-content { grid-column: 2 / 11; display: flex; flex-direction: column; gap: 2.8rem; }
+  .ve-notes-content { max-width: var(--maxw); margin-inline: auto; display: flex; flex-direction: column; gap: 2.8rem; }
+  .vh-num { display: block; max-width: var(--maxw); margin-inline: auto; font-family: var(--font-mono); font-size: var(--text-sm); color: var(--moss); opacity: 0.6; }
   .ve-note-entry { padding: 1.8rem 0; border-top: 1px solid var(--line); }
   .ve-note-entry:last-child { border-bottom: 1px solid var(--line); }
   .ve-note-date { font-family: var(--font-mono); font-size: var(--text-sm); letter-spacing: 0.05em; color: var(--moss); opacity: 0.8; margin: 0 0 0.4rem 0; font-weight: 400; }
@@ -94,8 +103,8 @@ import Footer from "../../components/verdant/Footer";
 
   /* ── CTA Section ── */
   .ve-cta-section { align-content: center; }
-  .ve-cta-head { grid-column: 1 / 9; font-size: var(--display-1); color: var(--ink); line-height: 1.05; }
-  .ve-cta-head + .v-cta { grid-column: 1 / 9; margin-top: 2rem; }
+  .ve-cta-head { max-width: var(--maxw); margin-inline: auto; font-size: var(--display-1); color: var(--ink); line-height: 1.05; }
+  .ve-cta-head + .v-cta { display: inline-block; max-width: var(--maxw); margin: 2rem auto 0; }
 
   /* ── Responsive ── */
   @media (max-width: 860px) {
