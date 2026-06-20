@@ -1,0 +1,127 @@
+---
+interface Props {
+  align?: "left" | "right";
+  headline: string;
+  body: string;
+  cta?: { label: string; href: string };
+  media?: boolean;
+  mediaSrc?: string;
+  videoSrc?: string;
+}
+
+const {
+  align = "left",
+  headline,
+  body,
+  cta,
+  media = false,
+  mediaSrc,
+  videoSrc
+} = Astro.props;
+---
+
+<section class="v-feature-row" data-align={align}>
+  <div class="v-feature-row__text">
+    <h2 class="v-feature-row__headline">{headline}</h2>
+    <p class="v-feature-row__body">{body}</p>
+    {cta && (
+      <a href={cta.href} class="v-feature-row__link">
+        {cta.label}
+      </a>
+    )}
+  </div>
+
+  {media && (
+    <div class="v-feature-row__media">
+      {videoSrc ? (
+        <video
+          src={videoSrc}
+          muted
+          loop
+          playsinline
+          preload="metadata"
+          class="v-feature-row__video"
+        />
+      ) : mediaSrc ? (
+        <img src={mediaSrc} alt="" class="v-feature-row__image" />
+      ) : null}
+    </div>
+  )}
+</section>
+
+<style>
+  .v-feature-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(2rem, 8vw, 4rem);
+    align-items: center;
+    padding: clamp(2rem, 6vw, 4rem) var(--v-pad-h, clamp(20px, 5vw, 56px));
+    max-width: var(--maxw);
+    margin: 0 auto;
+  }
+
+  @media (min-width: 768px) {
+    .v-feature-row {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .v-feature-row[data-align="right"] {
+      direction: rtl;
+    }
+
+    .v-feature-row[data-align="right"] > * {
+      direction: ltr;
+    }
+  }
+
+  .v-feature-row__text {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .v-feature-row__headline {
+    font-size: var(--text-3xl);
+    color: var(--fg);
+    line-height: 1.1;
+  }
+
+  .v-feature-row__body {
+    font-size: var(--text-base);
+    color: var(--muted);
+    line-height: 1.7;
+    max-width: 32em;
+  }
+
+  .v-feature-row__link {
+    align-self: flex-start;
+    color: var(--green);
+    text-decoration: none;
+    font-size: var(--text-sm);
+    font-weight: 500;
+    position: relative;
+    padding-bottom: 0.25rem;
+    border-bottom: 1px solid var(--green);
+    transition: all 200ms var(--ease-soft);
+  }
+
+  .v-feature-row__link:hover {
+    color: var(--green-600);
+    border-color: var(--green-600);
+    padding-bottom: 0.5rem;
+  }
+
+  .v-feature-row__media {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .v-feature-row__image,
+  .v-feature-row__video {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: var(--radius);
+  }
+</style>

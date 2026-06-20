@@ -1,0 +1,63 @@
+---
+interface Props {
+  cols?: 2 | 3 | 5;
+  title?: string;
+}
+
+const { cols = 3, title } = Astro.props;
+---
+
+<section class="v-card-grid" data-cols={cols}>
+  {title && <h2 class="v-card-grid__title">{title}</h2>}
+  <div class="v-card-grid__cards">
+    <slot />
+  </div>
+</section>
+
+<style>
+  .v-card-grid {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(2rem, 6vw, 4rem);
+    padding: clamp(2rem, 6vw, 4rem) var(--v-pad-h, clamp(20px, 5vw, 56px));
+    max-width: var(--maxw);
+    margin: 0 auto;
+  }
+
+  .v-card-grid__title {
+    font-size: var(--text-3xl);
+    color: var(--fg);
+    line-height: 1.1;
+  }
+
+  .v-card-grid__cards {
+    display: grid;
+    gap: clamp(1.5rem, 3vw, 2rem);
+  }
+
+  .v-card-grid[data-cols="2"] .v-card-grid__cards {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+  }
+
+  .v-card-grid[data-cols="3"] .v-card-grid__cards {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  }
+
+  .v-card-grid[data-cols="5"] .v-card-grid__cards {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+  }
+
+  @media (min-width: 768px) {
+    .v-card-grid[data-cols="2"] .v-card-grid__cards {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .v-card-grid[data-cols="3"] .v-card-grid__cards {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .v-card-grid[data-cols="5"] .v-card-grid__cards {
+      grid-template-columns: repeat(5, 1fr);
+    }
+  }
+</style>

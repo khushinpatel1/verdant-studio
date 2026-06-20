@@ -299,7 +299,7 @@ function PillarStyles() {
     <style>{`
       .vp-section {
         position: relative;
-        background: var(--paper);
+        background: var(--cream);
       }
 
       /* ── Icon dressing shared across modes ── */
@@ -328,7 +328,7 @@ function PillarStyles() {
         z-index: 1;
         width: 76%;
         height: 76%;
-        color: var(--leaf);
+        color: var(--green);
       }
 
       /* ════════ PINNED (desktop) ════════ */
@@ -387,7 +387,7 @@ function PillarStyles() {
       }
       .vp-head {
         font-size: var(--display-2);
-        color: var(--ink);
+        color: var(--fg);
         margin-top: 1rem;
         line-height: 1.08;
         max-width: 14ch;
@@ -396,7 +396,7 @@ function PillarStyles() {
       .vp-line {
         font-size: var(--text-lg);
         line-height: 1.65;
-        color: var(--ink-soft);
+        color: var(--muted);
         max-width: 42ch;
         margin-top: 1.4rem;
       }
@@ -459,8 +459,8 @@ function PillarStyles() {
         font-family: var(--font-mono);
         font-size: var(--text-2xs);
         letter-spacing: 0.08em;
-        color: var(--ink-soft);
-        background: var(--paper-soft);
+        color: var(--muted);
+        background: var(--sage-soft);
         border: 1px solid var(--line);
         border-radius: var(--radius);
         padding: 0.7rem 1rem;
@@ -473,7 +473,7 @@ function PillarStyles() {
       }
       .vp-rail-seg.is-active {
         background: var(--ink);
-        color: var(--paper);
+        color: var(--cream);
         border-color: var(--ink);
       }
       .vp-rail-num { opacity: 0.6; }
@@ -499,14 +499,14 @@ function PillarStyles() {
       .vp-static-icon { color: var(--leaf); }
       .vp-static-head {
         font-size: var(--display-2);
-        color: var(--ink);
+        color: var(--fg);
         margin-top: 0.6rem;
         line-height: 1.1;
       }
       .vp-static-line {
         font-size: var(--text-base);
         line-height: 1.65;
-        color: var(--ink-soft);
+        color: var(--muted);
         max-width: 48ch;
         margin-top: 1rem;
       }

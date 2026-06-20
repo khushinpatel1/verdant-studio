@@ -1,0 +1,179 @@
+---
+interface Props {
+  eyebrow?: string;
+  headline: string;
+  sub?: string;
+  cta1?: { label: string; href: string };
+  cta2?: { label: string; href: string };
+  media?: boolean;
+  mediaSrc?: string;
+  videoSrc?: string;
+  videoMuted?: boolean;
+  videoLoop?: boolean;
+  videoPlaysinline?: boolean;
+  mediaPoster?: string;
+}
+
+const {
+  eyebrow,
+  headline,
+  sub,
+  cta1,
+  cta2,
+  media = false,
+  mediaSrc,
+  videoSrc,
+  videoMuted = true,
+  videoLoop = true,
+  videoPlaysinline = true,
+  mediaPoster
+} = Astro.props;
+
+// Respect reduced-motion: no auto-play
+const respectReducedMotion = true;
+---
+
+<section class="v-hero">
+  <div class="v-hero__stack">
+    {eyebrow && <div class="v-hero__eyebrow">{eyebrow}</div>}
+    <h1 class="v-hero__headline">{headline}</h1>
+    {sub && <p class="v-hero__sub">{sub}</p>}
+
+    {(cta1 || cta2) && (
+      <div class="v-hero__ctas">
+        {cta1 && (
+          <a href={cta1.href} class="v-hero__cta v-hero__cta--primary">
+            {cta1.label}
+          </a>
+        )}
+        {cta2 && (
+          <a href={cta2.href} class="v-hero__cta v-hero__cta--secondary">
+            {cta2.label}
+          </a>
+        )}
+      </div>
+    )}
+  </div>
+
+  {media && (
+    <div class="v-hero__media">
+      {videoSrc ? (
+        <video
+          src={videoSrc}
+          poster={mediaPoster}
+          muted={videoMuted}
+          loop={videoLoop}
+          playsinline={videoPlaysinline}
+          preload="metadata"
+          class="v-hero__video"
+        />
+      ) : mediaSrc ? (
+        <img src={mediaSrc} alt="" class="v-hero__image" />
+      ) : null}
+    </div>
+  )}
+</section>
+
+<style>
+  .v-hero {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(2rem, 8vw, 4rem);
+    align-items: center;
+    padding: clamp(3rem, 10vw, 6rem) var(--v-pad-h, clamp(20px, 5vw, 56px));
+    max-width: var(--maxw);
+    margin: 0 auto;
+  }
+
+  @media (min-width: 768px) {
+    .v-hero {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .v-hero__stack {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .v-hero__eyebrow {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+  }
+
+  .v-hero__headline {
+    font-size: var(--display-1);
+    color: var(--fg);
+    line-height: 1.02;
+  }
+
+  .v-hero__sub {
+    font-size: var(--text-lg);
+    color: var(--muted);
+    line-height: 1.5;
+    max-width: 32em;
+  }
+
+  .v-hero__ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 0.5rem;
+  }
+
+  .v-hero__cta {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.875rem 1.75rem;
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    border-radius: var(--radius);
+    text-decoration: none;
+    transition: all 200ms var(--ease-soft);
+  }
+
+  .v-hero__cta--primary {
+    background: var(--green);
+    color: var(--cream);
+    border: 1px solid var(--green);
+  }
+
+  .v-hero__cta--primary:hover {
+    background: var(--green-600);
+    border-color: var(--green-600);
+  }
+
+  .v-hero__cta--secondary {
+    background: transparent;
+    color: var(--green);
+    border: 1px solid var(--green);
+  }
+
+  .v-hero__cta--secondary:hover {
+    background: var(--sage-soft);
+  }
+
+  .v-hero__media {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .v-hero__image,
+  .v-hero__video {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: var(--radius);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .v-hero__media {
+      opacity: 0.8;
+    }
+  }
+</style>

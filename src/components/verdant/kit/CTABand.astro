@@ -1,0 +1,98 @@
+---
+interface Props {
+  headline: string;
+  sub?: string;
+  cta: { label: string; href: string };
+  ctaSecondary?: { label: string; href: string };
+}
+
+const { headline, sub, cta, ctaSecondary } = Astro.props;
+---
+
+<section class="v-cta-band">
+  <div class="v-cta-band__stack">
+    <h2 class="v-cta-band__headline">{headline}</h2>
+    {sub && <p class="v-cta-band__sub">{sub}</p>}
+
+    <div class="v-cta-band__ctas">
+      <a href={cta.href} class="v-cta-band__cta v-cta-band__cta--primary">
+        {cta.label}
+      </a>
+      {ctaSecondary && (
+        <a href={ctaSecondary.href} class="v-cta-band__cta v-cta-band__cta--secondary">
+          {ctaSecondary.label}
+        </a>
+      )}
+    </div>
+  </div>
+</section>
+
+<style>
+  .v-cta-band {
+    padding: clamp(3rem, 8vw, 5rem) var(--v-pad-h, clamp(20px, 5vw, 56px));
+    max-width: var(--maxw);
+    margin: 0 auto;
+  }
+
+  .v-cta-band__stack {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+    text-align: center;
+  }
+
+  .v-cta-band__headline {
+    font-size: var(--text-3xl);
+    color: var(--fg);
+    line-height: 1.1;
+    max-width: 28em;
+  }
+
+  .v-cta-band__sub {
+    font-size: var(--text-base);
+    color: var(--muted);
+    line-height: 1.6;
+    max-width: 28em;
+  }
+
+  .v-cta-band__ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 0.5rem;
+  }
+
+  .v-cta-band__cta {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.875rem 1.75rem;
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    border-radius: var(--radius);
+    text-decoration: none;
+    transition: all 200ms var(--ease-soft);
+  }
+
+  .v-cta-band__cta--primary {
+    background: var(--green);
+    color: var(--cream);
+    border: 1px solid var(--green);
+  }
+
+  .v-cta-band__cta--primary:hover {
+    background: var(--green-600);
+    border-color: var(--green-600);
+  }
+
+  .v-cta-band__cta--secondary {
+    background: transparent;
+    color: var(--green);
+    border: 1px solid var(--green);
+  }
+
+  .v-cta-band__cta--secondary:hover {
+    background: var(--sage-soft);
+  }
+</style>
