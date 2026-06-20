@@ -36,5 +36,5 @@ jobs:
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: >
             pages deploy dist
-            --project-name=${{ github.ref == 'refs/heads/v3' && 'verdant-studio-v3' || 'verdant' }}
-            --branch=${{ github.ref_name }}
+            --project-name=verdant-studio-v3
+            --branch=v3
