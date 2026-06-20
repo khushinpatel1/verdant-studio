@@ -39,8 +39,8 @@ export const garden = {
   blurb:
     "Most money apps make their money by knowing too much about you. Garden makes its money the plain way — you pay for it. Your accounts, your numbers, your plans: encrypted, kept on your device, sold to no one.",
   cover: "/verdant/garden/garden-home.webp",
-  // vault-lock.jpg — used as back-phone teaser on homepage (intriguing encrypted-garden hint)
-  vaultScreen: "/verdant/garden/vault-lock.jpg",
+  // hero-landscape — light hero background for back-phone teaser
+  vaultScreen: "/verdant/media/hero-landscape-3.jpg",
   url: "https://garden.khushinpatel1.workers.dev",
   // Pricing signal — copy only, no payment system yet. People pay for it; that's the model.
   pricing: "Free during the beta. No ads, no data sold — that doesn't change.",
@@ -147,7 +147,7 @@ export const emerald = {
   name: "Emerald",
   kind: "Project two — focused ambition",
   oneLine: "Growing in the soil. Ships when it's ready.",
-  cover: "/verdant/art/emerald-dusk.jpg",
+  cover: "/verdant/media/koi-moon.jpg",
   blurb:
     "Not a distraction, not a roadmap item. A real project, built with the same quiet conviction as Garden — finished when it's finished, not a day sooner. You only found this because you went looking. That's who it's for.",
 };
