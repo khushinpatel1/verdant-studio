@@ -1,6 +1,6 @@
 # 011 — Verdant rebuild: V1 soul on Anthropic-grade bones
 
-Status: PENDING
+Status: IN PROGRESS (phases P0-P5 complete, pushed to v3 branch, deploy running)
 Owner: Haiku sessions (execute, one phase per session) · KP (taste calls + live review)
 Supersedes the 010 approach (V2-base reskin) — that direction is abandoned.
 
