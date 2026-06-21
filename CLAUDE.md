@@ -1,6 +1,6 @@
 # Verdant Studio
 
-> Module map: read `.codesight/CODESIGHT.md` FIRST instead of exploring the tree; regen with `codesight` after big changes.
+> Read `CLAUDE.md`/`AGENTS.md` first; `.codesight/CODESIGHT.md` is a generated map — verify its **Last scanned** date before trusting it.
 
 > Cross-project rules live in `~/.claude/CLAUDE.md`.
 
