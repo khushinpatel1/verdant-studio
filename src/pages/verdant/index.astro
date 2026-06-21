@@ -3,75 +3,42 @@ import Verdant from "../../layouts/Verdant.astro";
 import Footer from "../../components/verdant/Footer";
 import Hero from "../../components/verdant/kit/Hero.astro";
 import FeatureRow from "../../components/verdant/kit/FeatureRow.astro";
-import CardGrid from "../../components/verdant/kit/CardGrid.astro";
-import Card from "../../components/verdant/kit/Card.astro";
 import CTABand from "../../components/verdant/kit/CTABand.astro";
-import Band from "../../components/verdant/kit/Band.astro";
-import { brand, garden, emerald } from "../../data/verdant";
+import { brand, garden } from "../../data/verdant";
 ---
 
 <Verdant title="Verdant — software grown for people">
   <Hero
     eyebrow="Verdant Studio — independent software"
     headline="Private personal finance."
-    sub="Track accounts, budgets, goals, and net worth — without selling your data to do it. Built by Verdant Studio."
-    cta1={{ label: "Explore Garden", href: "/verdant/garden" }}
-    cta2={{ label: "Read the ethos", href: "/verdant/ethos" }}
+    sub="Track accounts, budgets, goals, and net worth — without selling your data to do it."
+    cta1={{ label: "Join the beta", href: "/verdant/beta" }}
+    cta2={{ label: "See Garden", href: "/verdant/garden" }}
     media={true}
-    mediaSrc="/verdant/media/hero-landscape-2.jpg"
-  />
-
-  <CardGrid cols={3}>
-    <Card
-      icon="/verdant/garden/garden-home.webp"
-      headline="Garden"
-      blurb="Your financial life — private, on your device."
-      link={{ label: "Explore", href: "/verdant/garden" }}
-    />
-    <Card
-      icon="/verdant/media/crane.jpg"
-      headline="Security"
-      blurb="The privacy guarantees, verified and explained."
-      link={{ label: "Learn", href: "/verdant/security" }}
-    />
-    <Card
-      icon="/verdant/art/hero-grasses-sun.jpg"
-      headline="Ethos"
-      blurb="Why we built this, and what we believe about software."
-      link={{ label: "Read", href: "/verdant/ethos" }}
-    />
-  </CardGrid>
-
-  <FeatureRow
-    align="left"
-    headline="Garden: your whole financial life in one place"
-    body={garden.blurb}
-    media={true}
-    mediaSrc="/verdant/garden/garden-money.webp"
-    cta={{ label: "Walk through Garden", href: "/verdant/garden" }}
-  />
-
-  <FeatureRow
-    align="right"
-    headline="Privacy structured, not promised"
-    body="Manual entry stays fully local. AI import touches your data once. Bank sync travels encrypted. You choose the tier."
-    media={true}
-    mediaSrc="/verdant/art/ethos-sand.jpg"
+    mediaSrc="/verdant/garden/garden-home.webp"
   />
 
   <FeatureRow
     align="left"
-    headline="Emerald: the next thing in the soil"
-    body={emerald.blurb}
-    media={true}
-    mediaSrc={emerald.cover}
+    headline="Security and trust are structural"
+    body="Manual entry stays fully local. AI import touches your data once. Bank sync travels labeled plaintext. You choose the tier that fits your work."
+    media={false}
+    cta={{ label: "Read the privacy spectrum", href: "/verdant/security" }}
   />
 
   <CTABand
-    headline="Grow something quiet"
-    sub="Join us in building software that respects your data."
-    cta={{ label: "Start a conversation", href: "/verdant/ethos#talk" }}
-    ctaSecondary={{ label: "Try Garden", href: "https://garden.khushinpatel1.workers.dev" }}
+    headline="Ready to take control"
+    sub="Start with the Garden beta. Early access, no ads, no surprises."
+    cta={{ label: "Join the beta", href: "/verdant/beta" }}
+    ctaSecondary={{ label: "See what's next", href: "/verdant/roadmap" }}
+  />
+
+  <FeatureRow
+    align="left"
+    headline="Why we built this"
+    body="Privacy by structure, not by claim. We can't sell what we never touch. Software should answer to you, not the people who bought ads. Build one thing well, not ten things anxiously."
+    media={true}
+    mediaSrc="/verdant/art/ethos-sand.jpg"
   />
 
   <Footer client:visible />
