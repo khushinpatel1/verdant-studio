@@ -217,7 +217,7 @@ export const faq = [
   },
   {
     q: "How much will Garden cost after the beta?",
-    a: "We're still figuring that out. Beta testers keep lifetime access for free. When we do charge, it'll be honest and low — server costs plus a small margin. No surprise paywalls.",
+    a: "Beta testers keep free access — full terms before launch. We're still figuring out the scope and pricing model. When we do charge, it'll be honest and low — server costs plus a small margin. No surprise paywalls.",
   },
   {
     q: "Do you sell my data?",
