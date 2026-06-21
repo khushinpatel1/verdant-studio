@@ -27,7 +27,6 @@
 - **Moon** — props: className, style, showWisp — `src/components/verdant/ink/Moon.tsx`
 - **MountainRidge** — props: className, style, side — `src/components/verdant/ink/MountainRidge.tsx`
 - **PetalFall** — props: side, className, style — `src/components/verdant/ink/PetalFall.tsx`
-- **StoneLantern** — props: className, style, side — `src/components/verdant/ink/StoneLantern.tsx`
 - **TabShowcase** — props: tabs, defaultTab — `src/components/verdant/kit/TabShowcase.tsx`
 
 ---
@@ -55,7 +54,6 @@
 - `src/data/verdant.ts` — imported by **4** files
 - `src/components/verdant/Logo.tsx` — imported by **2** files
 - `src/components/verdant/ink/Koi.tsx` — imported by **2** files
-- `src/components/verdant/ink/StoneLantern.tsx` — imported by **2** files
 - `src/components/verdant/ink/Bamboo.tsx` — imported by **2** files
 - `src/components/verdant/ink/BlossomBranch.tsx` — imported by **2** files
 - `src/components/verdant/ink/Moon.tsx` — imported by **1** files
@@ -69,7 +67,6 @@
 - `src/data/verdant.ts` ← `src/components/verdant/Footer.tsx`, `src/components/verdant/GardenTour.tsx`, `src/components/verdant/Nav.tsx`, `src/components/verdant/PrivacySpectrum.tsx`
 - `src/components/verdant/Logo.tsx` ← `src/components/verdant/Footer.tsx`, `src/components/verdant/Nav.tsx`
 - `src/components/verdant/ink/Koi.tsx` ← `src/components/verdant/ScrollPillars.tsx`, `src/components/verdant/ink/index.ts`
-- `src/components/verdant/ink/StoneLantern.tsx` ← `src/components/verdant/ScrollPillars.tsx`, `src/components/verdant/ink/index.ts`
 - `src/components/verdant/ink/Bamboo.tsx` ← `src/components/verdant/ScrollPillars.tsx`, `src/components/verdant/ink/index.ts`
 - `src/components/verdant/ink/BlossomBranch.tsx` ← `src/components/verdant/ScrollPillars.tsx`, `src/components/verdant/ink/index.ts`
 - `src/components/verdant/ink/Moon.tsx` ← `src/components/verdant/ink/index.ts`

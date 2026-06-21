@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Koi from "./ink/Koi";
-import StoneLantern from "./ink/StoneLantern";
+import Enso from "./ink/Enso";
 import Bamboo from "./ink/Bamboo";
 import BlossomBranch from "./ink/BlossomBranch";
 
@@ -14,7 +14,7 @@ import BlossomBranch from "./ink/BlossomBranch";
  * through Garden's four pillars — Anthropic's design-page move, our hand.
  *
  * Icon choice: the four already-built sumi-e components in ink/ (Koi,
- * StoneLantern, Bamboo, BlossomBranch) ARE the "sculptural clay icon" set —
+ * Enso, Bamboo, BlossomBranch) ARE the "sculptural clay icon" set —
  * built for exactly this kind of moment, on-brand, no raster placeholder
  * needed. `koi.jpg` sits behind each icon as a faint textured backdrop
  * instead of being the icon itself — the fallback asset, used as intended.
@@ -36,7 +36,7 @@ type Pillar = {
   line: string;
   Icon: typeof Koi;
   iconSide: "left" | "right";
-  backdrop: "koi" | "lantern";
+  backdrop: "koi";
 };
 
 const PILLARS: Pillar[] = [
@@ -47,9 +47,9 @@ const PILLARS: Pillar[] = [
     emphasis: "structure",
     line:
       "Not by promise. A 3-tier spectrum — manual stays fully local, AI import is touched once by the parser, bank link travels labeled and in the open. You choose the tier; the structure holds it.",
-    Icon: StoneLantern,
+    Icon: Enso,
     iconSide: "right",
-    backdrop: "lantern",
+    backdrop: "koi",
   },
   {
     key: "grows",
@@ -82,7 +82,7 @@ const PILLARS: Pillar[] = [
       "Local-first by default. It works with no signal and no account to start — your numbers are there whether or not anything else is.",
     Icon: Koi,
     iconSide: "left",
-    backdrop: "lantern",
+    backdrop: "koi",
   },
 ];
 
@@ -321,7 +321,6 @@ function PillarStyles() {
         mask-image: radial-gradient(ellipse 58% 58% at 50% 50%, #000 0%, #000 55%, transparent 90%);
       }
       .vp-icon-wrap[data-backdrop="koi"] .vp-icon-backdrop { background-image: url(/verdant/media/koi.jpg); }
-      .vp-icon-wrap[data-backdrop="lantern"] .vp-icon-backdrop { background-image: url(/verdant/media/koi.jpg); }
       .vp-icon {
         position: relative;
         z-index: 1;
