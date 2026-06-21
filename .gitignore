@@ -9,6 +9,5 @@ shots/
 
 # foreign AI-tool configs (Claude-only)
 .cursorrules
-AGENTS.md
 codex.md
 .github/copilot-instructions.md
