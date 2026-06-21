@@ -11,6 +11,8 @@ export default function Nav({ path }: { path: string }) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const previousFocusRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -21,6 +23,14 @@ export default function Nav({ path }: { path: string }) {
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
+
+    if (open) {
+      previousFocusRef.current = document.activeElement as HTMLElement;
+      setTimeout(() => closeButtonRef.current?.focus(), 0);
+    } else if (previousFocusRef.current) {
+      previousFocusRef.current.focus();
+    }
+
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
     window.addEventListener("keydown", onKey);
     return () => { window.removeEventListener("keydown", onKey); document.body.style.overflow = ""; };
@@ -31,7 +41,7 @@ export default function Nav({ path }: { path: string }) {
 
   return (
     <>
-      <header ref={headerRef} className={`v-nav${scrolled ? " v-nav--scrolled" : ""}`}>
+      <header ref={headerRef} className={`v-nav${scrolled ? " v-nav--scrolled" : ""}`} inert={open}>
         <a href="/verdant" className="v-nav-mark"><Logo size={20} /></a>
 
         <nav className="v-nav-links">
@@ -49,8 +59,8 @@ export default function Nav({ path }: { path: string }) {
         </div>
       </header>
 
-      <div className={`v-nav-overlay${open ? " open" : ""}`} aria-hidden={!open}>
-        <button className="v-nav-overlay-close" aria-label="Close" onClick={() => setOpen(false)}>✕</button>
+      <div className={`v-nav-overlay${open ? " open" : ""}`} aria-hidden={!open} inert={!open}>
+        <button ref={closeButtonRef} className="v-nav-overlay-close" aria-label="Close" onClick={() => setOpen(false)}>✕</button>
         <div className="v-nav-overlay-inner">
           <p className="v-label v-label--light" style={{ marginBottom: "2.4rem" }}>{brand.tagline}</p>
           <ul className="v-nav-overlay-links">
@@ -112,8 +122,15 @@ export default function Nav({ path }: { path: string }) {
           flex-direction: column; justify-content: center;
           padding: clamp(2rem, 7vw, 6rem);
           background: linear-gradient(135deg, var(--mist), var(--dawn));
+          opacity: 0;
+          visibility: hidden;
+          transition: opacity 0.3s var(--ease), visibility 0.3s var(--ease);
         }
-        .v-nav-overlay.open { display: flex; }
+        .v-nav-overlay.open {
+          display: flex;
+          opacity: 1;
+          visibility: visible;
+        }
         .v-nav-overlay-inner { width: 100%; max-width: 60rem; margin: 0 auto; }
         .v-nav-overlay-links { list-style: none; padding: 0; margin: 0; }
         .v-nav-overlay-links li { border-top: 1px solid rgba(22, 36, 27, 0.08); }

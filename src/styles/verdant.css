@@ -70,6 +70,7 @@
   /* earth + the single gold "delicate hand" accent (used like calligraphy) */
   --amber:      #8b6914;
   --gold:       #c2913c;
+  --gold-ink:   #7a5a1e;    /* darker for small text on cream: ≥4.5:1 contrast */
   --terra:      #6b3f2a;
   --clay:       #a6694a;
 
