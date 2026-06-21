@@ -12,7 +12,7 @@ const { icon, headline, blurb, link } = Astro.props;
 <div class="v-card">
   {icon && (
     <div class="v-card__icon">
-      <img src={icon} alt="" class="v-bleed--icon" />
+      <img src={icon} alt="" class="v-bleed--icon" loading="lazy" decoding="async" />
     </div>
   )}
   <h3 class="v-card__headline">{headline}</h3>

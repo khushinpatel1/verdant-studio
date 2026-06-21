@@ -43,7 +43,7 @@ const {
           class="v-feature-row__video v-bleed"
         />
       ) : mediaSrc ? (
-        <img src={mediaSrc} alt="" class="v-feature-row__image v-bleed" />
+        <img src={mediaSrc} alt="" class="v-feature-row__image v-bleed" loading="lazy" decoding="async" />
       ) : null}
     </div>
   )}

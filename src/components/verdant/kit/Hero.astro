@@ -69,7 +69,7 @@ const respectReducedMotion = true;
           class="v-hero__video v-bleed"
         />
       ) : mediaSrc ? (
-        <img src={mediaSrc} alt="" class="v-hero__image v-bleed" />
+        <img src={mediaSrc} alt="" class="v-hero__image v-bleed" loading="eager" fetchpriority="high" />
       ) : null}
     </div>
   )}
