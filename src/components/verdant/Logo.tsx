@@ -47,15 +47,6 @@ export default function Logo({
         />
       </svg>
       {withWordmark && <span className="v-logo-word">Verdant</span>}
-
-      <style>{`
-        .v-logo { display: inline-flex; align-items: center; gap: 0.55rem; line-height: 1; }
-        .v-logo-glyph { display: block; flex: none; }
-        .v-logo-word {
-          font-family: var(--font-display); font-size: var(--text-2xl);
-          letter-spacing: -0.01em; color: currentColor;
-        }
-      `}</style>
     </span>
   );
 }
