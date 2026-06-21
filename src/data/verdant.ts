@@ -36,9 +36,9 @@ export const garden = {
   kind: "Personal finance that stays private",
   year: "2026",
   status: "Early Access",
-  oneLine: "Every account in one place, encrypted on your device — and nobody's business but yours.",
+  oneLine: "Every account in one place, encrypted on your device when you set a passphrase — and nobody's business but yours.",
   blurb:
-    "Most money apps make their money by knowing too much about you. Garden makes its money the plain way — you pay for it. Your accounts, your numbers, your plans: encrypted, kept on your device, sold to no one.",
+    "Most money apps make their money by knowing too much about you. Garden makes its money the plain way — you pay for it. Your accounts, your numbers, your plans: encrypted when you protect them with a passphrase, kept on your device, sold to no one.",
   cover: "/verdant/garden/garden-home.webp",
   // hero-landscape — light hero background for back-phone teaser
   vaultScreen: "/verdant/media/hero-landscape-2.jpg",
@@ -47,7 +47,7 @@ export const garden = {
   pricing: "Free during the beta. No ads, no data sold — that doesn't change.",
   onboarding: "Start fresh or import a CSV — your data, your device.",
   accountConnection: "Manual CSV import for now. Bank sync coming.",
-  groveExample: "Ask 'How long until I pay off my Amex?' — Grove answers with the month and year, from your actual balances, sent nowhere.",
+  groveExample: "Ask 'How long until I pay off my Amex?' — Grove answers with the month and year, from your actual balances, answered by a private AI model over HTTPS and not stored.",
   screens: [
     {
       tab: "Home",
@@ -72,11 +72,11 @@ export const garden = {
   grove: {
     tab: "Grove",
     img: "/verdant/garden/garden-grove.webp",
-    line: "An assistant that reads your real numbers — and never sends them anywhere.",
-    body: "Ask anything about your money. Ask 'How long until I pay off my Amex?' and Grove answers with the month and year, pulled from your actual balances and payment history. It reads your accounts on your device and sends nothing out to do it. The intelligence comes to your data — not the other way around.",
+    line: "Ask anything about your money. Grove is opt-in — when you ask, it reads your numbers on your device and sends a summary to a private AI model to answer.",
+    body: "Grove is optional. When you ask a question, a summary of your relevant numbers is sent over HTTPS to an AI model (Claude, run by Anthropic) to generate the answer. It is not stored by Verdant and never used to train models. Everything else in Garden stays on your device. You can use Garden without Grove — or never use Grove. Your choice.",
   },
   notes: [
-    "The server only ever holds ciphertext. Your device encrypts everything before it leaves.",
+    "When you set a passphrase, your device encrypts everything before it leaves. If you skip the passphrase, data stays in plaintext on your device.",
     "No ads. No data sold. No third party in your ledger. You pay for it — that's the entire model.",
     "Offline first. It's yours whether or not there's a signal.",
   ],
@@ -201,7 +201,7 @@ export const ethos = {
 export const faq = [
   {
     q: "Is my data really private?",
-    a: "Yes. Everything is encrypted on your device before it leaves. The server holds only ciphertext. We literally cannot read your numbers.",
+    a: "When you set a passphrase, yes — everything is encrypted on your device. The server holds only ciphertext. We literally cannot read your numbers. If you skip the passphrase, data stays in plaintext on your device locally — your choice. Grove sends summaries to a private AI model only when you ask it a question. See the privacy spectrum for the full picture per feature.",
   },
   {
     q: "What about bank sync?",
@@ -213,7 +213,7 @@ export const faq = [
   },
   {
     q: "What does Grove cost?",
-    a: "Nothing extra. Grove is part of the app. It works on your device only — no API calls to OpenAI or anywhere else.",
+    a: "Nothing extra. Grove is optional. When you use it, a summary of your numbers is sent to a private AI model (Claude / Anthropic) over HTTPS to answer your question. Not stored, not sold. The rest of Garden stays on your device.",
   },
   {
     q: "How much will Garden cost after the beta?",
