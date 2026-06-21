@@ -32,18 +32,18 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
 
   const timestamp = new Date().toISOString();
 
-  if (env.WAITLIST) {
-    try {
-      await env.WAITLIST.put(email, timestamp);
-    } catch (err) {
-      // storage hiccup — don't fail the visitor; log and carry on
-      console.error("WAITLIST.put failed", err);
-    }
-  } else {
-    // Binding absent — fall back to forwarding via console so the signup is
-    // at least visible in logs until the KV namespace is bound.
+  if (!env.WAITLIST) {
+    // KV binding missing — return 503 instead of silently losing the signup
     console.log(`[waitlist] ${email} @ ${timestamp} (WAITLIST KV unbound — not persisted)`);
+    return new Response("Signups aren't wired up yet — email us at verdantmail@proton.me", { status: 503 });
   }
 
-  return new Response("You're on the list.", { status: 200 });
+  try {
+    await env.WAITLIST.put(email, timestamp);
+    return new Response("You're on the list.", { status: 200 });
+  } catch (err) {
+    // KV write failed — return 503 instead of pretending success
+    console.error("WAITLIST.put failed", err);
+    return new Response("Signups aren't wired up yet — email us at verdantmail@proton.me", { status: 503 });
+  }
 };
