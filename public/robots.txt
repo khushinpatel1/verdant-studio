@@ -1,6 +1,4 @@
 User-agent: *
-Allow: /
-Disallow: /admin/
-Disallow: /.well-known/
+Disallow: /
 
-Sitemap: https://verdant.studio/sitemap.xml
+# KP-OWED: REMOVE on public launch — restores indexing

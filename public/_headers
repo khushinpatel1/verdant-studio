@@ -4,6 +4,8 @@
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=()
+  # KP-OWED: REMOVE on public launch — restores indexing
+  X-Robots-Tag: noindex, nofollow
 
 /_astro/*
   # Astro generates hashed filenames → immutable caching is safe
