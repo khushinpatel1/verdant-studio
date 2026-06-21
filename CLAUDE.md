@@ -19,25 +19,24 @@ Astro 5 + React 19 islands. `npm run dev` (port 4321) · `npm run build` ·
 `npm run check`. GSAP/ScrollTrigger + Lenis for scroll. Self-hosted fonts under
 `public/fonts/verdant/` — no Google Fonts.
 
-## Deploy — two live versions, two branches
+## Deploy — v3 production
 
-**v1 (dark / koson, frozen on 2026-06-15):** Lives at https://verdant-1wg.pages.dev/.
-Deploys from the `v1` branch → Cloudflare Pages project `verdant`. Read-only by default,
-but can be edited deliberately (see "Working style" below).
+**v3 (current):** Deploys from `main`, `v1`, or `v3` branches → Cloudflare Pages
+project `verdant-studio-v3` with CF branch `v3`. Lives at
+`https://verdant-studio-v3.pages.dev/`.
 
-**v2 (luminous botanical-minimal, in progress):** Deploys from `main` branch →
-Cloudflare Pages project `verdant-studio-v2` (created 2026-06-15, watching `main` branch).
-Lives at `https://verdant-studio-v2.pages.dev/`.
+**Workflow:** `.github/workflows/deploy.yml` runs `wrangler pages deploy dist`
+with:
+```
+--project-name=verdant-studio-v3 --branch=v3
+```
 
-**Workflow:** `.github/workflows/deploy.yml` conditionally deploys based on branch.
-When you push:
-- `git push origin main` → builds, deploys v2 to verdant-studio-v2
-- `git push origin v1` → builds, deploys v1 to verdant
+When you `git push origin main`, the GitHub Action builds and deploys to v3. No
+git-to-CF branch mapping — all branches deploy to the same CF project/branch.
+CF projects are not git-connected; the Action is the deployment pipeline.
 
-**Session declaration:** Each session explicitly targets one branch. Commit messages
-tag the version: `feat: 006-v2 — ...` or `fix: 007-v1 — ...`. Session name in title
-shows the version: "verdant-studio · feat · hero-v2" or "verdant-studio · fix · nav-v1".
-Git log answers "what went where": `git log --oneline | grep v1` vs `git log --oneline | grep v2`.
+**Retired:** v1 (dark) and v2 (luminous) Cloudflare projects and branches were
+deleted 2026-06-20. Only v3 lives. Use `main` for all work going forward.
 
 ## Screenshots / visual checks in this sandbox
 Headless Chromium here is network-blocked — **do not start a dev server**. Instead:

@@ -6,6 +6,7 @@
   Permissions-Policy: camera=(), microphone=(), geolocation=()
   # KP-OWED: REMOVE on public launch — restores indexing
   X-Robots-Tag: noindex, nofollow
+  Content-Security-Policy: default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'; font-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'
 
 /_astro/*
   # Astro generates hashed filenames → immutable caching is safe
