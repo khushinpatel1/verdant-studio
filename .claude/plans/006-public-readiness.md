@@ -1,6 +1,6 @@
 # 006 — Public-readiness fixes (Codex audit response)
 
-Status: PENDING — Haiku exec (single pass). Dispatcher: partnership session 2026-06-20.
+Status: DONE — All 10 steps shipped, built green, pushed 2026-06-20 (873f264..378ea06).
 Source: Codex read-only live/source audit of verdant-studio. Every claim re-verified against
 disk before writing this plan; file:line references below are confirmed accurate as of writing.
 
