@@ -1,5 +1,7 @@
 # Cloudflare Pages — Deploy Runbook
 
+> Historical record. Do not execute from this file. Current state lives in `CLAUDE.md` and `.github/workflows/deploy.yml`.
+
 This repo (formerly `pastures`, renamed to `verdant-studio` in the 2026-06-09 studio
 reset — see `_archive/MANIFEST.md` in partnership for CF rename status) is a fully
 static Astro build. No SSR adapter is needed. `npm run build` produces a complete
