@@ -1,36 +1,89 @@
 ---
 import Verdant from "../layouts/Verdant.astro";
 import Footer from "../components/verdant/Footer";
+
+const EFFECTIVE_DATE = "2026-06-20";
 ---
 
 <Verdant title="Terms of Service — Verdant">
   <main style="max-width: 48rem; margin: 0 auto; padding: clamp(3rem, 8vw, 5rem) clamp(20px, 5vw, 56px);">
     <h1 style="font-size: var(--text-3xl); color: var(--fg); margin-bottom: 2rem;">Terms of Service</h1>
 
+    <div style="background: var(--sage-soft); border: 1px solid var(--line); padding: 1.5rem; margin-bottom: 2rem; border-radius: var(--radius);">
+      <p style="font-size: var(--text-sm); color: var(--muted); margin: 0;">
+        <strong>Founder's Draft</strong><br />
+        This is a founder's draft, written in plain language and pending formal legal review. Email <a href="mailto:verdantmail@proton.me" style="color: var(--green); text-decoration: underline;">verdantmail@proton.me</a> with questions.
+      </p>
+    </div>
+
     <div style="display: flex; flex-direction: column; gap: 2rem; font-size: var(--text-base); line-height: 1.7; color: var(--muted);">
       <section>
-        <h2 style="font-size: var(--text-xl); color: var(--fg); margin-bottom: 1rem;">Beta Access</h2>
-        <p>Garden is in early access. We're still building. Things may break, change, or disappear. We'll do our best to keep your data safe.</p>
+        <h2 style="font-size: var(--text-sm); color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem;">Effective Date</h2>
+        <p><strong>{EFFECTIVE_DATE}</strong></p>
       </section>
 
       <section>
-        <h2 style="font-size: var(--text-xl); color: var(--fg); margin-bottom: 1rem;">Your Responsibility</h2>
-        <p>You're responsible for keeping your password secure. We can't recover it for you — it's encrypted so we can't even read it.</p>
+        <h2 style="font-size: var(--text-xl); color: var(--fg); margin-bottom: 1rem;">What Garden Is</h2>
+        <p>Garden is beta software. It may change, break, or be deprecated. We'll do our best to warn you and preserve your data, but we can't guarantee anything will work forever.</p>
       </section>
 
       <section>
-        <h2 style="font-size: var(--text-xl); color: var(--fg); margin-bottom: 1rem;">What We're Not</h2>
-        <p>Garden is not investment advice, tax advice, or financial advice. We show you your numbers. What you do with them is your call.</p>
+        <h2 style="font-size: var(--text-xl); color: var(--fg); margin-bottom: 1rem;">Beta Access Scope</h2>
+        <p><strong>KP-OWED: Business/legal sign-off needed.</strong> Beta testers keep free access — but the scope (web app only? desktop? mobile? future paid tiers?) will be defined before public launch. We will not invent terms now.</p>
       </section>
 
       <section>
-        <h2 style="font-size: var(--text-xl); color: var(--fg); margin-bottom: 1rem;">Limits on Liability</h2>
-        <p>If something goes wrong, we'll fix it. But we're not responsible for your financial decisions, data loss due to you forgetting your password, or any indirect damages.</p>
+        <h2 style="font-size: var(--text-xl); color: var(--fg); margin-bottom: 1rem;">Your Account and Password</h2>
+        <p>You're responsible for keeping your password secure. We can't recover it for you — it's encrypted so we can't even read it. If you forget it, you lose access to your data. No reset. No recovery.</p>
       </section>
 
       <section>
-        <h2 style="font-size: var(--text-xl); color: var(--fg); margin-bottom: 1rem;">Questions?</h2>
-        <p>Email us at <a href="mailto:verdantmail@proton.me" style="color: var(--green); text-decoration: underline;">verdantmail@proton.me</a></p>
+        <h2 style="font-size: var(--text-xl); color: var(--fg); margin-bottom: 1rem;">Disclaimer: Not Financial Advice</h2>
+        <p>Garden is a tool to track and organize your finances. It is not investment advice, tax advice, or financial advice. We show you your numbers. What you do with them is your responsibility. Always consult a qualified financial advisor before making financial decisions.</p>
+      </section>
+
+      <section>
+        <h2 style="font-size: var(--text-xl); color: var(--fg); margin-bottom: 1rem;">Limitation of Liability</h2>
+        <p>To the fullest extent permitted by law, we are not liable for:</p>
+        <ul style="margin: 1rem 0 0 1.5rem; list-style: inside;">
+          <li>Your financial decisions or their outcomes</li>
+          <li>Data loss due to you forgetting your password</li>
+          <li>Data loss due to device malfunction or loss</li>
+          <li>Any indirect, incidental, or consequential damages</li>
+          <li>Bugs, outages, or service interruptions</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 style="font-size: var(--text-xl); color: var(--fg); margin-bottom: 1rem;">Your Acceptable Use</h2>
+        <p>You agree not to:</p>
+        <ul style="margin: 1rem 0 0 1.5rem; list-style: inside;">
+          <li>Attempt to access other accounts</li>
+          <li>Share your account with others</li>
+          <li>Use the app for anything illegal</li>
+          <li>Reverse-engineer or scrape the service</li>
+          <li>Use the app to harm others or test vulnerabilities (report security issues to verdantmail@proton.me instead)</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 style="font-size: var(--text-xl); color: var(--fg); margin-bottom: 1rem;">Termination</h2>
+        <p>We may disable your account if you violate these terms. You can delete your account at any time.</p>
+      </section>
+
+      <section>
+        <h2 style="font-size: var(--text-xl); color: var(--fg); margin-bottom: 1rem;">Changes to These Terms</h2>
+        <p>We may update these terms. If we make material changes, we'll email you. Using Garden after an update means you accept the new terms.</p>
+      </section>
+
+      <section>
+        <h2 style="font-size: var(--text-xl); color: var(--fg); margin-bottom: 1rem;">Governing Law</h2>
+        <p><strong>KP-OWED: Jurisdiction.</strong></p>
+      </section>
+
+      <section>
+        <h2 style="font-size: var(--text-xl); color: var(--fg); margin-bottom: 1rem;">Contact</h2>
+        <p>For questions or to report a security issue, email <a href="mailto:verdantmail@proton.me" style="color: var(--green); text-decoration: underline;">verdantmail@proton.me</a></p>
       </section>
     </div>
   </main>

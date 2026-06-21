@@ -1,34 +1,92 @@
 ---
 import Verdant from "../layouts/Verdant.astro";
 import Footer from "../components/verdant/Footer";
+
+const EFFECTIVE_DATE = "2026-06-20";
 ---
 
 <Verdant title="Privacy Policy — Verdant">
   <main style="max-width: 48rem; margin: 0 auto; padding: clamp(3rem, 8vw, 5rem) clamp(20px, 5vw, 56px);">
     <h1 style="font-size: var(--text-3xl); color: var(--fg); margin-bottom: 2rem;">Privacy Policy</h1>
 
+    <div style="background: var(--sage-soft); border: 1px solid var(--line); padding: 1.5rem; margin-bottom: 2rem; border-radius: var(--radius);">
+      <p style="font-size: var(--text-sm); color: var(--muted); margin: 0;">
+        <strong>Founder's Draft</strong><br />
+        This is a founder's draft, written in plain language and pending formal legal review. Email <a href="mailto:verdantmail@proton.me" style="color: var(--green); text-decoration: underline;">verdantmail@proton.me</a> with questions.
+      </p>
+    </div>
+
     <div style="display: flex; flex-direction: column; gap: 2rem; font-size: var(--text-base); line-height: 1.7; color: var(--muted);">
       <section>
-        <h2 style="font-size: var(--text-xl); color: var(--fg); margin-bottom: 1rem;">Garden App</h2>
-        <p>Your financial data is encrypted on your device before it ever leaves. The Verdant server holds only ciphertext. We cannot read your numbers.</p>
-        <p>Garden works offline. Your data stays yours, always.</p>
+        <h2 style="font-size: var(--text-sm); color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem;">Effective Date</h2>
+        <p><strong>{EFFECTIVE_DATE}</strong></p>
       </section>
 
       <section>
-        <h2 style="font-size: var(--text-xl); color: var(--fg); margin-bottom: 1rem;">What we collect</h2>
-        <p>We collect the minimum needed to run the app: your account structure, encrypted transaction data, and anonymized usage patterns (app crashes, feature usage).</p>
-        <p>We do not collect:</p>
+        <h2 style="font-size: var(--text-xl); color: var(--fg); margin-bottom: 1rem;">Overview</h2>
+        <p>Verdant is an independent software studio. Garden is our first product — a personal finance app that keeps your numbers to itself. This policy covers how we handle your data across Garden and our web properties.</p>
+      </section>
+
+      <section>
+        <h2 style="font-size: var(--text-xl); color: var(--fg); margin-bottom: 1rem;">Data We Collect</h2>
+        <p>Garden collects only what's needed to run the app:</p>
         <ul style="margin: 1rem 0 0 1.5rem; list-style: inside;">
-          <li>Your location</li>
-          <li>Your browsing history</li>
-          <li>Your contacts or device identifiers</li>
-          <li>Data for advertising or tracking</li>
+          <li><strong>Account structure:</strong> how many accounts you add, their names, types (checking, credit card, etc.)</li>
+          <li><strong>Transaction data:</strong> amounts, dates, categories, descriptions — encrypted when you set a passphrase</li>
+          <li><strong>Anonymized usage:</strong> crash reports, feature usage counts (never linked to your identity)</li>
         </ul>
       </section>
 
       <section>
-        <h2 style="font-size: var(--text-xl); color: var(--fg); margin-bottom: 1rem;">Data you control</h2>
-        <p>You can export, delete, or reset your entire garden at any time. No waiting period. No recovery. It's gone.</p>
+        <h2 style="font-size: var(--text-xl); color: var(--fg); margin-bottom: 1rem;">Encryption Is Conditional</h2>
+        <p>When you set a passphrase during onboarding, Garden encrypts all transaction data on your device before it leaves. If you skip the passphrase step, data is stored in plaintext on your device locally. Either way, it never leaves your device unless you ask Grove or use AI import.</p>
+      </section>
+
+      <section>
+        <h2 style="font-size: var(--text-xl); color: var(--fg); margin-bottom: 1rem;">AI Processing (Grove and AI Import)</h2>
+        <p><strong>Grove</strong> (the optional financial assistant) and <strong>AI import</strong> (for parsing statements) send data to a third-party AI provider:</p>
+        <ul style="margin: 1rem 0 0 1.5rem; list-style: inside;">
+          <li>Provider: Anthropic (Claude AI model)</li>
+          <li>What's sent: Grove sends a summary of your relevant account data when you ask a question. AI import sends your statement (PDF or CSV) once for parsing.</li>
+          <li>How: HTTPS encrypted in transit</li>
+          <li>Storage: Not stored by Verdant. The request is not used to train models.</li>
+          <li>Opt-in: You control when Grove or AI import is used — the rest of Garden never leaves your device</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 style="font-size: var(--text-xl); color: var(--fg); margin-bottom: 1rem;">Data Retention and Deletion</h2>
+        <p>You can export, delete, or reset your entire Garden at any time. No waiting period. No recovery. Deletion is permanent.</p>
+        <p><strong>What happens:</strong> Your encrypted data is deleted from our server. Any unencrypted data (analytics, crash reports) is deleted. Local copies on your device remain until you clear them manually.</p>
+      </section>
+
+      <section>
+        <h2 style="font-size: var(--text-xl); color: var(--fg); margin-bottom: 1rem;">Your Rights</h2>
+        <ul style="margin: 1rem 0 0 1.5rem; list-style: inside;">
+          <li><strong>Access:</strong> Export all your data as JSON at any time</li>
+          <li><strong>Deletion:</strong> Delete your account and all associated data instantly</li>
+          <li><strong>Portability:</strong> Your data is yours. Export it whenever you want.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 style="font-size: var(--text-xl); color: var(--fg); margin-bottom: 1rem;">Children and Minors</h2>
+        <p>Garden is not directed to anyone under 13. We do not knowingly collect data from minors under 13. If we learn we have, we will delete it immediately. If you believe we have collected data from a minor under 13, please contact us at <a href="mailto:verdantmail@proton.me" style="color: var(--green); text-decoration: underline;">verdantmail@proton.me</a>.</p>
+      </section>
+
+      <section>
+        <h2 style="font-size: var(--text-xl); color: var(--fg); margin-bottom: 1rem;">Bank Sync (Future)</h2>
+        <p>Bank sync via SnapTrade, SimpleFIN, or Plaid is architecture-only — not live yet. When live, you will connect directly through the provider's flow (Garden never sees your bank password). Balances and transactions are relayed in plaintext through the provider for as long as the link is active. We will clearly label this as "plaintext transit" — no end-to-end encryption claim here, because there can't be one honestly.</p>
+      </section>
+
+      <section>
+        <h2 style="font-size: var(--text-xl); color: var(--fg); margin-bottom: 1rem;">Third Parties</h2>
+        <p>We do not sell, rent, or share your data with advertisers, brokers, or other third parties. The only exception: when you use Grove or AI import, your data goes to Anthropic (Claude AI) as described above.</p>
+      </section>
+
+      <section>
+        <h2 style="font-size: var(--text-xl); color: var(--fg); margin-bottom: 1rem;">Changes to This Policy</h2>
+        <p>We may update this policy occasionally. We will email you if changes are material. Using Garden after an update means you accept the new policy.</p>
       </section>
 
       <section>
