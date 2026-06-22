@@ -19,11 +19,9 @@ import { faq } from "../../data/verdant";
     mediaSrc="/verdant/art/hero-grasses-sun.jpg"
   />
 
-  <CardGrid cols={3} title="The guarantees">
-    <Card headline="Local-first encryption" blurb="Your device holds the keys. The server holds only ciphertext." />
-    <Card headline="No tracking" blurb="No ads, no analytics, no third parties watching your ledger." />
-    <Card headline="Offline by default" blurb="Works with no connection. Your numbers stay yours." />
-  </CardGrid>
+  <div id="data" style="padding: clamp(3rem, 8vw, 5rem) clamp(20px, 5vw, 56px); max-width: var(--maxw); margin: 0 auto;">
+    <PrivacySpectrum client:visible />
+  </div>
 
   <div style="padding: clamp(2rem, 6vw, 3rem) clamp(20px, 5vw, 56px); max-width: 600px; margin: 0 auto; text-align: center; font-family: var(--font-mono, monospace); color: var(--fg); line-height: 2;">
     <div>Device</div>
@@ -33,9 +31,11 @@ import { faq } from "../../data/verdant";
     <div>Server (stores ciphertext only — never sees your data)</div>
   </div>
 
-  <div style="padding: clamp(3rem, 8vw, 5rem) clamp(20px, 5vw, 56px); max-width: var(--maxw); margin: 0 auto;">
-    <PrivacySpectrum client:visible />
-  </div>
+  <CardGrid cols={3} title="The guarantees">
+    <Card headline="Local-first encryption" blurb="Your device holds the keys. The server holds only ciphertext." />
+    <Card headline="No tracking" blurb="No ads, no analytics, no third parties watching your ledger." />
+    <Card headline="Offline by default" blurb="Works with no connection. Your numbers stay yours." />
+  </CardGrid>
 
   <div style="padding: clamp(3rem, 8vw, 5rem) clamp(20px, 5vw, 56px); max-width: var(--maxw); margin: 0 auto;">
     <h2 style="font-size: var(--text-3xl); color: var(--fg); margin-bottom: 2rem;">Questions?</h2>
