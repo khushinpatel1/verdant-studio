@@ -7,7 +7,7 @@ import Logo from "./Logo";
  */
 export default function Footer({ tone = "light" }: { tone?: "light" | "cream" }) {
   return (
-    <footer className={`v-footer v-footer--${tone}`} data-v-reveal>
+    <footer className={`v-footer v-footer--${tone}`}>
       <div className="v-wrap v-footer-inner">
         {/* Brand + mark + stone */}
         <div className="v-footer-brand">

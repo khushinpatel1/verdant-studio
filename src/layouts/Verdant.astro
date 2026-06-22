@@ -81,7 +81,7 @@ const fonts = [
       let io: IntersectionObserver | null = null;
       function arm() {
         io?.disconnect();
-        const els = Array.from(document.querySelectorAll<HTMLElement>("[data-v-reveal]"));
+        const els = Array.from(document.querySelectorAll<HTMLElement>("[data-v-reveal]:not(astro-island [data-v-reveal])"));
         if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
           els.forEach((el) => el.classList.add("in"));
           return;
