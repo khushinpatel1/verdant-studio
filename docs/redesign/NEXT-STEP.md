@@ -1,5 +1,7 @@
 # Verdant v2 Redesign — RECOVERY / NEXT STEP
 
+> Historical record. Do not execute from this file. Current state: v3 is production (live on main). See `CLAUDE.md`.
+
 **If you are a fresh session picking this up: read THIS file first. Nothing is lost.**
 
 Target: **v2, `main` branch** → `verdant-studio-v2.pages.dev`. (v1 on `v1` branch is frozen.)
