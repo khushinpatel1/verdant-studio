@@ -62,6 +62,7 @@ export default function FAQAccordion({ items, className = "" }: { items: FAQItem
         return (
           <div key={i} className={`vfaq-item${isOpen ? " is-open" : ""}`} style={{ "--d": `${i * 0.05}s` } as React.CSSProperties}>
             <button
+              id={`vfaq-trigger-${i}`}
               className="vfaq-trigger"
               aria-expanded={isOpen}
               aria-controls={`vfaq-panel-${i}`}

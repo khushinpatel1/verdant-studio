@@ -14,14 +14,12 @@ import { faq } from "../../data/verdant";
     sub="Ask us anything. If we don't have the answer, we'll find it."
   />
 
-  <div style="padding: clamp(3rem, 8vw, 5rem) clamp(20px, 5vw, 56px); max-width: var(--maxw); margin: 0 auto;">
-    <div style="position: relative;">
-      <div style="position: absolute; top: -3rem; left: 0; width: 200px; height: 200px; opacity: 0.08; pointer-events: none; z-index: 0;">
-        <MistLayer client:load />
-      </div>
-      <div style="position: relative; z-index: 1;">
-        <FAQAccordion client:visible items={faq} />
-      </div>
+  <div style="padding: clamp(3rem, 8vw, 5rem) clamp(20px, 5vw, 56px); max-width: var(--maxw); margin: 0 auto; position: relative;">
+    <div style="position: absolute; top: -3rem; left: 0; width: 200px; height: 200px; opacity: 0.08; pointer-events: none; z-index: 0;">
+      <MistLayer client:load />
+    </div>
+    <div style="position: relative; z-index: 1;">
+      <FAQAccordion client:load items={faq} />
     </div>
   </div>
 
