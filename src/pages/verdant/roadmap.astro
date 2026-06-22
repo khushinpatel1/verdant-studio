@@ -3,6 +3,7 @@ import Verdant from "../../layouts/Verdant.astro";
 import Footer from "../../components/verdant/Footer";
 import Hero from "../../components/verdant/kit/Hero.astro";
 import CTAClose1 from "../../components/verdant/kit/CTAClose1.astro";
+import MountainRidge from "../../components/verdant/ink/MountainRidge";
 import { ethos, garden } from "../../data/verdant";
 
 // Status timeline — verified entries only (src/data/verdant.ts ethos.shipping).
@@ -19,20 +20,41 @@ const timeline = ethos.shipping.map((item) => {
   <Hero headline="Where Garden stands" sub="Built slow, on purpose. Here's exactly what's live, what's being tested, and what's next." />
 
   <div style="padding: clamp(2rem, 6vw, 4rem) clamp(20px, 5vw, 56px); max-width: var(--maxw); margin: 0 auto;">
-    <div style="display: flex; flex-direction: column; gap: 0;">
-      {timeline.map((item) => (
-        <div style="display: grid; grid-template-columns: 7rem 1fr auto; gap: 1.5rem; align-items: baseline; padding: 1.1rem 0; border-top: 1px solid var(--line);">
-          <span style="font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold-ink);">
-            {item.status}
-          </span>
-          <span style="font-size: var(--text-lg); color: var(--fg); font-family: var(--font-display);">
-            {item.feature}
-          </span>
-          <span style="font-family: var(--font-mono); font-size: var(--text-xs); color: var(--muted); white-space: nowrap;">
-            {item.date}
-          </span>
+    <div style="display: grid; grid-template-columns: 140px 1fr; gap: 3rem; align-items: flex-start;">
+      {/* Status legend */}
+      <aside style="display: flex; flex-direction: column; gap: 1.2rem; font-size: var(--text-sm); color: var(--muted); line-height: 1.6;">
+        <div>
+          <span style="font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold-ink); display: block; margin-bottom: 0.3rem;">Shipped</span>
+          <p style="margin: 0; font-size: var(--text-xs);">Launched, verified dates</p>
         </div>
-      ))}
+        <div>
+          <span style="font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold-ink); display: block; margin-bottom: 0.3rem;">Live beta</span>
+          <p style="margin: 0; font-size: var(--text-xs);">Early Access available</p>
+        </div>
+        <div>
+          <span style="font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold-ink); display: block; margin-bottom: 0.3rem;">In progress</span>
+          <p style="margin: 0; font-size: var(--text-xs);">Being built now</p>
+        </div>
+      </aside>
+
+      {/* Timeline with ink accent */}
+      <div style="position: relative;">
+        <div style="position: absolute; top: -2rem; right: -4rem; width: 280px; height: 180px; opacity: 0.1; pointer-events: none; z-index: 0;">
+          <MountainRidge client:load />
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 0; position: relative; z-index: 1;">
+          {timeline.map((item) => (
+            <div style="display: grid; grid-template-columns: 1fr auto; gap: 1.5rem; align-items: baseline; padding: 1.1rem 0; border-top: 1px solid var(--line);">
+              <span style="font-size: var(--text-lg); color: var(--fg); font-family: var(--font-display);">
+                {item.feature}
+              </span>
+              <span style="font-family: var(--font-mono); font-size: var(--text-xs); color: var(--muted); white-space: nowrap;">
+                {item.date}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   </div>
 

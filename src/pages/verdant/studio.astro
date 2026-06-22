@@ -3,15 +3,21 @@ import Verdant from "../../layouts/Verdant.astro";
 import Footer from "../../components/verdant/Footer";
 import Hero from "../../components/verdant/kit/Hero.astro";
 import CTAClose1 from "../../components/verdant/kit/CTAClose1.astro";
+import Enso from "../../components/verdant/ink/Enso";
 import { studio, brand } from "../../data/verdant";
 ---
 
 <Verdant title="Verdant Studio — Studio of one" description="An independent software studio, deliberately small.">
-  <Hero
-    headline="Verdant Studio"
-    sub={studio.lead}
-    cta1={{ label: "Explore Garden", href: "/verdant/garden" }}
-  />
+  <div style="position: relative;">
+    <Hero
+      headline="Verdant Studio"
+      sub={studio.lead}
+      cta1={{ label: "Explore Garden", href: "/verdant/garden" }}
+    />
+    <div style="position: absolute; top: 50%; right: 5%; width: 250px; height: 250px; opacity: 0.12; pointer-events: none; z-index: 0;">
+      <Enso client:load />
+    </div>
+  </div>
 
   <div style="padding: clamp(3rem, 8vw, 5rem) clamp(20px, 5vw, 56px); max-width: var(--maxw); margin: 0 auto;">
     <p style="font-family: var(--font-display); font-size: var(--text-2xl); color: var(--fg); max-width: 30em; margin-bottom: 2.5rem;">
