@@ -166,8 +166,8 @@
        that's why edges read hard. No border, no radius: a feather can't be
        clipped by a rounded rectangle. Only ever put on light-ground art. */
 .v-bleed {
-  -webkit-mask-image: radial-gradient(ellipse 60% 62% at 50% 50%, #000 34%, rgba(0,0,0,0.5) 64%, transparent 88%);
-  mask-image: radial-gradient(ellipse 60% 62% at 50% 50%, #000 34%, rgba(0,0,0,0.5) 64%, transparent 88%);
+  -webkit-mask-image: radial-gradient(ellipse 100% 100% at 50% 50%, #000 86%, transparent 100%);
+  mask-image: radial-gradient(ellipse 100% 100% at 50% 50%, #000 86%, transparent 100%);
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
   -webkit-mask-size: 100% 100%;
@@ -176,15 +176,13 @@
   border-radius: 0 !important;
 }
 
-/* Product/app screenshots (/verdant/garden/*) are NOT botanical art on paper:
-   multiply would mute their colour and the tight art-mask would clip UI that
-   runs to the edge. Keep them crisp (no blend) with a gentle feather that only
-   softens the rectangle's edge — enough to kill the hard box, not the content. */
+/* Product/app screenshots (/verdant/garden/*) are NOT botanical art on paper —
+   framed phones have crisp edges, no feather needed. No mask, no blend. */
 [data-skin="verdant"] img.v-bleed[src*="/verdant/garden/"],
 [data-skin="verdant"] video.v-bleed[src*="/verdant/garden/"] {
   mix-blend-mode: normal;
-  -webkit-mask-image: radial-gradient(ellipse 76% 82% at 50% 50%, #000 62%, transparent 99%);
-  mask-image: radial-gradient(ellipse 76% 82% at 50% 50%, #000 62%, transparent 99%);
+  -webkit-mask-image: none;
+  mask-image: none;
 }
 
 /* Product/app screenshots — crisp path, never paper-blended. Used by Hero/
@@ -200,10 +198,10 @@
   opacity: 1 !important;
 }
 
-/* Icon variant — small square card art. Tight circular dissolve + multiply. */
+/* Icon variant — small square card art. Circular dissolve + multiply. */
 .v-bleed--icon {
-  -webkit-mask-image: radial-gradient(circle at 50% 50%, #000 40%, transparent 78%);
-  mask-image: radial-gradient(circle at 50% 50%, #000 40%, transparent 78%);
+  -webkit-mask-image: radial-gradient(circle at 50% 50%, #000 86%, transparent 100%);
+  mask-image: radial-gradient(circle at 50% 50%, #000 86%, transparent 100%);
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
   mix-blend-mode: multiply;
@@ -213,12 +211,12 @@
 /* Legacy fallback — old v-img-soft for backwards compat */
 .v-img-soft {
   -webkit-mask-image: radial-gradient(
-    ellipse 56% 60% at 50% 48%,
-    #000 0%, #000 65%, transparent 90%
+    ellipse 100% 100% at 50% 50%,
+    #000 86%, transparent 100%
   );
   mask-image: radial-gradient(
-    ellipse 56% 60% at 50% 48%,
-    #000 0%, #000 65%, transparent 90%
+    ellipse 100% 100% at 50% 50%,
+    #000 86%, transparent 100%
   );
 }
 
