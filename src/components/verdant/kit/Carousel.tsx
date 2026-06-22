@@ -18,7 +18,7 @@ export default function Carousel({
 }: CarouselProps) {
   const [current, setCurrent] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
-  const autoplayRef = useRef<NodeJS.Timeout>();
+  const autoplayRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   useEffect(() => {
     if (!autoplay) return;

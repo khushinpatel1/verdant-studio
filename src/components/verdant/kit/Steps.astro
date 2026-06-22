@@ -17,7 +17,7 @@ const { title, steps } = Astro.props;
   {title && <h2 class="v-steps__title">{title}</h2>}
   <div class="v-steps__flow">
     {steps.map((step, idx) => (
-      <div key={idx} class="v-step">
+      <div class="v-step">
         <div class="v-step__number">{step.number}</div>
         <h3 class="v-step__headline">{step.headline}</h3>
         <p class="v-step__body">{step.body}</p>
