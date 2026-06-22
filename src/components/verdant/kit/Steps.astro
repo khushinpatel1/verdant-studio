@@ -50,7 +50,7 @@ const { title, steps } = Astro.props;
     position: relative;
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: 920px) {
     .v-steps__flow {
       grid-template-columns: repeat(3, 1fr);
     }
@@ -94,13 +94,13 @@ const { title, steps } = Astro.props;
     transform: translateY(-50%);
   }
 
-  @media (max-width: 767px) {
+  @media (max-width: 919px) {
     .v-step__connector {
       display: none;
     }
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: 920px) {
     .v-steps__flow > :last-child .v-step__connector {
       display: none;
     }

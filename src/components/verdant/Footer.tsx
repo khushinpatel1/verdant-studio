@@ -89,6 +89,13 @@ export default function Footer({ tone = "light" }: { tone?: "light" | "cream" })
           transition: opacity .5s var(--ease), box-shadow .5s var(--ease), scale .5s var(--ease); }
         .v-footer-egg:hover span, .v-footer-egg:focus-visible span {
           opacity: 1; scale: 1.3; box-shadow: inset 0 0 2px rgba(255,255,255,0.6), 0 0 12px rgba(95,174,126,0.75); }
+
+        @media (max-width: 640px) {
+          .v-footer { padding: clamp(4rem,12vh,6rem) 0 2.5rem; }
+          .v-footer-inner { flex-direction: column; gap: 2.5rem; }
+          .v-footer-cols { flex-wrap: wrap; gap: 2rem 2.5rem; }
+          .v-footer-legal { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+        }
       `}</style>
     </footer>
   );
