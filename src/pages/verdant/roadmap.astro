@@ -2,20 +2,46 @@
 import Verdant from "../../layouts/Verdant.astro";
 import Footer from "../../components/verdant/Footer";
 import Hero from "../../components/verdant/kit/Hero.astro";
-import CardGrid from "../../components/verdant/kit/CardGrid.astro";
-import Card from "../../components/verdant/kit/Card.astro";
+import CTABand from "../../components/verdant/kit/CTABand.astro";
+import { ethos, garden } from "../../data/verdant";
+
+// Status timeline — verified entries only (src/data/verdant.ts ethos.shipping).
+// "Shipped" = has a concrete YYYY-MM-DD date; "Live beta" = month-precision date
+// with status already Early Access; "In progress" = explicit in-progress label.
+const timeline = ethos.shipping.map((item) => {
+  const isDated = /^\d{4}-\d{2}-\d{2}$/.test(item.date);
+  const status = item.date === "In progress" ? "In progress" : isDated ? "Shipped" : "Live beta";
+  return { ...item, status };
+});
 ---
 
 <Verdant title="Roadmap — Garden" description="What's shipped, what's being tested, what's planned.">
   <Hero headline="Where Garden stands" sub="Built slow, on purpose. Here's exactly what's live, what's being tested, and what's next." />
-  <CardGrid cols={3} title="Building">
-    <Card headline="Bank sync" blurb="Labeled, encrypted account linking. In active development." />
-  </CardGrid>
-  <CardGrid cols={3} title="Testing">
-    <Card headline="Grove (AI assistant)" blurb="Ask questions about your own numbers, answered locally." />
-  </CardGrid>
-  <CardGrid cols={3} title="Planned">
-    <Card headline="Multi-currency" blurb="Track accounts across currencies in one net worth view." />
-  </CardGrid>
+
+  <div style="padding: clamp(2rem, 6vw, 4rem) clamp(20px, 5vw, 56px); max-width: var(--maxw); margin: 0 auto;">
+    <div style="display: flex; flex-direction: column; gap: 0;">
+      {timeline.map((item) => (
+        <div style="display: grid; grid-template-columns: 7rem 1fr auto; gap: 1.5rem; align-items: baseline; padding: 1.1rem 0; border-top: 1px solid var(--line);">
+          <span style="font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold-ink);">
+            {item.status}
+          </span>
+          <span style="font-size: var(--text-lg); color: var(--fg); font-family: var(--font-display);">
+            {item.feature}
+          </span>
+          <span style="font-family: var(--font-mono); font-size: var(--text-xs); color: var(--muted); white-space: nowrap;">
+            {item.date}
+          </span>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <CTABand
+    headline="See it live"
+    sub="Try Garden, or read exactly what touches a server."
+    cta={{ label: "Try Garden", href: garden.url }}
+    ctaSecondary={{ label: "Privacy spectrum", href: "/verdant/security#data" }}
+  />
+
   <Footer client:visible />
 </Verdant>
