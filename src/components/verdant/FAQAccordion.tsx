@@ -60,7 +60,7 @@ export default function FAQAccordion({ items, className = "" }: { items: FAQItem
       {items.map((item, i) => {
         const isOpen = openIds.has(i);
         return (
-          <div key={i} className={`vfaq-item${isOpen ? " is-open" : ""}`} style={{ "--d": `${i * 0.05}s` } as React.CSSProperties}>
+          <div key={i} className={`vfaq-item${isOpen ? " is-open" : ""}`} data-v-reveal style={{ "--d": `${i * 0.05}s` } as React.CSSProperties}>
             <button
               id={`vfaq-trigger-${i}`}
               className="vfaq-trigger"
