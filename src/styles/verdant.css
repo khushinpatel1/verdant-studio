@@ -301,10 +301,10 @@
    shares one treatment so the green reads as washed pigment, not a flat slab:
    slow-drifting blooms of varied greens, a faint paper tooth, and a feathered
    watercolor top edge. Subtle by design — contrast on the light type is kept. */
-[data-skin="verdant"] :is(.vh-band, .ve-band, .vg-band, .v-footer) { isolation: isolate; }
+[data-skin="verdant"] :is(.vh-band, .ve-band, .vg-band) { isolation: isolate; }
 
 /* living pigment — soft blooms of layered greens (static for perf) */
-[data-skin="verdant"] :is(.vh-band, .ve-band, .vg-band, .v-footer)::before {
+[data-skin="verdant"] :is(.vh-band, .ve-band, .vg-band)::before {
   content: ""; position: absolute; inset: -12% -6%; z-index: 0; pointer-events: none;
   background:
     radial-gradient(38% 46% at 22% 30%, color-mix(in srgb, var(--green-600) 85%, transparent), transparent 70%),
@@ -314,23 +314,23 @@
   opacity: 0.85;
 }
 /* paper tooth — barely-there grain so the field has a surface (no blending for perf) */
-[data-skin="verdant"] :is(.vh-band, .ve-band, .vg-band, .v-footer)::after {
+[data-skin="verdant"] :is(.vh-band, .ve-band, .vg-band)::after {
   content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
   opacity: 0.07; background-size: 200px 200px;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='b'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23b)'/%3E%3C/svg%3E");
 }
 /* keep the band content + cream edge above the pigment layers */
-[data-skin="verdant"] :is(.vh-band, .ve-band, .vg-band, .v-footer) > * { position: relative; z-index: 1; }
+[data-skin="verdant"] :is(.vh-band, .ve-band, .vg-band) > * { position: relative; z-index: 1; }
 
 /* feather the cream top edge so green bleeds into paper instead of a clean clip
    (filter applies after the clip-path, softening the clipped contour into a
    wet watercolor edge) */
-[data-skin="verdant"] :is(.vh-band-edge, .ve-band-edge, .vg-band-edge, .v-footer-edge) {
+[data-skin="verdant"] :is(.vh-band-edge, .ve-band-edge, .vg-band-edge) {
   filter: blur(1.6px);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  [data-skin="verdant"] :is(.vh-band, .ve-band, .vg-band, .v-footer)::before { animation: none; }
+  [data-skin="verdant"] :is(.vh-band, .ve-band, .vg-band)::before { animation: none; }
 }
 
 /* ── Paper band — the RESTRAINED secondary treatment ─────────────────────
