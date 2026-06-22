@@ -187,6 +187,19 @@
   mask-image: radial-gradient(ellipse 76% 82% at 50% 50%, #000 62%, transparent 99%);
 }
 
+/* Product/app screenshots — crisp path, never paper-blended. Used by Hero/
+   FeatureRow when `product` is true, and directly on GardenLive/GardenTour
+   screen surfaces. Full opacity, full saturation, no mask, no blend. */
+.v-product-shot,
+.v-product-shot img,
+.v-product-shot video {
+  mix-blend-mode: normal !important;
+  filter: none !important;
+  mask-image: none !important;
+  -webkit-mask-image: none !important;
+  opacity: 1 !important;
+}
+
 /* Icon variant — small square card art. Tight circular dissolve + multiply. */
 .v-bleed--icon {
   -webkit-mask-image: radial-gradient(circle at 50% 50%, #000 40%, transparent 78%);

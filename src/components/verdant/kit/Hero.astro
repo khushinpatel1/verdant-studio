@@ -12,6 +12,7 @@ interface Props {
   videoLoop?: boolean;
   videoPlaysinline?: boolean;
   mediaPoster?: string;
+  product?: boolean;
 }
 
 const {
@@ -26,7 +27,8 @@ const {
   videoMuted = true,
   videoLoop = true,
   videoPlaysinline = true,
-  mediaPoster
+  mediaPoster,
+  product = false
 } = Astro.props;
 
 // Respect reduced-motion: no auto-play
@@ -66,10 +68,10 @@ const respectReducedMotion = true;
           loop={videoLoop}
           playsinline={videoPlaysinline}
           preload="metadata"
-          class="v-hero__video v-bleed"
+          class={`v-hero__video ${product ? "v-product-shot" : "v-bleed"}`}
         />
       ) : mediaSrc ? (
-        <img src={mediaSrc} alt="" class="v-hero__image v-bleed" loading="eager" fetchpriority="high" />
+        <img src={mediaSrc} alt="" class={`v-hero__image ${product ? "v-product-shot" : "v-bleed"}`} loading="eager" fetchpriority="high" />
       ) : null}
     </div>
   )}
