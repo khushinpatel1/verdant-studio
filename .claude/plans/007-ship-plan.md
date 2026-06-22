@@ -1,7 +1,21 @@
 # 007 — Verdant site ship plan (Haiku execution)
 
-Status: PENDING
+Status: DONE (Phases 1–7 executed + shipped live 2026-06-22; CI green, verdant 200)
 Tier: Haiku — sequential, ONE session. Commit per phase, then STOP.
+
+## CTA options for KP (pick at your leisure — swapping is a one-line change)
+Three premium closers were built. **CTAClose1 is live as the default** on all main pages.
+The other two are ready-to-swap (same props): edit each page's import + tag in `src/pages/verdant/*.astro`.
+- **CTAClose1 — "Editorial closer" (SHIPPED).** Left-aligned headline, thin gold hairline rule,
+  hairline `.v-cta` links. Quiet, confident, no blobs. The safe premium default.
+- **CTAClose2 — "Split surface" (Linear/Vercel).** Copy left, crisp product slot right — pass
+  `<GardenLive slot="media" />` on product pages; right column collapses on trust/studio pages.
+  Best for the Garden product page.
+- **CTAClose3 — "Manifesto" (Apple/Anthropic).** One oversized centered display line + a single
+  hairline link. No sub-copy, no card. Best for trust/studio/ethos pages where nothing should compete.
+Recommendation: keep CTAClose1 sitewide; swap CTAClose2 onto `/verdant/garden`, CTAClose3 onto
+`/verdant/ethos` + `/verdant/studio`. Your call — all three are live-ready.
+
 Owner: KP · authored by Opus 4.8 session 2026-06-22
 Input: `006-site-deficiency-audit.md` (Codex audit — read it first; every step cites its evidence)
 
