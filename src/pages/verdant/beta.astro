@@ -2,10 +2,21 @@
 import Verdant from "../../layouts/Verdant.astro";
 import Footer from "../../components/verdant/Footer";
 import Hero from "../../components/verdant/kit/Hero.astro";
-import Steps from "../../components/verdant/kit/Steps.astro";
-import CardGrid from "../../components/verdant/kit/CardGrid.astro";
-import Card from "../../components/verdant/kit/Card.astro";
-import CTABand from "../../components/verdant/kit/CTABand.astro";
+import CTAClose1 from "../../components/verdant/kit/CTAClose1.astro";
+
+// {{KP}}: "lifetime free" terms still need business/legal sign-off — see
+// pricing.astro and audit §2 Beta / §7 item 8. Not invented here.
+const onboarding = [
+  { n: "01", step: "Create an account", note: "Sign up at the app. No credit card needed." },
+  { n: "02", step: "Add your accounts", note: "Manual entry or import statements. Both work today." },
+  { n: "03", step: "Start exploring", note: "See your numbers. Keep them private." },
+];
+const readyNow = [
+  "Net worth tracking — every account in one place",
+  "Money — spending, budgets, and quiet subscriptions",
+  "Plan — goals with dates, debt in order",
+  "Grove — an on-device assistant for your numbers",
+];
 ---
 
 <Verdant title="Join the Beta — Garden" description="Early access to Garden. Beta testers keep free access.">
@@ -16,22 +27,30 @@ import CTABand from "../../components/verdant/kit/CTABand.astro";
     cta1={{ label: "Get started", href: "https://garden.khushinpatel1.workers.dev" }}
   />
 
-  <Steps
-    title="How to join"
-    steps={[
-      { number: "01", headline: "Create an account", body: "Sign up at the app. No credit card needed." },
-      { number: "02", headline: "Add your accounts", body: "Manual entry or import statements. Both work now." },
-      { number: "03", headline: "Start exploring", body: "See your numbers. Keep them private." }
-    ]}
-  />
+  <div class="v-beta-panel">
+    <div class="v-beta-panel__col">
+      <span class="v-label">How to join</span>
+      <div class="v-beta-panel__steps">
+        {onboarding.map((o) => (
+          <div class="v-beta-panel__step">
+            <span class="v-beta-panel__n">{o.n}</span>
+            <div>
+              <p class="v-beta-panel__step-head">{o.step}</p>
+              <p class="v-beta-panel__step-note">{o.note}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+    <div class="v-beta-panel__col">
+      <span class="v-label">Ready now</span>
+      <ul class="v-beta-panel__list">
+        {readyNow.map((item) => <li>{item}</li>)}
+      </ul>
+    </div>
+  </div>
 
-  <CardGrid cols={3} title="Ready now">
-    <Card headline="Net worth tracking" blurb="All your accounts in one place." />
-    <Card headline="Money management" blurb="Spending, budgets, and categories." />
-    <Card headline="Grove assistant" blurb="AI that works on your device only." />
-  </CardGrid>
-
-  <CTABand
+  <CTAClose1
     headline="Ready to begin?"
     sub="Your financial life, kept private."
     cta={{ label: "Join the beta", href: "https://garden.khushinpatel1.workers.dev" }}
@@ -39,3 +58,38 @@ import CTABand from "../../components/verdant/kit/CTABand.astro";
 
   <Footer client:visible />
 </Verdant>
+
+<style>
+  .v-beta-panel {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(2.5rem, 6vw, 4rem);
+    padding: clamp(3rem, 8vw, 5rem) clamp(20px, 5vw, 56px);
+    max-width: var(--maxw);
+    margin: 0 auto;
+  }
+  @media (min-width: 768px) {
+    .v-beta-panel { grid-template-columns: 1.2fr 0.8fr; }
+  }
+  .v-beta-panel__col { display: flex; flex-direction: column; gap: 1.5rem; }
+  .v-beta-panel__steps { display: flex; flex-direction: column; }
+  .v-beta-panel__step {
+    display: grid;
+    grid-template-columns: 2.25rem 1fr;
+    gap: 1rem;
+    padding: 1.1rem 0;
+    border-top: 1px solid var(--line);
+  }
+  .v-beta-panel__n { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--gold-ink); }
+  .v-beta-panel__step-head { font-family: var(--font-display); font-size: var(--text-lg); color: var(--fg); margin-bottom: 0.25rem; }
+  .v-beta-panel__step-note { font-size: var(--text-sm); color: var(--muted); line-height: 1.6; }
+  .v-beta-panel__list { display: flex; flex-direction: column; gap: 0.9rem; list-style: none; padding: 0; }
+  .v-beta-panel__list li {
+    font-size: var(--text-sm); color: var(--fg); line-height: 1.5;
+    padding-left: 1.1rem; position: relative;
+  }
+  .v-beta-panel__list li::before {
+    content: ""; position: absolute; left: 0; top: 0.55em;
+    width: 5px; height: 5px; border-radius: 50%; background: var(--gold);
+  }
+</style>

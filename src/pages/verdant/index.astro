@@ -1,23 +1,26 @@
 ---
 import Verdant from "../../layouts/Verdant.astro";
 import Footer from "../../components/verdant/Footer";
-import Hero from "../../components/verdant/kit/Hero.astro";
+import GardenLive from "../../components/verdant/GardenLive.astro";
 import FeatureRow from "../../components/verdant/kit/FeatureRow.astro";
-import CTABand from "../../components/verdant/kit/CTABand.astro";
-import { brand, garden } from "../../data/verdant";
+import CTAClose1 from "../../components/verdant/kit/CTAClose1.astro";
 ---
 
 <Verdant title="Verdant — software grown for people">
-  <Hero
-    eyebrow="Verdant Studio — independent software"
-    headline="Private personal finance."
-    sub="Track accounts, budgets, goals, and net worth — without selling your data to do it."
-    cta1={{ label: "Join the beta", href: "/verdant/beta" }}
-    cta2={{ label: "See Garden", href: "/verdant/garden" }}
-    media={true}
-    mediaSrc="/verdant/garden/garden-home.webp"
-    product={true}
-  />
+  <section class="v-home-hero">
+    <div class="v-home-hero__stack">
+      <div class="v-home-hero__eyebrow">Verdant Studio — independent software</div>
+      <h1 class="v-home-hero__headline">Private personal finance.</h1>
+      <p class="v-home-hero__sub">Track accounts, budgets, goals, and net worth — without selling your data to do it.</p>
+      <div class="v-home-hero__ctas">
+        <a href="/verdant/beta" class="v-cta v-cta--primary">Join the beta</a>
+        <a href="/verdant/garden" class="v-cta">See Garden</a>
+      </div>
+    </div>
+    <div class="v-home-hero__media v-product-shot">
+      <GardenLive />
+    </div>
+  </section>
 
   <FeatureRow
     align="left"
@@ -25,13 +28,6 @@ import { brand, garden } from "../../data/verdant";
     body="Manual entry stays fully local. AI import touches your data once. Bank sync travels labeled plaintext. You choose the tier that fits your work."
     media={false}
     cta={{ label: "Read the privacy spectrum", href: "/verdant/security" }}
-  />
-
-  <CTABand
-    headline="Ready to take control"
-    sub="Start with the Garden beta. Early access, no ads, no surprises."
-    cta={{ label: "Join the beta", href: "/verdant/beta" }}
-    ctaSecondary={{ label: "See what's next", href: "/verdant/roadmap" }}
   />
 
   <FeatureRow
@@ -42,5 +38,39 @@ import { brand, garden } from "../../data/verdant";
     mediaSrc="/verdant/art/ethos-sand.jpg"
   />
 
+  <CTAClose1
+    headline="Ready to take control"
+    sub="Start with the Garden beta. Early access, no ads, no surprises."
+    cta={{ label: "Join the beta", href: "/verdant/beta" }}
+    ctaSecondary={{ label: "See what's next", href: "/verdant/roadmap" }}
+  />
+
   <Footer client:visible />
 </Verdant>
+
+<style>
+  .v-home-hero {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(2.5rem, 8vw, 4rem);
+    align-items: center;
+    padding: clamp(5.5rem, 18vw, 8rem) clamp(20px, 5vw, 56px) clamp(3rem, 10vw, 6rem);
+    max-width: var(--maxw);
+    margin: 0 auto;
+  }
+  @media (min-width: 920px) {
+    .v-home-hero {
+      grid-template-columns: 1.05fr 0.95fr;
+      padding-top: clamp(3rem, 10vw, 6rem);
+    }
+  }
+  .v-home-hero__stack { display: flex; flex-direction: column; gap: 1.5rem; }
+  .v-home-hero__eyebrow {
+    font-family: var(--font-mono); font-size: var(--text-xs);
+    text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold-ink);
+  }
+  .v-home-hero__headline { font-size: var(--display-1); color: var(--fg); line-height: 1.02; }
+  .v-home-hero__sub { font-size: var(--text-lg); color: var(--muted); line-height: 1.5; max-width: 32em; }
+  .v-home-hero__ctas { display: flex; flex-wrap: wrap; gap: 1.75rem; margin-top: 0.5rem; align-items: center; }
+  .v-home-hero__media { display: flex; align-items: center; justify-content: center; }
+</style>

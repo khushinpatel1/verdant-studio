@@ -2,9 +2,7 @@
 import Verdant from "../../layouts/Verdant.astro";
 import Footer from "../../components/verdant/Footer";
 import Hero from "../../components/verdant/kit/Hero.astro";
-import CardGrid from "../../components/verdant/kit/CardGrid.astro";
-import Card from "../../components/verdant/kit/Card.astro";
-import CTABand from "../../components/verdant/kit/CTABand.astro";
+import CTAClose1 from "../../components/verdant/kit/CTAClose1.astro";
 import PrivacySpectrum from "../../components/verdant/PrivacySpectrum";
 import FAQAccordion from "../../components/verdant/FAQAccordion";
 import { faq } from "../../data/verdant";
@@ -23,26 +21,40 @@ import { faq } from "../../data/verdant";
     <PrivacySpectrum client:visible />
   </div>
 
-  <div style="padding: clamp(2rem, 6vw, 3rem) clamp(20px, 5vw, 56px); max-width: 600px; margin: 0 auto; text-align: center; font-family: var(--font-mono, monospace); color: var(--fg); line-height: 2;">
-    <div>Device</div>
-    <div style="color: var(--moss);">↓ encrypt</div>
-    <div>Ciphertext</div>
-    <div style="color: var(--moss);">↓ sync</div>
-    <div>Server (stores ciphertext only — never sees your data)</div>
+  <div class="v-flow">
+    <div class="v-flow__row">
+      <span class="v-label v-label--bare">Device</span>
+      <p>Passphrase set here. Encryption happens before anything leaves.</p>
+    </div>
+    <div class="v-flow__row">
+      <span class="v-label v-label--bare">Ciphertext</span>
+      <p>What actually travels — unreadable without your passphrase.</p>
+    </div>
+    <div class="v-flow__row">
+      <span class="v-label v-label--bare">Server</span>
+      <p>Stores ciphertext only. Never sees your data, by structure, not by promise.</p>
+    </div>
+    <div class="v-flow__row">
+      <span class="v-label v-label--bare">Parser / Grove</span>
+      <p>Named exceptions: AI import touches a statement once; Grove sends a summary only when you ask. Never stored, never used to train.</p>
+    </div>
   </div>
 
-  <CardGrid cols={3} title="The guarantees">
-    <Card headline="Local-first encryption" blurb="Your device holds the keys. The server holds only ciphertext." />
-    <Card headline="No tracking" blurb="No ads, no analytics, no third parties watching your ledger." />
-    <Card headline="Offline by default" blurb="Works with no connection. Your numbers stay yours." />
-  </CardGrid>
+  <div class="v-guarantees">
+    <p class="v-guarantees__lede">
+      Local-first encryption means your device holds the keys — the server stores
+      only ciphertext. No tracking means no ads, no analytics, no third parties
+      watching your ledger. It works offline by default, because your numbers
+      are yours whether or not there's a signal.
+    </p>
+  </div>
 
   <div style="padding: clamp(3rem, 8vw, 5rem) clamp(20px, 5vw, 56px); max-width: var(--maxw); margin: 0 auto;">
     <h2 style="font-size: var(--text-3xl); color: var(--fg); margin-bottom: 2rem;">Questions?</h2>
     <FAQAccordion client:visible items={faq} />
   </div>
 
-  <CTABand
+  <CTAClose1
     headline="Security questions?"
     sub="We're transparent about how it works."
     cta={{ label: "Email us", href: "mailto:verdantmail@proton.me" }}
@@ -50,3 +62,37 @@ import { faq } from "../../data/verdant";
 
   <Footer client:visible />
 </Verdant>
+
+<style>
+  .v-flow {
+    display: flex;
+    flex-direction: column;
+    padding: clamp(2rem, 6vw, 3.5rem) clamp(20px, 5vw, 56px) 0;
+    max-width: var(--maxw);
+    margin: 0 auto;
+  }
+  .v-flow__row {
+    display: grid;
+    grid-template-columns: 9rem 1fr;
+    gap: 1.5rem;
+    padding: 1.1rem 0;
+    border-top: 1px solid var(--line);
+    align-items: baseline;
+  }
+  .v-flow__row p { font-size: var(--text-sm); color: var(--muted); line-height: 1.6; max-width: 38em; }
+  @media (max-width: 600px) {
+    .v-flow__row { grid-template-columns: 1fr; gap: 0.4rem; }
+  }
+  .v-guarantees {
+    padding: clamp(2.5rem, 7vw, 4rem) clamp(20px, 5vw, 56px);
+    max-width: var(--maxw);
+    margin: 0 auto;
+  }
+  .v-guarantees__lede {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    color: var(--fg);
+    line-height: 1.4;
+    max-width: 42em;
+  }
+</style>

@@ -1,0 +1,61 @@
+---
+/**
+ * CTAClose2 — "Split surface" (ready-to-swap, not shipped by default).
+ * Linear/Vercel-style: copy on the left, a crisp product slot on the right
+ * (pass a `slot="media"` named slot — e.g. <GardenLive /> — on product pages;
+ * omit it on trust/studio pages and the right column collapses). Hairline
+ * .v-cta grammar only — no slab buttons, no green pigment blooms.
+ */
+interface Props {
+  headline: string;
+  sub?: string;
+  cta: { label: string; href: string };
+  ctaSecondary?: { label: string; href: string };
+}
+
+const { headline, sub, cta, ctaSecondary } = Astro.props;
+const hasMedia = Astro.slots.has("media");
+---
+
+<section class="v-cta2" data-has-media={hasMedia}>
+  <div class="v-cta2__copy">
+    <span class="v-label">Get started</span>
+    <h2 class="v-cta2__headline">{headline}</h2>
+    {sub && <p class="v-cta2__sub">{sub}</p>}
+    <div class="v-cta2__ctas">
+      <a href={cta.href} class="v-cta v-cta--primary">{cta.label}</a>
+      {ctaSecondary && <a href={ctaSecondary.href} class="v-cta">{ctaSecondary.label}</a>}
+    </div>
+  </div>
+  {hasMedia && (
+    <div class="v-cta2__media v-product-shot">
+      <slot name="media" />
+    </div>
+  )}
+</section>
+
+<style>
+  .v-cta2 {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(2.5rem, 8vw, 4rem);
+    align-items: center;
+    padding: clamp(3.5rem, 9vw, 6rem) var(--v-pad-h, clamp(20px, 5vw, 56px));
+    max-width: var(--maxw);
+    margin: 0 auto;
+  }
+  .v-cta2[data-has-media="true"] {
+    background: var(--parchment);
+    border-radius: var(--radius);
+  }
+  @media (min-width: 920px) {
+    .v-cta2[data-has-media="true"] {
+      grid-template-columns: 1.1fr 0.9fr;
+    }
+  }
+  .v-cta2__copy { display: flex; flex-direction: column; gap: 1.1rem; }
+  .v-cta2__headline { font-size: var(--text-3xl); color: var(--fg); line-height: 1.1; max-width: 22em; }
+  .v-cta2__sub { font-size: var(--text-base); color: var(--muted); line-height: 1.6; max-width: 28em; }
+  .v-cta2__ctas { display: flex; flex-wrap: wrap; gap: 2rem; align-items: center; margin-top: 0.5rem; }
+  .v-cta2__media { display: flex; align-items: center; justify-content: center; }
+</style>

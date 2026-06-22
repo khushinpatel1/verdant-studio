@@ -2,7 +2,7 @@
 import Verdant from "../../layouts/Verdant.astro";
 import Footer from "../../components/verdant/Footer";
 import Hero from "../../components/verdant/kit/Hero.astro";
-import CTABand from "../../components/verdant/kit/CTABand.astro";
+import CTAClose1 from "../../components/verdant/kit/CTAClose1.astro";
 import { ethos, garden } from "../../data/verdant";
 
 // Status timeline — verified entries only (src/data/verdant.ts ethos.shipping).
@@ -36,7 +36,7 @@ const timeline = ethos.shipping.map((item) => {
     </div>
   </div>
 
-  <CTABand
+  <CTAClose1
     headline="See it live"
     sub="Try Garden, or read exactly what touches a server."
     cta={{ label: "Try Garden", href: garden.url }}

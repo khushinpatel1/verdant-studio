@@ -1,33 +1,27 @@
 ---
 import Verdant from "../../layouts/Verdant.astro";
 import Footer from "../../components/verdant/Footer";
-import Hero from "../../components/verdant/kit/Hero.astro";
+import GardenLive from "../../components/verdant/GardenLive.astro";
 import FeatureRow from "../../components/verdant/kit/FeatureRow.astro";
-import CardGrid from "../../components/verdant/kit/CardGrid.astro";
-import Card from "../../components/verdant/kit/Card.astro";
-import CTABand from "../../components/verdant/kit/CTABand.astro";
+import CTAClose1 from "../../components/verdant/kit/CTAClose1.astro";
 import GardenTour from "../../components/verdant/GardenTour";
-import { garden } from "../../data/verdant";
-
-// Privacy spectrum — the honest 3-tier model (plan §0 truth correction).
-// NEVER "never leaves your device" — each tier names exactly what touches a server.
-const spectrum = [
-  { n: "01", tier: "Manual", note: "Type it in yourself. Fully local — nothing to sync, nothing to send." },
-  { n: "02", tier: "AI import", note: "A statement or CSV, read once by the parser to pull out the numbers. Encrypted before it's stored." },
-  { n: "03", tier: "Bank link", note: "When sync arrives: your bank's data travels in labeled, encrypted transit — never sold, never read by us at rest." },
-];
+import { garden, privacySpectrum } from "../../data/verdant";
 ---
 
 <Verdant title="Garden — Personal finance, kept private" description={garden.blurb}>
-  <Hero
-    headline={garden.name}
-    sub={garden.oneLine}
-    cta1={{ label: "Try Garden", href: garden.url }}
-    cta2={{ label: "Security", href: "/verdant/security" }}
-    media={true}
-    videoSrc="/verdant/media/hero-landscape-2.webp"
-    mediaPoster={garden.cover}
-  />
+  <section class="v-garden-hero">
+    <div class="v-garden-hero__stack">
+      <h1 class="v-garden-hero__headline">{garden.name}</h1>
+      <p class="v-garden-hero__sub">{garden.oneLine}</p>
+      <div class="v-garden-hero__ctas">
+        <a href={garden.url} class="v-cta v-cta--primary">Try Garden</a>
+        <a href="/verdant/security" class="v-cta">Security</a>
+      </div>
+    </div>
+    <div class="v-garden-hero__media v-product-shot">
+      <GardenLive />
+    </div>
+  </section>
 
   <FeatureRow
     align="left"
@@ -60,13 +54,25 @@ const spectrum = [
     <GardenTour client:visible />
   </div>
 
-  <CardGrid cols={3} title="Built on">
-    <Card headline="Private by structure" blurb="You choose the tier; the architecture holds it." />
-    <Card headline="Works offline" blurb="Your garden is yours whether or not there's a signal." />
-    <Card headline="Honest model" blurb="You pay for the app. That's the whole business." />
-  </CardGrid>
+  <!-- "Built on" — de-slopped from three equal cards into proof mapped to the
+       real privacy tiers (src/data/verdant.ts privacySpectrum), per audit §4. -->
+  <div class="v-built-on">
+    <h2 class="v-built-on__title">Built on the privacy spectrum</h2>
+    <div class="v-built-on__rows">
+      {privacySpectrum.map((tier) => (
+        <div class="v-built-on__row">
+          <span class="v-built-on__n">{tier.n}</span>
+          <div class="v-built-on__copy">
+            <span class="v-built-on__label">{tier.label}</span>
+            <p class="v-built-on__reality">{tier.reality}</p>
+          </div>
+          <span class="v-built-on__status">{tier.status}</span>
+        </div>
+      ))}
+    </div>
+  </div>
 
-  <CTABand
+  <CTAClose1
     headline="Start your garden"
     sub="Private. Encrypted. On your device."
     cta={{ label: "Try Garden", href: garden.url }}
@@ -75,3 +81,50 @@ const spectrum = [
 
   <Footer client:visible />
 </Verdant>
+
+<style>
+  .v-garden-hero {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(2.5rem, 8vw, 4rem);
+    align-items: center;
+    padding: clamp(5.5rem, 18vw, 8rem) clamp(20px, 5vw, 56px) clamp(3rem, 10vw, 6rem);
+    max-width: var(--maxw);
+    margin: 0 auto;
+  }
+  @media (min-width: 920px) {
+    .v-garden-hero {
+      grid-template-columns: 1.05fr 0.95fr;
+      padding-top: clamp(3rem, 10vw, 6rem);
+    }
+  }
+  .v-garden-hero__stack { display: flex; flex-direction: column; gap: 1.5rem; }
+  .v-garden-hero__headline { font-size: var(--display-1); color: var(--fg); line-height: 1.02; font-family: var(--font-display); }
+  .v-garden-hero__sub { font-size: var(--text-lg); color: var(--muted); line-height: 1.5; max-width: 32em; }
+  .v-garden-hero__ctas { display: flex; flex-wrap: wrap; gap: 1.75rem; margin-top: 0.5rem; align-items: center; }
+  .v-garden-hero__media { display: flex; align-items: center; justify-content: center; }
+
+  .v-built-on {
+    padding: clamp(3rem, 8vw, 5rem) clamp(20px, 5vw, 56px);
+    max-width: var(--maxw);
+    margin: 0 auto;
+  }
+  .v-built-on__title { font-size: var(--text-3xl); color: var(--fg); line-height: 1.1; margin-bottom: clamp(1.5rem, 4vw, 2.5rem); }
+  .v-built-on__rows { display: flex; flex-direction: column; }
+  .v-built-on__row {
+    display: grid;
+    grid-template-columns: 2.5rem 1fr auto;
+    gap: 1.5rem;
+    align-items: baseline;
+    padding: 1.4rem 0;
+    border-top: 1px solid var(--line);
+  }
+  .v-built-on__n { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--gold-ink); }
+  .v-built-on__copy { display: flex; flex-direction: column; gap: 0.4rem; }
+  .v-built-on__label { font-family: var(--font-display); font-size: var(--text-xl); color: var(--fg); }
+  .v-built-on__reality { font-size: var(--text-sm); color: var(--muted); line-height: 1.6; max-width: 36em; }
+  .v-built-on__status {
+    font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--muted); white-space: nowrap;
+  }
+</style>

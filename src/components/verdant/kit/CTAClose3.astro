@@ -1,0 +1,42 @@
+---
+/**
+ * CTAClose3 — "Manifesto" (ready-to-swap, not shipped by default).
+ * Apple/Anthropic-style: one oversized display line, centered, with a single
+ * hairline primary link beneath it. No sub-copy clutter, no secondary link,
+ * no card. The quietest of the three — best for trust/studio pages where the
+ * product itself shouldn't compete for attention.
+ */
+interface Props {
+  headline: string;
+  cta: { label: string; href: string };
+}
+
+const { headline, cta } = Astro.props;
+---
+
+<section class="v-cta3">
+  <p class="v-cta3__headline">{headline}</p>
+  <a href={cta.href} class="v-cta v-cta--primary v-cta3__link">{cta.label}</a>
+</section>
+
+<style>
+  .v-cta3 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: clamp(1.75rem, 5vw, 2.75rem);
+    padding: clamp(4.5rem, 12vw, 8rem) var(--v-pad-h, clamp(20px, 5vw, 56px));
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .v-cta3__headline {
+    font-family: var(--font-display);
+    font-size: clamp(1.9rem, 4.4vw, 3.1rem);
+    color: var(--fg);
+    line-height: 1.15;
+  }
+  .v-cta3__link {
+    font-size: var(--text-sm);
+  }
+</style>

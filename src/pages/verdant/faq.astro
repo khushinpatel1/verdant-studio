@@ -2,7 +2,7 @@
 import Verdant from "../../layouts/Verdant.astro";
 import Footer from "../../components/verdant/Footer";
 import Hero from "../../components/verdant/kit/Hero.astro";
-import CTABand from "../../components/verdant/kit/CTABand.astro";
+import CTAClose1 from "../../components/verdant/kit/CTAClose1.astro";
 import FAQAccordion from "../../components/verdant/FAQAccordion";
 import { faq } from "../../data/verdant";
 ---
@@ -17,7 +17,7 @@ import { faq } from "../../data/verdant";
     <FAQAccordion client:visible items={faq} />
   </div>
 
-  <CTABand
+  <CTAClose1
     headline="Still have questions?"
     sub="Reach out. We're here to help."
     cta={{ label: "Email us", href: "mailto:verdantmail@proton.me" }}

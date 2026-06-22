@@ -3,9 +3,14 @@ import Verdant from "../../layouts/Verdant.astro";
 import Footer from "../../components/verdant/Footer";
 import Hero from "../../components/verdant/kit/Hero.astro";
 import FeatureRow from "../../components/verdant/kit/FeatureRow.astro";
-import Steps from "../../components/verdant/kit/Steps.astro";
-import CTABand from "../../components/verdant/kit/CTABand.astro";
+import CTAClose1 from "../../components/verdant/kit/CTAClose1.astro";
 import { ethos } from "../../data/verdant";
+
+const laws = [
+  { n: "01", headline: "Your data is yours", body: "Encrypted on your device. The server holds only ciphertext." },
+  { n: "02", headline: "No ads, no tracking", body: "You're the customer, never the product. Full stop." },
+  { n: "03", headline: "Built in the open", body: "Code, architecture, and the privacy spectrum — auditable, explained, real." },
+];
 ---
 
 <Verdant title="Ethos — What Verdant believes" description="A quiet kind of conviction about how software should work.">
@@ -38,21 +43,27 @@ import { ethos } from "../../data/verdant";
   <FeatureRow
     align="right"
     headline="How we keep it"
-    body="Code you can read. A security audit you can check. No dark patterns. No dark mode for the business model. We're accountable to you, not an algorithm."
+    body="Code you can read. Architecture notes and a privacy spectrum you can check. No dark patterns. No dark mode for the business model. We're accountable to you, not an algorithm."
     media={true}
     mediaSrc="/verdant/media/koi.jpg"
   />
 
-  <Steps
-    title="Our Three Laws"
-    steps={[
-      { number: "01", headline: "Your data is yours", body: "Encrypted on your device. The server holds only ciphertext." },
-      { number: "02", headline: "No ads, no tracking", body: "You're the customer, never the product. Full stop." },
-      { number: "03", headline: "Built in the open", body: "Code, security, privacy — auditable, explained, real." }
-    ]}
-  />
+  <div class="v-laws">
+    <h2 class="v-laws__title">Our Three Laws</h2>
+    <div class="v-laws__rows">
+      {laws.map((law) => (
+        <div class="v-laws__row">
+          <span class="v-laws__n">{law.n}</span>
+          <div class="v-laws__copy">
+            <p class="v-laws__headline">{law.headline}</p>
+            <p class="v-laws__body">{law.body}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
 
-  <CTABand
+  <CTAClose1
     headline="Let's talk"
     sub="Questions, feedback, or just thoughts?"
     cta={{ label: "Email us", href: "mailto:verdantmail@proton.me" }}
@@ -60,3 +71,25 @@ import { ethos } from "../../data/verdant";
 
   <Footer client:visible />
 </Verdant>
+
+<style>
+  .v-laws {
+    padding: clamp(3rem, 8vw, 5rem) clamp(20px, 5vw, 56px);
+    max-width: var(--maxw);
+    margin: 0 auto;
+  }
+  .v-laws__title { font-size: var(--text-3xl); color: var(--fg); line-height: 1.1; margin-bottom: clamp(1.5rem, 4vw, 2.5rem); }
+  .v-laws__rows { display: flex; flex-direction: column; }
+  .v-laws__row {
+    display: grid;
+    grid-template-columns: 3rem 1fr;
+    gap: 1.75rem;
+    padding: clamp(1.5rem, 3vw, 2.25rem) 0;
+    border-top: 1px solid var(--line);
+    align-items: baseline;
+  }
+  .v-laws__n { font-family: var(--font-mono); font-size: var(--text-sm); color: var(--gold-ink); }
+  .v-laws__copy { display: flex; flex-direction: column; gap: 0.4rem; }
+  .v-laws__headline { font-family: var(--font-display); font-size: var(--text-2xl); color: var(--fg); }
+  .v-laws__body { font-size: var(--text-base); color: var(--muted); line-height: 1.6; max-width: 38em; }
+</style>
