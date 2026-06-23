@@ -1,6 +1,6 @@
 # 014 — FAQ visible+clickable, kill ink blobs, fix edge bleed
 
-Status: PENDING — Haiku exec. Three surgical edits. No exploration needed; exact lines below.
+Status: DONE — shipped 84f2075, live on origin/main (2026-06-22). Haiku exec, Opus-verified. Three surgical edits. No exploration needed; exact lines below.
 Root causes diagnosed by Opus. Do NOT freelance. Verify build green, push, confirm live.
 
 ---
