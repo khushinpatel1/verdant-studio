@@ -4,7 +4,6 @@ import Footer from "../../components/verdant/Footer";
 import Hero from "../../components/verdant/kit/Hero.astro";
 import CTAClose1 from "../../components/verdant/kit/CTAClose1.astro";
 import FAQAccordion from "../../components/verdant/FAQAccordion";
-import MistLayer from "../../components/verdant/ink/MistLayer";
 import { faq } from "../../data/verdant";
 ---
 
@@ -15,9 +14,6 @@ import { faq } from "../../data/verdant";
   />
 
   <div style="padding: clamp(3rem, 8vw, 5rem) clamp(20px, 5vw, 56px); max-width: var(--maxw); margin: 0 auto; position: relative;">
-    <div style="position: absolute; top: -3rem; left: 0; width: 200px; height: 200px; opacity: 0.08; pointer-events: none; z-index: 0;">
-      <MistLayer client:load />
-    </div>
     <div style="position: relative; z-index: 1;">
       <FAQAccordion client:load items={faq} />
     </div>

@@ -3,7 +3,6 @@ import Verdant from "../../layouts/Verdant.astro";
 import Footer from "../../components/verdant/Footer";
 import Hero from "../../components/verdant/kit/Hero.astro";
 import CTAClose1 from "../../components/verdant/kit/CTAClose1.astro";
-import MountainRidge from "../../components/verdant/ink/MountainRidge";
 import { ethos, garden } from "../../data/verdant";
 
 // Status timeline — verified entries only (src/data/verdant.ts ethos.shipping).
@@ -39,9 +38,6 @@ const timeline = ethos.shipping.map((item) => {
 
       {/* Timeline with ink accent */}
       <div style="position: relative;">
-        <div style="position: absolute; top: -2rem; right: -4rem; width: 280px; height: 180px; opacity: 0.1; pointer-events: none; z-index: 0;">
-          <MountainRidge client:load />
-        </div>
         <div style="display: flex; flex-direction: column; gap: 0; position: relative; z-index: 1;">
           {timeline.map((item) => (
             <div style="display: grid; grid-template-columns: 1fr auto; gap: 1.5rem; align-items: baseline; padding: 1.1rem 0; border-top: 1px solid var(--line);">

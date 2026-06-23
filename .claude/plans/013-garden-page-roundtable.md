@@ -1,6 +1,6 @@
 # 013 — Garden page round-table fixes
 
-Status: PENDING — Haiku-executable in one pass. Opus reviewed live (preview @ localhost:4321).
+Status: DONE — Executed 2026-06-22 (commits 5d3dec0–d70bf77).
 
 Scope: the `/verdant/garden/` page + two cross-cutting bugs (FAQ hydration, bleed mask).
 All findings reproduced in the local dev preview, not guessed.

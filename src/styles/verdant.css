@@ -166,8 +166,14 @@
        that's why edges read hard. No border, no radius: a feather can't be
        clipped by a rounded rectangle. Only ever put on light-ground art. */
 .v-bleed {
-  -webkit-mask-image: radial-gradient(ellipse 100% 100% at 50% 50%, #000 86%, transparent 100%);
-  mask-image: radial-gradient(ellipse 100% 100% at 50% 50%, #000 86%, transparent 100%);
+  -webkit-mask-image:
+    linear-gradient(to right, transparent 0, #000 7%, #000 93%, transparent 100%),
+    linear-gradient(to bottom, transparent 0, #000 7%, #000 93%, transparent 100%);
+  mask-image:
+    linear-gradient(to right, transparent 0, #000 7%, #000 93%, transparent 100%),
+    linear-gradient(to bottom, transparent 0, #000 7%, #000 93%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
   -webkit-mask-size: 100% 100%;
@@ -200,8 +206,14 @@
 
 /* Icon variant — small square card art. Circular dissolve + multiply. */
 .v-bleed--icon {
-  -webkit-mask-image: radial-gradient(circle at 50% 50%, #000 86%, transparent 100%);
-  mask-image: radial-gradient(circle at 50% 50%, #000 86%, transparent 100%);
+  -webkit-mask-image:
+    linear-gradient(to right, transparent 0, #000 7%, #000 93%, transparent 100%),
+    linear-gradient(to bottom, transparent 0, #000 7%, #000 93%, transparent 100%);
+  mask-image:
+    linear-gradient(to right, transparent 0, #000 7%, #000 93%, transparent 100%),
+    linear-gradient(to bottom, transparent 0, #000 7%, #000 93%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
   mix-blend-mode: multiply;
@@ -210,14 +222,14 @@
 
 /* Legacy fallback — old v-img-soft for backwards compat */
 .v-img-soft {
-  -webkit-mask-image: radial-gradient(
-    ellipse 100% 100% at 50% 50%,
-    #000 86%, transparent 100%
-  );
-  mask-image: radial-gradient(
-    ellipse 100% 100% at 50% 50%,
-    #000 86%, transparent 100%
-  );
+  -webkit-mask-image:
+    linear-gradient(to right, transparent 0, #000 7%, #000 93%, transparent 100%),
+    linear-gradient(to bottom, transparent 0, #000 7%, #000 93%, transparent 100%);
+  mask-image:
+    linear-gradient(to right, transparent 0, #000 7%, #000 93%, transparent 100%),
+    linear-gradient(to bottom, transparent 0, #000 7%, #000 93%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
 }
 
 /* scoped to the skin so they beat the element-qualified [data-skin] h1..h4 rule */
