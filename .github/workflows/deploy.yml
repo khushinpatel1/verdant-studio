@@ -3,6 +3,11 @@ name: Deploy
 on:
   push:
     branches: [main, v1, v3]
+    paths-ignore:
+      - '**.md'
+      - '.claude/**'
+      - 'TODO.md'
+      - 'VISION.md'
   workflow_dispatch:
 
 jobs:
