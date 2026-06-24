@@ -1,9 +1,10 @@
-# pastures — AI Context Map
+# verdant-studio — AI Context Map
 
 > **Stack:** raw-http | none | react | typescript
 
-> 0 routes | 0 models | 20 components | 0 lib files | 1 env vars | 0 middleware
-> **Last scanned:** 2026-06-20 02:31 — re-run after significant changes
+> 0 routes | 0 models | 21 components | 2 lib files | 1 env vars | 0 middleware
+> **Token savings:** this file is ~1,300 tokens. Without it, AI exploration would cost ~14,800 tokens. **Saves ~13,500 tokens per conversation.**
+> **Last scanned:** 2026-06-24 21:18 — re-run after significant changes
 
 ---
 
@@ -13,12 +14,14 @@
 - **FAQAccordion** — props: items, className — `src/components/verdant/FAQAccordion.tsx`
 - **Footer** — props: tone — `src/components/verdant/Footer.tsx`
 - **GardenTour** — props: className — `src/components/verdant/GardenTour.tsx`
+- **HeroGarden** — props: className, style — `src/components/verdant/HeroGarden.tsx`
 - **InkGrowth** — props: side, className, style — `src/components/verdant/InkGrowth.tsx`
 - **Logo** — props: withWordmark, size, className — `src/components/verdant/Logo.tsx`
 - **Nav** — props: path — `src/components/verdant/Nav.tsx`
 - **PrivacySpectrum** — props: className — `src/components/verdant/PrivacySpectrum.tsx`
 - **ScrollPillars** — props: className — `src/components/verdant/ScrollPillars.tsx`
 - **TextReveal** — props: as, lines, className, style — `src/components/verdant/TextReveal.tsx`
+- **VineBorder** — props: position, className — `src/components/verdant/VineBorder.tsx`
 - **Bamboo** — props: className, style, side — `src/components/verdant/ink/Bamboo.tsx`
 - **BlossomBranch** — props: side, className, style — `src/components/verdant/ink/BlossomBranch.tsx`
 - **Enso** — props: side, className, style — `src/components/verdant/ink/Enso.tsx`
@@ -28,6 +31,13 @@
 - **MountainRidge** — props: className, style, side — `src/components/verdant/ink/MountainRidge.tsx`
 - **PetalFall** — props: side, className, style — `src/components/verdant/ink/PetalFall.tsx`
 - **TabShowcase** — props: tabs, defaultTab — `src/components/verdant/kit/TabShowcase.tsx`
+
+---
+
+# Libraries
+
+- `functions/api/waitlist.ts` — function onRequestPost
+- `src/utils/choreographedReveal.ts` — function choreographSection: (section, config) => void, function armChoreography: () => void
 
 ---
 
@@ -53,26 +63,28 @@
 
 - `src/data/verdant.ts` — imported by **4** files
 - `src/components/verdant/Logo.tsx` — imported by **2** files
+- `src/components/verdant/drawGrowth.ts` — imported by **2** files
 - `src/components/verdant/ink/Koi.tsx` — imported by **2** files
+- `src/components/verdant/ink/Enso.tsx` — imported by **2** files
 - `src/components/verdant/ink/Bamboo.tsx` — imported by **2** files
 - `src/components/verdant/ink/BlossomBranch.tsx` — imported by **2** files
 - `src/components/verdant/ink/Moon.tsx` — imported by **1** files
 - `src/components/verdant/ink/MountainRidge.tsx` — imported by **1** files
 - `src/components/verdant/ink/MistLayer.tsx` — imported by **1** files
-- `src/components/verdant/ink/Enso.tsx` — imported by **1** files
 - `src/components/verdant/ink/PetalFall.tsx` — imported by **1** files
 
 ## Import Map (who imports what)
 
 - `src/data/verdant.ts` ← `src/components/verdant/Footer.tsx`, `src/components/verdant/GardenTour.tsx`, `src/components/verdant/Nav.tsx`, `src/components/verdant/PrivacySpectrum.tsx`
 - `src/components/verdant/Logo.tsx` ← `src/components/verdant/Footer.tsx`, `src/components/verdant/Nav.tsx`
+- `src/components/verdant/drawGrowth.ts` ← `src/components/verdant/HeroGarden.tsx`, `src/components/verdant/VineBorder.tsx`
 - `src/components/verdant/ink/Koi.tsx` ← `src/components/verdant/ScrollPillars.tsx`, `src/components/verdant/ink/index.ts`
+- `src/components/verdant/ink/Enso.tsx` ← `src/components/verdant/ScrollPillars.tsx`, `src/components/verdant/ink/index.ts`
 - `src/components/verdant/ink/Bamboo.tsx` ← `src/components/verdant/ScrollPillars.tsx`, `src/components/verdant/ink/index.ts`
 - `src/components/verdant/ink/BlossomBranch.tsx` ← `src/components/verdant/ScrollPillars.tsx`, `src/components/verdant/ink/index.ts`
 - `src/components/verdant/ink/Moon.tsx` ← `src/components/verdant/ink/index.ts`
 - `src/components/verdant/ink/MountainRidge.tsx` ← `src/components/verdant/ink/index.ts`
 - `src/components/verdant/ink/MistLayer.tsx` ← `src/components/verdant/ink/index.ts`
-- `src/components/verdant/ink/Enso.tsx` ← `src/components/verdant/ink/index.ts`
 
 ---
 
