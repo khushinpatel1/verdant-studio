@@ -142,7 +142,7 @@ export default function GardenTour({ className = "" }: GardenTourProps) {
     const st = ScrollTrigger.create({
       trigger: section,
       start: "top top",
-      end: () => `+=${pinTarget.offsetHeight * (stepCount - 1) + window.innerHeight * 0.4}`,
+      end: () => `+=${window.innerHeight * 1.8}`,
       pin: pinTarget,
       pinSpacing: true,
       onUpdate(self) {

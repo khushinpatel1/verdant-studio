@@ -63,15 +63,14 @@ const respectReducedMotion = true;
         <video
           src={videoSrc}
           poster={mediaPoster}
-          autoplay
           muted={videoMuted}
           loop={videoLoop}
           playsinline={videoPlaysinline}
-          preload="metadata"
+          preload="none"
           class={`v-hero__video ${product ? "v-product-shot" : "v-bleed"}`}
         />
       ) : mediaSrc ? (
-        <img src={mediaSrc} alt="" class={`v-hero__image ${product ? "v-product-shot" : "v-bleed"}`} loading="eager" fetchpriority="high" />
+        <img src={mediaSrc} alt="" class={`v-hero__image ${product ? "v-product-shot" : "v-bleed"}`} loading="lazy" />
       ) : null}
     </div>
   )}
