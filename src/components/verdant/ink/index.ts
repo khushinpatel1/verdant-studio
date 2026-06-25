@@ -5,4 +5,3 @@ export { default as Bamboo } from "./Bamboo";
 export { default as BlossomBranch } from "./BlossomBranch";
 export { default as Enso } from "./Enso";
 export { default as Koi } from "./Koi";
-export { default as PetalFall } from "./PetalFall";

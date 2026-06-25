@@ -220,18 +220,6 @@
   border-radius: 0 !important;
 }
 
-/* Legacy fallback — old v-img-soft for backwards compat */
-.v-img-soft {
-  -webkit-mask-image:
-    linear-gradient(to right, transparent 0, #000 7%, #000 93%, transparent 100%),
-    linear-gradient(to bottom, transparent 0, #000 7%, #000 93%, transparent 100%);
-  mask-image:
-    linear-gradient(to right, transparent 0, #000 7%, #000 93%, transparent 100%),
-    linear-gradient(to bottom, transparent 0, #000 7%, #000 93%, transparent 100%);
-  -webkit-mask-composite: source-in;
-  mask-composite: intersect;
-}
-
 /* scoped to the skin so they beat the element-qualified [data-skin] h1..h4 rule */
 [data-skin="verdant"] .v-display { font-family: var(--font-display); font-weight: 400; letter-spacing: -0.02em; line-height: 1.0; }
 [data-skin="verdant"] .v-display em { color: var(--gold); }
@@ -268,8 +256,6 @@
 .v-cta:hover { gap: 0.85rem; color: var(--gold); }
 .v-cta:hover::before { transform: scaleX(1); }
 .v-cta:hover::after { opacity: 0; }
-.v-cta--light { color: var(--moon); }
-.v-cta--light::after { background: var(--moon); }
 
 /* primary CTA — a filled gold seed-button; the one place the hairline becomes a slab */
 .v-cta--primary {
