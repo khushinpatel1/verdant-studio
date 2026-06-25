@@ -193,21 +193,20 @@
   }
 </style>
 
-<script lang="ts">
-  // Pause Garden animations when offscreen — they're decorative-only.
+<script>
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const phone = document.querySelector<HTMLElement>('.gl-phone');
+  const phone = document.querySelector('.gl-phone');
 
   if (phone && !reduce) {
-    let countInterval: ReturnType<typeof setInterval> | null = null;
+    let countInterval = null;
 
     const startCountUp = () => {
-      document.querySelectorAll<HTMLElement>('.gl-net-num').forEach((el) => {
+      document.querySelectorAll('.gl-net-num').forEach((el) => {
         const target = Number(el.dataset.count || '0');
-        const fmt = (n: number) => '$' + Math.round(n).toLocaleString('en-US');
+        const fmt = (n) => '$' + Math.round(n).toLocaleString('en-US');
         const run = () => {
           const dur = 1100, t0 = performance.now();
-          const tick = (now: number) => {
+          const tick = (now) => {
             const p = Math.min(1, (now - t0) / dur);
             const eased = 1 - Math.pow(1 - p, 3);
             el.textContent = fmt(target * eased);
