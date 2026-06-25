@@ -197,48 +197,49 @@
   // Pause Garden animations when offscreen — they're decorative-only.
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const phone = document.querySelector<HTMLElement>('.gl-phone');
-  if (!phone || reduce) return;
 
-  let countInterval: ReturnType<typeof setInterval> | null = null;
+  if (phone && !reduce) {
+    let countInterval: ReturnType<typeof setInterval> | null = null;
 
-  const startCountUp = () => {
-    document.querySelectorAll<HTMLElement>('.gl-net-num').forEach((el) => {
-      const target = Number(el.dataset.count || '0');
-      const fmt = (n: number) => '$' + Math.round(n).toLocaleString('en-US');
-      const run = () => {
-        const dur = 1100, t0 = performance.now();
-        const tick = (now: number) => {
-          const p = Math.min(1, (now - t0) / dur);
-          const eased = 1 - Math.pow(1 - p, 3);
-          el.textContent = fmt(target * eased);
-          if (p < 1) requestAnimationFrame(tick);
+    const startCountUp = () => {
+      document.querySelectorAll<HTMLElement>('.gl-net-num').forEach((el) => {
+        const target = Number(el.dataset.count || '0');
+        const fmt = (n: number) => '$' + Math.round(n).toLocaleString('en-US');
+        const run = () => {
+          const dur = 1100, t0 = performance.now();
+          const tick = (now: number) => {
+            const p = Math.min(1, (now - t0) / dur);
+            const eased = 1 - Math.pow(1 - p, 3);
+            el.textContent = fmt(target * eased);
+            if (p < 1) requestAnimationFrame(tick);
+          };
+          requestAnimationFrame(tick);
         };
-        requestAnimationFrame(tick);
-      };
-      run();
-    });
-  };
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting) {
-          phone.style.animationPlayState = 'running';
-          if (!countInterval) {
-            startCountUp();
-            countInterval = setInterval(startCountUp, 12000);
-          }
-        } else {
-          phone.style.animationPlayState = 'paused';
-          if (countInterval) {
-            clearInterval(countInterval);
-            countInterval = null;
-          }
-        }
+        run();
       });
-    },
-    { threshold: 0.1 }
-  );
+    };
 
-  observer.observe(phone);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            phone.style.animationPlayState = 'running';
+            if (!countInterval) {
+              startCountUp();
+              countInterval = setInterval(startCountUp, 12000);
+            }
+          } else {
+            phone.style.animationPlayState = 'paused';
+            if (countInterval) {
+              clearInterval(countInterval);
+              countInterval = null;
+            }
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    observer.observe(phone);
+  }
 </script>
