@@ -20,6 +20,14 @@ Full project context: `./CLAUDE.md`. Studio north star: `~/Dev/partnership/VISIO
 - **Verify before destroy.** Read before overwrite/delete; prefer reversible; least-privilege.
   Never dedupe a lowercase `/dev` path (case-insensitive APFS — it deletes everything).
 
+## Recall before you explore (no blind re-reads)
+Before grepping/reading the tree cold: (1) query the `codebase-memory` MCP — this repo is indexed
+into a persistent graph (functions, call chains, routes); `search_code`/`get_architecture`/`trace_path`
+answer structural questions in one query (configured for Codex in `~/.codex/config.toml`). (2) Read
+`./.codesight/CODESIGHT.md` for the human overview (~500 tokens vs ~6k blind). (3) Recall web research
+from `~/Dev/research/{firehose,notes}` before searching. Re-index after big changes:
+`codebase-memory-mcp cli index_repository '{"repo_path":"<this repo>"}'`.
+
 ## Build / verify
 ```bash
 npm install
