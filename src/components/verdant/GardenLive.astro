@@ -195,21 +195,22 @@
 
 <script>
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const phone = document.querySelector('.gl-phone');
+  const phone = document.querySelector('.gl-phone') as HTMLElement | null;
 
   if (phone && !reduce) {
-    let countInterval = null;
+    let countInterval: ReturnType<typeof setInterval> | null = null;
 
     const startCountUp = () => {
       document.querySelectorAll('.gl-net-num').forEach((el) => {
-        const target = Number(el.dataset.count || '0');
-        const fmt = (n) => '$' + Math.round(n).toLocaleString('en-US');
+        const htmlEl = el as HTMLElement;
+        const target = Number(htmlEl.dataset.count || '0');
+        const fmt = (n: number) => '$' + Math.round(n).toLocaleString('en-US');
         const run = () => {
           const dur = 1100, t0 = performance.now();
-          const tick = (now) => {
+          const tick = (now: number) => {
             const p = Math.min(1, (now - t0) / dur);
             const eased = 1 - Math.pow(1 - p, 3);
-            el.textContent = fmt(target * eased);
+            htmlEl.textContent = fmt(target * eased);
             if (p < 1) requestAnimationFrame(tick);
           };
           requestAnimationFrame(tick);

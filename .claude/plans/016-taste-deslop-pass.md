@@ -1,6 +1,6 @@
 # 016 — Taste de-slop pass + signature-motion elevation
 
-**Status: DONE (2026-06-26, 0aa02da)** DONE
+**Status: IN PROGRESS**
 **Tier:** Haiku (Phases 1–2, 4). Phase 3 (motion) → Sonnet if Haiku stalls.
 **Engine:** Claude Code
 **Verify per step:** `npm run check` (astro check) after each phase; `npm run build` before commit; `npm run verify:live` after deploy.
