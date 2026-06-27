@@ -1,6 +1,8 @@
 # 016 — Taste de-slop pass + signature-motion elevation
 
-**Status: IN PROGRESS**
+**Status: IN PROGRESS (2026-06-27)**
+**What's done:** V1 (header fix) + V2 (type errors → 0 errors). `npm run check` passes 0 errors; `npm run build` green (17 pages).
+**Outstanding:** V3 (copy violations from 016 audit sweep), V4 (add `astro check` to CI).
 **Tier:** Haiku (Phases 1–2, 4). Phase 3 (motion) → Sonnet if Haiku stalls.
 **Engine:** Claude Code
 **Verify per step:** `npm run check` (astro check) after each phase; `npm run build` before commit; `npm run verify:live` after deploy.
