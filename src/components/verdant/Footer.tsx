@@ -27,7 +27,7 @@ export default function Footer({ tone = "light" }: { tone?: "light" | "cream" })
             <a href="/verdant/garden" className="v-footer-link">Garden</a>
             <a href="/verdant/pricing" className="v-footer-link">Pricing</a>
             <a href="/verdant/beta" className="v-footer-link">Join the beta</a>
-            <a href="/verdant/notes" className="v-footer-link">Field Notes</a>
+            <a href="/verdant/notes" className="v-footer-link">Changelog</a>
           </div>
 
           {/* Trust column */}
@@ -55,7 +55,7 @@ export default function Footer({ tone = "light" }: { tone?: "light" | "cream" })
           <span>© 2026 Verdant Studio</span>
           <span style={{ marginLeft: "1.6rem", fontFamily: "var(--font-mono)", fontSize: "var(--text-2xs)" }}>v{ethos.version} · {ethos.launched}</span>
         </div>
-        <span>An independent software studio. We sell software — not you.</span>
+        <span>An independent software studio. We sell software, not you.</span>
       </div>
 
       <style>{`

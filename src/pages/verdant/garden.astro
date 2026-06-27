@@ -8,17 +8,17 @@ import GardenTour from "../../components/verdant/GardenTour";
 import { garden, privacySpectrum } from "../../data/verdant";
 ---
 
-<Verdant title="Garden — Personal finance, kept private" description={garden.blurb}>
-  <section class="v-garden-hero">
+<Verdant title="Garden, Personal finance, kept private" description={garden.blurb}>
+  <section class="v-garden-hero" data-v-choreograph>
     <div class="v-garden-hero__stack">
-      <h1 class="v-garden-hero__headline">{garden.name}</h1>
-      <p class="v-garden-hero__sub">{garden.oneLine}</p>
-      <div class="v-garden-hero__ctas">
+      <h1 class="v-garden-hero__headline" data-v-choreo-slide data-v-choreo-delay="0">{garden.name}</h1>
+      <p class="v-garden-hero__sub" data-v-choreo-hold data-v-choreo-delay="0.2">{garden.oneLine}</p>
+      <div class="v-garden-hero__ctas" data-v-choreo-hold data-v-choreo-delay="0.2">
         <a href={garden.url} class="v-cta v-cta--primary">Try Garden</a>
         <a href="/verdant/security" class="v-cta">Security</a>
       </div>
     </div>
-    <div class="v-garden-hero__media v-product-shot">
+    <div class="v-garden-hero__media v-product-shot" data-v-choreo-scale data-v-choreo-delay="0.15">
       <GardenLive />
     </div>
   </section>
@@ -76,10 +76,10 @@ import { garden, privacySpectrum } from "../../data/verdant";
   </div>
 
   <CTAClose1
-    headline="Start your garden"
+    headline="Ready to start"
     sub="Private. Encrypted. On your device."
     cta={{ label: "Try Garden", href: garden.url }}
-    ctaSecondary={{ label: "Pricing", href: "/verdant/pricing" }}
+    ctaSecondary={{ label: "Join the beta", href: "/verdant/beta" }}
   />
 
   <Footer client:visible />

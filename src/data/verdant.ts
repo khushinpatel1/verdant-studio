@@ -9,9 +9,9 @@
 export const brand = {
   name: "Verdant",
   wordmark: "Verdant",
-  tagline: "An independent software studio. We sell software — not you.",
+  tagline: "An independent software studio. We sell software, not you.",
   email: "verdantmail@proton.me",
-  // location + founding year intentionally omitted — placeless, timeless, nothing invented.
+  // location + founding year intentionally omitted. Placeless, timeless, nothing invented.
 };
 
 export const nav = {
@@ -36,48 +36,48 @@ export const garden = {
   kind: "Personal finance that stays private",
   year: "2026",
   status: "Early Access",
-  oneLine: "Every account in one place, encrypted on your device when you set a passphrase — and nobody's business but yours.",
+  oneLine: "Every account in one place, encrypted on your device when you set a passphrase. Nobody's business but yours.",
   blurb:
-    "Most money apps make their money by knowing too much about you. Garden makes its money the plain way — you pay for it. Your accounts, your numbers, your plans: encrypted when you protect them with a passphrase, kept on your device, sold to no one.",
+    "Most money apps make their money by knowing too much about you. Garden makes its money the plain way: you pay for it. Your accounts, your numbers, your plans get encrypted when you protect them with a passphrase, kept on your device, sold to no one.",
   cover: "/verdant/garden/garden-home.webp",
   // hero-landscape — light hero background for back-phone teaser
   vaultScreen: "/verdant/media/hero-landscape-2.jpg",
   url: "https://garden.khushinpatel1.workers.dev",
   // Pricing signal — copy only, no payment system yet. People pay for it; that's the model.
-  pricing: "Free during the beta. No ads, no data sold — that doesn't change.",
-  onboarding: "Start fresh or import a CSV — your data, your device.",
+  pricing: "Free during the beta. No ads, no data sold. That doesn't change.",
+  onboarding: "Start fresh or import a CSV. Your data, your device.",
   accountConnection: "Manual CSV import for now. Bank sync coming.",
-  groveExample: "Ask 'How long until I pay off my Amex?' — Grove answers with the month and year, from your actual balances, answered by a private AI model over HTTPS and not stored.",
+  groveExample: "Ask 'How long until I pay off my Amex?' Grove answers with the month and year from your actual balances, answered by a private AI model over HTTPS and not stored.",
   screens: [
     {
       tab: "Home",
       img: "/verdant/garden/garden-home.webp",
       line: "Everything, at a glance.",
-      body: "Net worth, every account, and one honest health score — the first thing you see when you open it, and the last thing you have to worry about.",
+      body: "Net worth, every account, and one honest health score. The first thing you see when you open it, the last thing you have to worry about.",
     },
     {
       tab: "Money",
       img: "/verdant/garden/garden-money.webp",
       line: "See exactly where it goes.",
-      body: "Spending, totals, and the quiet subscriptions bleeding you every month — all in one place, so you can actually cancel them. Budgets that keep their own score.",
+      body: "Spending, totals, and the quiet subscriptions bleeding you every month. All in one place, so you can actually cancel them. Budgets that keep their own score.",
     },
     {
       tab: "Plan",
       img: "/verdant/garden/garden-plan.webp",
       line: "A date on every goal. An end to every debt.",
-      body: "Goals with a real deadline — an emergency fund, a trip to Kyoto — next to the debt that's pulling at you, put in order. One number to pay, the year you'll be free, and the interest you save getting there.",
+      body: "Goals with a real deadline (an emergency fund, a trip to Kyoto) next to the debt that's pulling at you, put in order. One number to pay, the year you'll be free, and the interest you save getting there.",
     },
   ],
   // Grove — not a tab. A presence reachable from anywhere in the app.
   grove: {
     tab: "Grove",
     img: "/verdant/garden/garden-grove.webp",
-    line: "Ask anything about your money. Grove is opt-in — when you ask, it reads your numbers on your device and sends a summary to a private AI model to answer.",
-    body: "Grove is optional. When you ask a question, a summary of your relevant numbers is sent over HTTPS to an AI model (Claude, run by Anthropic) to generate the answer. It is not stored by Verdant and never used to train models. Everything else in Garden stays on your device. You can use Garden without Grove — or never use Grove. Your choice.",
+    line: "Ask anything about your money. Grove is opt-in. When you ask, it reads your numbers on your device and sends a summary to a private AI model to answer.",
+    body: "Grove is optional. When you ask a question, a summary of your relevant numbers is sent over HTTPS to an AI model (Claude, run by Anthropic) to generate the answer. It is not stored by Verdant and never used to train models. Everything else in Garden stays on your device. You can use Garden without Grove or never use Grove. Your choice.",
   },
   notes: [
     "When you set a passphrase, your device encrypts everything before it leaves. If you skip the passphrase, data stays in plaintext on your device.",
-    "No ads. No data sold. No third party in your ledger. You pay for it — that's the entire model.",
+    "No ads. No data sold. No third party in your ledger. You pay for it. That's the entire model.",
     "Offline first. It's yours whether or not there's a signal.",
   ],
 };
@@ -110,7 +110,7 @@ export const privacySpectrum: PrivacyTier[] = [
       "Budgets, goals, and debt payoff plans",
     ],
     touchesServer: ["Nothing. There is no server in this path."],
-    reality: "Fully private, fully local. The most honest tier — and the default.",
+    reality: "Fully private, fully local. The most honest tier. The default.",
   },
   {
     n: "02",
@@ -120,37 +120,37 @@ export const privacySpectrum: PrivacyTier[] = [
     status: "Live today",
     privateOf: [
       "The parsed data, once it's in Garden",
-      "Everything after the import — stored and encrypted exactly like manual entry",
+      "Everything after the import. Stored and encrypted exactly like manual entry.",
     ],
     touchesServer: [
       "The statement itself, sent once to an AI model to extract the numbers",
       "That single request travels over HTTPS and is not stored by Verdant",
     ],
-    reality: "Private storage — but the statement is touched once by the parser. A convenience cost, named plainly.",
+    reality: "Private storage, but the statement is touched once by the parser. A convenience cost, named plainly.",
   },
   {
     n: "03",
     key: "bank-link",
     label: "Bank link",
-    what: "A direct connection to your bank or brokerage (SnapTrade, SimpleFIN, Plaid) — architecture only, not yet live.",
-    status: "Architecture-only — not live",
+    what: "A direct connection to your bank or brokerage (SnapTrade, SimpleFIN, Plaid). Architecture only, not yet live.",
+    status: "Architecture-only. Not live.",
     privateOf: ["Nothing extra beyond what the provider already shares with any app you connect"],
     touchesServer: [
       "Your account credentials, handled by the provider's own flow (Garden never sees your bank password)",
       "Balances and transactions, relayed in labeled plaintext for as long as the link is active",
     ],
-    reality: "The convenience tier. Plaintext transit, clearly labeled — no E2E claim here, because there can't honestly be one.",
+    reality: "The convenience tier. Plaintext transit, clearly labeled. No E2E claim here, because there can't honestly be one.",
   },
 ];
 
 // the unlisted one — reached only through the stray stone, never in nav
 export const emerald = {
   name: "Emerald",
-  kind: "Project two — focused ambition",
+  kind: "Project two. Focused ambition.",
   oneLine: "Growing in the soil. Ships when it's ready.",
   cover: "/verdant/media/koi.jpg",
   blurb:
-    "Not a distraction, not a roadmap item. A real project, built with the same quiet conviction as Garden — finished when it's finished, not a day sooner. You only found this because you went looking. That's who it's for.",
+    "Not a distraction, not a roadmap item. A real project, built with the same quiet conviction as Garden. Finished when it's finished, not a day sooner. You only found this because you went looking. That's who it's for.",
 };
 
 export type Person = {
@@ -171,29 +171,29 @@ export const team: Person[] = [];
 // NOTE: name inferred from your account (khushinpatel1@gmail.com) — confirm spelling/title.
 export const studio = {
   who: "Verdant is one person: Khushin Patel.",
-  lead: "An independent software studio, deliberately small — and built to stay that way.",
+  lead: "An independent software studio, deliberately small. Built to stay that way.",
   lines: [
     "One person, building quietly, with modern tools doing the heavy lifting where they earn it.",
-    "Small is the point. No growth targets, no investors to please, no reason to ever sell you out — and the structure makes sure it can't.",
-    "If that ever changes — if real hands join — they show up here by name. Until then, no roster of people who don't exist.",
+    "Small is the point. No growth targets, no investors to please, no reason to ever sell you out. The structure makes sure it can't.",
+    "If that ever changes, if real hands join, they show up here by name. Until then, no roster of people who don't exist.",
   ],
 };
 
 export const ethos = {
   creed: [
     "Privacy by structure, not by claim. We can't sell what we never touch.",
-    "If we can read your data, that's a bug — not a feature for sale.",
+    "If we can read your data, that's a bug, not a feature for sale.",
     "Software should answer to you, not to the people who bought ads.",
     "Build one thing well, not ten things anxiously. Slow is the point.",
   ],
   shipping: [
-    { feature: "Garden — Early Access launch", date: "2026-06-17" },
-    { feature: "Export as JSON — any time, no account needed", date: "2026-06" },
-    { feature: "Grove — on-device financial assistant", date: "2026-06" },
+    { feature: "Garden. Early Access launch", date: "2026-06-17" },
+    { feature: "Export as JSON. Any time, no account needed", date: "2026-06" },
+    { feature: "Grove. On-device financial assistant", date: "2026-06" },
     { feature: "Bank sync (SnapTrade, SimpleFIN)", date: "In progress" },
   ],
   dataPortability: "Export all your data as JSON at any time. Manual entry stays on your device. AI imports are parsed once, never stored by us. Bank connections are labeled plaintext only.",
-  privacyStatement: "Privacy is what you choose. You control which tier fits your work. There is no flat 'never leaves your device' — we're honest about what each path touches.",
+  privacyStatement: "Privacy is what you choose. You control which tier fits your work. There is no flat 'never leaves your device'. We're honest about what each path touches.",
   version: "001",
   launched: "2026-06-17",
 };
@@ -201,11 +201,11 @@ export const ethos = {
 export const faq = [
   {
     q: "Is my data really private?",
-    a: "When you set a passphrase, yes — everything is encrypted on your device. The server holds only ciphertext. We literally cannot read your numbers. If you skip the passphrase, data stays in plaintext on your device locally — your choice. Grove sends summaries to a private AI model only when you ask it a question. See the privacy spectrum for the full picture per feature.",
+    a: "When you set a passphrase, yes. Everything is encrypted on your device. The server holds only ciphertext. We literally cannot read your numbers. If you skip the passphrase, data stays in plaintext on your device locally. Your choice. Grove sends summaries to a private AI model only when you ask it a question. See the privacy spectrum for the full picture per feature.",
   },
   {
     q: "What about bank sync?",
-    a: "Bank connections are architecture-only right now — we're not live yet. When we wire it, it'll be labeled plaintext transit through a third-party provider (SnapTrade, SimpleFIN, Plaid). Fully honest about the privacy tradeoff.",
+    a: "Bank connections are architecture-only right now. We're not live yet. When we wire it, it'll be labeled plaintext transit through a third-party provider (SnapTrade, SimpleFIN, Plaid). Fully honest about the privacy tradeoff.",
   },
   {
     q: "Can I export my data?",
@@ -213,15 +213,15 @@ export const faq = [
   },
   {
     q: "What does Grove cost?",
-    a: "Nothing extra. Grove is optional. When you use it, a summary of your numbers is sent to a private AI model (Claude / Anthropic) over HTTPS to answer your question. Not stored, not sold. The rest of Garden stays on your device.",
+    a: "Nothing extra. Grove is optional. When you use it, a summary of your numbers is sent to a private AI model (Claude, Anthropic) over HTTPS to answer your question. Not stored, not sold. The rest of Garden stays on your device.",
   },
   {
     q: "How much will Garden cost after the beta?",
-    a: "Beta testers keep free access — full terms before launch. We're still figuring out the scope and pricing model. When we do charge, it'll be honest and low — server costs plus a small margin. No surprise paywalls.",
+    a: "Beta testers keep free access. Full terms before launch. We're still figuring out the scope and pricing model. When we do charge, it'll be honest and low. Server costs plus a small margin. No surprise paywalls.",
   },
   {
     q: "Do you sell my data?",
-    a: "No. We don't sell it, don't share it with advertisers, don't use it to train models. We can't — it's encrypted.",
+    a: "No. We don't sell it, don't share it with advertisers, don't use it to train models. We can't. It's encrypted.",
   },
 ];
 

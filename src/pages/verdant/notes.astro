@@ -3,30 +3,29 @@ import Verdant from "../../layouts/Verdant.astro";
 import Footer from "../../components/verdant/Footer";
 ---
 
-<Verdant title="Field Notes — Verdant" image="/og/og-default.png">
+<Verdant title="Changelog, Verdant" image="/og/og-default.png">
   <!-- ── HERO — Luminous, asymmetric. Text left, soft field right. ── -->
   <section class="ve-hero">
     <div class="ve-hero-bg" aria-hidden="true"></div>
     <div class="v-wrap ve-hero-inner">
-      <p class="v-label">Ship once, well</p>
+      <p class="v-label">What's shipped</p>
       <h1 class="v-display ve-hero-head">
-        Field <span style="color: var(--leaf);">Notes</span>.
+        What's <span style="color: var(--leaf);">shipped</span>.
       </h1>
       <p class="ve-hero-sub">
-        A running log of what shipped, what changed, and where we're headed.
+        A running log of what changed, and where we're headed.
       </p>
     </div>
   </section>
 
   <!-- ── NOTES TIMELINE ── -->
   <section class="ve-notes-section ve-sec">
-    <span class="vh-num" aria-hidden="true">01</span>
     <div class="ve-notes-content">
       <article class="ve-note-entry" data-v-reveal>
         <h3 class="ve-note-date">2026-06-19</h3>
         <h2 class="ve-note-title">Public beta redesign live</h2>
         <p class="ve-note-text">
-          Redesigned the entire site—from design tokens to navigation, footer, and brand marks. Garden's product story now front and center. New pages live: pricing (honest model), beta signup, security (with the privacy spectrum toggle), and this Field Notes log. The garden grows.
+          Redesigned the entire site, from design tokens to navigation, footer, and brand marks. Garden's product story now front and center. New pages live: pricing (honest model), beta signup, security (with the privacy spectrum toggle), and this changelog.
         </p>
       </article>
 
@@ -50,7 +49,7 @@ import Footer from "../../components/verdant/Footer";
         <h3 class="ve-note-date">2026-06-18</h3>
         <h2 class="ve-note-title">Browser back gesture in Garden</h2>
         <p class="ve-note-text">
-          Implemented true OS/browser back—overlay history pops cleanly, no lost context. The app now feels native. Small change, massive quality jump.
+          Implemented true OS/browser back, overlay history pops cleanly, no lost context. The app now feels native. Small change, massive quality jump.
         </p>
       </article>
 
@@ -58,7 +57,7 @@ import Footer from "../../components/verdant/Footer";
         <h3 class="ve-note-date">2026-06-17</h3>
         <h2 class="ve-note-title">Site language rewrite</h2>
         <p class="ve-note-text">
-          Rewrote every page's copy—no manifesto filler, no overclaims. Lead with what the product does for you. Killed the "never leaves your device" flat line. Introduced the honest 3-tier spectrum: manual (fully local), AI import (touched once), bank link (labeled transit). Trust lives in accuracy, not promises.
+          Rewrote every page's copy, no manifesto filler, no overclaims. Lead with what the product does for you. Killed the "never leaves your device" flat line. Introduced the honest 3-tier spectrum: manual (fully local), AI import (touched once), bank link (labeled transit). Trust lives in accuracy, not promises.
         </p>
       </article>
 
@@ -74,7 +73,6 @@ import Footer from "../../components/verdant/Footer";
 
   <!-- ── CTA ── -->
   <section class="ve-cta-section ve-sec" style="background: var(--paper-soft);">
-    <span class="vh-num" aria-hidden="true">02</span>
     <h2 class="v-display ve-cta-head">Follow <span style="color: var(--leaf);">along</span>.</h2>
     <a href="mailto:verdantmail@proton.me" class="v-cta">Get updates</a>
   </section>
@@ -94,7 +92,6 @@ import Footer from "../../components/verdant/Footer";
   [data-skin="verdant"] .ve-cta-section { padding-inline: clamp(20px, 5vw, 56px); }
   .ve-notes-section { background: var(--paper-soft); padding-block: clamp(110px, 18vh, 220px); }
   .ve-notes-content { max-width: var(--maxw); margin-inline: auto; display: flex; flex-direction: column; gap: 2.8rem; }
-  .vh-num { display: block; max-width: var(--maxw); margin-inline: auto; font-family: var(--font-mono); font-size: var(--text-sm); color: var(--moss); opacity: 0.6; }
   .ve-note-entry { padding: 1.8rem 0; border-top: 1px solid var(--line); }
   .ve-note-entry:last-child { border-bottom: 1px solid var(--line); }
   .ve-note-date { font-family: var(--font-mono); font-size: var(--text-sm); letter-spacing: 0.05em; color: var(--moss); opacity: 0.8; margin: 0 0 0.4rem 0; font-weight: 400; }
