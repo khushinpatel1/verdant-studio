@@ -3,7 +3,7 @@ import { brand, nav } from "../../data/verdant";
 import Logo from "./Logo";
 
 /**
- * VERDANT nav — fixed, quiet until you scroll. Mono links with a gold underline
+ * VERDANT nav. fixed, quiet until you scroll. Mono links with a gold underline
  * that grows on hover (and marks the active page). A forest-gradient full-screen
  * overlay on mobile. Mounted client:load in the layout.
  */

@@ -1,5 +1,5 @@
 /**
- * VERDANT logo — an inline, hand-authored sprout glyph (stem + two
+ * VERDANT logo. an inline, hand-authored sprout glyph (stem + two
  * asymmetric leaves, single path family, currentColor) paired with the
  * "Verdant" wordmark in the display serif. Used in Nav, Footer, and as the
  * source for /favicon.svg (glyph-only).
@@ -27,7 +27,7 @@ export default function Logo({
         xmlns="http://www.w3.org/2000/svg"
         aria-hidden="true"
       >
-        {/* stem — slightly curved, growing up-right */}
+        {/* stem. slightly curved, growing up-right */}
         <path
           d="M16 29 C15.4 22 16.8 15.5 20.5 10.5"
           stroke="currentColor"
@@ -35,12 +35,12 @@ export default function Logo({
           strokeLinecap="round"
           fill="none"
         />
-        {/* lower-left leaf — larger, lower on the stem */}
+        {/* lower-left leaf. larger, lower on the stem */}
         <path
           d="M16.5 21 C9 21 4 17 3 10.5 C12 10.5 17.5 14.5 16.5 21 Z"
           fill="currentColor"
         />
-        {/* upper-right leaf — smaller, higher, opposite side */}
+        {/* upper-right leaf. smaller, higher, opposite side */}
         <path
           d="M19.5 12 C25 10.5 28.5 6.5 29 3 C22.5 3.5 18 7 19.5 12 Z"
           fill="currentColor"

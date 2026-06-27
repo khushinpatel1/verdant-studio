@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 
 /**
- * BlossomBranch — sumi-e plum/cherry branch entering from one side.
+ * BlossomBranch. sumi-e plum/cherry branch entering from one side.
  * Brushed bark is a filled tapered shape (thick-to-thin), not a uniform stroke.
  * 5–8 ink blossoms with gold-centered accents fade/scale in on scroll-reveal
  * (IntersectionObserver, same pattern as InkGrowth).
@@ -106,7 +106,7 @@ export default function BlossomBranch({
       >
         <g transform={flip}>
           {/*
-            BARK — two filled tapered shapes layered for ink-wash depth.
+            BARK. two filled tapered shapes layered for ink-wash depth.
             Thick near the root, tapering to thin tips. NOT uniform stroke.
           */}
 
@@ -127,7 +127,7 @@ export default function BlossomBranch({
             opacity="0.12"
           />
 
-          {/* Main branch body — tapered filled shape, bark texture */}
+          {/* Main branch body. tapered filled shape, bark texture */}
           <path
             ref={branchRef}
             d="M 20 478 C 24 430 36 390 58 352 C 78 318 100 298 110 268 C 120 238 116 208 112 182 C 108 158 118 130 134 106 C 148 84 166 68 178 48"
@@ -138,7 +138,7 @@ export default function BlossomBranch({
             style={{ fill: "none" }}
           />
 
-          {/* Secondary branch — thinner, breaking left */}
+          {/* Secondary branch. thinner, breaking left */}
           <path
             d="M 85 310 C 72 288 56 276 40 252 C 28 234 22 218 16 198"
             stroke="var(--ink)"
@@ -176,9 +176,9 @@ export default function BlossomBranch({
             opacity="0.28"
           />
 
-          {/* BLOSSOMS — filled tapered petal shapes, layered washes */}
+          {/* BLOSSOMS. filled tapered petal shapes, layered washes */}
           <g ref={blossomGroup}>
-            {/* Blossom 1 — large, near branch tip of secondary */}
+            {/* Blossom 1. large, near branch tip of secondary */}
             <g
               className="vb-blossom"
               style={{ transformOrigin: "32px 240px" }}
@@ -190,11 +190,11 @@ export default function BlossomBranch({
               <ellipse cx="40" cy="248" rx="5" ry="9" fill="var(--ink)" opacity="0.25" transform="rotate(54 32 240)" />
               <ellipse cx="24" cy="250" rx="5" ry="9" fill="var(--ink)" opacity="0.27" transform="rotate(-40 32 240)" />
               <ellipse cx="20" cy="234" rx="5" ry="9" fill="var(--ink)" opacity="0.22" transform="rotate(-72 32 240)" />
-              {/* gold center */}
+              {/* gold center. */}
               <circle cx="32" cy="240" r="3.5" fill="var(--gold)" opacity="0.9" />
             </g>
 
-            {/* Blossom 2 — smaller, tip of main branch */}
+            {/* Blossom 2. smaller, tip of main branch */}
             <g
               className="vb-blossom"
               style={{ transformOrigin: "174px 52px" }}
@@ -205,11 +205,11 @@ export default function BlossomBranch({
               <ellipse cx="181" cy="59" rx="4" ry="7.5" fill="var(--ink)" opacity="0.26" transform="rotate(52 174 52)" />
               <ellipse cx="168" cy="61" rx="4" ry="7.5" fill="var(--ink)" opacity="0.28" transform="rotate(-38 174 52)" />
               <ellipse cx="165" cy="48" rx="4" ry="7.5" fill="var(--ink)" opacity="0.23" transform="rotate(-68 174 52)" />
-              {/* gold center — second gold, subtle */}
+              {/* gold center. second gold, subtle */}
               <circle cx="174" cy="52" r="2.8" fill="var(--gold)" opacity="0.85" />
             </g>
 
-            {/* Blossom 3 — medium, mid tertiary twig */}
+            {/* Blossom 3. medium, mid tertiary twig */}
             <g
               className="vb-blossom"
               style={{ transformOrigin: "162px 196px" }}
@@ -223,7 +223,7 @@ export default function BlossomBranch({
               <circle cx="162" cy="196" r="2.2" fill="var(--ink)" opacity="0.5" />
             </g>
 
-            {/* Blossom 4 — small bud pair, upper twig */}
+            {/* Blossom 4. small bud pair, upper twig */}
             <g
               className="vb-blossom"
               style={{ transformOrigin: "148px 154px" }}
@@ -233,7 +233,7 @@ export default function BlossomBranch({
               <circle cx="148" cy="154" r="1.8" fill="var(--ink)" opacity="0.45" />
             </g>
 
-            {/* Blossom 5 — mid branch, facing out */}
+            {/* Blossom 5. mid branch, facing out */}
             <g
               className="vb-blossom"
               style={{ transformOrigin: "110px 268px" }}
@@ -247,7 +247,7 @@ export default function BlossomBranch({
               <circle cx="110" cy="268" r="2" fill="var(--ink)" opacity="0.4" />
             </g>
 
-            {/* Blossom 6 — scattered half-open, secondary branch tip */}
+            {/* Blossom 6. scattered half-open, secondary branch tip */}
             <g
               className="vb-blossom"
               style={{ transformOrigin: "20px 202px" }}
@@ -258,7 +258,7 @@ export default function BlossomBranch({
               <circle cx="20" cy="202" r="2" fill="var(--ink)" opacity="0.38" />
             </g>
 
-            {/* Blossom 7 — tiny floating petals near tip */}
+            {/* Blossom 7. tiny floating petals near tip */}
             <g
               className="vb-blossom"
               style={{ transformOrigin: "135px 112px" }}
@@ -268,7 +268,7 @@ export default function BlossomBranch({
               <circle cx="135" cy="112" r="1.5" fill="var(--ink)" opacity="0.42" />
             </g>
 
-            {/* Blossom 8 — near mid-trunk break */}
+            {/* Blossom 8. near mid-trunk break */}
             <g
               className="vb-blossom"
               style={{ transformOrigin: "66px 354px" }}

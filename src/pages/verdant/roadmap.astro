@@ -5,7 +5,7 @@ import Hero from "../../components/verdant/kit/Hero.astro";
 import CTAClose1 from "../../components/verdant/kit/CTAClose1.astro";
 import { ethos, garden } from "../../data/verdant";
 
-// Status timeline — verified entries only (src/data/verdant.ts ethos.shipping).
+// Status timeline. verified entries only (src/data/verdant.ts ethos.shipping).
 // "Shipped" = has a concrete YYYY-MM-DD date; "Live beta" = month-precision date
 // with status already Early Access; "In progress" = explicit in-progress label.
 const timeline = ethos.shipping.map((item) => {

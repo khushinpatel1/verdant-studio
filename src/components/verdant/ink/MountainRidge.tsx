@@ -1,13 +1,13 @@
 /**
- * MountainRidge — sumi-e layered mountain ridges (atmospheric perspective).
+ * MountainRidge. sumi-e layered mountain ridges (atmospheric perspective).
  *
- * Anatomy — three receding ink layers, each a FILLED shape:
+ * Anatomy. three receding ink layers, each a FILLED shape:
  *   Layer 1 (foreground): dark, full opacity, brushed top edge with visible
- *     pressure variation — peaks where the brush tip caught, flattening in
+ *     pressure variation. peaks where the brush tip caught, flattening in
  *     the valleys. The top contour is a complex path; the bottom is cut off
  *     by the viewBox (implied ground). Ink body is solid.
  *   Layer 2 (middle): lighter fill, slightly higher in the composition.
- *     Top edge is softer — as if a drier brush pass.
+ *     Top edge is softer. as if a drier brush pass.
  *   Layer 3 (background/sky): nearly transparent, highest up. The farthest
  *     ridge dissolves into mist. Top edge is very gentle.
  *
@@ -16,8 +16,8 @@
  * Reduced-motion: static at rest position.
  *
  * Props:
- *   className, style — standard pass-through
- *   side — mirrors the composition (default "right" — peaks lean right)
+ *   className, style. standard pass-through
+ *   side. mirrors the composition (default "right". peaks lean right)
  */
 export default function MountainRidge({
   className,
@@ -47,7 +47,7 @@ export default function MountainRidge({
         <g transform={flip}>
 
           {/*
-            ── Layer 3: Background ridge — farthest, palest, near mist ────
+            ── Layer 3: Background ridge. farthest, palest, near mist ────
             Ink thins as the brush lifted. Atmospheric distance = opacity ≈ 0.12.
             Form: gentle dome shapes, long low profile. Peaks sit at ~y=80.
           */}
@@ -66,7 +66,7 @@ export default function MountainRidge({
             fill="currentColor"
             opacity="0.10"
           />
-          {/* Dry brush tip catches on the peak — slightly denser there */}
+          {/* Dry brush tip catches on the peak. slightly denser there */}
           <path
             d={`
               M 350 110 C 365 100 378 98 390 103 C 400 107 408 112 395 115 C 382 117 365 114 350 110 Z
@@ -76,8 +76,8 @@ export default function MountainRidge({
           />
 
           {/*
-            ── Layer 2: Middle ridge — softer pressure, drier brush ─────────
-            Ink weight: opacity ≈ 0.28. Distinct silhouette — sharper than
+            ── Layer 2: Middle ridge. softer pressure, drier brush ─────────
+            Ink weight: opacity ≈ 0.28. Distinct silhouette. sharper than
             the background but not as weighted as the foreground. The right
             peak is taller; the profile is asymmetric.
           */}
@@ -98,7 +98,7 @@ export default function MountainRidge({
             fill="currentColor"
             opacity="0.24"
           />
-          {/* Extra ink deposit at the dominant peak — brush loaded here */}
+          {/* Extra ink deposit at the dominant peak. brush loaded here */}
           <path
             d={`
               M 400 144 C 412 134 428 128 440 132
@@ -109,7 +109,7 @@ export default function MountainRidge({
             fill="currentColor"
             opacity="0.18"
           />
-          {/* Ink wash bleeds into the body — a few dark patches below peak */}
+          {/* Ink wash bleeds into the body. a few dark patches below peak */}
           <path
             d={`
               M 380 168 C 390 162 408 158 418 165 C 424 170 418 178 404 178 C 392 178 380 172 380 168 Z
@@ -119,7 +119,7 @@ export default function MountainRidge({
           />
 
           {/*
-            ── Layer 1: Foreground ridge — most ink, heaviest brush ──────────
+            ── Layer 1: Foreground ridge. most ink, heaviest brush ──────────
             This is where the brush loaded fully. The top contour has the most
             character: steep cliffs, a dominant high peak at ~x=280, smaller
             secondary peak at right. Ink pools at base of peaks (extra fill shapes).
@@ -152,7 +152,7 @@ export default function MountainRidge({
             opacity="0.82"
           />
 
-          {/* Heavy ink deposit at the dominant peak — this is where the
+          {/* Heavy ink deposit at the dominant peak. this is where the
               brush tip pressed hardest before lifting. A tapered almond shape
               slightly darker than the body. */}
           <path
@@ -164,7 +164,7 @@ export default function MountainRidge({
             opacity="0.90"
           />
 
-          {/* Ink pooling on the steep face below the main peak — a wash
+          {/* Ink pooling on the steep face below the main peak. a wash
               that flooded when the brush tip dragged down the cliff face */}
           <path
             d={`
@@ -175,7 +175,7 @@ export default function MountainRidge({
             opacity="0.35"
           />
 
-          {/* A secondary smaller peak at far right — the brush's tail stroke */}
+          {/* A secondary smaller peak at far right. the brush's tail stroke */}
           <path
             d={`
               M 580 316 C 596 296 618 280 640 282 C 658 284 668 298 660 312

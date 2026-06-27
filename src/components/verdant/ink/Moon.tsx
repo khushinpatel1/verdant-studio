@@ -1,21 +1,21 @@
 import { useEffect, useRef } from "react";
 
 /**
- * Moon — sumi-e hanging moon for Verdant dark/night moments.
+ * Moon. sumi-e hanging moon for Verdant dark/night moments.
  *
  * Anatomy:
  *   - Three layered low-opacity ink-wash halos (filled circles, tapered opacity)
- *     give the moon its diffuse glow — not a ring, a wash spreading outward.
+ *     give the moon its diffuse glow. not a ring, a wash spreading outward.
  *   - A brushed rim: a crescent-shaped filled path whose width varies (thick
- *     at the base where the ink loaded, thinning toward the top) — the "brush
+ *     at the base where the ink loaded, thinning toward the top). the "brush
  *     stroke dried to a rim" effect. No uniform stroke-width.
  *   - An optional cloud wisp: a tapered filled path that drifts across the face.
  *   - Glow "breathing" animation: the outer halos pulse in opacity very slowly
  *     (3–5 s period). Reduced-motion: static, fully visible.
  *
  * Props:
- *   className, style — standard pass-through
- *   showWisp — whether to render the cloud wisp (default true)
+ *   className, style. standard pass-through
+ *   showWisp. whether to render the cloud wisp (default true)
  */
 export default function Moon({
   className,
@@ -37,7 +37,7 @@ export default function Moon({
 
     // Glow breathing: the outermost two halos pulse opacity in a slow sine wave
     // Using pure CSS animation injected via a style tag avoids GSAP dependency for this simple case
-    // The keyframes are declared in this component's JSX below — we just confirm they run
+    // The keyframes are declared in this component's JSX below. we just confirm they run
   }, []);
 
   return (
@@ -78,12 +78,12 @@ export default function Moon({
       >
         {/*
           ── Ink-wash halos ──────────────────────────────────────────────────
-          Three concentric filled circles with low opacity. They are NOT rings —
+          Three concentric filled circles with low opacity. They are NOT rings.
           they are filled shapes, layered. The outermost is the lightest wash;
           closer to center the ink darkens. This matches how ink bleeds onto wet
           paper: a diffuse outer wash, a firmer middle zone, a solid core.
         */}
-        {/* Outermost wash — barely-there, breathing */}
+        {/* Outermost wash. barely-there, breathing */}
         <circle
           cx="120"
           cy="128"
@@ -92,7 +92,7 @@ export default function Moon({
           className="moon-halo-outer"
           style={{ animation: "moon-breathe 5s ease-in-out infinite" }}
         />
-        {/* Middle wash — moderately solid, breathes opposite phase */}
+        {/* Middle wash. moderately solid, breathes opposite phase */}
         <circle
           cx="120"
           cy="128"
@@ -101,7 +101,7 @@ export default function Moon({
           className="moon-halo-mid"
           style={{ animation: "moon-breathe-mid 5s ease-in-out infinite 0.5s" }}
         />
-        {/* Inner glow core — always solid, the moon's body */}
+        {/* Inner glow core. always solid, the moon's body */}
         <circle
           cx="120"
           cy="128"
@@ -114,7 +114,7 @@ export default function Moon({
           ── Brushed rim ─────────────────────────────────────────────────────
           A crescent-shaped filled path. The ink loaded heaviest at the bottom-left
           arc, thinning as the brush lifted toward the upper-right. Achieved by
-          cutting a slightly off-center smaller circle from a larger one — the
+          cutting a slightly off-center smaller circle from a larger one. the
           offset creates variable rim width: thick at ~220°, thin at ~60°.
           This is a FILLED shape (no stroke), width varies naturally.
         */}
@@ -131,7 +131,7 @@ export default function Moon({
           fillRule="evenodd"
           opacity="0.85"
         />
-        {/* A second, thinner crescent offset further — picks up just the
+        {/* A second, thinner crescent offset further. picks up just the
             "loaded-ink base" at the lower arc, fades naturally to nothing */}
         <path
           d={`
@@ -148,7 +148,7 @@ export default function Moon({
 
         {/*
           ── Cloud wisp ──────────────────────────────────────────────────────
-          A tapered filled shape — ink that loaded at the left and dried thin
+          A tapered filled shape. ink that loaded at the left and dried thin
           toward the right, crossing the lower face of the moon at an angle.
           Very soft opacity. Slow infinite drift to the right.
         */}
@@ -157,13 +157,13 @@ export default function Moon({
             className="moon-wisp"
             style={{ animation: "wisp-drift 12s ease-in-out infinite alternate" }}
           >
-            {/* Upper wisp streak — thicker at left, narrows right */}
+            {/* Upper wisp streak. thicker at left, narrows right */}
             <path
               d="M 56 112 C 68 108 88 106 110 109 C 128 111 150 108 172 112 C 162 116 140 118 118 115 C 96 112 74 114 56 112 Z"
               fill="currentColor"
               opacity="0.12"
             />
-            {/* Lower wisp streak — lighter, offset slightly */}
+            {/* Lower wisp streak. lighter, offset slightly */}
             <path
               d="M 48 126 C 62 122 84 120 108 123 C 130 126 156 122 178 126 C 168 131 142 134 116 131 C 90 128 66 130 48 126 Z"
               fill="currentColor"
@@ -173,10 +173,10 @@ export default function Moon({
         )}
 
         {/*
-          ── Single gold accent — the glint ──────────────────────────────────
+          ── Single gold accent. the glint ──────────────────────────────────
           One small filled almond shape at the moon's upper-right, where
           reflected light would catch the rim most brightly. Not a star, not
-          a ring — a brush tip's worth of warm gold.
+          a ring. a brush tip's worth of warm gold.
         */}
         <path
           d="M 154 90 C 158 86 162 88 160 93 C 158 97 152 96 150 91 C 149 88 152 93 154 90 Z"

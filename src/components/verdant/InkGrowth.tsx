@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 
 /**
- * VERDANT secondary technique — ink growth on scroll (sumi-e).
+ * VERDANT secondary technique. ink growth on scroll (sumi-e).
  * A vine self-draws as its container scrolls through the viewport: the stem's
  * stroke-dashoffset is tied to scroll progress, and leaves fade/scale in as the
  * ink reaches them. Stillness with something always growing underneath.
@@ -79,7 +79,7 @@ export default function InkGrowth({
             <path d="M124 250 q 34 -10 42 -36 q -30 0 -42 36 Z" fill="var(--moss-300)" opacity="0" style={{ transformOrigin: "124px 250px" }} />
             <path d="M112 176 q -34 -8 -46 -32 q 32 -2 46 32 Z" fill="var(--moss)" opacity="0" style={{ transformOrigin: "112px 176px" }} />
             <path d="M116 104 q 30 -10 38 -34 q -28 0 -38 34 Z" fill="var(--green-600)" opacity="0" style={{ transformOrigin: "116px 104px" }} />
-            {/* a single gold blossom at the tip — the delicate hand */}
+            {/* a single gold blossom at the tip. the delicate hand */}
             <circle cx="110" cy="22" r="7" fill="var(--gold)" opacity="0" style={{ transformOrigin: "110px 22px" }} />
           </g>
         </g>

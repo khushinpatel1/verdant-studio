@@ -1,15 +1,15 @@
 import { useEffect, useRef } from "react";
 
 /**
- * Ensō — a single sumi-e brushed circle with a deliberate gap.
+ * Ensō. a single sumi-e brushed circle with a deliberate gap.
  * The stroke is not uniform: it uses a filled, tapered shape at start and end
  * to simulate ink-loaded brush dragging dry at the tail. The circle is not
- * mathematically perfect — it has a slight spiral quality (one confident sweep).
+ * mathematically perfect. it has a slight spiral quality (one confident sweep).
  *
  * On scroll-reveal it draws itself once (stroke-dashoffset animation, 1.8s).
  * Reduced-motion → fully drawn, static.
  *
- * This is a signature mark — no busy decoration, just the circle and the gap.
+ * This is a signature mark. no busy decoration, just the circle and the gap.
  */
 export default function Enso({
   side,
@@ -94,7 +94,7 @@ export default function Enso({
       >
         <g transform={flip}>
           {/*
-            Wash shadow — the ink bleeds into the paper.
+            Wash shadow. the ink bleeds into the paper.
             Slightly offset ellipse, very low opacity.
           */}
           <ellipse
@@ -115,7 +115,7 @@ export default function Enso({
             Starts thick (ink loaded) and thins at the end (dry brush).
             We use a single arc path so getTotalLength + dashoffset works.
 
-            The path is a subtle spiral: start radius 92, end radius 94 — not
+            The path is a subtle spiral: start radius 92, end radius 94. not
             mathematically perfect, giving the hand-drawn quality.
           */}
           <path
@@ -138,7 +138,7 @@ export default function Enso({
           />
 
           {/*
-            Inner wash — a second translucent stroke slightly inside,
+            Inner wash. a second translucent stroke slightly inside,
             simulating the depth of ink-soaked paper.
           */}
           <path
@@ -160,7 +160,7 @@ export default function Enso({
           />
 
           {/*
-            DRY-BRUSH TAIL — fragmented short strokes that appear near the gap,
+            DRY-BRUSH TAIL. fragmented short strokes that appear near the gap,
             simulating the ink running out at the end of the sweep.
             These fade in as the ring completes.
           */}

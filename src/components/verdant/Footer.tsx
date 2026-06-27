@@ -2,7 +2,7 @@ import { brand, ethos } from "../../data/verdant";
 import Logo from "./Logo";
 
 /**
- * VERDANT footer — three-column structure: Product, Trust, Studio.
+ * VERDANT footer. three-column structure: Product, Trust, Studio.
  * Hidden: one stray jade stone (the only path to /verdant/emerald), never labelled.
  */
 export default function Footer({ tone = "light" }: { tone?: "light" | "cream" }) {

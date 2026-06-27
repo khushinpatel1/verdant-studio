@@ -4,26 +4,26 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { garden } from "../../data/verdant";
 
 /**
- * GardenTour — the product-tour signature moment (plan §2A).
+ * GardenTour. The product-tour signature moment (plan §2A).
  *
  * A framed device pinned center-stage. As the visitor scrolls (desktop,
  * fine pointer) OR taps the segmented rail (touch, or anyone), the screen
- * inside swaps through Garden's real screens — Home → Money → Plan → Grove —
- * while the surrounding copy + a small sculptural icon change to narrate
- * each stop. Built from garden.screens + garden.grove in data/verdant.ts —
- * no copy is invented here.
+ * inside swaps through Garden's real screens (Home, Money, Plan, Grove).
+ * While the surrounding copy + a small sculptural icon change to narrate
+ * each stop. Built from garden.screens + garden.grove in data/verdant.ts.
+ * No copy is invented here.
  *
  * Motion:
  *  - Fine pointer, no reduced-motion: GSAP ScrollTrigger pins the section
- *    and steps the active stop as the user scrolls through it — the classic
+ *    and steps the active stop as the user scrolls through it. The classic
  *    "scrollytelling" device. No fade-in-up: the screen swap is a soft
  *    cross-dissolve (the device frame itself never moves).
  *  - Touch OR reduced-motion: no pin (avoids the jank of pinning on touch
  *    and respects the OS setting). The rail is always tappable regardless
- *    of input — "no hover-only" — so touch users drive the tour by tapping.
+ *    of input. No hover-only. Touch users drive the tour by tapping.
  *
  * PLACEHOLDER: the four images below (garden-home/money/plan/grove.webp)
- * are the current Garden screenshots — see plan §2A, do not reshoot. They
+ * are the current Garden screenshots. See plan §2A, do not reshoot. They
  * are clearly temporary; swap at beta per the video-ready note below.
  */
 
@@ -37,25 +37,25 @@ type TourStop = {
 
 // Build the four tour stops straight from the single source of truth.
 // garden.screens already carries Home/Money/Plan; Grove is appended last
-// (it's a presence reachable from anywhere, not a tab — same shape here).
+// (it's a presence reachable from anywhere, not a tab. Same shape here).
 const STOPS: TourStop[] = [
   ...garden.screens.map((s) => ({
     key: s.tab.toLowerCase(),
     tab: s.tab,
-    img: s.img, // PLACEHOLDER — current Garden screenshots, see plan §2A
+    img: s.img, // PLACEHOLDER. Current Garden screenshots, see plan §2A
     line: s.line,
     body: s.body,
   })),
   {
     key: garden.grove.tab.toLowerCase(),
     tab: garden.grove.tab,
-    img: garden.grove.img, // PLACEHOLDER — current Garden screenshot, see plan §2A
+    img: garden.grove.img, // PLACEHOLDER. Current Garden screenshot, see plan §2A
     line: garden.grove.line,
     body: garden.grove.body,
   },
 ];
 
-// One small sculptural glyph per stop — currentColor, reads at rail size.
+// One small sculptural glyph per stop. CurrentColor, reads at rail size.
 // Not the big sumi-e ink set (those are full illustrations); these are
 // quiet line icons sized for a tab.
 function StopIcon({ stop }: { stop: string }) {
@@ -72,7 +72,7 @@ function StopIcon({ stop }: { stop: string }) {
   };
   switch (stop) {
     case "home":
-      // a roofline over a single ground line — "everything, at a glance"
+      // a roofline over a single ground line. "everything, at a glance"
       return (
         <svg {...common}>
           <path d="M4 12.5 12 5l8 7.5" />
@@ -81,7 +81,7 @@ function StopIcon({ stop }: { stop: string }) {
         </svg>
       );
     case "money":
-      // a stem with two leaves branching — where it goes / what's pruned
+      // a stem with two leaves branching. where it goes / what's pruned
       return (
         <svg {...common}>
           <path d="M12 19V7" />
@@ -90,7 +90,7 @@ function StopIcon({ stop }: { stop: string }) {
         </svg>
       );
     case "plan":
-      // a horizon line with a marker — a date on every goal
+      // a horizon line with a marker. a date on every goal
       return (
         <svg {...common}>
           <circle cx="12" cy="9" r="3.4" />
@@ -99,7 +99,7 @@ function StopIcon({ stop }: { stop: string }) {
         </svg>
       );
     case "grove":
-      // a small grove — three trunks of varying height (the presence, not a tab)
+      // a small grove. three trunks of varying height (the presence, not a tab)
       return (
         <svg {...common}>
           <path d="M7 19V13.5" />
@@ -129,7 +129,7 @@ export default function GardenTour({ className = "" }: GardenTourProps) {
     const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const isTouch = window.matchMedia("(pointer: coarse)").matches;
 
-    // Touch or reduced-motion: static, rail-driven only — no pin, no scroll-step.
+    // Touch or reduced-motion: static, rail-driven only. no pin, no scroll-step.
     if (prefersReduced || isTouch) return;
 
     gsap.registerPlugin(ScrollTrigger);
@@ -165,16 +165,16 @@ export default function GardenTour({ className = "" }: GardenTourProps) {
     <div ref={sectionRef} className={`vgt-section ${className}`} data-pinned={pinned || undefined}>
       <div ref={pinRef} className="vgt-pin">
         <div className="v-wrap vgt-inner">
-          {/* ── Copy column — changes per stop, never the frame ── */}
+          {/* Copy column. changes per stop, never the frame */}
           <div className="vgt-copy">
-            <span className="v-label v-label--bare">0{active + 1} — {STOPS[active].tab}</span>
+            <span className="v-label v-label--bare">0{active + 1}. {STOPS[active].tab}</span>
             <div className="vgt-icon" aria-hidden="true">
               <StopIcon stop={STOPS[active].key} />
             </div>
             <h2 className="v-display vgt-line">{STOPS[active].line}</h2>
             <p className="vgt-body">{STOPS[active].body}</p>
 
-            {/* Tappable segmented rail — touch-capable, no hover-only.
+            {/* Tappable segmented rail. touch-capable, no hover-only.
                 This is the ONLY way touch/reduced-motion visitors move
                 through the tour, and it always works alongside scroll. */}
             <div className="vgt-rail" role="tablist" aria-label="Garden tour">
@@ -195,12 +195,12 @@ export default function GardenTour({ className = "" }: GardenTourProps) {
             </div>
           </div>
 
-          {/* ── Framed device — the slot itself never moves; only the
-              screen inside cross-dissolves between stops. ── */}
+          {/* Framed device. the slot itself never moves; only the
+              screen inside cross-dissolves between stops. */}
           <div className="vgt-frame">
             <div className="vgt-frame-bezel">
               {/*
-                VIDEO-READY SLOT — to drop the real product-demo video in
+                VIDEO-READY SLOT. to drop the real product-demo video in
                 later with zero layout change:
                   1. Replace the .vgt-frame-screen <img> stack below with a
                      single <video> element carrying the same className
@@ -216,14 +216,14 @@ export default function GardenTour({ className = "" }: GardenTourProps) {
                   3. Keep ScrollTrigger driving `currentTime` on the video
                      instead of `active` (scrub the video to progress * duration)
                      if a scroll-scrubbed video is wanted instead of a single loop.
-                The bezel/aspect-ratio/mask never change — same frame, same slot.
+                The bezel/aspect-ratio/mask never change. same frame, same slot.
               */}
               <div className="vgt-frame-screen">
                 {STOPS.map((s, i) => (
                   <img
                     key={s.key}
                     src={s.img}
-                    alt={`Garden — ${s.tab}`}
+                    alt={`Garden. ${s.tab}`}
                     className={`vgt-frame-screen-el${i === active ? " is-active" : ""}`}
                     loading={i === 0 ? "eager" : "lazy"}
                     width="780"
@@ -276,7 +276,7 @@ export default function GardenTour({ className = "" }: GardenTourProps) {
           max-width: 42ch;
         }
 
-        /* ── Segmented rail — tappable, touch-capable, no hover-only ── */
+        /* Segmented rail. tappable, touch-capable, no hover-only */
         .vgt-rail {
           display: flex;
           gap: 0.4rem;
@@ -309,7 +309,7 @@ export default function GardenTour({ className = "" }: GardenTourProps) {
         }
         .vgt-rail-btn.is-active svg { opacity: 1; }
 
-        /* ── Framed device — the slot that never moves ── */
+        /* Framed device. the slot that never moves */
         .vgt-frame {
           display: flex;
           justify-content: center;
@@ -341,7 +341,7 @@ export default function GardenTour({ className = "" }: GardenTourProps) {
           background: rgba(47, 125, 79, 0.2);
           z-index: 2;
         }
-        /* The screen slot itself — this is the <video>-ready container.
+        /* The screen slot itself. this is the <video>-ready container.
            Sized/clipped here; whatever fills it (img stack today, a single
            <video> later) is just object-fit: cover inside this box. */
         .vgt-frame-screen {

@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 /**
- * FAQAccordion — Accessible, touch-capable accordion (plan §3).
+ * FAQAccordion. Accessible, touch-capable accordion (plan §3).
  *
  * Each Q is a button that toggles its A visible. Multiple items can be open.
  * Touch: tappable anywhere on the item (not hover-only). Keyboard: Enter/Space
@@ -105,7 +105,7 @@ export default function FAQAccordion({ items, className = "" }: { items: FAQItem
           background: rgba(47, 125, 79, 0.02);
         }
 
-        /* ── Trigger button — full-width tap target, no visual hover-states ── */
+        /* ── Trigger button. full-width tap target, no visual hover-states ── */
         .vfaq-trigger {
           display: flex;
           align-items: flex-start;
@@ -155,7 +155,7 @@ export default function FAQAccordion({ items, className = "" }: { items: FAQItem
           flex: 1;
         }
 
-        /* ── Answer panel — hidden by default, revealed on expand ── */
+        /* ── Answer panel. hidden by default, revealed on expand ── */
         .vfaq-panel {
           overflow: hidden;
           transition: max-height 0.3s var(--ease), opacity 0.3s var(--ease);
@@ -169,7 +169,7 @@ export default function FAQAccordion({ items, className = "" }: { items: FAQItem
           padding: 0 0 1.2rem 2.6rem;
         }
 
-        /* Answer text — restrained, longer line lengths ── */
+        /* Answer text. restrained, longer line lengths ── */
         .vfaq-answer {
           font-size: var(--text-base);
           line-height: 1.7;

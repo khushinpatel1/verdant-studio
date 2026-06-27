@@ -1,4 +1,4 @@
-// VERDANT — one source of truth, read across every page.
+// VERDANT. one source of truth, read across every page.
 //
 // Verdant is the STUDIO: a small, privacy-first software studio. Its first
 // official project is GARDEN, a personal-finance app that keeps your numbers to
@@ -27,7 +27,7 @@ export const nav = {
 
 export type Screen = { tab: string; img: string; line: string; body: string };
 
-// GARDEN — the flagship. A real personal-finance app: three beds (Home, Money,
+// GARDEN. the flagship. A real personal-finance app: three beds (Home, Money,
 // Plan) with Grove, a private on-device presence, reachable from anywhere.
 export const garden = {
   slug: "garden",
@@ -40,10 +40,10 @@ export const garden = {
   blurb:
     "Most money apps make their money by knowing too much about you. Garden makes its money the plain way: you pay for it. Your accounts, your numbers, your plans get encrypted when you protect them with a passphrase, kept on your device, sold to no one.",
   cover: "/verdant/garden/garden-home.webp",
-  // hero-landscape — light hero background for back-phone teaser
+  // hero-landscape. light hero background for back-phone teaser
   vaultScreen: "/verdant/media/hero-landscape-2.jpg",
   url: "https://garden.khushinpatel1.workers.dev",
-  // Pricing signal — copy only, no payment system yet. People pay for it; that's the model.
+  // Pricing signal. copy only, no payment system yet. People pay for it; that's the model.
   pricing: "Free during the beta. No ads, no data sold. That doesn't change.",
   onboarding: "Start fresh or import a CSV. Your data, your device.",
   accountConnection: "Manual CSV import for now. Bank sync coming.",
@@ -68,7 +68,7 @@ export const garden = {
       body: "Goals with a real deadline (an emergency fund, a trip to Kyoto) next to the debt that's pulling at you, put in order. One number to pay, the year you'll be free, and the interest you save getting there.",
     },
   ],
-  // Grove — not a tab. A presence reachable from anywhere in the app.
+  // Grove. not a tab. A presence reachable from anywhere in the app.
   grove: {
     tab: "Grove",
     img: "/verdant/garden/garden-grove.webp",
@@ -82,8 +82,8 @@ export const garden = {
   ],
 };
 
-// PRIVACY SPECTRUM — the honest 3-tier model (verbatim from garden/VISION.md).
-// Privacy is a spectrum the user controls, disclosed per tier — never a flat
+// PRIVACY SPECTRUM. the honest 3-tier model (verbatim from garden/VISION.md).
+// Privacy is a spectrum the user controls, disclosed per tier. never a flat
 // "never leaves your device" claim. Tier 3 (bank link) is architecture-only:
 // no live account connects yet. Do not imply otherwise.
 export type PrivacyTier = {
@@ -143,7 +143,7 @@ export const privacySpectrum: PrivacyTier[] = [
   },
 ];
 
-// the unlisted one — reached only through the stray stone, never in nav
+// the unlisted one. reached only through the stray stone, never in nav
 export const emerald = {
   name: "Emerald",
   kind: "Project two. Focused ambition.",
@@ -167,8 +167,8 @@ export type Person = {
 // (Empty so the per-person route generates nothing; real bios can be added later.)
 export const team: Person[] = [];
 
-// The honest "People" page — a studio of one, kept small on purpose.
-// NOTE: name inferred from your account (khushinpatel1@gmail.com) — confirm spelling/title.
+// The honest "People" page. a studio of one, kept small on purpose.
+// NOTE: name inferred from your account (khushinpatel1@gmail.com). confirm spelling/title.
 export const studio = {
   who: "Verdant is one person: Khushin Patel.",
   lead: "An independent software studio, deliberately small. Built to stay that way.",

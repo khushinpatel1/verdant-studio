@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 
 /**
- * Koi — two koi fish in brushed strokes.
+ * Koi. two koi fish in brushed strokes.
  * Bodies are filled tapered-oval shapes layered at multiple opacities
  * (ink-wash depth). Fins and tails are thin swept-path strokes that taper.
  * One fish gets a gold-accent belly wash (the piece's single gold).
@@ -80,7 +80,7 @@ export default function Koi({
         preserveAspectRatio="xMidYMid meet"
         aria-hidden="true"
       >
-        {/* Water surface suggestion — very faint horizontal wash */}
+        {/* Water surface suggestion. very faint horizontal wash */}
         <ellipse cx="150" cy="230" rx="140" ry="12" fill="var(--ink)" opacity="0.04" />
         <path
           d="M 20 228 Q 80 222 150 228 Q 220 234 280 228"
@@ -98,9 +98,9 @@ export default function Koi({
         />
 
         <g transform={flip}>
-          {/* ── FISH A — upper fish, swimming right-and-up ── */}
+          {/* ── FISH A. upper fish, swimming right-and-up ── */}
           <g className="vk-fish-a">
-            {/* Body wash — outermost halo */}
+            {/* Body wash. outermost halo */}
             <ellipse
               cx="130"
               cy="160"
@@ -130,7 +130,7 @@ export default function Koi({
               opacity="0.8"
               transform="rotate(-18 130 160)"
             />
-            {/* Gold belly — the single gold accent in this piece */}
+            {/* Gold belly. the single gold accent in this piece */}
             <ellipse
               cx="126"
               cy="163"
@@ -150,7 +150,7 @@ export default function Koi({
               transform="rotate(-18 126 163)"
             />
 
-            {/* Head — small, rounded. Ink eye. */}
+            {/* Head. small, rounded. Ink eye. */}
             <ellipse
               cx="168"
               cy="149"
@@ -163,7 +163,7 @@ export default function Koi({
             <circle cx="172" cy="144" r="2.2" fill="var(--paper, #fcfdf9)" opacity="0.7" />
             <circle cx="172" cy="144" r="1.2" fill="var(--ink)" opacity="0.9" />
 
-            {/* Dorsal fin — brushed upward spike */}
+            {/* Dorsal fin. brushed upward spike */}
             <path
               d="M 140 144 C 138 130 134 122 130 114 C 128 120 128 132 130 144"
               fill="var(--ink)"
@@ -175,7 +175,7 @@ export default function Koi({
               opacity="0.25"
             />
 
-            {/* Pectoral fin — small sweep */}
+            {/* Pectoral fin. small sweep */}
             <path
               d="M 148 166 C 154 174 158 180 162 190 C 156 182 148 176 144 168 Z"
               fill="var(--ink)"
@@ -183,14 +183,14 @@ export default function Koi({
             />
           </g>
 
-          {/* Tail fin for fish A — separate for independent wag */}
+          {/* Tail fin for fish A. separate for independent wag */}
           <g className="vk-fin-a">
             <path
               d="M 82 150 C 68 140 52 128 40 118 C 50 132 58 148 62 168 C 58 158 62 148 82 150 Z"
               fill="var(--ink)"
               opacity="0.62"
             />
-            {/* Tail wash — split fork */}
+            {/* Tail wash. split fork */}
             <path
               d="M 82 154 C 70 148 54 142 38 138"
               stroke="var(--ink)"
@@ -209,7 +209,7 @@ export default function Koi({
             />
           </g>
 
-          {/* ── FISH B — lower fish, swimming left-and-down, slightly smaller ── */}
+          {/* ── FISH B. lower fish, swimming left-and-down, slightly smaller ── */}
           <g className="vk-fish-b">
             {/* Body halo */}
             <ellipse
@@ -241,7 +241,7 @@ export default function Koi({
               opacity="0.76"
               transform="rotate(22 160 310)"
             />
-            {/* Scale pattern — two faint crescent marks */}
+            {/* Scale pattern. two faint crescent marks */}
             <path
               d="M 152 305 Q 156 300 162 305"
               stroke="var(--ink)"

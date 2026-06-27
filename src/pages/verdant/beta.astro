@@ -4,7 +4,7 @@ import Footer from "../../components/verdant/Footer";
 import Hero from "../../components/verdant/kit/Hero.astro";
 import CTAClose1 from "../../components/verdant/kit/CTAClose1.astro";
 
-// {{KP}}: "lifetime free" terms still need business/legal sign-off — see
+// {{KP}}: "lifetime free" terms still need business/legal sign-off. see
 // pricing.astro and audit §2 Beta / §7 item 8. Not invented here.
 const onboarding = [
   { n: "01", step: "Create an account", note: "Sign up at the app. No credit card needed." },
@@ -20,7 +20,7 @@ const readyNow = [
 ---
 
 <Verdant title="Join the Beta, Garden" description="Early access to Garden. Beta testers keep free access.">
-  {/* KP-OWED: define "lifetime free" — beta-only? Garden core web app? future paid tiers? one account? Needs KP business/legal sign-off before public. */}
+  {/* KP-OWED: define "lifetime free". beta-only? Garden core web app? future paid tiers? one account? Needs KP business/legal sign-off before public. */}
   <Hero
     headline="Join the beta"
     sub="Early access to Garden. Test it, break it, tell us what you think. Beta testers keep free access. Full terms before launch."
@@ -53,7 +53,7 @@ const readyNow = [
   <CTAClose1
     headline="Ready to begin?"
     sub="Your financial life, kept private."
-    cta={{ label: "Join the beta", href: "https://garden.khushinpatel1.workers.dev" }}
+    cta={{ label: "Try Garden", href: "https://garden.khushinpatel1.workers.dev" }}
   />
 
   <Footer client:visible />

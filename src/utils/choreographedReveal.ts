@@ -1,5 +1,5 @@
 /**
- * Choreographed scroll reveal — replaces uniform fade for hero moments.
+ * Choreographed scroll reveal. replaces uniform fade for hero moments.
  *
  * Where it elevates a moment, this driver composes a GSAP entrance timeline
  * where elements enter differently: some slide+fade, some scale, some stay still.

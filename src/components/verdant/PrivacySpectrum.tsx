@@ -2,11 +2,11 @@ import { useState } from "react";
 import { privacySpectrum } from "../../data/verdant";
 
 /**
- * PrivacySpectrum — Security page signature moment (plan §3).
+ * PrivacySpectrum. Security page signature moment (plan §3).
  *
  * An interactive 3-tier toggle. Tap a tier (touch-capable, no hover-only) and
  * the panel below reveals exactly what stays private vs what touches a
- * server for that tier — pulled straight from data/verdant.ts so the honest
+ * server for that tier. pulled straight from data/verdant.ts so the honest
  * spectrum is never re-typed or drifted. Tier 3 (bank link) is clearly marked
  * architecture-only; nothing here implies it is live.
  *
@@ -19,7 +19,7 @@ export default function PrivacySpectrum({ className = "" }: { className?: string
 
   return (
     <div className={`vsp ${className}`}>
-      {/* Tappable tier rail — always works regardless of input */}
+      {/* Tappable tier rail. always works regardless of input */}
       <div className="vsp-rail" role="tablist" aria-label="Privacy tiers">
         {privacySpectrum.map((t, i) => (
           <button
@@ -38,7 +38,7 @@ export default function PrivacySpectrum({ className = "" }: { className?: string
         ))}
       </div>
 
-      {/* Revealed panel — what's private vs what touches a server */}
+      {/* Revealed panel. what's private vs what touches a server */}
       <div className="vsp-panel" key={tier.key}>
         <div className="vsp-panel-head">
           <p className="vsp-panel-what">{tier.what}</p>

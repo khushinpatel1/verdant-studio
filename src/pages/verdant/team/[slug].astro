@@ -18,7 +18,7 @@ export async function getStaticPaths() {
 const { person, prev, next } = Astro.props;
 ---
 
-<Verdant title={`${person.name} — Verdant`}>
+<Verdant title={`${person.name}, Verdant`}>
   <section class="vp">
     <div class="v-wrap">
       <a href="/verdant/team" class="v-label vp-back" data-cursor="Back">← People</a>
@@ -35,7 +35,7 @@ const { person, prev, next } = Astro.props;
           <div class="vp-bio">
             {person.bio.map((para) => <p>{para}</p>)}
           </div>
-          <p class="vp-cares">Cares for — {person.cares}</p>
+          <p class="vp-cares">Cares for: {person.cares}</p>
         </div>
       </div>
     </div>

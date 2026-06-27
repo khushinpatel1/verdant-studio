@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 
 /**
- * Bamboo — sumi-e bamboo culms with nodes and leaf sprays.
+ * Bamboo. sumi-e bamboo culms with nodes and leaf sprays.
  *
  * Anatomy:
  *   - 3 culms, each composed of segments between nodes. Each segment is a
@@ -9,10 +9,10 @@ import { useEffect, useRef } from "react";
  *     than base, with the ink body having subtle opacity variation. The brush
  *     loaded at the bottom of each segment and lightened as it pulled upward.
  *   - Node rings: where segments meet, a horizontal filled almond-band sits
- *     across the culm — the joint's ink deposit. Each node is slightly wider
+ *     across the culm. the joint's ink deposit. Each node is slightly wider
  *     than the culm at that point.
  *   - Leaf sprays: 2–3 sprays of leaf blades. Each leaf is an elongated almond
- *     (filled path) that tapers to a sharp point — the brush tip's exit stroke.
+ *     (filled path) that tapers to a sharp point. the brush tip's exit stroke.
  *     Leaf clusters branch from the nodes, angled asymmetrically.
  *   - Sway animation: the leaves on each culm sway gently at different phases
  *     and amplitudes, like a breeze passing through. The culms themselves are
@@ -20,8 +20,8 @@ import { useEffect, useRef } from "react";
  *   - Reduced-motion: fully static, leaves at rest.
  *
  * Props:
- *   className, style — standard pass-through
- *   side — mirrors via transform (default "right" — culms lean right)
+ *   className, style. standard pass-through
+ *   side. mirrors via transform (default "right". culms lean right)
  */
 export default function Bamboo({
   className,
@@ -84,7 +84,7 @@ export default function Bamboo({
 
           {/*
             ══════════════════════════════════════════════════════════════════
-            CULM 1 — tallest, leftmost, slightly forward-leaning (main trunk)
+            CULM 1. tallest, leftmost, slightly forward-leaning (main trunk)
             ══════════════════════════════════════════════════════════════════
           */}
 
@@ -113,7 +113,7 @@ export default function Bamboo({
             d="M 92 446 C 91 426 90 400 91 382 C 96 380 103 380 105 382 C 106 400 105 426 107 446 Z"
             fill="currentColor" opacity="0.70"
           />
-          {/* Node 3 — leaves spray off here */}
+          {/* Node 3. leaves spray off here */}
           <path
             d="M 87 382 C 92 378 101 376 108 378 C 112 380 112 384 108 386 C 101 388 92 388 87 386 C 84 384 84 383 87 382 Z"
             fill="currentColor" opacity="0.62"
@@ -128,7 +128,7 @@ export default function Bamboo({
             d="M 85 320 C 90 316 100 314 107 316 C 111 318 111 322 107 324 C 100 326 90 326 85 324 C 82 322 82 321 85 320 Z"
             fill="currentColor" opacity="0.58"
           />
-          {/* Segment 5 (near top — brush drying) */}
+          {/* Segment 5 (near top. brush drying) */}
           <path
             d="M 89 320 C 88 302 88 280 89 264 C 94 262 101 262 103 264 C 103 280 102 302 104 320 Z"
             fill="currentColor" opacity="0.56"
@@ -160,7 +160,7 @@ export default function Bamboo({
 
           {/*
             ══════════════════════════════════════════════════════════════════
-            CULM 2 — slightly shorter, offset right, leaning back slightly
+            CULM 2. slightly shorter, offset right, leaning back slightly
             ══════════════════════════════════════════════════════════════════
           */}
 
@@ -174,7 +174,7 @@ export default function Bamboo({
           {/* Tip */}
           <path d="M 175 312 C 176 292 179 272 182 258 C 184 254 187 254 188 258 C 189 272 188 292 190 312 Z" fill="currentColor" opacity="0.40" />
 
-          {/* Leaf spray — culm 2, mid level, going left */}
+          {/* Leaf spray. culm 2, mid level, going left */}
           <g
             className="bamboo-leaf-group"
             style={{ transformOrigin: "174px 368px", animation: "bamboo-sway-c 8s ease-in-out infinite 1.6s" }}
@@ -185,7 +185,7 @@ export default function Bamboo({
 
           {/*
             ══════════════════════════════════════════════════════════════════
-            CULM 3 — shortest, leftmost foreground, thick base (closest)
+            CULM 3. shortest, leftmost foreground, thick base (closest)
             ══════════════════════════════════════════════════════════════════
           */}
 
@@ -197,7 +197,7 @@ export default function Bamboo({
           {/* Tip */}
           <path d="M 44 382 C 46 360 49 340 52 328 C 54 324 57 324 58 328 C 59 340 58 360 59 382 Z" fill="currentColor" opacity="0.52" />
 
-          {/* Leaf spray — culm 3, going right */}
+          {/* Leaf spray. culm 3, going right */}
           <g
             className="bamboo-leaf-group"
             style={{ transformOrigin: "59px 444px", animation: "bamboo-sway-a 9s ease-in-out infinite 2.4s" }}
