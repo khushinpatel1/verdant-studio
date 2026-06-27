@@ -4,20 +4,21 @@ import Footer from "../../components/verdant/Footer";
 import GardenLive from "../../components/verdant/GardenLive.astro";
 import FeatureRow from "../../components/verdant/kit/FeatureRow.astro";
 import CTAClose1 from "../../components/verdant/kit/CTAClose1.astro";
+import { garden } from "../../data/verdant";
 ---
 
-<Verdant title="Verdant — software grown for people">
-  <section class="v-home-hero">
+<Verdant title="Verdant, software grown for people">
+  <section class="v-home-hero" data-v-choreograph>
     <div class="v-home-hero__stack">
-      <div class="v-home-hero__eyebrow">Verdant Studio — independent software</div>
-      <h1 class="v-home-hero__headline">Private personal finance.</h1>
-      <p class="v-home-hero__sub">Track accounts, budgets, goals, and net worth — without selling your data to do it.</p>
-      <div class="v-home-hero__ctas">
-        <a href="/verdant/beta" class="v-cta v-cta--primary">Join the beta</a>
-        <a href="/verdant/garden" class="v-cta">See Garden</a>
+      <div class="v-home-hero__eyebrow" data-v-choreo-slide data-v-choreo-delay="0">Verdant Studio. Independent software.</div>
+      <h1 class="v-home-hero__headline" data-v-choreo-slide data-v-choreo-delay="0.08">Private personal finance.</h1>
+      <p class="v-home-hero__sub" data-v-choreo-hold data-v-choreo-delay="0.2">Track accounts, budgets, goals, and net worth without selling your data to do it.</p>
+      <div class="v-home-hero__ctas" data-v-choreo-hold data-v-choreo-delay="0.2">
+        <a href={garden.url} class="v-cta v-cta--primary">Try Garden</a>
+        <a href="/verdant/beta" class="v-cta">Join the beta</a>
       </div>
     </div>
-    <div class="v-home-hero__media v-product-shot">
+    <div class="v-home-hero__media v-product-shot" data-v-choreo-scale data-v-choreo-delay="0.15">
       <GardenLive />
     </div>
   </section>
