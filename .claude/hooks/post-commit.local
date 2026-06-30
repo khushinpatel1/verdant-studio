@@ -1,2 +1,0 @@
-# verdant-specific: also refresh astro component map
-node scripts/codesight-astro.mjs >/dev/null 2>&1 || true

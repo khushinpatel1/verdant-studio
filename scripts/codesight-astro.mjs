@@ -5,7 +5,7 @@
  * page/route, layout, and the frontmatter imports. This appends them.
  *
  * Idempotent: strips any prior augment block (sentinel-marked) before appending.
- * Run AFTER `codesight`. Wired into post-commit and runnable by hand.
+ * Run AFTER `codesight`. Wired into pre-commit and runnable by hand.
  */
 import { readFileSync, writeFileSync, existsSync, readdirSync, statSync } from "node:fs";
 import { join, relative } from "node:path";

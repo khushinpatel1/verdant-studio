@@ -1,6 +1,6 @@
 # Verdant Studio
 
-> Law: `~/.claude/CLAUDE.md`. Intent: `VISION.md`. Backlog: `TODO.md`. Technique: `docs/verdant-handoff.md`.
+> Law: `~/.claude/CLAUDE.md`. Intent: `VISION.md`. Current work: `TODO.md`. Map: `.codesight/CODESIGHT.md`.
 
 **Verdant Studio site** — serene Japanese-garden studio site. Formerly multi-skin `pastures` repo; now standalone (v3 only). Root redirects to `/verdant`.
 

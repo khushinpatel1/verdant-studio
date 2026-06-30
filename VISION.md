@@ -6,19 +6,19 @@
 
 Brand: warm cream, forest/sage/gold, Japanese-garden serenity. Structural (asymmetric weight, broken grid, varied rhythm), never cosmetic.
 
-## What ships
-- 7 pages (Home, About, Garden, Blog, Roadmap, FAQ, Contact).
-- 3 CTA options live; KP picks final variant.
-- Responsive + accessible. No `'unsafe-inline'` script CSP (brand hardening).
-- Product screenshots, video, roadmap timeline, security spectrum, anti-AI aesthetic.
+## Product contract
 
-## Definition of done — v3
-- All 7 pages responsive + 200 HTTP.
+- The current page and component inventory comes from `src/pages/`, `src/components/`, and `.codesight/CODESIGHT.md`.
+- Responsive, accessible, touch-compatible surfaces.
+- Product proof, roadmap, security posture, and privacy language must match current Garden code.
+- Source/license attribution stays beside the assets it governs.
+
+## Definition of done — current site
+- Every current route builds and resolves as intended.
 - Hero interactions touch-compatible (no hover-only).
 - Canvas perf: 30fps idle-throttle + `visibilitychange` pause.
 - Assets bleed into background (no stamped edges).
 - No Japanese writing/iconography (Western, English-only).
-- CSP hardening: hash-based script CSP, no `'unsafe-inline'`.
 - Privacy statement + trust anchors (security, no data extraction, open source intent).
 
 ## Out of scope (deferred)
@@ -32,7 +32,4 @@ Brand: warm cream, forest/sage/gold, Japanese-garden serenity. Structural (asymm
 - **Privacy statement true.** No claims about garden/kapers that aren't shipping.
 - **CTA leads somewhere.** Link must resolve; no placeholders live.
 
-## Open direction-calls (KP)
-- Final CTA pick (3 options swap-ready).
-- Hero assets upgrade (video + product screenshots for App Store/promo).
-- Pricing public promise terms (placeholder removed only when pricing ships).
+Current work is empty until a new plan is registered in `../partnership/repos.toml`.
