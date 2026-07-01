@@ -63,19 +63,7 @@ const fonts = [
     </main>
 
     <script>
-      import Lenis from "lenis";
       import { armChoreography } from "../utils/choreographedReveal";
-      let lenis: any;
-      function boot() {
-        lenis?.destroy?.();
-        // prefers-reduced-motion → native scroll, no smoothing layer at all
-        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) { lenis = null; return; }
-        // coarse pointer (touch) → native scroll; Lenis on desktop/trackpad only
-        if (window.matchMedia("(pointer: coarse)").matches) { lenis = null; return; }
-        lenis = new Lenis({ lerp: 0.11, wheelMultiplier: 1 });
-        function raf(t: number) { lenis?.raf(t); requestAnimationFrame(raf); }
-        requestAnimationFrame(raf);
-      }
 
       // scroll-reveal driver. re-armed on every view transition
       let io: IntersectionObserver | null = null;
@@ -95,13 +83,10 @@ const fonts = [
         els.forEach((el) => io!.observe(el));
       }
 
-      // print-field parallax. writes --vp (px) onto [data-v-parallax] fields.
-      // Pure scrollY math via untransformed wrappers, so iOS address-bar
-      // viewport shifts self-correct on the next scroll/resize tick.
+      // scroll-linked parallax. updates --vp (px) via getBoundingClientRect.
+      // respects prefers-reduced-motion.
       let pEls: HTMLElement[] = [];
-      let pQueued = false;
       function pUpdate() {
-        pQueued = false;
         const vh = window.innerHeight;
         for (const el of pEls) {
           const r = el.getBoundingClientRect();
@@ -110,21 +95,16 @@ const fonts = [
           el.style.setProperty("--vp", (mid * speed).toFixed(1) + "px");
         }
       }
-      function pTick() {
-        if (!pEls.length || pQueued) return;
-        pQueued = true;
-        requestAnimationFrame(pUpdate);
-      }
       function armParallax() {
         pEls = window.matchMedia("(prefers-reduced-motion: reduce)").matches
           ? []
           : Array.from(document.querySelectorAll<HTMLElement>("[data-v-parallax]"));
         if (pEls.length) pUpdate();
       }
-      window.addEventListener("scroll", pTick, { passive: true });
-      window.addEventListener("resize", pTick);
+      window.addEventListener("scroll", pUpdate, { passive: true });
+      window.addEventListener("resize", pUpdate);
 
-      document.addEventListener("astro:page-load", () => { boot(); arm(); armParallax(); armChoreography(); });
+      document.addEventListener("astro:page-load", () => { arm(); armParallax(); armChoreography(); });
     </script>
   </body>
 </html>

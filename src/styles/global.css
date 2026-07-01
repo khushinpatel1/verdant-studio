@@ -1,3 +1,5 @@
+@import "./tokens.css";
+
 *,
 *::before,
 *::after {
@@ -5,7 +7,7 @@
 }
 
 html {
-  /* Lenis owns smooth scroll */
+  scroll-behavior: auto;
 }
 
 body {

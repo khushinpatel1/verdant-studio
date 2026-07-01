@@ -3,7 +3,7 @@
 > **Stack:** raw-http | none | react | typescript
 
 > 0 routes | 0 models | 14 components | 2 lib files | 1 env vars | 0 middleware
-> **Last scanned:** 2026-06-30 01:53 — re-run after significant changes
+> **Last scanned:** 2026-07-01 14:39 — re-run after significant changes
 
 ---
 
