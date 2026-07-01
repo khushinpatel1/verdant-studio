@@ -1,0 +1,61 @@
+---
+import { studio } from "../../data/verdant";
+---
+
+<section class="v-studio-section">
+  <div class="v-wrap v-studio-inner">
+    <div class="v-studio-content">
+      <h2 class="v-display">{studio.who}</h2>
+      <p class="v-studio-lead">{studio.lead}</p>
+      <div class="v-studio-lines">
+        {studio.lines.map((line) => (
+          <p class="v-studio-line">{line}</p>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .v-studio-section {
+    background: var(--paper-soft);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    padding: clamp(4rem, 10vh, 6rem) clamp(20px, 5vw, 56px);
+  }
+  .v-studio-inner {
+    max-width: var(--maxw);
+    margin: 0 auto;
+  }
+  .v-studio-content {
+    max-width: 60ch;
+  }
+  .v-studio-content .v-display {
+    font-size: var(--display-2);
+    color: var(--ink);
+    line-height: 1.18;
+    margin-bottom: 1.5rem;
+  }
+  .v-studio-lead {
+    font-size: var(--text-lg);
+    color: var(--ink);
+    line-height: 1.5;
+    margin-bottom: 2rem;
+    max-width: 50ch;
+  }
+  .v-studio-lines {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .v-studio-line {
+    font-size: var(--text-base);
+    color: var(--ink-soft);
+    line-height: 1.6;
+    margin: 0;
+    max-width: 50ch;
+  }
+  .v-studio-line + .v-studio-line {
+    margin-top: 0.5rem;
+  }
+</style>

@@ -2,8 +2,9 @@
 import Verdant from "../../layouts/Verdant.astro";
 import Footer from "../../components/verdant/Footer";
 import GardenLive from "../../components/verdant/GardenLive.astro";
-import FeatureRow from "../../components/verdant/kit/FeatureRow.astro";
-import CTAClose1 from "../../components/verdant/kit/CTAClose1.astro";
+import PrivacySpectrum from "../../components/verdant/PrivacySpectrum";
+import StickyProductStory from "../../components/verdant/StickyProductStory";
+import StudioSection from "../../components/verdant/StudioSection.astro";
 import { garden } from "../../data/verdant";
 ---
 
@@ -23,28 +24,36 @@ import { garden } from "../../data/verdant";
     </div>
   </section>
 
-  <FeatureRow
-    align="left"
-    headline="Security and trust are structural"
-    body="Manual entry stays fully local. AI import touches your data once. Bank sync travels labeled plaintext. You choose the tier that fits your work."
-    media={false}
-    cta={{ label: "Read the privacy spectrum", href: "/verdant/security" }}
-  />
+  <StickyProductStory client:only="react" />
 
-  <FeatureRow
-    align="left"
-    headline="Why we built this"
-    body="Privacy by structure, not by claim. We can't sell what we never touch. Software should answer to you, not the people who bought ads. Build one thing well, not ten things anxiously."
-    media={true}
-    mediaSrc="/verdant/art/ethos-sand.jpg"
-  />
+  <section class="v-privacy-section">
+    <div class="v-wrap">
+      <div class="v-privacy-head">
+        <p class="v-label v-label--bare">How privacy works</p>
+        <h2 class="v-display">You choose your tier</h2>
+        <p class="v-privacy-sub">Privacy is a spectrum. Pick the one that fits your work.</p>
+      </div>
+      <PrivacySpectrum client:only="react" />
+    </div>
+  </section>
 
-  <CTAClose1
-    headline="Ready to take control"
-    sub="Start with the Garden beta. Early access, no ads, no surprises."
-    cta={{ label: "Join the beta", href: "/verdant/beta" }}
-    ctaSecondary={{ label: "See what's next", href: "/verdant/roadmap" }}
-  />
+  <StudioSection />
+
+  <section class="v-cta-close">
+    <div class="v-wrap">
+      <div class="v-cta-close__content">
+        <h2 class="v-display">Start with Garden</h2>
+        <p class="v-cta-close__sub">Early access. No ads. No surprises.</p>
+        <div class="v-cta-close__actions">
+          <a href={garden.url} class="v-cta v-cta--primary">Try Garden now</a>
+          <a href="/verdant/roadmap" class="v-cta">See what's next</a>
+        </div>
+      </div>
+      <div class="v-cta-close__product">
+        <GardenLive />
+      </div>
+    </div>
+  </section>
 
   <Footer client:visible />
 </Verdant>
@@ -74,4 +83,81 @@ import { garden } from "../../data/verdant";
   .v-home-hero__sub { font-size: var(--text-lg); color: var(--muted); line-height: 1.5; max-width: 32em; }
   .v-home-hero__ctas { display: flex; flex-wrap: wrap; gap: 1.75rem; margin-top: 0.5rem; align-items: center; }
   .v-home-hero__media { display: flex; align-items: center; justify-content: center; }
+
+  .v-privacy-section {
+    padding: clamp(4rem, 10vh, 6rem) clamp(20px, 5vw, 56px);
+    background: var(--paper);
+  }
+  .v-privacy-section .v-wrap {
+    max-width: var(--maxw);
+    margin: 0 auto;
+  }
+  .v-privacy-head {
+    margin-bottom: clamp(3rem, 6vh, 4rem);
+    max-width: 50ch;
+  }
+  .v-privacy-head .v-label {
+    color: var(--gold-ink);
+  }
+  .v-privacy-head .v-display {
+    font-size: var(--display-2);
+    color: var(--ink);
+    line-height: 1.18;
+    margin: 0.8rem 0 1rem;
+  }
+  .v-privacy-sub {
+    font-size: var(--text-lg);
+    color: var(--ink-soft);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .v-cta-close {
+    padding: clamp(4rem, 10vh, 6rem) clamp(20px, 5vw, 56px);
+    background: var(--paper);
+  }
+  .v-cta-close .v-wrap {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: clamp(2.5rem, 6vw, 6rem);
+    align-items: center;
+  }
+  .v-cta-close__content {
+    max-width: 50ch;
+  }
+  .v-cta-close__content .v-display {
+    font-size: var(--display-2);
+    color: var(--ink);
+    line-height: 1.18;
+    margin-bottom: 0.8rem;
+  }
+  .v-cta-close__sub {
+    font-size: var(--text-lg);
+    color: var(--ink-soft);
+    line-height: 1.5;
+    margin-bottom: 2rem;
+  }
+  .v-cta-close__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.75rem;
+    align-items: center;
+  }
+  .v-cta-close__product {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media (max-width: 860px) {
+    .v-cta-close .v-wrap {
+      grid-template-columns: 1fr;
+    }
+    .v-cta-close__product {
+      order: -1;
+      margin-bottom: 2rem;
+    }
+  }
 </style>
