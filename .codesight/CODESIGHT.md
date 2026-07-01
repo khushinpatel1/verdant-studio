@@ -2,8 +2,8 @@
 
 > **Stack:** raw-http | none | react | typescript
 
-> 0 routes | 0 models | 14 components | 2 lib files | 1 env vars | 0 middleware
-> **Last scanned:** 2026-07-01 14:39 — re-run after significant changes
+> 0 routes | 0 models | 14 components | 3 lib files | 1 env vars | 0 middleware
+> **Last scanned:** 2026-07-01 14:40 — re-run after significant changes
 
 ---
 
@@ -30,6 +30,13 @@
 
 - `functions/api/waitlist.ts` — function onRequestPost
 - `src/utils/choreographedReveal.ts` — function choreographSection: (section, config) => void, function armChoreography: () => void
+- `src/utils/motion.ts`
+  - function prefersReducedMotion: () => boolean
+  - function animateCardExpand: (el, options) => Promise<void>
+  - function animateSheetOpen: (el, options) => Promise<void>
+  - function animateMaskedReveal: (el, options) => void
+  - function computeScrollTransform: (el, speed) => string
+  - interface MotionOptions
 
 ---
 

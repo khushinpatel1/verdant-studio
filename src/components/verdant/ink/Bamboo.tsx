@@ -1,5 +1,3 @@
-import { useEffect, useRef } from "react";
-
 /**
  * Bamboo. sumi-e bamboo culms with nodes and leaf sprays.
  *
@@ -32,16 +30,6 @@ export default function Bamboo({
   style?: React.CSSProperties;
   side?: "left" | "right";
 }) {
-  const leavesRef = useRef<SVGGElement>(null);
-
-  useEffect(() => {
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduce) {
-      // Leaves visible at rest position (opacity already set in SVG)
-      return;
-    }
-    // Animation is pure CSS via keyframes in the <style> block below
-  }, []);
 
   const flip = side === "left" ? "scale(-1,1) translate(-360,0)" : undefined;
 

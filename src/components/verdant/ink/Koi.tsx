@@ -1,5 +1,3 @@
-import { useEffect, useRef } from "react";
-
 /**
  * Koi. two koi fish in brushed strokes.
  * Bodies are filled tapered-oval shapes layered at multiple opacities

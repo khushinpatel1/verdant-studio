@@ -1,4 +1,4 @@
-import gsap from "gsap";
+import type gsap from "gsap";
 
 /**
  * Animates SVG paths with the [data-growable] attribute,
