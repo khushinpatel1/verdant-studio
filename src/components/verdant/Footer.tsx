@@ -25,7 +25,6 @@ export default function Footer({ tone = "light" }: { tone?: "light" | "cream" })
           <div className="v-footer-col">
             <p className="v-label v-label--bare">Product</p>
             <a href="/verdant/garden" className="v-footer-link">Garden</a>
-            <a href="/verdant/pricing" className="v-footer-link">Pricing</a>
             <a href="/verdant/beta" className="v-footer-link">Join the beta</a>
             <a href="/verdant/notes" className="v-footer-link">Changelog</a>
           </div>

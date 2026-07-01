@@ -124,6 +124,7 @@ export default function GardenTour({ className = "" }: GardenTourProps) {
   const pinRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(0);
   const [pinned, setPinned] = useState(false);
+  const lastIdx = useRef(-1);
 
   useEffect(() => {
     const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -147,7 +148,10 @@ export default function GardenTour({ className = "" }: GardenTourProps) {
       pinSpacing: true,
       onUpdate(self) {
         const idx = Math.min(stepCount - 1, Math.floor(self.progress * stepCount));
-        setActive(idx);
+        if (idx !== lastIdx.current) {
+          lastIdx.current = idx;
+          setActive(idx);
+        }
       },
       onToggle(self) {
         setPinned(self.isActive);

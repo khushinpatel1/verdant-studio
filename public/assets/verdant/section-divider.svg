@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 24" preserveAspectRatio="none">
-  <!-- section divider — one slow brushstroke; inherits currentColor -->
-  <path d="M 8 12.5 C 160 8.5 320 15.5 520 12 C 740 8 940 15 1192 11.5
-           L 1192 12.2 C 940 16.5 740 10 520 14 C 320 17.5 160 10 8 13.5 Z"
-        fill="currentColor" opacity="0.65"/>
-  <!-- a droplet that left the stroke -->
-  <circle cx="1198" cy="11.8" r="1.4" fill="currentColor" opacity="0.5"/>
-</svg>

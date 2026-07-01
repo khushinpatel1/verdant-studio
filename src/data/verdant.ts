@@ -19,7 +19,6 @@ export const nav = {
     { label: "Garden", href: "/verdant/garden" },
     { label: "Security", href: "/verdant/security" },
     { label: "Roadmap", href: "/verdant/roadmap" },
-    { label: "Pricing", href: "/verdant/pricing" },
     { label: "About", href: "/verdant/studio" },
   ],
   cta: { label: "Join the beta", href: "/verdant/beta" },
@@ -43,10 +42,8 @@ export const garden = {
   // hero-landscape. light hero background for back-phone teaser
   vaultScreen: "/verdant/media/hero-landscape-2.jpg",
   url: "https://garden.khushinpatel1.workers.dev",
-  // Pricing signal. copy only, no payment system yet. People pay for it; that's the model.
-  pricing: "Free during the beta. No ads, no data sold. That doesn't change.",
   onboarding: "Start fresh or import a CSV. Your data, your device.",
-  accountConnection: "Manual CSV import for now. Bank sync coming.",
+  accountConnection: "Manual entry and CSV import today. Bank sync is coming — Garden will support whatever connection gets you the most automation. Once your data reaches that connection, it's in the provider's hands, not ours. We'll always tell you exactly where the line is.",
   groveExample: "Ask 'How long until I pay off my Amex?' Grove answers with the month and year from your actual balances, answered by a private AI model over HTTPS and not stored.",
   screens: [
     {
@@ -132,14 +129,14 @@ export const privacySpectrum: PrivacyTier[] = [
     n: "03",
     key: "bank-link",
     label: "Bank link",
-    what: "A direct connection to your bank or brokerage (SnapTrade, SimpleFIN, Plaid). Architecture only, not yet live.",
+    what: "A direct connection to your bank or brokerage via a bank-sync provider. Real-time convenience in exchange for your data transiting a third party.",
     status: "Architecture-only. Not live.",
     privateOf: ["Nothing extra beyond what the provider already shares with any app you connect"],
     touchesServer: [
       "Your account credentials, handled by the provider's own flow (Garden never sees your bank password)",
       "Balances and transactions, relayed in labeled plaintext for as long as the link is active",
     ],
-    reality: "The convenience tier. Plaintext transit, clearly labeled. No E2E claim here, because there can't honestly be one.",
+    reality: "Bank sync means your data transits a third party provider. Garden relays it but cannot protect it once it's with that provider. No E2E claim for this tier.",
   },
 ];
 
@@ -190,9 +187,9 @@ export const ethos = {
     { feature: "Garden. Early Access launch", date: "2026-06-17" },
     { feature: "Export as JSON. Any time, no account needed", date: "2026-06" },
     { feature: "Grove. On-device financial assistant", date: "2026-06" },
-    { feature: "Bank sync (SnapTrade, SimpleFIN)", date: "In progress" },
+    { feature: "Bank sync (in progress — provider TBD)", date: "In progress" },
   ],
-  dataPortability: "Export all your data as JSON at any time. Manual entry stays on your device. AI imports are parsed once, never stored by us. Bank connections are labeled plaintext only.",
+  dataPortability: "Export all your data as JSON at any time. Manual entry stays on your device. AI imports are parsed once, never stored by us. Bank sync means your data transits a provider you choose — we relay it but cannot protect it once it's there.",
   privacyStatement: "Privacy is what you choose. You control which tier fits your work. There is no flat 'never leaves your device'. We're honest about what each path touches.",
   version: "001",
   launched: "2026-06-17",
@@ -205,7 +202,7 @@ export const faq = [
   },
   {
     q: "What about bank sync?",
-    a: "Bank connections are architecture-only right now. We're not live yet. When we wire it, it'll be labeled plaintext transit through a third-party provider (SnapTrade, SimpleFIN, Plaid). Fully honest about the privacy tradeoff.",
+    a: "Bank connections are architecture-only right now. We're not live yet. When we wire it, it'll be labeled plaintext transit through a third-party provider. Once your data reaches that connection, it's in the provider's hands, not ours. Fully honest about the privacy tradeoff.",
   },
   {
     q: "Can I export my data?",

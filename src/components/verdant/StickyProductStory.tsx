@@ -17,13 +17,15 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
  * Motion: scroll-driven state changes. Touch/reduced-motion: static rail.
  */
 
+type Icon = "home" | "plan" | "lock";
+
 type Chapter = {
   key: string;
   title: string;
   headline: string;
   body: string;
   color: string;
-  icon: string;
+  icon: Icon;
 };
 
 const CHAPTERS: Chapter[] = [
@@ -33,7 +35,7 @@ const CHAPTERS: Chapter[] = [
     headline: "Everything, at a glance.",
     body: "Net worth, every account, and one honest health score. No hidden numbers, no buried alerts. Just clarity.",
     color: "var(--leaf)",
-    icon: "🏠",
+    icon: "home",
   },
   {
     key: "plan",
@@ -41,7 +43,7 @@ const CHAPTERS: Chapter[] = [
     headline: "A date on every goal.",
     body: "Debt payoff timelines, savings targets, and the real year you'll be free. Goals with deadlines, ordered by what matters first.",
     color: "var(--moss)",
-    icon: "📍",
+    icon: "plan",
   },
   {
     key: "protect",
@@ -49,15 +51,58 @@ const CHAPTERS: Chapter[] = [
     headline: "Privacy by design.",
     body: "You choose how much to sync. Manual entry stays local. Bank connections are labeled plaintext. Full control, no guessing.",
     color: "var(--gold)",
-    icon: "🔒",
+    icon: "lock",
   },
 ];
+
+function ChapterIcon({ icon }: { icon: Icon }) {
+  const common = {
+    width: 22,
+    height: 22,
+    viewBox: "0 0 24 24",
+    fill: "none" as const,
+    stroke: "currentColor",
+    strokeWidth: 1.6,
+    strokeLinecap: "round" as const,
+    strokeLinejoin: "round" as const,
+    "aria-hidden": true as const,
+  };
+  switch (icon) {
+    case "home":
+      return (
+        <svg {...common}>
+          <path d="M4 12.5 12 5l8 7.5" />
+          <path d="M6.5 11v7.5h11V11" />
+          <path d="M10 18.5v-4.5h4v4.5" />
+        </svg>
+      );
+    case "plan":
+      return (
+        <svg {...common}>
+          <circle cx="12" cy="9" r="3.4" />
+          <path d="M12 12.4V19" />
+          <path d="M6 19h12" />
+        </svg>
+      );
+    case "lock":
+      return (
+        <svg {...common}>
+          <path d="M8 10h8c1 0 1.5.5 1.5 1.5v6c0 1-.5 1.5-1.5 1.5H8c-1 0-1.5-.5-1.5-1.5v-6c0-1 .5-1.5 1.5-1.5z" />
+          <path d="M10 10V8c0-1.1.9-2 2-2s2 .9 2 2v2" />
+          <circle cx="12" cy="15.5" r="0.7" />
+        </svg>
+      );
+    default:
+      return <svg {...common} />;
+  }
+}
 
 export default function StickyProductStory({ className = "" }: { className?: string }) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLDivElement>(null);
   const [activeChapter, setActiveChapter] = useState(0);
   const [pinned, setPinned] = useState(false);
+  const lastIdx = useRef(-1);
 
   useEffect(() => {
     const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -80,29 +125,10 @@ export default function StickyProductStory({ className = "" }: { className?: str
       pinSpacing: true,
       onUpdate(self) {
         const idx = Math.min(stepCount - 1, Math.floor(self.progress * stepCount));
-        setActiveChapter(idx);
-
-        // Card detach animation: scale and lift as chapter enters
-        const cards = canvas.querySelectorAll(".sps-card");
-        cards.forEach((card, i) => {
-          if (i === idx) {
-            gsap.to(card, {
-              scale: 1.08,
-              y: -12,
-              opacity: 1,
-              duration: 0.6,
-              ease: "power2.out",
-            });
-          } else {
-            gsap.to(card, {
-              scale: 0.95,
-              y: 8,
-              opacity: 0.5,
-              duration: 0.6,
-              ease: "power2.out",
-            });
-          }
-        });
+        if (idx !== lastIdx.current) {
+          lastIdx.current = idx;
+          setActiveChapter(idx);
+        }
       },
       onToggle(self) {
         setPinned(self.isActive);
@@ -127,8 +153,8 @@ export default function StickyProductStory({ className = "" }: { className?: str
           {/* Copy column. changes per chapter */}
           <div className="sps-copy">
             <span className="v-label v-label--bare">0{activeChapter + 1}. {chapter.title}</span>
-            <div className="sps-icon" style={{ color: chapter.color }} aria-hidden="true">
-              {chapter.icon}
+            <div className="sps-icon" style={{ color: chapter.color }}>
+              <ChapterIcon icon={chapter.icon} />
             </div>
             <h2 className="v-display sps-headline">{chapter.headline}</h2>
             <p className="sps-body">{chapter.body}</p>
@@ -146,7 +172,7 @@ export default function StickyProductStory({ className = "" }: { className?: str
                   data-cursor="View"
                   style={i === activeChapter ? { color: c.color } : {}}
                 >
-                  <span className="sps-rail-icon">{c.icon}</span>
+                  <span className="sps-rail-icon"><ChapterIcon icon={c.icon} /></span>
                   <span>{c.title}</span>
                 </button>
               ))}
@@ -200,8 +226,9 @@ export default function StickyProductStory({ className = "" }: { className?: str
 
         .sps-copy { max-width: 42ch; }
         .sps-icon {
-          font-size: 2rem;
-          display: inline-block;
+          display: inline-flex;
+          width: 22px;
+          height: 22px;
           margin: 1.4rem 0 0.6rem;
         }
         .sps-headline {
@@ -242,6 +269,8 @@ export default function StickyProductStory({ className = "" }: { className?: str
           border-radius: var(--radius);
           transition: color 0.3s var(--ease), background 0.3s var(--ease);
         }
+        .sps-rail-icon { display: flex; width: 16px; height: 16px; flex: none; opacity: 0.7; transition: opacity 0.3s var(--ease); }
+        .sps-rail-btn.is-active .sps-rail-icon { opacity: 1; }
         .sps-rail-btn:hover { color: var(--leaf); }
         .sps-rail-btn.is-active {
           background: var(--paper-soft);

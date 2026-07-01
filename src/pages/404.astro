@@ -1,9 +1,6 @@
 ---
 import "../styles/global.css";
 import "../styles/verdant.css";
-import Moon from "../components/verdant/ink/Moon";
-import MountainRidge from "../components/verdant/ink/MountainRidge";
-import MistLayer from "../components/verdant/ink/MistLayer";
 
 const title = "Not found";
 const description = "This page doesn't exist.";
@@ -63,76 +60,14 @@ const description = "This page doesn't exist.";
         color: var(--ink);
       }
 
-      .vh-404-accent {
-        position: absolute;
-        top: clamp(40px, 8vh, 80px);
-        right: clamp(20px, 4vw, 60px);
-        width: clamp(100px, 16vw, 160px);
-        height: auto;
-        aspect-ratio: 240 / 260;
-        opacity: 0.18;
-        pointer-events: none;
-        z-index: 1;
-      }
-
-      .vh-404-band {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        height: clamp(60px, 10vh, 140px);
-        pointer-events: none;
-        overflow: hidden;
-        z-index: 1;
-      }
-
-      .vh-404-mountain, .vh-404-mist {
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-      }
-
-      .vh-404-mountain {
-        color: var(--moss);
-        opacity: 0.35;
-      }
-
-      .vh-404-mist {
-        color: var(--sage);
-        opacity: 0.45;
-      }
-
-      @media (max-width: 640px) {
-        .vh-404-accent {
-          width: clamp(80px, 14vw, 120px);
-          top: clamp(30px, 6vh, 50px);
-          right: clamp(15px, 3vw, 30px);
-        }
-      }
     </style>
   </head>
   <body>
-    <!-- P2: Moon accent in top-right corner -->
-    <div class="vh-404-accent" aria-hidden="true">
-      <Moon client:visible />
-    </div>
-
     <div class="v404-hero">
       <div>
         <h1>404</h1>
         <p class="v404-desc">This page doesn't exist. Check the nav or head back home.</p>
         <a href="/verdant" class="v-cta v404-cta">Back to Verdant</a>
-      </div>
-    </div>
-
-    <!-- P2: Mountain/Mist band at bottom -->
-    <div class="vh-404-band" aria-hidden="true">
-      <div class="vh-404-mountain">
-        <MountainRidge client:visible />
-      </div>
-      <div class="vh-404-mist">
-        <MistLayer client:visible />
       </div>
     </div>
   </body>
