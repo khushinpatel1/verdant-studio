@@ -10,9 +10,10 @@
 - **Fonts:** self-hosted under `public/fonts/verdant/`. No Google Fonts.
 
 ## Deploy — v3 (current)
-- Deploys from any branch → Cloudflare Pages project `verdant-studio-v3`, CF branch `v3`.
-- **Workflow:** `.github/workflows/deploy.yml` runs `wrangler pages deploy dist --project-name=verdant-studio-v3 --branch=v3`.
-- `git push origin main` → auto-build + deploy to v3.
+Canonical push/deploy rule lives in `../partnership/docs/operating-model.md` — do not restate it
+here. Short version: no staging exists for this repo, so `git push origin main` deploys straight
+to live (Cloudflare Pages project `verdant-studio-v3`, CF branch `v3`), triggered by
+`.github/workflows/deploy.yml`.
 - **Retired:** v1 (dark), v2 (luminous) deleted 2026-06-20. Use `main` only.
 
 ## Screenshots in sandbox

@@ -1,5 +1,3 @@
-import type gsap from "gsap";
-
 /**
  * Animates SVG paths with the [data-growable] attribute,
  * drawing them in via stroke-dashoffset. Reusable primitive
@@ -8,7 +6,7 @@ import type gsap from "gsap";
  * @param timeline - GSAP timeline to add animations to
  * @param container - SVG element or parent containing growable paths
  */
-export function drawGrowth(timeline: gsap.core.Timeline, container: SVGSVGElement | Element) {
+export function drawGrowth(timeline: any, container: SVGSVGElement | Element) {
   const paths = container.querySelectorAll<SVGPathElement>("path[data-growable]");
 
   if (paths.length === 0) return;
